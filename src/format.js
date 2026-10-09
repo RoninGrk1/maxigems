@@ -99,7 +99,7 @@ export function recapMessage(top, hours, cfg) {
   const rows = top.map((c, i) =>
     `${medals[i] ?? `${i + 1}.`} <b>$${e(c.symbol)}</b> — <b>${e(fmtX(c.athMultiple))}</b> ATH (MC ${e(fmtUsd(c.mcAtCall))} → ${e(fmtUsd(c.athMc))}) ${a(c.links.dexscreener, '📊')}`);
   return [
-    `🏆 <b>MAXIGEMS TOP PERFORMERS</b> — last ${e(hours)}h`,
+    `🏆 <b>MAXIGEMS TOP PERFORMERS</b> — last ${e(hours >= 48 && hours % 24 === 0 ? `${hours / 24}d` : `${hours}h`)}`,
     ``,
     ...rows,
     ``,

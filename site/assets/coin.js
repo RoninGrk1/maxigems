@@ -6,7 +6,7 @@
   if (!MG.SOL_RE.test(ca || '')) return;
   var info = { ca: ca, symbol: b.getAttribute('data-symbol'), peak: parseFloat(b.getAttribute('data-peak')) };
   if ($('cCopy')) $('cCopy').addEventListener('click', function () { MG.copy(ca, $('cCopy')); });
-  if ($('cShare')) $('cShare').addEventListener('click', function () { MG.openShare(info); });
+  if ($('cShare')) $('cShare').addEventListener('click', function () { MG.openShare(info, $('cShare')); });
   function xc(v) { return v === null ? '' : v >= 1.05 ? 'pos' : v < 0.95 ? 'neg' : ''; }
   function apply(c) {
     var ath = MG.num(c.athMultiple), cur = MG.num(c.currentMultiple);

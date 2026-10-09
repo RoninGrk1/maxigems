@@ -84,6 +84,10 @@ test('generateShare: cap, idempotent (no rewrites), invalid CA skipped, sitemap,
   assert.equal(r2.rendered, 2); assert.equal(r2.queued, 0);
   const r3 = await generateShare(calls, { siteDir: dir, manifestFile: man, maxRenders: 5, render });
   assert.deepEqual([r3.rendered, r3.pages, r3.queued], [0, 0, 0], 'unchanged data → nothing rewritten');
+  // live-only fields (current x, MC now, liquidity) changing every run must NOT rewrite pages (regression: page churn)
+  const wiggle = calls.map((c) => ({ ...c, currentMultiple: 1.31, currentMc: 123456 + Math.random() * 1e5, currentLiquidity: 9999 }));
+  const r3b = await generateShare(wiggle, { siteDir: dir, manifestFile: man, maxRenders: 5, render });
+  assert.deepEqual([r3b.rendered, r3b.pages], [0, 0], 'live-only changes do not rewrite pages');
   const moved = calls.map((c, i) => (i === 3 ? { ...c, athMultiple: 2.4, currentMultiple: 1.1 } : { ...c, currentMultiple: 1.3 }));
   const r4 = await generateShare(moved, { siteDir: dir, manifestFile: man, maxRenders: 5, render });
   assert.equal(r4.rendered, 1, 'only the coin whose peak moved ≥0.05 re-renders'); assert.equal(r4.pages, 1);
@@ -128,4 +132,11 @@ test('sitemap + template parts', () => {
   assert.equal((xml.match(/<url>/g) || []).length, 4);
   const p = templateParts();
   assert.ok(p.header.includes('/trending/') && p.cta.includes('tgBtn') && p.footer.includes('ftrX'));
+});
+
+test('recap header shows days for multi-day windows', async () => {
+  const { recapMessage } = await import('../src/format.js');
+  const c = { ...call(), links: links(CA, call().pairAddress) };
+  assert.match(recapMessage([c], 168, { siteUrl: 'https://maxigems.fun/' }), /last 7d/);
+  assert.match(recapMessage([c], 12, { siteUrl: 'https://maxigems.fun/' }), /last 12h/);
 });

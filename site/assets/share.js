@@ -45,10 +45,11 @@
     return a;
   }
 
-  function openShare(raw) {
+  function openShare(raw, trigger) {
     var s = info(raw); if (!s) return;
     close();
-    lastFocus = document.activeElement;
+    // return focus to the Share button (Safari doesn't focus buttons on click, so don't rely on activeElement)
+    lastFocus = trigger || document.activeElement;
     var tw = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(s.text) + '&url=' + encodeURIComponent(s.url);
     var tg = 'https://t.me/share/url?url=' + encodeURIComponent(s.url) + '&text=' + encodeURIComponent(s.text);
     var bX = opt('a', 'sh-x', 'Post on X', 'Tweet with card preview', { href: tw, target: '_blank', rel: 'noopener noreferrer' });
@@ -91,7 +92,7 @@
   }
   function shareButton(raw, cls) {
     var b = h('button', { class: 'share-btn' + (cls ? ' ' + cls : ''), type: 'button', 'aria-haspopup': 'dialog', 'aria-label': 'Share $' + (raw && raw.symbol || ''), text: 'Share' });
-    b.addEventListener('click', function () { openShare(raw); });
+    b.addEventListener('click', function () { openShare(raw, b); });
     return b;
   }
   MG.openShare = openShare; MG.shareButton = shareButton; MG.closeShare = close;

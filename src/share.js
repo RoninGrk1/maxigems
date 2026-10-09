@@ -43,6 +43,7 @@ export function snapshotOf(c, hasCard) {
   const pk = peakX(c);
   return {
     v: CARD_VERSION, peak: +pk.toFixed(2), cur: num(c.currentMultiple) !== null ? +num(c.currentMultiple).toFixed(2) : null,
+    curMc: num(c.currentMc),
     status: statusOf(c), peakMc: num(c.athMc) ?? (num(c.mcAtCall) !== null ? num(c.mcAtCall) * pk : null), hasCard: !!hasCard,
   };
 }
@@ -274,7 +275,7 @@ export function coinPageHtml(c, snap, parts = templateParts()) {
         <div><span>MC at call</span><b>${esc(fmtUsd(c.mcAtCall))}</b></div>
         <div><span>Peak MC</span><b id="cPeakMc">${esc(fmtUsd(snap.peakMc))}</b></div>
         <div><span>Now x</span><b class="${xc(snap.cur) === 'up' ? 'pos' : xc(snap.cur) === 'down' ? 'neg' : ''}" id="cCur">${esc(snap.cur === null ? '—' : fmtX(snap.cur))}</b></div>
-        <div><span>MC now</span><b id="cMcNow">${esc(fmtUsd(c.currentMc))}</b></div>
+        <div><span>MC now</span><b id="cMcNow">${esc(fmtUsd(snap.curMc))}</b></div>
       </div>
       ${safety}
       <div class="ca"><code title="${esc(ca)}">${esc(ca)}</code><button class="copy" type="button" id="cCopy" aria-label="Copy contract address">Copy CA</button></div>
@@ -355,6 +356,7 @@ export async function generateShare(calls, { siteDir, manifestFile, maxRenders =
         if (!done) snap = { ...(material || !prev ? snapshotOf(c, fs.existsSync(cardFile)) : prev), dirty: true };
         man.coins[c.address] = { ...snap, symbol: clean(c.symbol, 16) };
       }
+      if (man.coins[c.address].curMc === undefined) man.coins[c.address].curMc = num(c.currentMc); // one-time backfill (older manifests)
       const html = coinPageHtml(c, man.coins[c.address], parts);
       if (writeIfChanged(path.join(siteDir, 'c', c.address, 'index.html'), html)) out.pages++;
     }
