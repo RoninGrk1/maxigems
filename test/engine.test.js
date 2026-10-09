@@ -42,6 +42,8 @@ const { runOnce } = await import('../src/engine.js');
 
 test('first run calls the token and posts once (after 429 retry)', async () => {
   const r = await runOnce();
+  const wl = JSON.parse(fs.readFileSync(path.join(dir, 'watchlist.json')));
+  assert.ok(!wl.items.some((i) => i.address === CA), 'called token is not on watch');
   assert.equal(r.newCalls.length, 1);
   assert.equal(tgCalls.length, 1);
   assert.equal(tgCalls[0].method, 'sendPhoto');
@@ -83,6 +85,19 @@ test('rugcheck down → fail closed: no call, no post', { timeout: 120000 }, asy
   assert.equal(tgCalls.length, before);
   assert.ok(Object.keys(r.rejectStats).some((k) => /fail closed/.test(k)));
   rugcheckDown = false;
+});
+
+test('radar: rugcheck-rejected token goes on watch with its reason; snapshot written', () => {
+  const dir = path.dirname(process.env.MAXIGEMS_SITE_DATA);
+  const w = JSON.parse(fs.readFileSync(path.join(dir, 'watchlist.json')));
+  const t = JSON.parse(fs.readFileSync(path.join(dir, 'trending.json')));
+  const item = w.items.find((i) => i.address === CA);
+  assert.ok(item, 'near-miss on watch');
+  assert.equal(item.reasonText, 'Safety check unavailable');
+  assert.equal(item.tier, 1);
+  assert.equal(typeof item.score, 'number');
+  assert.ok(t.hot.some((r) => r.address === CA));
+  assert.ok(t.hot.length <= 25 && t.graduates.length <= 15);
 });
 
 test('APIs down: run completes, keeps existing data', { timeout: 120000 }, async () => {

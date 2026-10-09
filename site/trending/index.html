@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Trending Radar — What’s Moving on Solana Now | MaxiGems</title>
+  <meta name="description" content="Live Solana memecoin radar: hottest tokens by volume acceleration and buyers, fresh pump.fun graduates, and MaxiGems near-miss tokens on watch. Refreshes every minute." />
+  <meta name="theme-color" content="#030507" />
+  <link rel="canonical" href="https://maxigems.fun/trending/" />
+  <meta property="og:url" content="https://maxigems.fun/trending/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MaxiGems" />
+  <meta property="og:title" content="MaxiGems Trending Radar — What’s Moving on Solana Now" />
+  <meta property="og:description" content="Hot tokens, fresh pump.fun graduates and near-miss gems on watch. Live, refreshed every minute." />
+  <meta property="og:image" content="https://maxigems.fun/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MaxiGems logo — pixel ape with gems" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@maxigems_sol" />
+  <meta name="twitter:creator" content="@maxigems_sol" />
+  <meta name="twitter:title" content="MaxiGems Trending Radar — What’s Moving on Solana Now" />
+  <meta name="twitter:description" content="Hot tokens, fresh pump.fun graduates and near-miss gems on watch. Live, refreshed every minute." />
+  <meta name="twitter:image" content="https://maxigems.fun/assets/og-image.jpg" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self' https://api.dexscreener.com https://api.geckoterminal.com; manifest-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/trending.css" />
+</head>
+<body class="page-trending">
+  <a class="skip" href="#radar">Skip to radar</a>
+  <div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="brand" href="/" aria-label="MaxiGems home">
+        <picture>
+          <source srcset="/assets/avatar-96.webp" type="image/webp" />
+          <img class="avatar" src="/assets/avatar-96.png" alt="" width="40" height="40" decoding="async" fetchpriority="high" />
+        </picture>
+        <span class="word">Maxi<b>Gems</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/"><span aria-hidden="true">💎</span> Calls</a>
+        <a href="/trending/" aria-current="page"><span aria-hidden="true">🔥</span> Trending</a>
+        <a href="/leaderboard/"><span aria-hidden="true">🏆</span> Leaderboard</a>
+      </nav>
+      <div class="live" id="live" title="Radar status"><span class="dot"></span><span id="liveText">Connecting…</span></div>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <div class="cta">
+    <a class="tg-btn" id="tgBtn" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1 1.4 11.6c-1-.3-1.1-1 .2-1.5L20.5 2.9c.9-.3 1.7.2 1.4 1.4z"/></svg>
+      <span>Join MaxiGems on Telegram</span>
+    </a>
+    <a class="chat-btn" id="chatBtn" href="https://t.me/MGcalls_gc" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+      <span>Join the Chat</span>
+    </a>
+    <a class="x-btn" id="xBtn" href="https://x.com/maxigems_sol" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.8 2h6.4l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.3 3.8H5.5l12.3 16.3z"/></svg>
+      <span>Follow on X</span>
+    </a>
+    </div>
+    <h1>Trending <span class="g">Radar</span>: what’s <span class="b">moving now</span>.</h1>
+    <p class="sub">Live Solana tokens ranked by volume acceleration and buyers, fresh pump.fun graduates, and near-misses the MaxiGems bot is watching. Refreshes every minute.</p>
+  </section>
+
+  <main class="wrap" id="main">
+    <p class="tr-note" role="note"><b>⚠️ Not a call — DYOR.</b> This radar is raw market data, unfiltered for rugs. Only posts in the MaxiGems channel are calls.</p>
+
+    <div class="tr-tabs" role="tablist" aria-label="Radar views">
+      <button class="tr-tab" role="tab" type="button" id="tab-hot" aria-controls="radar" aria-selected="true" data-tab="hot">🔥 Hot now <span class="tr-n" id="nHot"></span></button>
+      <button class="tr-tab" role="tab" type="button" id="tab-grads" aria-controls="radar" aria-selected="false" tabindex="-1" data-tab="grads">🎓 New graduates <span class="tr-n" id="nGrads"></span></button>
+      <button class="tr-tab" role="tab" type="button" id="tab-watch" aria-controls="radar" aria-selected="false" tabindex="-1" data-tab="watch">👀 On watch <span class="tr-n" id="nWatch"></span></button>
+    </div>
+    <p class="tr-desc" id="tabDesc"></p>
+
+    <section class="controls tr-controls" aria-label="Search and sort">
+      <label class="search">
+        <span class="sr">Search tokens</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        <input id="q" type="search" placeholder="Search name, $symbol or CA" autocomplete="off" spellcheck="false" />
+      </label>
+      <label class="sort"><span class="sr">Sort</span>
+        <select id="sort">
+          <option value="heat">🔥 Heat</option>
+          <option value="score">Score</option>
+          <option value="newest">Newest</option>
+          <option value="vol">1h volume</option>
+          <option value="buys">1h buys</option>
+          <option value="m5">5m change</option>
+          <option value="h1">1h change</option>
+          <option value="mc">Market cap</option>
+          <option value="liq">Liquidity</option>
+        </select>
+      </label>
+      <button class="tr-refresh" id="refresh" type="button" aria-label="Refresh now">↻</button>
+    </section>
+
+    <p class="tr-fallback" id="fallback" role="status" hidden></p>
+    <section id="radar" class="feed tr-feed" role="tabpanel" aria-labelledby="tab-hot" aria-live="polite" aria-busy="true">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </section>
+    <p class="empty" id="empty" hidden></p>
+  </main>
+
+  <footer class="ftr wrap">
+    <p><strong>Not financial advice. Nothing on this page is a call.</strong> Trending data comes straight from public APIs (DexScreener, GeckoTerminal) and is not checked for rugs. Memecoins are extremely high risk; most go to zero. Always DYOR.</p>
+    <p class="social"><a id="ftrX" href="https://x.com/maxigems_sol" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.8 2h6.4l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.3 3.8H5.5l12.3 16.3z"/></svg><span>@maxigems_sol</span></a><a id="ftrTg" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">Telegram</a><a id="ftrChat" href="https://t.me/MGcalls_gc" target="_blank" rel="noopener noreferrer">Chat</a></p>
+    <p class="muted">© <span id="yr"></span> MaxiGems · Data by DexScreener &amp; GeckoTerminal</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/config.js"></script>
+  <script src="/assets/radar-core.js"></script>
+  <script src="/assets/trending.js"></script>
+</body>
+</html>

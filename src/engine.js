@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { discoverCandidates, fetchPairs, pickPair, fetchUniqueTraders } from './sources.js';
 import { checkSafety } from './safety.js';
+import { buildWatchlist, buildTrending } from './radar.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
@@ -15,6 +16,9 @@ export const PATHS = {
   state: process.env.MAXIGEMS_STATE || path.join(ROOT, 'data', 'state.json'),
   site: process.env.MAXIGEMS_SITE_DATA || path.join(ROOT, 'site', 'data', 'calls.json'),
 };
+// Trending Radar files live next to calls.json (so tests that redirect MAXIGEMS_SITE_DATA also redirect these)
+PATHS.watchlist = path.join(path.dirname(PATHS.site), 'watchlist.json');
+PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
 
 const DAY = 86400000;
 
@@ -169,11 +173,13 @@ export async function runOnce({ forceRecap = false } = {}) {
 
   const scored = [];
   const rejectStats = {};
+  const evaluated = []; // radar: every candidate with pair data (no extra API calls)
   for (const c of fresh) {
     const pair = pickPair(pairsMap.get(c.address));
     if (!pair) { rejectStats['no pair data'] = (rejectStats['no pair data'] ?? 0) + 1; continue; }
     const m = metrics(pair, now);
     const reasons = filterReasons(m, f);
+    evaluated.push({ c, m, reasons, pair });
     if (reasons.length) {
       for (const r of reasons) rejectStats[r] = (rejectStats[r] ?? 0) + 1;
       continue;
@@ -198,8 +204,8 @@ export async function runOnce({ forceRecap = false } = {}) {
     const t = traders.get(x.m.pairAddress);
     x.traders = t ?? null;
     if (t) { // only enforce when GeckoTerminal returned data
-      if (t.buyersH1 < (f.minUniqueBuyersH1 ?? 0)) { bump('few unique buyers'); continue; }
-      if (t.buysH1 > 0 && t.buyersH1 / t.buysH1 < (f.minBuyerDiversityH1 ?? 0)) { bump('low buyer diversity (bots?)'); continue; }
+      if (t.buyersH1 < (f.minUniqueBuyersH1 ?? 0)) { bump('few unique buyers'); x.rejectReasons = ['few unique buyers']; continue; }
+      if (t.buysH1 > 0 && t.buyersH1 / t.buysH1 < (f.minBuyerDiversityH1 ?? 0)) { bump('low buyer diversity (bots?)'); x.rejectReasons = ['low buyer diversity (bots?)']; continue; }
     }
     stage2.push(x);
   }
@@ -210,6 +216,8 @@ export async function runOnce({ forceRecap = false } = {}) {
     for (const x of stage2) {
       const r = res.get(x.m.address);
       if (!r || r.reasons.length) {
+        x.rejectReasons = r?.reasons?.length ? r.reasons : ['safety: unchecked'];
+        if (r?.safety) x.safety = r.safety;
         for (const reason of r?.reasons ?? ['safety: unchecked']) bump(reason.replace(/[\d.]+%|\d+$/g, '').trim());
         log(`SAFETY reject $${x.m.symbol}: ${(r?.reasons ?? ['unchecked']).join('; ')}`);
         continue;
@@ -282,8 +290,19 @@ export async function runOnce({ forceRecap = false } = {}) {
   state.lastRunAt = new Date(now).toISOString();
   writeJsonAtomic(PATHS.state, state);
   writeJsonAtomic(PATHS.site, siteData(state, cfg, now));
+  writeRadar({ evaluated, scored, shortlist, picks, f, now });
   log(`done: ${newCalls.length} new, ${state.calls.length} stored, ${milestoneHits.length} milestones`);
   return { newCalls, milestoneHits, state, rejectStats, passRate: { fresh: fresh.length, market: marketPassed, safety: passed.length } };
+}
+
+/** /trending/ data (watchlist + capped snapshot). Never fails the run. */
+export function writeRadar({ evaluated, scored, shortlist, picks, f, now }) {
+  try {
+    writeJsonAtomic(PATHS.watchlist, buildWatchlist({ evaluated, scored, shortlist, picks, f, now }));
+    writeJsonAtomic(PATHS.trending, buildTrending({ pairs: evaluated.map((e) => e.pair), now }));
+  } catch (e) {
+    log(`WARN radar export failed: ${e.message}`);
+  }
 }
 
 export function siteData(state, cfg, now = Date.now()) {

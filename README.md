@@ -8,6 +8,15 @@ An automated Telegram call channel **plus** a one-page live tracker website, run
 - **Pages**: `/` live calls, `/trending/` trending, `/leaderboard/` track record (period toggle 24h/7d/30d/All, 2x/5x/10x hit rates, avg/median peak x, rug rate incl. rugged calls, podium, sortable/searchable table, peak-x bar chart). Shared header nav + buttons (`site/assets/common.js`, `styles.css`), clean folder URLs, `sitemap.xml`, `robots.txt`, branded `404.html`.
 - **Automation**: GitHub Actions cron (every 10 min) runs the engine, commits `calls.json`, and deploys the site to GitHub Pages — free for public repos.
 
+## Trending Radar (`/trending/`)
+Live "what's moving on Solana" page, fetched **in the visitor's browser** (all endpoints send `Access-Control-Allow-Origin: *`):
+DexScreener `token-boosts/top|latest/v1` + `tokens/v1/solana/{≤30 CAs}` (every 60 s, ≤4 batches) and GeckoTerminal
+`trending_pools` + `new_pools` (every ~2 min, 5-min back-off after a failure). Tabs: **🔥 Hot now** (heat = 5m/1h volume
+acceleration + buyers + buy share), **🎓 New graduates** (pump.fun mints on PumpSwap/Raydium < 24h), **👀 On watch**
+(`site/data/watchlist.json`). If the APIs fail it shows `site/data/trending.json`. Each engine run writes both files from data
+it already fetched (`src/radar.js`, no extra requests). Page logic: `site/assets/radar-core.js` (pure, unit-tested) +
+`trending.js`, styles in `trending.css`. Not calls — DYOR.
+
 ## Free APIs used (no keys)
 | API | Endpoint | Used for |
 |---|---|---|
