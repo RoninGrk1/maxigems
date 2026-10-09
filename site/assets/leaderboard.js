@@ -170,7 +170,8 @@
       var seen = {};
       state.calls = arr.map(sanitize).filter(function (c) { if (!c || seen[c.address]) return false; seen[c.address] = 1; return true; });
       state.lastOk = Date.now();
-      setLive(true, 'Live · updated ' + MG.ago(d && d.updatedAt ? d.updatedAt : Date.now()));
+      state.updatedAt = d && isFinite(Date.parse(d.updatedAt)) ? d.updatedAt : new Date().toISOString();
+      setLive(true, 'Live · updated ' + MG.ago(state.updatedAt));
       render();
     }).catch(function () {
       setLive(false, 'Offline · retrying');
@@ -201,5 +202,5 @@
   load();
   var every = Math.max(20, num(MG.CFG.refreshSeconds) || 60) * 1000;
   setInterval(function () { if (!document.hidden) load(); }, every);
-  setInterval(function () { if (state.lastOk) $('liveText').textContent = 'Live · updated ' + MG.ago(state.lastOk); }, 15000);
+  setInterval(function () { if (state.updatedAt) $('liveText').textContent = 'Live · updated ' + MG.ago(state.updatedAt); }, 15000);
 })();

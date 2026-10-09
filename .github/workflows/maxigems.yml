@@ -23,23 +23,27 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: maxigems
-  cancel-in-progress: false
+# Concurrency is per JOB (not per workflow): a push-triggered site deploy must never cancel a queued
+# engine run (GitHub keeps only ONE pending run per group and cancels the older pending one).
+# engine: one at a time, never cancelled mid-run (prevents double posts). deploy: serialized; each deploy
+# checks out the branch tip, so a newer pending deploy replacing an older one loses nothing.
 
 jobs:
   engine:
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # pinned: ubuntu-latest is moving to 26.04
+    concurrency:
+      group: maxigems-engine
+      cancel-in-progress: false
     timeout-minutes: 8
     steps:
       # Check out the branch TIP (not the trigger SHA): a run queued behind another run must see
       # that run's freshly committed state.json, otherwise it could re-post the same calls.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 1
-      # Node 20+ is preinstalled on ubuntu-latest and the engine has zero deps: no setup-node / npm install needed.
+      # Node 20+ is preinstalled on the ubuntu-24.04 image and the engine has zero deps: no setup-node / npm install needed.
       - name: Safety API reachability (informational)
         continue-on-error: true
         run: |
@@ -73,19 +77,22 @@ jobs:
   deploy:
     needs: engine
     if: always() && (needs.engine.result == 'success' || needs.engine.result == 'skipped')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
+    concurrency:
+      group: maxigems-pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.ref_name }}   # latest commit incl. fresh calls.json
           fetch-depth: 1
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
