@@ -87,9 +87,9 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 **Score (0–100)** = liquidity depth 15 + volume/liquidity turnover 15 + buy/sell flow 20 + price momentum (5m/1h/6h) 20 + tx activity 15 + volume acceleration (1h vs 24h avg) 15, plus bonuses (preferred DEX, socials, boosted, seen on several sources) and penalties for overextension.
 
 ### On-chain safety (stage 2, fail-closed)
-Only the best `safety.maxChecksPerRun` (8) market-passing tokens are checked, to stay inside free rate limits:
-1. **GeckoTerminal** `pools/multi` → unique buyers in the last hour: ≥ `minUniqueBuyersH1` (60) and unique buyers ÷ buys ≥ `minBuyerDiversityH1` (0.2, catches bot wash). Skipped if GT returns nothing.
-2. **RugCheck** `api.rugcheck.xyz/v1/tokens/{mint}/report` (free, keyless) — reject if: mint or freeze authority not revoked · LP locked/burned < `minLpLockedPct` (90%; pump.fun/PumpSwap migrated pools report 100%) · top-10 holders excl. pools/AMMs/lockers > `maxTop10HolderPct` (30%) · flagged insiders > `maxInsiderPct` (10%) · creator holds > `maxCreatorPct` (5%) · insider network > 20% of holders · < `minHolders` (300) · any RugCheck risk at level `danger` · transfer fee · flagged rugged.
+Only the best `safety.maxChecksPerRun` (12) market-passing tokens are checked, to stay inside free rate limits:
+1. **GeckoTerminal** `pools/multi` → unique buyers in the last hour: ≥ `minUniqueBuyersH1` (45) and unique buyers ÷ buys ≥ `minBuyerDiversityH1` (0.15, catches bot wash). Skipped if GT returns nothing.
+2. **RugCheck** `api.rugcheck.xyz/v1/tokens/{mint}/report` (free, keyless) — reject if: mint or freeze authority not revoked · LP locked/burned < `minLpLockedPct` (80%; pump.fun/PumpSwap migrated pools report 100%) · top-10 holders excl. pools/AMMs/lockers > `maxTop10HolderPct` (35%) · flagged insiders > `maxInsiderPct` (15%) · creator holds > `maxCreatorPct` (8%) · insider network > 25% of holders · < `minHolders` (200) · any RugCheck risk at level `danger` · transfer fee · flagged rugged.
 3. **Solana public RPC** `getMultipleAccounts` (one batched call) cross-checks mint/freeze authority.
 If RugCheck can't be read for a token, it is **not called** (fail closed). Posts and site cards show `🛡 Mint ✅ | Freeze ✅ | LP 🔥 100% | Top10 18%`.
 

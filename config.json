@@ -58,8 +58,8 @@
     "minScore": 60,
     "minPriceChangeM5": -15,
     "maxPriceChangeM5": 25,
-    "minUniqueBuyersH1": 60,
-    "minBuyerDiversityH1": 0.2
+    "minUniqueBuyersH1": 45,
+    "minBuyerDiversityH1": 0.15
   },
   "milestones": [
     2,
@@ -85,14 +85,14 @@
   },
   "safety": {
     "enabled": true,
-    "maxChecksPerRun": 8,
-    "minLpLockedPct": 90,
-    "maxTop10HolderPct": 30,
-    "maxInsiderPct": 10,
-    "maxCreatorPct": 5,
-    "minHolders": 300,
+    "maxChecksPerRun": 12,
+    "minLpLockedPct": 80,
+    "maxTop10HolderPct": 35,
+    "maxInsiderPct": 15,
+    "maxCreatorPct": 8,
+    "minHolders": 200,
     "maxRugcheckScore": 0,
-    "maxInsiderNetworkRatio": 0.2
+    "maxInsiderNetworkRatio": 0.25
   },
   "rugDetection": {
     "priceDropPct": 80,

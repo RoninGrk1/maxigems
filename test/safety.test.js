@@ -25,7 +25,7 @@ test('rejects: mint/freeze authority, LP unlocked, concentration, insiders, crea
     [{ markets: [{ pubkey: POOL, lp: { lpLockedPct: 40 } }] }, /LP locked/],
     [{ markets: [] }, /LP lock unknown/],
     [{ topHolders: Array.from({ length: 10 }, (_, i) => ({ address: `A${i}`, owner: `B${i}`, pct: 5 })) }, /top10/],
-    [{ topHolders: [{ address: 'a', owner: 'b', pct: 12, insider: true }] }, /insiders/],
+    [{ topHolders: [{ address: 'a', owner: 'b', pct: 18, insider: true }] }, /insiders/],
     [{ creatorBalance: 1e14 }, /creator holds/],
     [{ risks: [{ name: 'Low Liquidity', level: 'danger' }] }, /danger/],
     [{ rugged: true }, /rugged/],
@@ -37,6 +37,12 @@ test('rejects: mint/freeze authority, LP unlocked, concentration, insiders, crea
     assert.ok(r.reasons.some((x) => re.test(x)), `${re} not in ${r.reasons}`);
   }
   assert.ok(analyzeReport(null, ctx, S).reasons.length);
+});
+
+test('loosened limits still pass borderline-OK tokens', () => {
+  const h = Array.from({ length: 10 }, (_, i) => ({ address: `A${i}`, owner: `B${i}`, pct: 3.4, insider: i === 0 }));
+  const r = analyzeReport(fakeReport({ topHolders: h, markets: [{ pubkey: POOL, lp: { lpLockedPct: 85 } }], totalHolders: 250, creatorBalance: 7e13 }), ctx, S);
+  assert.deepEqual(r.reasons, []); // top10 34%, LP 85%, 250 holders, creator 7%
 });
 
 test('RPC cross-check overrides a stale "revoked" report', () => {
