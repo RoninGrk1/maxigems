@@ -6,11 +6,13 @@
   <title>MaxiGems — Live Solana Memecoin Calls</title>
   <meta name="description" content="MaxiGems: automated Solana memecoin calls with live x-since-call tracking. Join the Telegram channel." />
   <meta name="theme-color" content="#030507" />
+  <link rel="canonical" href="https://maxigems.fun/" />
+  <meta property="og:url" content="https://maxigems.fun/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MaxiGems" />
   <meta property="og:title" content="MaxiGems — Live Solana Memecoin Calls" />
   <meta property="og:description" content="Automated Solana gem calls, tracked live. Join on Telegram." />
-  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="og:image" content="https://maxigems.fun/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="MaxiGems logo — pixel ape with gems" />
@@ -19,15 +21,15 @@
   <meta name="twitter:creator" content="@maxigems_sol" />
   <meta name="twitter:title" content="MaxiGems — Live Solana Memecoin Calls" />
   <meta name="twitter:description" content="Automated Solana gem calls, tracked live. Join on Telegram." />
-  <meta name="twitter:image" content="assets/og-image.jpg" />
+  <meta name="twitter:image" content="https://maxigems.fun/assets/og-image.jpg" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'" />
   <meta name="referrer" content="no-referrer" />
-  <link rel="icon" href="favicon.ico" sizes="48x48" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
   <a class="skip" href="#feed">Skip to calls</a>
@@ -35,13 +37,18 @@
 
   <header class="hdr">
     <div class="wrap hdr-in">
-      <a class="brand" href="./" aria-label="MaxiGems home">
+      <a class="brand" href="/" aria-label="MaxiGems home">
         <picture>
-          <source srcset="assets/avatar-96.webp" type="image/webp" />
-          <img class="avatar" src="assets/avatar-96.png" alt="" width="40" height="40" decoding="async" fetchpriority="high" />
+          <source srcset="/assets/avatar-96.webp" type="image/webp" />
+          <img class="avatar" src="/assets/avatar-96.png" alt="" width="40" height="40" decoding="async" fetchpriority="high" />
         </picture>
         <span class="word">Maxi<b>Gems</b></span>
       </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/" aria-current="page"><span aria-hidden="true">💎</span> Calls</a>
+        <a href="/trending/"><span aria-hidden="true">🔥</span> Trending</a>
+        <a href="/leaderboard/"><span aria-hidden="true">🏆</span> Leaderboard</a>
+      </nav>
       <div class="live" id="live" title="Feed status"><span class="dot"></span><span id="liveText">Connecting…</span></div>
     </div>
   </header>
@@ -103,7 +110,8 @@
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="config.js"></script>
-  <script src="assets/app.js"></script>
+  <script src="/config.js"></script>
+  <script src="/assets/common.js"></script>
+  <script src="/assets/app.js"></script>
 </body>
 </html>

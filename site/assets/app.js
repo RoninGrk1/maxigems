@@ -217,13 +217,7 @@
   var tt; function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { t.classList.remove('show'); }, 1800); }
 
   // ---------- init ----------
-  $('tgBtn').href = telegramHref(CFG.telegramUrl);
-  function xHref(u) { var s = safeHttpUrl(u); return s && /^https:\/\/(www\.)?(x|twitter)\.com\//.test(s) ? s : null; }
-  $('ftrTg').href = $('tgBtn').href;
-  if (CFG.chatUrl) { $('chatBtn').href = $('ftrChat').href = telegramHref(CFG.chatUrl); } else { $('chatBtn').hidden = $('ftrChat').hidden = true; }
-  var xu = xHref(CFG.xUrl);
-  if (xu) { $('xBtn').href = $('ftrX').href = xu; } else { $('xBtn').hidden = $('ftrX').hidden = true; }
-  if (!CFG.chatUrl !== !xu) document.querySelector('.cta').classList.add('one'); // only one secondary button → full width
+  // Telegram / Chat / X buttons, footer links and nav are wired by assets/common.js
   $('yr').textContent = new Date().getFullYear();
   var chips = $('dexChips');
   DEX_CHIPS.forEach(function (d) {
