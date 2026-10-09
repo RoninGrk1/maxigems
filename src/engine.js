@@ -93,7 +93,20 @@ function buildCall(m, sc, now, safety = null, traders = null) {
 }
 
 /** Refresh live price / ATH multiple for recent calls. Returns list of {call, milestone}. */
+/** Ensure every call has a peak MC + peak timestamp (older stored calls predate athAt). Mutates and returns c. */
+export function backfillPeak(c) {
+  if (!c) return c;
+  const mult = num(c.athMultiple);
+  if (num(c.athMc) === null || c.athMc <= 0) {
+    const base = num(c.mcAtCall);
+    c.athMc = base !== null ? +(base * (mult && mult > 0 ? mult : 1)).toFixed(2) : null;
+  }
+  if (!c.athAt || Number.isNaN(Date.parse(c.athAt))) c.athAt = c.calledAt ?? c.lastUpdated ?? null;
+  return c;
+}
+
 async function trackCalls(state, cfg, now) {
+  for (const c of state.calls) backfillPeak(c);
   const active = state.calls.filter((c) => now - Date.parse(c.calledAt) < (cfg.trackDays ?? 7) * DAY);
   if (!active.length) return [];
   const pairsMap = await fetchPairs(active.map((c) => c.address));
@@ -274,12 +287,12 @@ export async function runOnce({ forceRecap = false } = {}) {
 }
 
 export function siteData(state, cfg, now = Date.now()) {
-  const pub = state.calls.map((c) => ({
+  const pub = state.calls.map((c) => backfillPeak({ ...c })).map((c) => ({
     address: c.address, name: c.name, symbol: c.symbol, chain: c.chain, dex: c.dex, pairAddress: c.pairAddress,
     imageUrl: c.imageUrl, calledAt: c.calledAt, score: c.score,
     priceAtCall: c.priceAtCall, mcAtCall: c.mcAtCall, liquidity: c.liquidity, volume24h: c.volume24h, change: c.change,
     currentPrice: c.currentPrice, currentMc: c.currentMc, currentLiquidity: c.currentLiquidity,
-    currentMultiple: c.currentMultiple, athMultiple: c.athMultiple, athMc: c.athMc, status: c.status,
+    currentMultiple: c.currentMultiple, athMultiple: c.athMultiple, athMc: c.athMc, athAt: c.athAt, peakMc: c.athMc, peakAt: c.athAt, status: c.status, ruggedAt: c.ruggedAt ?? null,
     safety: c.safety ? { mint: c.safety.mintRevoked, freeze: c.safety.freezeRevoked, lp: c.safety.lpLockedPct, top10: c.safety.top10Pct } : null,
     links: c.links, lastUpdated: c.lastUpdated,
   }));

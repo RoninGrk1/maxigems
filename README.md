@@ -5,6 +5,7 @@ An automated Telegram call channel **plus** a one-page live tracker website, run
 - **Engine** (`src/`, Node 20, zero dependencies): scans Solana pairs on DexScreener + GeckoTerminal every 10 min, filters out rugs/weak coins, scores the rest, posts the best to Telegram, and tracks every call's **peak x since call**.
 - **Telegram**: rich HTML posts (token image, CA in `<code>`, stats, DexScreener/Solscan/Birdeye/Photon/BullX links, inline buttons for Chart / Solscan / Jupiter / Birdeye / site), **milestone replies** (2x, 3x, 5x…) and a **top-performers recap** every 12h.
 - **Website** (`site/`, static, no build): black / neon-green / electric-blue glass UI, Telegram button under the header, live feed with search, DEX filter, sort, copy-CA, stats bar, auto-refresh. Mobile-first.
+- **Pages**: `/` live calls, `/trending/` trending, `/leaderboard/` track record (period toggle 24h/7d/30d/All, 2x/5x/10x hit rates, avg/median peak x, rug rate incl. rugged calls, podium, sortable/searchable table, peak-x bar chart). Shared header nav + buttons (`site/assets/common.js`, `styles.css`), clean folder URLs, `sitemap.xml`, `robots.txt`, branded `404.html`.
 - **Automation**: GitHub Actions cron (every 10 min) runs the engine, commits `calls.json`, and deploys the site to GitHub Pages — free for public repos.
 
 ## Free APIs used (no keys)
@@ -108,7 +109,8 @@ src/format.js               Telegram HTML templates (all values escaped)
 src/telegram.js             Bot API client (429 retry_after, fallbacks, DRY_RUN)
 src/state.js / util.js      atomic JSON state, fetch w/ rate-limit, formatters
 data/state.json             engine state (committed by the Action)
-site/                       static website (index.html, config.js, assets/, data/calls.json)
+site/                       static website (index.html, leaderboard/, trending/, 404.html, sitemap.xml, robots.txt, config.js, assets/, data/calls.json)
+site/assets/leaderboard-core.js  pure leaderboard maths (median, rates, periods, ranking) — unit-tested in test/leaderboard.test.js
 .github/workflows/maxigems.yml   10-min cron: engine + data commit + Pages deploy
 test/                       node:test suites
 ```
@@ -116,7 +118,7 @@ test/                       node:test suites
 ## Branding
 - Header avatar: `site/assets/avatar-96.{webp,png}` (ape-head crop for legibility at 40px); full logo `site/assets/logo-{128,512}.{webp,png}`.
 - Favicons `site/favicon.ico|-16|-32.png`, `apple-touch-icon.png` (180), `icon-192/512.png`, `site.webmanifest`.
-- Link previews: `site/assets/og-image.jpg` (1200×630). The deploy job rewrites `og:image`/`twitter:image` to absolute URLs using `SITE_URL` (or the Pages URL).
+- Link previews: `site/assets/og-image.jpg` (1200×630). Each page carries absolute `https://maxigems.fun/...` canonical, `og:url` and `og:image` tags (update them if the domain changes).
 - Telegram: `branding/telegram-fallback.jpg` is uploaded as the photo for calls without a token image and for recaps (`telegram.fallbackPhoto` in `config.json`).
 - `branding/telegram-avatar.png` (640×640) — set it as the channel/bot photo by hand (Channel → Edit → photo; @BotFather → /setuserpic).
 
