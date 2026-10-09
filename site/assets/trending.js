@@ -87,7 +87,7 @@
       var L = all[0], D = all[1], G = all[2];
       watchRaw = L[0] && Array.isArray(L[0].items) ? L[0].items : [];
       var called = {};
-      (L[1] && Array.isArray(L[1].calls) ? L[1].calls : []).forEach(function (c) { if (c && R.isSol(c.address)) called[c.address] = 1; });
+      (L[1] && Array.isArray(L[1].calls) ? L[1].calls : []).forEach(function (c) { if (c && R.isSol(c.address)) called[c.address] = { symbol: c.symbol, peak: Math.max(1, +c.athMultiple || 0, +c.currentMultiple || 0) }; });
       state.called = called;
       snap = L[2] && typeof L[2] === 'object' ? L[2] : null;
 
@@ -165,7 +165,7 @@
   function card(r, tab) {
     var now = Date.now();
     var dsUrl = 'https://dexscreener.com/solana/' + (r.pairAddress && R.isSol(r.pairAddress) ? r.pairAddress : r.address);
-    var called = state.called[r.address] === 1;
+    var calledInfo = state.called[r.address], called = !!calledInfo;
     var copyBtn = h('button', { class: 'copy', type: 'button', 'aria-label': 'Copy contract address of ' + r.symbol, text: 'Copy CA' });
     copyBtn.addEventListener('click', function () { copy(r.address, copyBtn); });
     var b = r.txns && r.txns.h1 ? r.txns.h1.b : 0, s = r.txns && r.txns.h1 ? r.txns.h1.s : 0;
@@ -206,7 +206,8 @@
         h('span', { class: 'ago', text: share == null ? 'No trades in 1h' : share + '% buys (1h)' }),
         h('div', { class: 'lnk' }, [
           h('a', { class: 'pri', href: dsUrl, target: '_blank', rel: 'noopener noreferrer', text: 'DexScreener' }),
-          h('a', { href: 'https://solscan.io/token/' + r.address, target: '_blank', rel: 'noopener noreferrer', text: 'Solscan' })
+          h('a', { href: 'https://solscan.io/token/' + r.address, target: '_blank', rel: 'noopener noreferrer', text: 'Solscan' }),
+          called && window.MG && window.MG.shareButton ? window.MG.shareButton({ ca: r.address, symbol: calledInfo.symbol || r.symbol, peak: calledInfo.peak }) : null
         ])
       ])
     ]);

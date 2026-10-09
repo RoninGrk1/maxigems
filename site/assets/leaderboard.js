@@ -55,7 +55,8 @@
     return h('div', { class: 'lnk' }, [
       h('a', { class: 'pri', href: L.dexscreener, target: '_blank', rel: 'noopener noreferrer', text: 'Chart' }),
       h('a', { href: L.solscan, target: '_blank', rel: 'noopener noreferrer', text: 'Solscan' }),
-      h('a', { href: L.jupiter, target: '_blank', rel: 'noopener noreferrer', text: 'Buy' })
+      h('a', { href: L.jupiter, target: '_blank', rel: 'noopener noreferrer', text: 'Buy' }),
+      MG.shareButton ? MG.shareButton({ ca: c.address, symbol: c.symbol, peak: LB.peakX(c) }) : null
     ]);
   }
   function tokenCell(c, size) {
@@ -89,7 +90,7 @@
         h('div', { class: 'pod-x', text: xf(pk) }),
         h('div', { class: 'pod-m' }, [usd(c.mcAtCall) + ' → ' + usd(c.athMc)]),
         h('div', { class: 'pod-m muted' }, ['Called ' + MG.ago(c.calledAt) + (peakIn(c) ? ' · peak ' + peakIn(c) : '')]),
-        statusBadge(c)
+        h('div', { class: 'pod-act' }, [statusBadge(c), MG.shareButton ? MG.shareButton({ ca: c.address, symbol: c.symbol, peak: pk }) : null])
       ]));
     });
   }

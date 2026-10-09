@@ -43,7 +43,13 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 1
-      # Node 20+ is preinstalled on the ubuntu-24.04 image and the engine has zero deps: no setup-node / npm install needed.
+      # Deps: @resvg/resvg-js + sharp (prebuilt binaries) for the per-coin share cards. npm cache keyed on package-lock.json.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
       - name: Safety API reachability (informational)
         continue-on-error: true
         run: |
@@ -65,7 +71,9 @@ jobs:
         run: |
           git config user.name "maxigems-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/state.json site/data/calls.json site/data/watchlist.json site/data/trending.json
+          git add data/state.json site/data/calls.json site/data/watchlist.json site/data/trending.json site/sitemap.xml
+          if [ -f data/share.json ]; then git add data/share.json; fi
+          if [ -d site/c ]; then git add -A site/c; fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -q -m "chore(data): update calls"
           for i in 1 2 3; do

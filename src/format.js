@@ -22,6 +22,13 @@ export function links(ca, pairAddress) {
   };
 }
 
+/** Per-coin share page (/c/<CA>/) under the configured site URL, or null. */
+export function coinPageUrl(call, cfg) {
+  const site = safeUrl(cfg.siteUrl);
+  if (!site || !/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(String(call?.address ?? ''))) return null;
+  try { return new URL(`c/${call.address}/`, site.endsWith('/') ? site : site + '/').toString(); } catch { return null; }
+}
+
 const a = (url, label) => `<a href="${e(url)}">${e(label)}</a>`;
 
 export function safetyLine(s) {
@@ -49,7 +56,7 @@ export function callMessage(call, cfg) {
     call.safety ? e(safetyLine(call.safety)) : null,
     ``,
     [a(L.dexscreener, 'DexScreener'), a(L.solscan, 'Solscan'), a(L.birdeye, 'Birdeye'), a(L.photon, 'Photon'), a(L.bullx, 'BullX')].join(' • '),
-    site ? `🌐 ${a(site, 'All calls & tracking → MaxiGems')}` : null,
+    site ? `🌐 ${coinPageUrl(call, cfg) ? a(coinPageUrl(call, cfg), 'Live tracking & share card') + ' • ' : ''}${a(site, 'All calls → MaxiGems')}` : null,
     `<i>⚠️ High risk. DYOR — not financial advice.</i>`,
   ];
   return lines.filter((x) => x !== null).join('\n');
@@ -64,7 +71,8 @@ export function callButtons(call, cfg) {
   const site = safeUrl(cfg.siteUrl);
   const chat = safeUrl(cfg.telegramChatUrl);
   const last = [];
-  if (site) last.push({ text: '💎 Live Calls', url: site });
+  const page = coinPageUrl(call, cfg);
+  if (page || site) last.push({ text: page ? '💎 Track & Share' : '💎 Live Calls', url: page || site });
   if (chat) last.push({ text: '💬 Chat', url: chat });
   const x = safeUrl(cfg.xUrl);
   if (x) last.push({ text: '𝕏 Follow', url: x });

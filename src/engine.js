@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { discoverCandidates, fetchPairs, pickPair, fetchUniqueTraders } from './sources.js';
 import { checkSafety } from './safety.js';
 import { buildWatchlist, buildTrending } from './radar.js';
+import { generateShare } from './share.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
@@ -17,6 +18,9 @@ export const PATHS = {
   site: process.env.MAXIGEMS_SITE_DATA || path.join(ROOT, 'site', 'data', 'calls.json'),
 };
 // Trending Radar files live next to calls.json (so tests that redirect MAXIGEMS_SITE_DATA also redirect these)
+// Share pages/cards are written into the real site dir; tests that redirect MAXIGEMS_SITE_DATA must opt in via MAXIGEMS_SITE_DIR.
+PATHS.siteDir = process.env.MAXIGEMS_SITE_DIR || (process.env.MAXIGEMS_SITE_DATA ? null : path.join(ROOT, 'site'));
+PATHS.share = process.env.MAXIGEMS_SHARE || path.join(path.dirname(PATHS.state), 'share.json');
 PATHS.watchlist = path.join(path.dirname(PATHS.site), 'watchlist.json');
 PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
 
@@ -289,8 +293,12 @@ export async function runOnce({ forceRecap = false } = {}) {
   for (const [k, t] of Object.entries(state.seen)) if (now - t > 30 * DAY) delete state.seen[k];
   state.lastRunAt = new Date(now).toISOString();
   writeJsonAtomic(PATHS.state, state);
-  writeJsonAtomic(PATHS.site, siteData(state, cfg, now));
+  const pub = siteData(state, cfg, now);
+  writeJsonAtomic(PATHS.site, pub);
   writeRadar({ evaluated, scored, shortlist, picks, f, now });
+  if (PATHS.siteDir && cfg.share?.enabled !== false) {
+    await generateShare(pub.calls, { siteDir: PATHS.siteDir, manifestFile: PATHS.share, maxRenders: cfg.share?.maxRendersPerRun ?? 25, timeBudgetMs: (cfg.share?.timeBudgetSeconds ?? 90) * 1000, now });
+  }
   log(`done: ${newCalls.length} new, ${state.calls.length} stored, ${milestoneHits.length} milestones`);
   return { newCalls, milestoneHits, state, rejectStats, passRate: { fresh: fresh.length, market: marketPassed, safety: passed.length } };
 }

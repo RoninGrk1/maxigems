@@ -97,5 +97,10 @@
   "rugDetection": {
     "priceDropPct": 80,
     "liquidityDropPct": 70
+  },
+  "share": {
+    "enabled": true,
+    "maxRendersPerRun": 25,
+    "timeBudgetSeconds": 90
   }
 }

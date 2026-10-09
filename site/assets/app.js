@@ -136,7 +136,8 @@
         h('div', { class: 'lnk' }, [
           h('a', { class: 'pri', href: L.dexscreener, target: '_blank', rel: 'noopener noreferrer', text: 'DexScreener' }),
           h('a', { href: L.solscan, target: '_blank', rel: 'noopener noreferrer', text: 'Solscan' }),
-          h('a', { href: L.jupiter, target: '_blank', rel: 'noopener noreferrer', text: 'Jupiter' })
+          h('a', { href: L.jupiter, target: '_blank', rel: 'noopener noreferrer', text: 'Jupiter' }),
+          window.MG && MG.shareButton ? MG.shareButton({ ca: c.address, symbol: c.symbol, peak: c.ath }) : null
         ])
       ])
     ]);
