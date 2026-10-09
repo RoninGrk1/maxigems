@@ -33,13 +33,15 @@
 .tr-why b{color:#ffd76a}
 @media (max-width:560px){
   .tr-note{font-size:12.5px;padding:10px 12px}
-  .tr-tab{padding:9px 12px;font-size:13px}
+  .tr-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;overflow:visible}
+  .tr-tab{justify-content:center;flex-wrap:wrap;gap:4px;padding:8px 6px;font-size:12.5px;line-height:1.2;text-align:center;min-width:0}
   .tr-controls .search{flex-basis:100%}
   .tr-controls .sort{flex:1 1 0;min-width:0}
   .tr-controls .sort select{width:100%}
   .tr-feed{grid-template-columns:1fr}
 }
 @media (max-width:360px){
+  .tr-tab{font-size:12px;padding:8px 4px}
   .tr-chg{flex-direction:column;align-items:flex-start;gap:0}
   .tr-bs{flex-wrap:wrap}
 }
