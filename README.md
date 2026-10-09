@@ -99,6 +99,13 @@ site/                       static website (index.html, config.js, assets/, data
 test/                       node:test suites
 ```
 
+## Branding
+- Header avatar: `site/assets/avatar-96.{webp,png}` (ape-head crop for legibility at 40px); full logo `site/assets/logo-{128,512}.{webp,png}`.
+- Favicons `site/favicon.ico|-16|-32.png`, `apple-touch-icon.png` (180), `icon-192/512.png`, `site.webmanifest`.
+- Link previews: `site/assets/og-image.jpg` (1200×630). The deploy job rewrites `og:image`/`twitter:image` to an absolute URL using `SITE_URL` (or the Pages URL).
+- Telegram: `branding/telegram-fallback.jpg` is uploaded as the photo for calls without a token image and for recaps (`telegram.fallbackPhoto` in `config.json`).
+- `branding/telegram-avatar.png` (640×640) — set it as the channel/bot photo by hand (Channel → Edit → photo; @BotFather → /setuserpic).
+
 ## Security notes
 - Secrets live only in GitHub Secrets / `.env` (git-ignored). Logs never print the token.
 - Token names/symbols are attacker-controlled: stripped of control/RTL chars, length-capped, HTML-escaped for Telegram; the site renders with `textContent` only, rebuilds all links from validated Solana addresses, whitelists image hosts, and ships a strict CSP.
