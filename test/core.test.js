@@ -64,3 +64,14 @@ test('corrupt state file is backed up and replaced', () => {
   assert.deepEqual(readJson(file, { ok: 1 }), { ok: 1 });
   assert.ok(fs.readdirSync(dir).some((f) => f.includes('corrupt')));
 });
+
+test('loosened market filters: borderline pair passes, young-token + 5m-dump rules still bite', () => {
+  const f = CFG.filters;
+  const p = fakePair({ liquidity: { usd: 21000 }, marketCap: 300000, fdv: 300000, txns: { h1: { buys: 32, sells: 34 }, h24: { buys: 900, sells: 800 } },
+    volume: { h24: 200000, h6: 20000, h1: 2600 }, priceChange: { m5: 30, h1: 180, h6: 200, h24: 300 }, pairCreatedAt: Date.now() - 3 * 3600000 });
+  assert.deepEqual(filterReasons(metrics(p), f), []);
+  assert.ok(filterReasons(metrics(fakePair({ pairCreatedAt: Date.now() - 60 * 60000 })), f).includes('too new'));
+  assert.ok(filterReasons(metrics(fakePair({ priceChange: { m5: -25, h1: 5, h6: 5, h24: 5 } })), f).includes('dumping 5m'));
+  assert.equal(f.minAgeMinutes, 90);
+  assert.equal(f.minScore, 60);
+});

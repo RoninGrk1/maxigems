@@ -65,16 +65,16 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 ## Filters & scoring (`config.json`)
 | Setting | Default | Meaning |
 |---|---|---|
-| `minLiquidityUsd` / `maxLiquidityUsd` | 25,000 / 3,000,000 | depth range (0 liq = rug) |
+| `minLiquidityUsd` / `maxLiquidityUsd` | 20,000 / 3,000,000 | depth range (0 liq = rug) |
 | `minMarketCapUsd` / `maxMarketCapUsd` | 40k / 25M | gem range |
-| `minVolume24hUsd` / `minVolume1hUsd` | 30k / 3k | must be trading now |
+| `minVolume24hUsd` / `minVolume1hUsd` | 30k / 2.4k | must be trading now |
 | `minAgeMinutes` / `maxAgeHours` | 90 / 168 | skip the first-hour dump zone (4 of 5 early rugs were < 1h old) |
-| `minTxnsH1` | 80 | real activity |
-| `minPriceChangeM5` / `maxPriceChangeM5` | −15% / +25% | no calls into a 5-min dump or spike |
-| `minBuySellRatioH1` | 1.05 | more buys than sells |
-| `minPriceChangeH1` / `maxPriceChangeH1` | −8% / +150% | not dumping, not a vertical top |
+| `minTxnsH1` | 60 | real activity |
+| `minPriceChangeM5` / `maxPriceChangeM5` | −20% / +35% | no calls into a 5-min dump or spike |
+| `minBuySellRatioH1` | 0.85 | no heavy sell pressure |
+| `minPriceChangeH1` / `maxPriceChangeH1` | −8% / +200% | not dumping, not a vertical top |
 | `minPriceChangeH24` / `maxPriceChangeH24` | −30% / +1500% | |
-| `minLiquidityToMcapRatio` | 0.08 | thin-liquidity pump guard |
+| `minLiquidityToMcapRatio` | 0.06 | thin-liquidity pump guard |
 | `maxFdvToMcapRatio` | 1.5 | hidden-supply guard |
 | `allowedDexes` | pumpswap, pumpfun, raydium, meteora, meteoradbc, launchlab, orca | |
 | `preferredDexes` | pumpswap, pumpfun, raydium, meteora(dbc) | +4 score |
