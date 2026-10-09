@@ -114,6 +114,10 @@ a{color:var(--blue)}
 .kv>div>span{display:block;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
 .kv b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pos{color:var(--green)} .neg{color:var(--red)}
+.safety{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:12px;color:var(--mut);padding:2px 2px}
+.safety b{font-weight:800}
+.sf.ok b{color:var(--green)} .sf.bad b{color:var(--red)}
+.sf-t{font-size:13px}
 .ca{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);border:1px dashed rgba(57,255,136,.25);border-radius:12px;padding:6px 6px 6px 10px;min-width:0}
 .ca code{flex:1;min-width:0;font:12px var(--mono);color:#cfe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .copy{flex:none;border:0;cursor:pointer;border-radius:9px;padding:7px 12px;font:700 12px var(--font);color:#021008;background:linear-gradient(135deg,var(--green),#22e3c4);min-height:34px}

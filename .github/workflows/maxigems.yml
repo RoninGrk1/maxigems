@@ -40,6 +40,11 @@ jobs:
           ref: ${{ github.ref_name }}
           fetch-depth: 1
       # Node 20+ is preinstalled on ubuntu-latest and the engine has zero deps: no setup-node / npm install needed.
+      - name: Safety API reachability (informational)
+        continue-on-error: true
+        run: |
+          curl -s -m 15 -o /dev/null -w "rugcheck %{http_code}\n" https://api.rugcheck.xyz/v1/tokens/So11111111111111111111111111111111111111112/report/summary || true
+          curl -s -m 15 -o /dev/null -w "solana-rpc %{http_code}\n" -H 'content-type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}' https://api.mainnet-beta.solana.com || true
       - name: Run engine
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

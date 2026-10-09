@@ -4,52 +4,98 @@
   "telegramChannelUrl": "https://t.me/maxigems_calls",
   "telegramChatUrl": "https://t.me/MGcalls_gc",
   "xUrl": "https://x.com/maxigems_sol",
-
   "loopIntervalMinutes": 10,
   "maxCallsPerRun": 2,
   "maxCallsPerDay": 16,
   "maxCallsStored": 100,
   "trackDays": 7,
   "requoteCooldownHours": 0,
-
   "filters": {
-    "minLiquidityUsd": 15000,
+    "minLiquidityUsd": 25000,
     "maxLiquidityUsd": 3000000,
     "minVolume24hUsd": 30000,
     "minVolume1hUsd": 3000,
     "minMarketCapUsd": 40000,
     "maxMarketCapUsd": 25000000,
-    "minAgeMinutes": 30,
+    "minAgeMinutes": 120,
     "maxAgeHours": 168,
-    "minTxnsH1": 40,
+    "minTxnsH1": 80,
     "minBuySellRatioH1": 1.05,
     "minPriceChangeH1": -8,
-    "maxPriceChangeH1": 400,
+    "maxPriceChangeH1": 150,
     "minPriceChangeH24": -30,
     "maxPriceChangeH24": 1500,
-    "minLiquidityToMcapRatio": 0.04,
+    "minLiquidityToMcapRatio": 0.08,
     "maxFdvToMcapRatio": 1.5,
     "requireSocials": false,
-    "allowedDexes": ["pumpswap", "pumpfun", "raydium", "meteora", "meteoradbc", "launchlab", "orca"],
-    "preferredDexes": ["pumpswap", "pumpfun", "raydium", "meteora", "meteoradbc"],
-    "blockedSymbols": ["SOL", "WSOL", "USDC", "USDT", "JUP", "BONK", "WIF", "RAY", "PUMP"],
-    "minScore": 65
+    "allowedDexes": [
+      "pumpswap",
+      "pumpfun",
+      "raydium",
+      "meteora",
+      "meteoradbc",
+      "launchlab",
+      "orca"
+    ],
+    "preferredDexes": [
+      "pumpswap",
+      "pumpfun",
+      "raydium",
+      "meteora",
+      "meteoradbc"
+    ],
+    "blockedSymbols": [
+      "SOL",
+      "WSOL",
+      "USDC",
+      "USDT",
+      "JUP",
+      "BONK",
+      "WIF",
+      "RAY",
+      "PUMP"
+    ],
+    "minScore": 65,
+    "minPriceChangeM5": -15,
+    "maxPriceChangeM5": 25,
+    "minUniqueBuyersH1": 60,
+    "minBuyerDiversityH1": 0.2
   },
-
-  "milestones": [2, 3, 5, 10, 20, 50, 100],
-
+  "milestones": [
+    2,
+    3,
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
   "recap": {
     "enabled": true,
     "everyHours": 12,
     "topN": 5,
     "minMultiple": 1.2
   },
-
   "telegram": {
     "channelId": "@maxigems_calls",
     "sendPhoto": true,
     "fallbackPhoto": "branding/telegram-fallback.jpg",
     "disableNotification": false,
     "delayBetweenPostsMs": 3500
+  },
+  "safety": {
+    "enabled": true,
+    "maxChecksPerRun": 8,
+    "minLpLockedPct": 90,
+    "maxTop10HolderPct": 30,
+    "maxInsiderPct": 10,
+    "maxCreatorPct": 5,
+    "minHolders": 300,
+    "maxRugcheckScore": 0,
+    "maxInsiderNetworkRatio": 0.2
+  },
+  "rugDetection": {
+    "priceDropPct": 80,
+    "liquidityDropPct": 70
   }
 }

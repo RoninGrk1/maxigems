@@ -76,7 +76,11 @@
       priceAtCall: priceAtCall,
       ath: ath != null && ath > 0 ? ath : 1,
       cur: cur != null && cur > 0 ? cur : null,
-      rugged: raw.status === 'rugged'
+      rugged: raw.status === 'rugged',
+      safety: raw.safety && typeof raw.safety === 'object' ? {
+        mint: raw.safety.mint === true, freeze: raw.safety.freeze === true,
+        lp: num(raw.safety.lp), top10: num(raw.safety.top10)
+      } : null
     };
   }
 
@@ -92,9 +96,22 @@
     return img;
   }
 
+  function safetyRow(s) {
+    if (!s) return null;
+    function pc(v) { return v == null ? '?' : Math.round(v) + '%'; }
+    function item(label, ok, val) { return h('span', { class: 'sf ' + (ok ? 'ok' : 'bad') }, [label + ' ', h('b', { text: val })]); }
+    return h('div', { class: 'safety', 'aria-label': 'On-chain safety at call time' }, [
+      h('span', { class: 'sf-t', text: '🛡' }),
+      item('Mint', s.mint, s.mint ? '✅' : '❌'),
+      item('Freeze', s.freeze, s.freeze ? '✅' : '❌'),
+      item('LP 🔥', s.lp != null && s.lp >= 90, pc(s.lp)),
+      item('Top10', s.top10 != null && s.top10 <= 30, pc(s.top10))
+    ]);
+  }
+
   function card(c) {
     var L = links(c.address, c.pairAddress);
-    var cls = c.ath >= 1.5 ? 'up' : c.cur != null && c.cur < 0.7 ? 'down' : 'flat';
+    var cls = c.rugged ? 'down' : c.ath >= 1.5 ? 'up' : c.cur != null && c.cur < 0.7 ? 'down' : 'flat';
     var copyBtn = h('button', { class: 'copy', type: 'button', 'aria-label': 'Copy contract address of ' + c.symbol, text: 'Copy CA' });
     copyBtn.addEventListener('click', function () { copy(c.address, copyBtn); });
     var el = h('article', { class: 'card' + (!state.first && !state.seen[c.address + c.calledAt] ? ' new' : ''), 'aria-label': c.name + ' call' }, [
@@ -102,7 +119,7 @@
         avatar(c),
         h('div', { class: 'ttl' }, [
           h('div', { class: 'nm', title: c.name, text: c.name }),
-          h('div', { class: 'sym' }, [h('span', { text: '$' + c.symbol }), solBadge(), h('span', { class: 'badge dex', text: dexName(c.dex) }), c.rugged ? h('span', { class: 'badge rug', text: 'Liquidity pulled' }) : null])
+          h('div', { class: 'sym' }, [h('span', { text: '$' + c.symbol }), solBadge(), h('span', { class: 'badge dex', text: dexName(c.dex) }), c.rugged ? h('span', { class: 'badge rug', title: 'Price down 80%+ or liquidity down 70%+ since call', text: 'Rugged' }) : null])
         ]),
         h('div', { class: 'xbox' }, [h('div', { class: 'x ' + cls, text: xf(c.ath) }), h('div', { class: 'xl', text: 'peak since call' })])
       ]),
@@ -112,6 +129,7 @@
         h('div', null, [h('span', { text: 'Liquidity' }), h('b', { text: usd(c.liq) })]),
         h('div', null, [h('span', { text: 'Vol 24h · 1h chg' }), h('b', null, [usd(c.vol) + ' · ', h('span', { class: (c.ch1 || 0) >= 0 ? 'pos' : 'neg', text: pct(c.ch1) })])])
       ]),
+      safetyRow(c.safety),
       h('div', { class: 'ca' }, [h('code', { title: c.address, text: c.address }), copyBtn]),
       h('div', { class: 'foot' }, [
         h('span', { class: 'ago' }, [h('time', { datetime: c.calledAt, 'data-ago': c.calledAt, text: 'Called ' + ago(c.calledAt) }), c.score != null ? ' · Score ' + c.score : '']),
@@ -153,9 +171,10 @@
     var cs = state.calls, n = cs.length;
     $('sTotal').textContent = n ? String(n) : '0';
     if (!n) { $('sBest').textContent = '—'; $('sAvg').textContent = '—'; $('sHit').textContent = '—'; return; }
-    var best = cs.reduce(function (b, c) { return c.ath > b.ath ? c : b; });
-    $('sBest').textContent = '$' + best.symbol + ' ' + xf(best.ath);
-    $('sBest').title = best.name;
+    var clean = cs.filter(function (c) { return !c.rugged; }); // rugs never count as "best"
+    var best = clean.length ? clean.reduce(function (b, c) { return c.ath > b.ath ? c : b; }) : null;
+    $('sBest').textContent = best ? '$' + best.symbol + ' ' + xf(best.ath) : '—';
+    $('sBest').title = best ? best.name : '';
     $('sAvg').textContent = xf(cs.reduce(function (s, c) { return s + c.ath; }, 0) / n);
     var hit = cs.filter(function (c) { return c.ath >= 2; }).length;
     $('sHit').textContent = hit + ' (' + Math.round((hit / n) * 100) + '%)';

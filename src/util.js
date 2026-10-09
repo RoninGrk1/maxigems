@@ -85,9 +85,9 @@ export const log = (...a) => console.log(new Date().toISOString(), ...a);
 // Per-host spacing so we stay well inside free rate limits
 // (DexScreener: 60 rpm for profiles/boosts, 300 rpm for pairs/tokens; GeckoTerminal: ~30 rpm).
 const lastHit = new Map();
-const HOST_GAP_MS = { 'api.dexscreener.com': 1100, 'api.geckoterminal.com': 2500 };
+const HOST_GAP_MS = { 'api.dexscreener.com': 1100, 'api.geckoterminal.com': 2500, 'api.rugcheck.xyz': 1500, 'api.mainnet-beta.solana.com': 800 };
 
-export async function fetchJson(url, { retries = 2, timeoutMs = 15000, headers = {} } = {}) {
+export async function fetchJson(url, { retries = 2, timeoutMs = 15000, headers = {}, method = 'GET', body } = {}) {
   const host = new URL(url).host;
   for (let attempt = 0; attempt <= retries; attempt++) {
     // Reserve the next free slot synchronously so concurrent callers queue instead of bursting.
@@ -100,7 +100,9 @@ export async function fetchJson(url, { retries = 2, timeoutMs = 15000, headers =
     try {
       const res = await fetch(url, {
         signal: ctrl.signal,
-        headers: { accept: 'application/json', 'user-agent': 'MaxiGemsBot/1.0', ...headers },
+        method,
+        body,
+        headers: { accept: 'application/json', 'user-agent': 'MaxiGemsBot/1.0', ...(body ? { 'content-type': 'application/json' } : {}), ...headers },
       });
       if (res.status === 429 || res.status >= 500) {
         const ra = num(res.headers.get('retry-after'));

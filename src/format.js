@@ -24,6 +24,12 @@ export function links(ca, pairAddress) {
 
 const a = (url, label) => `<a href="${e(url)}">${e(label)}</a>`;
 
+export function safetyLine(s) {
+  if (!s) return null;
+  const pct = (v) => (v === null || v === undefined ? '?' : `${Math.round(v)}%`);
+  return `🛡 Mint ${s.mintRevoked ? '✅' : '❌'} | Freeze ${s.freezeRevoked ? '✅' : '❌'} | LP 🔥 ${pct(s.lpLockedPct)} | Top10 ${pct(s.top10Pct)}`;
+}
+
 export function callMessage(call, cfg) {
   const L = call.links;
   const site = safeUrl(cfg.siteUrl);
@@ -40,6 +46,7 @@ export function callMessage(call, cfg) {
     `🚀 5m ${e(fmtPct(call.change.m5))} | 1h ${e(fmtPct(call.change.h1))} | 24h ${e(fmtPct(call.change.h24))}`,
     `🔄 1h Buys/Sells: ${e(call.buysH1)}/${e(call.sellsH1)}`,
     `⭐ Score: <b>${e(call.score)}/100</b>`,
+    call.safety ? e(safetyLine(call.safety)) : null,
     ``,
     [a(L.dexscreener, 'DexScreener'), a(L.solscan, 'Solscan'), a(L.birdeye, 'Birdeye'), a(L.photon, 'Photon'), a(L.bullx, 'BullX')].join(' • '),
     site ? `🌐 ${a(site, 'All calls & tracking → MaxiGems')}` : null,

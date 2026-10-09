@@ -94,3 +94,21 @@ export function pickPair(pairs, preferPairAddress) {
   }
   return pairs.reduce((b, p) => ((Number(p.liquidity?.usd) || 0) > (Number(b.liquidity?.usd) || 0) ? p : b));
 }
+
+/** GeckoTerminal multi-pool lookup (≤30 per call) → Map<pairAddress, {buyersH1, sellersH1, buysH1, sellsH1}>. Empty on failure. */
+export async function fetchUniqueTraders(pairAddresses) {
+  const out = new Map();
+  for (const batch of chunk([...new Set(pairAddresses)].filter(isSolAddress), 30)) {
+    try {
+      const d = await fetchJson(`${GT}/networks/solana/pools/multi/${batch.join(',')}`, { headers: { accept: 'application/json;version=20230302' } });
+      for (const p of d?.data ?? []) {
+        const a = p?.attributes ?? {};
+        const h1 = a.transactions?.h1 ?? {};
+        if (a.address) out.set(a.address, { buyersH1: Number(h1.buyers) || 0, sellersH1: Number(h1.sellers) || 0, buysH1: Number(h1.buys) || 0, sellsH1: Number(h1.sells) || 0 });
+      }
+    } catch (e) {
+      log(`WARN geckoterminal pools/multi failed: ${e.message}`);
+    }
+  }
+  return out;
+}

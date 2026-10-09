@@ -65,15 +65,16 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 ## Filters & scoring (`config.json`)
 | Setting | Default | Meaning |
 |---|---|---|
-| `minLiquidityUsd` / `maxLiquidityUsd` | 15,000 / 3,000,000 | depth range (0 liq = rug) |
+| `minLiquidityUsd` / `maxLiquidityUsd` | 25,000 / 3,000,000 | depth range (0 liq = rug) |
 | `minMarketCapUsd` / `maxMarketCapUsd` | 40k / 25M | gem range |
 | `minVolume24hUsd` / `minVolume1hUsd` | 30k / 3k | must be trading now |
-| `minAgeMinutes` / `maxAgeHours` | 30 / 168 | skip snipe-zone launches and stale coins |
-| `minTxnsH1` | 40 | real activity |
+| `minAgeMinutes` / `maxAgeHours` | 120 / 168 | skip the first-hour dump zone (4 of 5 early rugs were < 1h old) |
+| `minTxnsH1` | 80 | real activity |
+| `minPriceChangeM5` / `maxPriceChangeM5` | −15% / +25% | no calls into a 5-min dump or spike |
 | `minBuySellRatioH1` | 1.05 | more buys than sells |
-| `minPriceChangeH1` / `maxPriceChangeH1` | −8% / +400% | not dumping, not a vertical top |
+| `minPriceChangeH1` / `maxPriceChangeH1` | −8% / +150% | not dumping, not a vertical top |
 | `minPriceChangeH24` / `maxPriceChangeH24` | −30% / +1500% | |
-| `minLiquidityToMcapRatio` | 0.04 | thin-liquidity pump guard |
+| `minLiquidityToMcapRatio` | 0.08 | thin-liquidity pump guard |
 | `maxFdvToMcapRatio` | 1.5 | hidden-supply guard |
 | `allowedDexes` | pumpswap, pumpfun, raydium, meteora, meteoradbc, launchlab, orca | |
 | `preferredDexes` | pumpswap, pumpfun, raydium, meteora(dbc) | +4 score |
@@ -84,6 +85,15 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 | `recap.everyHours` / `topN` / `minMultiple` | 12 / 5 / 1.2 | recap post |
 
 **Score (0–100)** = liquidity depth 15 + volume/liquidity turnover 15 + buy/sell flow 20 + price momentum (5m/1h/6h) 20 + tx activity 15 + volume acceleration (1h vs 24h avg) 15, plus bonuses (preferred DEX, socials, boosted, seen on several sources) and penalties for overextension.
+
+### On-chain safety (stage 2, fail-closed)
+Only the best `safety.maxChecksPerRun` (8) market-passing tokens are checked, to stay inside free rate limits:
+1. **GeckoTerminal** `pools/multi` → unique buyers in the last hour: ≥ `minUniqueBuyersH1` (60) and unique buyers ÷ buys ≥ `minBuyerDiversityH1` (0.2, catches bot wash). Skipped if GT returns nothing.
+2. **RugCheck** `api.rugcheck.xyz/v1/tokens/{mint}/report` (free, keyless) — reject if: mint or freeze authority not revoked · LP locked/burned < `minLpLockedPct` (90%; pump.fun/PumpSwap migrated pools report 100%) · top-10 holders excl. pools/AMMs/lockers > `maxTop10HolderPct` (30%) · flagged insiders > `maxInsiderPct` (10%) · creator holds > `maxCreatorPct` (5%) · insider network > 20% of holders · < `minHolders` (300) · any RugCheck risk at level `danger` · transfer fee · flagged rugged.
+3. **Solana public RPC** `getMultipleAccounts` (one batched call) cross-checks mint/freeze authority.
+If RugCheck can't be read for a token, it is **not called** (fail closed). Posts and site cards show `🛡 Mint ✅ | Freeze ✅ | LP 🔥 100% | Top10 18%`.
+
+**Rug detection** for posted calls: marked **Rugged** (sticky, red badge on the site, excluded from "Best performer", still counted in avg/hit-rate) when price is down ≥ 80% from call or liquidity down ≥ 70% from call (`rugDetection`). No Telegram rug alerts.
 
 **Tracking**: each run refreshes all calls from the last `trackDays` (7) using the same pair. `athMultiple` = highest price *observed* (sampled each run) ÷ call price; a call whose liquidity falls below $1k is flagged "Liquidity pulled". Dedupe is by contract address (`data/state.json` → `seen`, kept 30 days; set `requoteCooldownHours` > 0 to allow re-calls).
 

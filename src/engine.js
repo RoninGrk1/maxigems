@@ -1,7 +1,8 @@
 // One engine cycle: track existing calls → discover → filter/score → post → persist → export site data.
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { discoverCandidates, fetchPairs, pickPair } from './sources.js';
+import { discoverCandidates, fetchPairs, pickPair, fetchUniqueTraders } from './sources.js';
+import { checkSafety } from './safety.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
@@ -36,7 +37,19 @@ function postingMode(cfg) {
   return telegramConfigured(cfg) ? 'live' : 'off';
 }
 
-function buildCall(m, sc, now) {
+/** Sticky rug flag: price down ≥X% from call, or liquidity down ≥Y% from call (or < $1k). */
+export function isRugged(c, rd = {}) {
+  const priceDrop = rd.priceDropPct ?? 80, liqDrop = rd.liquidityDropPct ?? 70;
+  if (c.status === 'rugged') return true;
+  const x = num(c.currentMultiple);
+  if (x !== null && x <= 1 - priceDrop / 100) return true;
+  const l0 = num(c.liquidity), l1 = num(c.currentLiquidity);
+  if (l1 !== null && l1 < 1000) return true;
+  if (l0 && l1 !== null && l1 <= l0 * (1 - liqDrop / 100)) return true;
+  return false;
+}
+
+function buildCall(m, sc, now, safety = null, traders = null) {
   const ca = m.address;
   return {
     id: `${ca}-${now}`,
@@ -61,6 +74,8 @@ function buildCall(m, sc, now) {
     ageMsAtCall: m.ageMs,
     pairCreatedAt: m.pairCreatedAt ? new Date(m.pairCreatedAt).toISOString() : null,
     links: links(ca, m.pairAddress),
+    safety,
+    uniqueBuyersH1: traders?.buyersH1 ?? null,
     // tracking
     currentPrice: m.priceUsd,
     currentMc: m.marketCap,
@@ -100,9 +115,13 @@ async function trackCalls(state, cfg, now) {
       c.athAt = new Date(now).toISOString();
     }
     c.athMultiple = +(c.athPrice / c.priceAtCall).toFixed(4);
-    c.status = liq !== null && liq < 1000 ? 'rugged' : 'active';
+    if (c.status !== 'rugged' && isRugged(c, cfg.rugDetection)) {
+      c.status = 'rugged';
+      c.ruggedAt = new Date(now).toISOString();
+      log(`RUG detected $${c.symbol} (x${c.currentMultiple}, liq ${liq})`); // site only, no Telegram alert
+    }
     c.lastUpdated = new Date(now).toISOString();
-    const hit = milestones.filter((x) => c.athMultiple >= x && !c.milestonesHit.includes(x));
+    const hit = c.status === 'rugged' ? [] : milestones.filter((x) => c.athMultiple >= x && !c.milestonesHit.includes(x));
     if (hit.length) {
       c.milestonesHit.push(...hit);
       hits.push({ call: c, milestone: Math.max(...hit) });
@@ -150,20 +169,52 @@ export async function runOnce({ forceRecap = false } = {}) {
     if (sc < f.minScore) { rejectStats[`score<${f.minScore}`] = (rejectStats[`score<${f.minScore}`] ?? 0) + 1; continue; }
     scored.push({ m, sc });
   }
-  log('rejections:', JSON.stringify(rejectStats));
   scored.sort((a, b) => b.sc - a.sc);
+  const marketPassed = scored.length;
   const last24 = state.calls.filter((c) => now - Date.parse(c.calledAt) < DAY).length;
   const dailyLeft = Math.max(0, (cfg.maxCallsPerDay ?? 16) - last24);
-  const picks = scored.slice(0, Math.min(cfg.maxCallsPerRun ?? 2, dailyLeft));
+  const want = Math.min(cfg.maxCallsPerRun ?? 2, dailyLeft);
   if (!dailyLeft) log(`daily cap reached (${last24} calls in 24h)`);
-  log(`passed filters: ${scored.length}; calling ${picks.length}`);
+
+  // Stage 2 (only for the best few, to respect free rate limits): unique traders + on-chain safety
+  const shortlist = want > 0 ? scored.slice(0, cfg.safety?.maxChecksPerRun ?? 8) : [];
+  const bump = (r) => (rejectStats[r] = (rejectStats[r] ?? 0) + 1);
+  const traders = shortlist.length ? await fetchUniqueTraders(shortlist.map((x) => x.m.pairAddress)) : new Map();
+  const stage2 = [];
+  for (const x of shortlist) {
+    const t = traders.get(x.m.pairAddress);
+    x.traders = t ?? null;
+    if (t) { // only enforce when GeckoTerminal returned data
+      if (t.buyersH1 < (f.minUniqueBuyersH1 ?? 0)) { bump('few unique buyers'); continue; }
+      if (t.buysH1 > 0 && t.buyersH1 / t.buysH1 < (f.minBuyerDiversityH1 ?? 0)) { bump('low buyer diversity (bots?)'); continue; }
+    }
+    stage2.push(x);
+  }
+  const passed = [];
+  if (cfg.safety?.enabled === false) passed.push(...stage2);
+  else {
+    const res = await checkSafety(stage2.map((x) => ({ address: x.m.address, pairAddress: x.m.pairAddress })), cfg.safety ?? {});
+    for (const x of stage2) {
+      const r = res.get(x.m.address);
+      if (!r || r.reasons.length) {
+        for (const reason of r?.reasons ?? ['safety: unchecked']) bump(reason.replace(/[\d.]+%|\d+$/g, '').trim());
+        log(`SAFETY reject $${x.m.symbol}: ${(r?.reasons ?? ['unchecked']).join('; ')}`);
+        continue;
+      }
+      x.safety = r.safety;
+      passed.push(x);
+    }
+  }
+  const picks = passed.slice(0, want);
+  log('rejections:', JSON.stringify(rejectStats));
+  log(`pass rate: ${fresh.length} fresh → ${marketPassed} market filters → ${shortlist.length} shortlisted → ${stage2.length} trader check → ${passed.length} safety → calling ${picks.length}`);
 
   // 3) post new calls
   let tgBroken = false;
   const delay = cfg.telegram?.delayBetweenPostsMs ?? 3500;
   const newCalls = [];
-  for (const { m, sc } of picks) {
-    const call = buildCall(m, sc, now);
+  for (const { m, sc, safety, traders: tr } of picks) {
+    const call = buildCall(m, sc, now, safety, tr);
     if (mode !== 'off' && !tgBroken) {
       try {
         const r = await postMessage({ html: callMessage(call, cfg), photo: call.imageUrl, fallbackPhoto: fallbackPhoto(cfg), buttons: callButtons(call, cfg), cfg });
@@ -199,7 +250,7 @@ export async function runOnce({ forceRecap = false } = {}) {
   if (due && mode !== 'off' && !tgBroken) {
     const days = cfg.trackDays ?? 7;
     const top = state.calls
-      .filter((c) => now - Date.parse(c.calledAt) < days * DAY && (c.athMultiple ?? 0) >= (rc.minMultiple ?? 1.2))
+      .filter((c) => c.status !== 'rugged' && now - Date.parse(c.calledAt) < days * DAY && (c.athMultiple ?? 0) >= (rc.minMultiple ?? 1.2))
       .sort((a, b) => b.athMultiple - a.athMultiple)
       .slice(0, rc.topN ?? 5);
     if (top.length) {
@@ -219,7 +270,7 @@ export async function runOnce({ forceRecap = false } = {}) {
   writeJsonAtomic(PATHS.state, state);
   writeJsonAtomic(PATHS.site, siteData(state, cfg, now));
   log(`done: ${newCalls.length} new, ${state.calls.length} stored, ${milestoneHits.length} milestones`);
-  return { newCalls, milestoneHits, state };
+  return { newCalls, milestoneHits, state, rejectStats, passRate: { fresh: fresh.length, market: marketPassed, safety: passed.length } };
 }
 
 export function siteData(state, cfg, now = Date.now()) {
@@ -229,6 +280,7 @@ export function siteData(state, cfg, now = Date.now()) {
     priceAtCall: c.priceAtCall, mcAtCall: c.mcAtCall, liquidity: c.liquidity, volume24h: c.volume24h, change: c.change,
     currentPrice: c.currentPrice, currentMc: c.currentMc, currentLiquidity: c.currentLiquidity,
     currentMultiple: c.currentMultiple, athMultiple: c.athMultiple, athMc: c.athMc, status: c.status,
+    safety: c.safety ? { mint: c.safety.mintRevoked, freeze: c.safety.freezeRevoked, lp: c.safety.lpLockedPct, top10: c.safety.top10Pct } : null,
     links: c.links, lastUpdated: c.lastUpdated,
   }));
   return {

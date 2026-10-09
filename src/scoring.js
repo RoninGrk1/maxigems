@@ -69,6 +69,8 @@ export function filterReasons(m, f) {
   if (m.bsH1 < f.minBuySellRatioH1) r.push('sell pressure');
   if (m.chH1 === null || m.chH1 < f.minPriceChangeH1) r.push('dumping 1h');
   if (m.chH1 !== null && m.chH1 > f.maxPriceChangeH1) r.push('overextended 1h');
+  if (f.minPriceChangeM5 !== undefined && m.chM5 !== null && m.chM5 < f.minPriceChangeM5) r.push('dumping 5m');
+  if (f.maxPriceChangeM5 !== undefined && m.chM5 !== null && m.chM5 > f.maxPriceChangeM5) r.push('spiking 5m');
   if (m.chH24 !== null && m.chH24 < f.minPriceChangeH24) r.push('dumping 24h');
   if (f.maxPriceChangeH24 && m.chH24 !== null && m.chH24 > f.maxPriceChangeH24) r.push('overextended 24h');
   if (f.allowedDexes?.length && !f.allowedDexes.includes(m.dex)) r.push(`dex ${m.dex} not allowed`);
