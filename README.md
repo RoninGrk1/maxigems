@@ -5,7 +5,7 @@ An automated Telegram call channel **plus** a one-page live tracker website, run
 - **Engine** (`src/`, Node 20, zero dependencies): scans Solana pairs on DexScreener + GeckoTerminal every 10 min, filters out rugs/weak coins, scores the rest, posts the best to Telegram, and tracks every call's **peak x since call**.
 - **Telegram**: rich HTML posts (token image, CA in `<code>`, stats, DexScreener/Solscan/Birdeye/Photon/BullX links, inline buttons for Chart / Solscan / Jupiter / Birdeye / site), **milestone replies** (2x, 3x, 5x…) and a **top-performers recap** every 12h.
 - **Website** (`site/`, static, no build): black / neon-green / electric-blue glass UI, Telegram button under the header, live feed with search, DEX filter, sort, copy-CA, stats bar, auto-refresh. Mobile-first.
-- **Automation**: GitHub Actions cron runs the engine, commits `calls.json`, and deploys the site to GitHub Pages — free for public repos.
+- **Automation**: GitHub Actions cron (every 10 min) runs the engine, commits `calls.json`, and deploys the site to GitHub Pages — free for public repos.
 
 ## Free APIs used (no keys)
 | API | Endpoint | Used for |
@@ -17,28 +17,22 @@ An automated Telegram call channel **plus** a one-page live tracker website, run
 
 Requests are spaced per host (DexScreener ≥1.1 s, GeckoTerminal ≥2.5 s), with retries + backoff on 429/5xx. A run uses ~15 requests.
 
-## Go live (≈10 minutes)
+## Setup (public repo + GitHub Pages)
 
-1. **Bot** — in Telegram open **@BotFather** → `/newbot` → copy the token. *(Done: `@Maxigems_bot`.)*
-2. **Channel** — create a public channel (e.g. `@maxigems_calls`), then *Channel → Administrators → Add Admin →* your bot, with **Post Messages** enabled. *(Done.)*
-   - Channel id: the `@username` works. For a private channel use the numeric id (`-100…`) — forward a channel post to @RawDataBot or call `getUpdates` after posting.
-3. **GitHub repo** — create a **public** repo (e.g. `maxigems`) and push:
-   ```bash
-   git remote add origin https://github.com/<you>/maxigems.git
-   git push -u origin main
-   ```
-   *Public matters: Actions minutes are unlimited for public repos (a 10-min cron on a private repo would burn ~8k min/month vs 2k free), and free Pages needs public.*
-4. **Secrets** — repo *Settings → Secrets and variables → Actions*:
-   - Secrets: `TELEGRAM_BOT_TOKEN` = BotFather token; `TELEGRAM_CHANNEL_ID` = `@maxigems_calls`
-   - Variables (optional): `SITE_URL` = `https://<you>.github.io/maxigems/` (adds the site link + button to every post), `TELEGRAM_CHANNEL_URL`
-5. **Pages** — *Settings → Pages → Build and deployment → Source: **GitHub Actions***.
-6. **Actions** — *Actions tab → enable workflows → "MaxiGems engine + site" → Run workflow* (tick **Dry run** the first time to see output in the logs without posting). After that the cron runs every 10 minutes.
-7. Edit `site/config.js` if your channel link changes (the only place the button URL lives) and `siteUrl` in `config.json`.
+1. **Bot** `@Maxigems_bot` (from @BotFather) is an admin of channel **@maxigems_calls** with *Post Messages*.
+2. **Repo** (public — unlimited free Actions minutes + free Pages) → *Settings → Secrets and variables → Actions*:
+   - Secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHANNEL_ID` = `@maxigems_calls`
+   - Variables: `DRY_RUN` (`1` = print only, still tracks + commits data; set `0` or delete to **go live**), `SITE_URL` = `https://roningrk1.github.io/maxigems/`, optional `TELEGRAM_CHANNEL_URL`
+   - *Settings → Actions → General → Workflow permissions*: **Read and write**.
+3. *Settings → Pages → Source: **GitHub Actions***.
+4. *Actions → "MaxiGems engine + site" → Run workflow* (tick *Dry run* to test). The cron then runs every 10 min: engine → data commit → Pages deploy. Edits to `site/` deploy on push.
 
-> GitHub may delay cron runs by a few minutes at busy times, and disables schedules in repos with no activity for 60 days (the bot's own data commits keep it active).
+> GitHub may delay cron runs at busy times and disables schedules after 60 days without repo activity (the bot's data commits count as activity). Making the repo private would cap Actions at 2,000 min/month and disable free Pages.
+
+**Go live:** set repo variable `DRY_RUN` to `0` (or delete it). That's it.
 
 ### Alternative hosting
-- **Vercel / Netlify / Cloudflare Pages** for the site: output directory `site`, no build command (`vercel.json` included). Keep the GitHub Action for the engine — each data commit redeploys.
+- **Vercel / Netlify / Cloudflare Pages** also work for `site/` (static, root directory `site`, no build).
 - **VPS / always-on box**: `cp .env.example .env`, fill it in, then
   ```bash
   set -a; . ./.env; set +a
@@ -95,14 +89,14 @@ src/telegram.js             Bot API client (429 retry_after, fallbacks, DRY_RUN)
 src/state.js / util.js      atomic JSON state, fetch w/ rate-limit, formatters
 data/state.json             engine state (committed by the Action)
 site/                       static website (index.html, config.js, assets/, data/calls.json)
-.github/workflows/maxigems.yml   cron engine + commit + Pages deploy
+.github/workflows/maxigems.yml   10-min cron: engine + data commit + Pages deploy
 test/                       node:test suites
 ```
 
 ## Branding
 - Header avatar: `site/assets/avatar-96.{webp,png}` (ape-head crop for legibility at 40px); full logo `site/assets/logo-{128,512}.{webp,png}`.
 - Favicons `site/favicon.ico|-16|-32.png`, `apple-touch-icon.png` (180), `icon-192/512.png`, `site.webmanifest`.
-- Link previews: `site/assets/og-image.jpg` (1200×630). The deploy job rewrites `og:image`/`twitter:image` to an absolute URL using `SITE_URL` (or the Pages URL).
+- Link previews: `site/assets/og-image.jpg` (1200×630). The deploy job rewrites `og:image`/`twitter:image` to absolute URLs using `SITE_URL` (or the Pages URL).
 - Telegram: `branding/telegram-fallback.jpg` is uploaded as the photo for calls without a token image and for recaps (`telegram.fallbackPhoto` in `config.json`).
 - `branding/telegram-avatar.png` (640×640) — set it as the channel/bot photo by hand (Channel → Edit → photo; @BotFather → /setuserpic).
 

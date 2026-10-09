@@ -1,5 +1,6 @@
 name: MaxiGems engine + site
 
+# Public repo: Actions minutes are free/unlimited, GitHub Pages is free.
 on:
   schedule:
     - cron: "*/10 * * * *"   # every 10 min (GitHub may delay scheduled runs a few minutes)
@@ -33,26 +34,30 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          fetch-depth: 1
+      # Node 20+ is preinstalled on ubuntu-latest and the engine has zero deps: no setup-node / npm install needed.
       - name: Run engine
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           SITE_URL: ${{ vars.SITE_URL }}
           TELEGRAM_CHANNEL_URL: ${{ vars.TELEGRAM_CHANNEL_URL }}
-          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
-        run: node src/index.js --once ${{ inputs.recap && '--recap' || '' }}
+          # repo variable DRY_RUN=1 forces dry run for every run (scheduled too); data is still tracked + committed
+          DRY_RUN: ${{ (inputs.dry_run || vars.DRY_RUN == '1') && '1' || '0' }}
+        run: |
+          node --version
+          echo "DRY_RUN=${DRY_RUN}"
+          node src/index.js --once ${{ inputs.recap && '--recap' || '' }}
       - name: Commit updated data
         run: |
           git config user.name "maxigems-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/state.json site/data/calls.json
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
-          git commit -m "chore(data): update calls [skip ci]"
+          git commit -q -m "chore(data): update calls"
           for i in 1 2 3; do
-            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && exit 0
+            git pull -q --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push -q && exit 0
             sleep 5
           done
           exit 1
@@ -61,6 +66,7 @@ jobs:
     needs: engine
     if: always() && (needs.engine.result == 'success' || needs.engine.result == 'skipped')
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -68,6 +74,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}   # latest commit incl. fresh calls.json
+          fetch-depth: 1
       - uses: actions/configure-pages@v5
         id: pages
       - name: Absolute og:image URL for link previews
