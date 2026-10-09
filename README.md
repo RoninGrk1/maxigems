@@ -79,7 +79,7 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 
 ## Files
 ```
-config.json                 thresholds + channel/site settings
+config.json                 thresholds + channel/site/chat (telegramChatUrl → 💬 Chat button on posts) settings
 src/index.js                CLI (--once | --loop | --recap)
 src/engine.js               run cycle: track → discover → filter/score → post → persist
 src/sources.js              DexScreener + GeckoTerminal clients

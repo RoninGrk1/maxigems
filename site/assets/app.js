@@ -1,7 +1,7 @@
 /* MaxiGems live feed — no frameworks, no innerHTML with data (XSS-safe). */
 (function () {
   'use strict';
-  var CFG = Object.assign({ telegramUrl: 'https://t.me/maxigems_calls', dataUrl: 'data/calls.json', refreshSeconds: 60 }, window.MAXIGEMS_CONFIG || {});
+  var CFG = Object.assign({ chatUrl: 'https://t.me/MGcalls_gc', telegramUrl: 'https://t.me/maxigems_calls', dataUrl: 'data/calls.json', refreshSeconds: 60 }, window.MAXIGEMS_CONFIG || {});
   var $ = function (id) { return document.getElementById(id); };
   var SOL_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
   var DEX_NAMES = { pumpswap: 'PumpSwap', pumpfun: 'Pump.fun', raydium: 'Raydium', meteora: 'Meteora', meteoradbc: 'Meteora DBC', launchlab: 'LaunchLab', orca: 'Orca' };
@@ -199,6 +199,7 @@
 
   // ---------- init ----------
   $('tgBtn').href = telegramHref(CFG.telegramUrl);
+  if (CFG.chatUrl) $('chatBtn').href = telegramHref(CFG.chatUrl); else $('chatBtn').hidden = true;
   $('yr').textContent = new Date().getFullYear();
   var chips = $('dexChips');
   DEX_CHIPS.forEach(function (d) {

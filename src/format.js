@@ -55,7 +55,11 @@ export function callButtons(call, cfg) {
     [{ text: '🪐 Buy on Jupiter', url: L.jupiter }, { text: '🦅 Birdeye', url: L.birdeye }],
   ];
   const site = safeUrl(cfg.siteUrl);
-  if (site) rows.push([{ text: '💎 MaxiGems Live Calls', url: site }]);
+  const chat = safeUrl(cfg.telegramChatUrl);
+  const last = [];
+  if (site) last.push({ text: '💎 Live Calls', url: site });
+  if (chat) last.push({ text: '💬 Chat', url: chat });
+  if (last.length) rows.push(last);
   return rows;
 }
 
