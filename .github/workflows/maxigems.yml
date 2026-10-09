@@ -69,6 +69,14 @@ jobs:
         with:
           ref: ${{ github.ref_name }}   # latest commit incl. fresh calls.json
       - uses: actions/configure-pages@v5
+        id: pages
+      - name: Absolute og:image URL for link previews
+        env:
+          SITE_URL: ${{ vars.SITE_URL || steps.pages.outputs.base_url }}
+        run: |
+          base="${SITE_URL%/}/"
+          sed -i "s#content=\"assets/og-image.jpg\"#content=\"${base}assets/og-image.jpg\"#g; s#<meta property=\"og:type\"#<meta property=\"og:url\" content=\"${base}\" />\n  <meta property=\"og:type\"#" site/index.html
+          grep -n "og:image\"\|og:url" site/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

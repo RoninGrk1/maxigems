@@ -17,6 +17,12 @@ export const PATHS = {
 
 const DAY = 86400000;
 
+/** Local logo uploaded as the photo for calls without a token image and for recaps. */
+export function fallbackPhoto(cfg) {
+  const p = cfg?.telegram?.fallbackPhoto;
+  return p ? path.resolve(ROOT, p) : null;
+}
+
 export function loadConfig() {
   const cfg = readJson(PATHS.config, null);
   if (!cfg) throw new Error(`config not found/invalid: ${PATHS.config}`);
@@ -160,7 +166,7 @@ export async function runOnce({ forceRecap = false } = {}) {
     const call = buildCall(m, sc, now);
     if (mode !== 'off' && !tgBroken) {
       try {
-        const r = await postMessage({ html: callMessage(call, cfg), photo: call.imageUrl, buttons: callButtons(call, cfg), cfg });
+        const r = await postMessage({ html: callMessage(call, cfg), photo: call.imageUrl, fallbackPhoto: fallbackPhoto(cfg), buttons: callButtons(call, cfg), cfg });
         call.tg = { posted: mode === 'live', messageId: r?.result?.message_id ?? null };
         if (mode === 'live') await sleep(delay);
       } catch (e) {
@@ -198,7 +204,7 @@ export async function runOnce({ forceRecap = false } = {}) {
       .slice(0, rc.topN ?? 5);
     if (top.length) {
       try {
-        await postMessage({ html: recapMessage(top, days * 24, cfg), cfg });
+        await postMessage({ html: recapMessage(top, days * 24, cfg), photo: fallbackPhoto(cfg), cfg });
         state.lastRecapAt = new Date(now).toISOString();
       } catch (e) {
         log(`ERROR recap failed: ${e.message}`);

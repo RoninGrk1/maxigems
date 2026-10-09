@@ -46,6 +46,7 @@
   "telegram": {
     "channelId": "@maxigems_calls",
     "sendPhoto": true,
+    "fallbackPhoto": "branding/telegram-fallback.jpg",
     "disableNotification": false,
     "delayBetweenPostsMs": 3500
   }
