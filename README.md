@@ -22,9 +22,19 @@ Requests are spaced per host (DexScreener ≥1.1 s, GeckoTerminal ≥2.5 s), wit
 1. **Bot** `@Maxigems_bot` (from @BotFather) is an admin of channel **@maxigems_calls** with *Post Messages*.
 2. **Repo** (public — unlimited free Actions minutes + free Pages) → *Settings → Secrets and variables → Actions*:
    - Secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHANNEL_ID` = `@maxigems_calls`
-   - Variables: `DRY_RUN` (`1` = print only, still tracks + commits data; set `0` or delete to **go live**), `SITE_URL` = `https://roningrk1.github.io/maxigems/`, optional `TELEGRAM_CHANNEL_URL`
+   - Variables: `DRY_RUN` (`1` = print only, still tracks + commits data; set `0` or delete to **go live**), `SITE_URL` = `https://maxigems.fun/`, optional `TELEGRAM_CHANNEL_URL`
    - *Settings → Actions → General → Workflow permissions*: **Read and write**.
-3. *Settings → Pages → Source: **GitHub Actions***.
+3. *Settings → Pages → Source: **GitHub Actions***, custom domain **maxigems.fun** (also in `site/CNAME`).
+   Cloudflare DNS for `maxigems.fun` (Proxy status **DNS only**, grey cloud, at least until GitHub issues the certificate):
+   | Type | Name | Content |
+   |---|---|---|
+   | A | `@` | 185.199.108.153 |
+   | A | `@` | 185.199.109.153 |
+   | A | `@` | 185.199.110.153 |
+   | A | `@` | 185.199.111.153 |
+   | AAAA (optional) | `@` | 2606:50c0:8000::153 / 8001::153 / 8002::153 / 8003::153 |
+   | CNAME | `www` | roningrk1.github.io |
+   Then, once the certificate is issued, tick *Settings → Pages → Enforce HTTPS*.
 4. *Actions → "MaxiGems engine + site" → Run workflow* (tick *Dry run* to test). The cron then runs every 10 min: engine → data commit → Pages deploy. Edits to `site/` deploy on push.
 
 > GitHub may delay cron runs at busy times and disables schedules after 60 days without repo activity (the bot's data commits count as activity). Making the repo private would cap Actions at 2,000 min/month and disable free Pages.
