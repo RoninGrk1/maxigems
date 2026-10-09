@@ -1,0 +1,17 @@
+{
+  "name": "maxigems",
+  "version": "1.0.0",
+  "description": "MaxiGems — automated Solana memecoin calls for Telegram + live calls website. Free APIs only.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/index.js --loop",
+    "once": "node src/index.js --once",
+    "dry": "DRY_RUN=1 node src/index.js --once",
+    "recap": "node src/index.js --recap",
+    "serve": "node scripts/serve.js",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT"
+}

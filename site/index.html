@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MaxiGems — Live Solana Memecoin Calls</title>
+  <meta name="description" content="MaxiGems: automated Solana memecoin calls with live x-since-call tracking. Join the Telegram channel." />
+  <meta name="theme-color" content="#030507" />
+  <meta property="og:title" content="MaxiGems — Live Solana Memecoin Calls" />
+  <meta property="og:description" content="Automated Solana gem calls, tracked live. Join on Telegram." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#feed">Skip to calls</a>
+  <div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="brand" href="./" aria-label="MaxiGems home">
+        <img src="assets/logo.svg" alt="" width="36" height="36" />
+        <span class="word">Maxi<b>Gems</b></span>
+      </a>
+      <div class="live" id="live" title="Feed status"><span class="dot"></span><span id="liveText">Connecting…</span></div>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <a class="tg-btn" id="tgBtn" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1 1.4 11.6c-1-.3-1.1-1 .2-1.5L20.5 2.9c.9-.3 1.7.2 1.4 1.4z"/></svg>
+      <span>Join MaxiGems on Telegram</span>
+    </a>
+    <h1>Automated <span class="g">Solana</span> gem calls, <span class="b">tracked live</span>.</h1>
+    <p class="sub">Every call is posted to Telegram the moment it’s found and tracked here with its peak multiple since call.</p>
+  </section>
+
+  <main class="wrap" id="main">
+    <section class="stats" aria-label="Performance stats">
+      <div class="stat"><span class="k">Total calls</span><span class="v" id="sTotal">—</span></div>
+      <div class="stat"><span class="k">Best performer</span><span class="v" id="sBest">—</span></div>
+      <div class="stat"><span class="k">Avg peak x</span><span class="v" id="sAvg">—</span></div>
+      <div class="stat"><span class="k">Hit 2x+</span><span class="v" id="sHit">—</span></div>
+    </section>
+
+    <section class="controls" aria-label="Filters">
+      <label class="search">
+        <span class="sr">Search calls</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        <input id="q" type="search" placeholder="Search name, $symbol or CA" autocomplete="off" spellcheck="false" />
+      </label>
+      <div class="chips" id="dexChips" role="group" aria-label="Filter by DEX"></div>
+      <label class="sort"><span class="sr">Sort</span>
+        <select id="sort">
+          <option value="new">Newest</option>
+          <option value="ath">Best x</option>
+          <option value="score">Score</option>
+          <option value="mc">Market cap</option>
+        </select>
+      </label>
+    </section>
+
+    <section id="feed" class="feed" aria-live="polite" aria-busy="true">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </section>
+    <p class="empty" id="empty" hidden></p>
+  </main>
+
+  <footer class="ftr wrap">
+    <p><strong>Not financial advice.</strong> Memecoins are extremely high risk; most go to zero. Calls are generated automatically from public market data (DexScreener, GeckoTerminal) and may be wrong. Always DYOR and never invest more than you can afford to lose.</p>
+    <p class="muted">© <span id="yr"></span> MaxiGems · Data refreshes automatically</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

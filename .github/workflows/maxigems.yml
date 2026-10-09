@@ -1,0 +1,76 @@
+name: MaxiGems engine + site
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every 10 min (GitHub may delay scheduled runs a few minutes)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print messages, do not post to Telegram)"
+        type: boolean
+        default: false
+      recap:
+        description: "Force a top-performers recap post"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/maxigems.yml"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: maxigems
+  cancel-in-progress: false
+
+jobs:
+  engine:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run engine
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          TELEGRAM_CHANNEL_URL: ${{ vars.TELEGRAM_CHANNEL_URL }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: node src/index.js --once ${{ inputs.recap && '--recap' || '' }}
+      - name: Commit updated data
+        run: |
+          git config user.name "maxigems-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state.json site/data/calls.json
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "chore(data): update calls [skip ci]"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep 5
+          done
+          exit 1
+
+  deploy:
+    needs: engine
+    if: always() && (needs.engine.result == 'success' || needs.engine.result == 'skipped')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # latest commit incl. fresh calls.json
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

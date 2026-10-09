@@ -1,0 +1,52 @@
+{
+  "chain": "solana",
+  "siteUrl": "https://YOUR_GITHUB_USERNAME.github.io/maxigems/",
+  "telegramChannelUrl": "https://t.me/maxigems_calls",
+
+  "loopIntervalMinutes": 10,
+  "maxCallsPerRun": 2,
+  "maxCallsPerDay": 16,
+  "maxCallsStored": 100,
+  "trackDays": 7,
+  "requoteCooldownHours": 0,
+
+  "filters": {
+    "minLiquidityUsd": 15000,
+    "maxLiquidityUsd": 3000000,
+    "minVolume24hUsd": 30000,
+    "minVolume1hUsd": 3000,
+    "minMarketCapUsd": 40000,
+    "maxMarketCapUsd": 25000000,
+    "minAgeMinutes": 30,
+    "maxAgeHours": 168,
+    "minTxnsH1": 40,
+    "minBuySellRatioH1": 1.05,
+    "minPriceChangeH1": -8,
+    "maxPriceChangeH1": 400,
+    "minPriceChangeH24": -30,
+    "maxPriceChangeH24": 1500,
+    "minLiquidityToMcapRatio": 0.04,
+    "maxFdvToMcapRatio": 1.5,
+    "requireSocials": false,
+    "allowedDexes": ["pumpswap", "pumpfun", "raydium", "meteora", "meteoradbc", "launchlab", "orca"],
+    "preferredDexes": ["pumpswap", "pumpfun", "raydium", "meteora", "meteoradbc"],
+    "blockedSymbols": ["SOL", "WSOL", "USDC", "USDT", "JUP", "BONK", "WIF", "RAY", "PUMP"],
+    "minScore": 65
+  },
+
+  "milestones": [2, 3, 5, 10, 20, 50, 100],
+
+  "recap": {
+    "enabled": true,
+    "everyHours": 12,
+    "topN": 5,
+    "minMultiple": 1.2
+  },
+
+  "telegram": {
+    "channelId": "@maxigems_calls",
+    "sendPhoto": true,
+    "disableNotification": false,
+    "delayBetweenPostsMs": 3500
+  }
+}
