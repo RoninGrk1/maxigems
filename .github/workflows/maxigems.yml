@@ -33,8 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      # Check out the branch TIP (not the trigger SHA): a run queued behind another run must see
+      # that run's freshly committed state.json, otherwise it could re-post the same calls.
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref_name }}
           fetch-depth: 1
       # Node 20+ is preinstalled on ubuntu-latest and the engine has zero deps: no setup-node / npm install needed.
       - name: Run engine
