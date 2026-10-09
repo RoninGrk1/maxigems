@@ -59,6 +59,8 @@ export function callButtons(call, cfg) {
   const last = [];
   if (site) last.push({ text: '💎 Live Calls', url: site });
   if (chat) last.push({ text: '💬 Chat', url: chat });
+  const x = safeUrl(cfg.xUrl);
+  if (x) last.push({ text: '𝕏 Follow', url: x });
   if (last.length) rows.push(last);
   return rows;
 }
