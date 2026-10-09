@@ -68,7 +68,7 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 | `minLiquidityUsd` / `maxLiquidityUsd` | 25,000 / 3,000,000 | depth range (0 liq = rug) |
 | `minMarketCapUsd` / `maxMarketCapUsd` | 40k / 25M | gem range |
 | `minVolume24hUsd` / `minVolume1hUsd` | 30k / 3k | must be trading now |
-| `minAgeMinutes` / `maxAgeHours` | 120 / 168 | skip the first-hour dump zone (4 of 5 early rugs were < 1h old) |
+| `minAgeMinutes` / `maxAgeHours` | 90 / 168 | skip the first-hour dump zone (4 of 5 early rugs were < 1h old) |
 | `minTxnsH1` | 80 | real activity |
 | `minPriceChangeM5` / `maxPriceChangeM5` | −15% / +25% | no calls into a 5-min dump or spike |
 | `minBuySellRatioH1` | 1.05 | more buys than sells |
@@ -79,8 +79,8 @@ Without a bot token the engine runs in **site-only mode** (calls are recorded fo
 | `allowedDexes` | pumpswap, pumpfun, raydium, meteora, meteoradbc, launchlab, orca | |
 | `preferredDexes` | pumpswap, pumpfun, raydium, meteora(dbc) | +4 score |
 | `blockedSymbols` | SOL, USDC, USDT, JUP, BONK, WIF… | never "call" majors |
-| `minScore` | 65 | 0–100 score threshold |
-| `maxCallsPerRun` / `maxCallsPerDay` | 2 / 16 | anti-spam |
+| `minScore` | 60 | 0–100 score threshold |
+| `maxCallsPerRun` / `maxCallsPerDay` | 3 / 45 | anti-spam |
 | `milestones` | 2,3,5,10,20,50,100 | reply under the original call when peak x crosses these |
 | `recap.everyHours` / `topN` / `minMultiple` | 12 / 5 / 1.2 | recap post |
 
