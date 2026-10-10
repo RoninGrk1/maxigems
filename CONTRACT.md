@@ -90,3 +90,6 @@ The bundle refuses to sign if `create-order` returns a treasury different from t
 ## Tests
 `npm test` (Node, includes `test/pro-shared.test.js`), `npm run test:functions` (Deno, MemoryStore + fake RPC/Telegram),
 `npm run check:sql` (PGlite; `npm i --no-save @electric-sql/pglite` first).
+
+## Telegram webhook
+The engine (src/) only calls sendMessage/sendPhoto-style methods and never `getUpdates`, so pointing @Maxigems_bot's webhook at the `telegram` Edge Function is safe. It is the only consumer of updates (`/start <token>` linking). **Setting a webhook disables `getUpdates`** for this bot: any manual/ad-hoc `getUpdates` polling returns 409 until `deleteWebhook`. The webhook is set only by `scripts/supabase-deploy.sh --webhook`, after the user approves.
