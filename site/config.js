@@ -13,5 +13,5 @@ window.MAXIGEMS_CONFIG = {
   treasury: '9dw32avaHbCsySNJNrwreV5onRTUubMpq88tp5XMwLMX', // subscription/featured payments (NOT the tip address)
   proPrices: { 30: 0.48, 90: 1.28, 365: 4 },
   featuredPriceSol: 1,
-  paymentsEnabled: false, // UI flag; the server flag PAYMENTS_ENABLED is the real switch (both start off)
+  paymentsEnabled: true, // UI flag; the server flag PAYMENTS_ENABLED is the real switch (both start off)
 };
