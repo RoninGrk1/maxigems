@@ -47,7 +47,7 @@ create trigger featured_listings_touch before update on public.featured_listings
 create or replace function public.featured_book(
   p_ca text, p_symbol text, p_order_id uuid, p_wallet text, p_token jsonb, p_safety jsonb,
   p_now timestamptz default now(), p_hours int default 24, p_max_concurrent int default 3,
-  p_posts_per_day int default 1, p_post_lead interval default interval '1 hour'
+  p_posts_per_day int default 3, p_post_lead interval default interval '1 hour'
 ) returns jsonb language plpgsql security definer set search_path = public as $$
 declare
   dur interval := make_interval(hours => p_hours);

@@ -19,10 +19,11 @@ check on `/featured/` works and the pay button reads "Coming soon".
 
 ## Caps (featured-core.js `schedule()` == SQL `featured_book()`, checked by `npm run check:sql:featured`)
 - Max **3** listings live at once. Extra bookings are waitlisted to the next free start.
-- Max **1 sponsored channel post per 24h** across all listings, and each listing's post must land inside its own window
-  (≥ 1h before it ends). A booking therefore starts no earlier than 1h after the previous post slot. **Effect:** with
-  1 post/day, the steady state is about 1 new listing per day (≤ 2 overlapping), so the 3-slot cap only matters if
-  `featured.maxPostsPerDay` in `config.json` (and `FEATURED_RULES.maxPostsPerDay`) is raised.
+- Max **3 sponsored channel posts per 24h** across all listings, **spaced at least 8h apart** (gap = 24h / maxPostsPerDay),
+  and each listing's post must land inside its own window (≥ 1h before it ends). **Effect:** up to 3 new listings a day,
+  one post each, never two sponsored posts within 8h; the 3-live-at-once cap and the post gap together waitlist extra bookings.
+  To change it, edit `featured.maxPostsPerDay` in `config.json` **and** `FEATURED_RULES.maxPostsPerDay`
+  (test/featured.test.js keeps them equal and asserts the gap stays ≥ 6h).
 
 ## Who does what
 | piece | where |

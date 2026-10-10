@@ -12,7 +12,7 @@ export const PLANS = Object.freeze({
 });
 
 /** Featured listing: 24h at the top of Trending + one sponsored channel post. */
-export const FEATURED = Object.freeze({ sol: '1', hours: 24, maxConcurrent: 3, maxPostsPerDay: 1 });
+export const FEATURED = Object.freeze({ sol: '1', hours: 24, maxConcurrent: 3, maxPostsPerDay: 3 });
 
 /** Mainnet-safe test price, only ever for an allow-listed wallet (TEST_WALLETS secret). */
 export const TEST_SOL = '0.001';
