@@ -7,7 +7,7 @@ An automated Telegram call channel **plus** a one-page live tracker website, run
 - **Website** (`site/`, static, no build): black / neon-green / electric-blue glass UI, Telegram button under the header, live feed with search, DEX filter, sort, copy-CA, stats bar, auto-refresh. Mobile-first.
 - **Share cards**: every call gets `/c/<CA>/` (branded page with OG/Twitter meta, live numbers, copy CA, share sheet) and a 1200×630 `card.png` rendered in the engine (`src/share.js`, @resvg/resvg-js + sharp, Inter font in `fonts/`, OFL). Cards re-render only when peak x moves ≥ 0.05 or status changes (max 25 per run, catches up later); pages are rewritten only when they change; render state lives in `data/share.json`; `sitemap.xml` lists every coin page. Share sheet (X, Telegram, Discord copy-link, save image, copy link, native share) on Calls, Leaderboard, coin pages and called coins on Trending. Telegram posts link to the coin page.
 - **Pages**: `/` live calls, `/trending/` trending, `/leaderboard/` track record (period toggle 24h/7d/30d/All, 2x/5x/10x hit rates, avg/median peak x, rug rate incl. rugged calls, podium, sortable/searchable table, peak-x bar chart). Shared header nav + buttons (`site/assets/common.js`, `styles.css`), clean folder URLs, `sitemap.xml`, `robots.txt`, branded `404.html`.
-- **Automation**: GitHub Actions cron (every 10 min) runs the engine, commits `calls.json`, and deploys the site to GitHub Pages — free for public repos.
+- **Automation**: GitHub Actions cron (every 10 min) runs the engine and commits the data; the site is a **Cloudflare Worker with static assets** (`wrangler.jsonc` → `site/`) that Cloudflare Workers Builds rebuilds from `main` automatically.
 
 ## Trending Radar (`/trending/`)
 Live "what's moving on Solana" page, fetched **in the visitor's browser** (all endpoints send `Access-Control-Allow-Origin: *`):
@@ -59,32 +59,32 @@ page, and a client-side **holder lookup** for any Solana CA.
 
 Requests are spaced per host (DexScreener ≥1.1 s, GeckoTerminal ≥2.5 s), with retries + backoff on 429/5xx. A run uses ~15 requests.
 
-## Setup (public repo + GitHub Pages)
+## Setup (public repo + Cloudflare Worker)
 
 1. **Bot** `@Maxigems_bot` (from @BotFather) is an admin of channel **@maxigems_calls** with *Post Messages*.
-2. **Repo** (public — unlimited free Actions minutes + free Pages) → *Settings → Secrets and variables → Actions*:
+2. **Repo** (public — unlimited free Actions minutes) → *Settings → Secrets and variables → Actions*:
    - Secrets: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHANNEL_ID` = `@maxigems_calls`
    - Variables: `DRY_RUN` (`1` = print only, still tracks + commits data; set `0` or delete to **go live**), `SITE_URL` = `https://maxigems.fun/`, optional `TELEGRAM_CHANNEL_URL`
    - *Settings → Actions → General → Workflow permissions*: **Read and write**.
-3. *Settings → Pages → Source: **GitHub Actions***, custom domain **maxigems.fun** (also in `site/CNAME`).
-   Cloudflare DNS for `maxigems.fun` (Proxy status **DNS only**, grey cloud, at least until GitHub issues the certificate):
-   | Type | Name | Content |
-   |---|---|---|
-   | A | `@` | 185.199.108.153 |
-   | A | `@` | 185.199.109.153 |
-   | A | `@` | 185.199.110.153 |
-   | A | `@` | 185.199.111.153 |
-   | AAAA (optional) | `@` | 2606:50c0:8000::153 / 8001::153 / 8002::153 / 8003::153 |
-   | CNAME | `www` | roningrk1.github.io |
-   Then, once the certificate is issued, tick *Settings → Pages → Enforce HTTPS*.
-4. *Actions → "MaxiGems engine + site" → Run workflow* (tick *Dry run* to test). The cron then runs every 10 min: engine → data commit → Pages deploy. Edits to `site/` deploy on push.
+3. **Hosting: Cloudflare Worker `maxigems`** (static assets only, no Worker script):
+   - `wrangler.jsonc` serves `./site` (`not_found_handling: 404-page`, `html_handling: auto-trailing-slash`); `site/_headers` sets the real response headers (CSP incl. `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `nosniff`, referrer policy, `Cache-Control` for `/data/*` 60 s and `/assets/*` 1 h). Each page also keeps its own `<meta>` CSP; `test/headers.test.js` checks the header CSP allows every page's sources.
+   - Dashboard → Workers & Pages → `maxigems` → Settings → Build: Git repo `RoninGrk1/maxigems`, branch `main`, build command *empty*, deploy command `npx wrangler deploy`, root `/`. Every push to `main` builds + deploys (~40 s); the result shows as the "Workers Builds: maxigems" check on the commit.
+   - Custom domains (Settings → Domains & Routes): `maxigems.fun` and `www.maxigems.fun` (Cloudflare manages their DNS records + certificates; canonical tags point at the apex).
+   - **Build budget** (free plan: 3,000 build min/month, 1 concurrent build): the engine's data commits are gated by `scripts/build-gate.mjs` — a commit builds only when a new coin page was added or ≥28 min passed since the last building commit; the rest are committed as `chore(data): update calls [skip ci]` and go live with the next build (≈40 builds/day instead of ≈80–144). `data/deploy.json` records the last building commit.
+   - Local check without logging in: `npx wrangler deploy --dry-run` (Wrangler 4 needs Node ≥ 22).
+4. *Actions → "MaxiGems engine + site" → Run workflow* (tick *Dry run* to test). The cron then runs every 10 min: engine → data commit → Cloudflare build (unless batched). Code edits deploy on push.
 
-> GitHub may delay cron runs at busy times and disables schedules after 60 days without repo activity (the bot's data commits count as activity). Making the repo private would cap Actions at 2,000 min/month and disable free Pages.
+> GitHub may delay cron runs at busy times and disables schedules after 60 days without repo activity (the bot's data commits count as activity).
+
+### Rollback
+- **Bad deploy:** Dashboard → `maxigems` → Deployments → pick the previous version → *Rollback* (instant), or `git revert` the commit and push (Cloudflare rebuilds).
+- **Force a deploy now:** push any commit without `[skip ci]` (e.g. `git commit --allow-empty -m "deploy" && git push`) or *Retry build* in the dashboard.
+- **Back to GitHub Pages (emergency):** restore the `deploy` job + `pages`/`id-token` permissions from git history (commit before "Cloudflare cutover") and `site/CNAME`, enable *Settings → Pages → Source: GitHub Actions*, remove the custom domains from the Worker, then re-add DNS (DNS only): four `A @` records 185.199.108.153 / .109.153 / .110.153 / .111.153, `CNAME www roningrk1.github.io`.
 
 **Go live:** set repo variable `DRY_RUN` to `0` (or delete it). That's it.
 
 ### Alternative hosting
-- **Vercel / Netlify / Cloudflare Pages** also work for `site/` (static, root directory `site`, no build).
+- **Vercel / Netlify / GitHub Pages** also work for `site/` (static, root directory `site`, no build; copy `_headers` rules where supported).
 - **VPS / always-on box**: `cp .env.example .env`, fill it in, then
   ```bash
   set -a; . ./.env; set +a
@@ -154,7 +154,9 @@ data/state.json             engine state (committed by the Action)
 data/holders.json           whale holder snapshots + alert log (committed by the Action)
 site/                       static website (index.html, leaderboard/, trending/, whales/, 404.html, sitemap.xml, robots.txt, config.js, assets/, data/calls.json)
 site/assets/leaderboard-core.js  pure leaderboard maths (median, rates, periods, ranking) — unit-tested in test/leaderboard.test.js
-.github/workflows/maxigems.yml   10-min cron: engine + data commit + Pages deploy
+.github/workflows/maxigems.yml   10-min cron: engine + data commit (Cloudflare builds on push)
+wrangler.jsonc              Cloudflare Worker static-assets config (serves site/; headers in site/_headers)
+scripts/build-gate.mjs      batches data commits with [skip ci] to stay inside the Workers Builds budget
 test/                       node:test suites
 ```
 

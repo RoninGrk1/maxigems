@@ -1,4 +1,4 @@
-# Cloudflare Workers static assets: real response headers (GitHub Pages ignores this file).
+# Cloudflare Workers static assets: real response headers (parsed by Workers, not served as a file).
 # Every page also keeps its own stricter <meta> CSP; browsers enforce both, so the header CSP
 # below must allow the union of all pages' connect-src (test/headers.test.js checks this).
 # Only ONE rule may set each header: matching rules are merged with a comma.

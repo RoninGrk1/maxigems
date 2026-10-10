@@ -1,4 +1,4 @@
-// Build step for tipping: `npm run build:tip`  (GitHub Pages has no build step, so outputs are committed)
+// Build step for tipping: `npm run build:tip`  (the Cloudflare deploy has no build step, so outputs are committed)
 //  1. reads tipAddress from site/config.js (validated: 32-byte base58)
 //  2. bundles site-src/tip-wallet.js (+ @solana/kit, @wallet-standard/app) with esbuild → site/assets/tip-wallet.js
 //     (single minified IIFE, recipient baked in from config; lazy-loaded by /assets/tip.js when the modal opens)
