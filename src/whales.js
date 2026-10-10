@@ -17,7 +17,7 @@ export const W = ctx.MGWH;
 
 export const DEFAULTS = {
   enabled: true, holdersPerRun: 10, timeBudgetSeconds: 60, trackHolders: 20, publicHolders: 10, topWhales: 15,
-  megaWhaleUsd: 50000, feedMinPct: 0.1, feedMinUsd: 2500, feedFloorUsd: 100, maxMoves: 200,
+  megaWhaleUsd: 100000, feedMinPct: 0.1, feedMinUsd: 2500, feedFloorUsd: 100, maxMoves: 200,
   alerts: { enabled: true, minPct: 1, minUsd: 5000, insiderMinPct: 0.25, insiderMinUsd: 1000, coinCooldownMinutes: 60, maxPerDay: 6, topHolderRank: 10, maxLinesPerAlert: 4 },
 };
 export const whaleCfg = (cfg) => ({ ...DEFAULTS, ...(cfg?.whales ?? {}), alerts: { ...DEFAULTS.alerts, ...(cfg?.whales?.alerts ?? {}) } });

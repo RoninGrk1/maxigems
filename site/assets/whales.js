@@ -49,13 +49,14 @@
     while (box.firstChild) box.removeChild(box.firstChild);
     var list = pub && Array.isArray(pub.whales) ? pub.whales.filter(function (w) { return w && WH.isSol(w.o); }) : [];
     var mega = num(pub && pub.megaWhaleUsd) || 50000;
-    $('megaUsd').textContent = MG.usd(mega);
+    var megaTxt = MG.usd(mega).replace(/\.0([KMB])$/, '$1'); // $100K, not $100.0K
+    $('megaUsd').textContent = megaTxt;
     $('whEmpty').hidden = !!list.length;
     if (!list.length) $('whEmpty').textContent = 'No whale data yet — holder snapshots build up over the next few bot runs.';
     list.forEach(function (w, i) {
       var hold = (Array.isArray(w.h) ? w.h : []).filter(function (x) { return x && WH.isSol(x.ca); });
       var badges = [];
-      if (num(w.usd) >= mega) badges.push(badge('mega', '🐳 Mega whale', 'Holds ≥ ' + MG.usd(mega) + ' across called coins'));
+      if (num(w.usd) >= mega) badges.push(badge('mega', '🐳 Mega whale', 'Holds ≥ ' + megaTxt + ' across called coins'));
       if (hold.length >= 3) badges.push(badge('multi', '🔁 Holds ' + hold.length + ' calls'));
       if (w.dev) badges.push(badge('dev', '⚠️ Dev wallet', 'Token creator wallet'));
       else if (w.ins) badges.push(badge('ins', '⚠️ Insider', 'Flagged as insider by RugCheck'));
