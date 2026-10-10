@@ -351,3 +351,4 @@ tr.is-rug .tok,tr.is-rug td.num{opacity:.72}
 .tip-note a{color:var(--mut)}
 .ftr-tip span{font-size:13px}
 @media (max-width:560px){.tip-card{flex-direction:column;align-items:stretch}.tip-qr{align-self:center}.tip-qr figcaption::after{content:" (or tap a chip above)"}}
+.tip-qr.tip-flash img{box-shadow:0 0 0 3px var(--green),0 0 22px rgba(57,255,136,.55);transition:box-shadow .3s}

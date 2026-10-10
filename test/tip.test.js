@@ -71,3 +71,55 @@ test('coin pages get the compact tip section; Telegram call posts never mention 
   assert.ok(!tg.includes(ADDR) && !/\btip\b/i.test(tg));
   for (const f of ['engine.js', 'format.js', 'telegram.js', 'whales.js']) assert.ok(!fs.readFileSync(new URL(`../src/${f}`, import.meta.url), 'utf8').includes('tip.js'), f);
 });
+
+test('every tip section on every committed page (static + all /c/<CA>/) uses exactly the configured address', () => {
+  const root = new URL('../site/', import.meta.url);
+  const pages = [...STATIC_PAGES, ...fs.readdirSync(new URL('c/', root)).map((d) => `c/${d}/index.html`).filter((p) => fs.existsSync(new URL(p, root)))];
+  assert.ok(pages.length > STATIC_PAGES.length);
+  for (const p of pages) {
+    const html = fs.readFileSync(new URL(p, root), 'utf8');
+    const i = html.indexOf('id="tip"');
+    assert.ok(i > 0 && html.indexOf('id="tip"', i + 1) < 0, `${p}: exactly one tip section`);
+    const sec = html.slice(html.lastIndexOf('<section', i), html.indexOf('</section>', i));
+    const keys = sec.match(/[1-9A-HJ-NP-Za-km-z]{32,44}/g) || [];
+    assert.ok(keys.length >= 6, `${p}: tip links present`);
+    for (const k of keys) assert.equal(k, ADDR, `${p}: unexpected address in tip section`);
+    for (const m of html.matchAll(/href="solana:([^?"]+)/g)) assert.equal(m[1], ADDR, `${p}: solana: link`);
+  }
+});
+
+test('token data cannot inject or replace the tip address on coin pages', () => {
+  const EVIL = 'HoLyRoDEQvK5zPsGpcz3BbCWhceTGhWAGnVifSoUShit';
+  const bad = `</h1><section id="tip"><a href="solana:${EVIL}?amount=9">x</a> data-tip="${EVIL}" <!-- tip:start -->`;
+  const c = { address: EVIL, symbol: bad, name: bad, imageUrl: `https://x.y/a.png" data-tip="${EVIL}`, calledAt: '2026-10-09T12:31:00.000Z', mcAtCall: 1e5, athMc: 2e5, athMultiple: 2, currentMultiple: 1.5, currentMc: 1.5e5, status: 'active' };
+  const html = coinPageHtml(c, snapshotOf(c, false));
+  assert.equal(html.split('id="tip"').length, 2);
+  assert.equal(html.split('data-tip="').length, 2);
+  assert.ok(html.includes(`data-tip="${ADDR}"`));
+  for (const m of html.matchAll(/href="solana:([^?"]+)/g)) assert.equal(m[1], ADDR);
+  // the client script never carries its own address: it only copies data-tip from the server-built card
+  assert.ok(!/[1-9A-HJ-NP-Za-km-z]{40,44}/.test(fs.readFileSync(new URL('../site/assets/tip.js', import.meta.url), 'utf8')));
+});
+
+test('staleness check catches a tampered or outdated static page', () => {
+  const html = fs.readFileSync(new URL('../site/index.html', import.meta.url), 'utf8');
+  const card = tipCardHtml(ADDR);
+  const tampered = html.replace(`data-tip="${ADDR}"`, `data-tip="${ADDR.slice(0, -1)}E"`);
+  assert.notEqual(tampered, html);
+  assert.notEqual(inject(tampered, card), tampered);
+  assert.equal(inject(inject(html, card), card), html); // idempotent
+  assert.throws(() => inject('<html></html>', card), /markers/);
+});
+
+test('Solana Pay amounts: plain decimals, no exponent, no spl-token', () => {
+  for (const a of ['0.05', '0.1', '0.5']) {
+    const u = payUri(ADDR, a);
+    const q = new URLSearchParams(u.split('?')[1]);
+    assert.equal(q.get('amount'), a);
+    assert.equal(String(Number(a)), a);
+    assert.equal(q.get('label'), 'MaxiGems');
+    assert.equal(q.get('message'), 'Tip for MaxiGems');
+    assert.equal(q.has('spl-token'), false);
+  }
+  for (const bad of ['1e-2', '.5', '-1', '0x1', '1,5', '']) assert.throws(() => payUri(ADDR, bad));
+});
