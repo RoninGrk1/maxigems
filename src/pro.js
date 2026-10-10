@@ -64,3 +64,24 @@ export async function pushProData({ movesFile, watchlist }, deps = {}) {
     return true;
   } catch (err) { log(`WARN pro ingest failed: ${err.message}`); return false; }
 }
+
+/** Live moves back from Supabase (GET ingest with the secret). null when not configured/unreachable. */
+export async function fetchLiveMoves(deps = {}) {
+  const url = process.env.PRO_INGEST_URL, secret = process.env.PRO_INGEST_SECRET;
+  if (!url || !secret) return null;
+  try {
+    const d = await (deps.fetchJson ?? fetchJson)(url, { retries: 1, timeoutMs: 15000, headers: { 'x-ingest-secret': secret } });
+    return Array.isArray(d?.whaleMoves?.moves) ? d.whaleMoves.moves : null;
+  } catch (err) { log(`WARN pro live moves fetch failed: ${err.message}`); return null; }
+}
+
+/** Newest-first union of two move lists (dedupe on time+coin+wallet+kind). */
+export function mergeMoves(a, b, max = 300) {
+  const seen = new Set(), out = [];
+  for (const m of [...(a ?? []), ...(b ?? [])]) {
+    if (!m) continue;
+    const k = `${m.t}|${m.ca}|${m.o}|${m.k}`;
+    if (seen.has(k)) continue; seen.add(k); out.push(m);
+  }
+  return out.sort((x, y) => Date.parse(y.t) - Date.parse(x.t)).slice(0, max);
+}

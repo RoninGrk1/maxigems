@@ -122,6 +122,12 @@
     var rot = num(pub.rotationRuns);
     $('topNote').textContent = pub.updatedAt ? 'updated ' + MG.ago(pub.updatedAt) : '';
     $('movesNote').textContent = 'last ' + st.moves.length + ' moves' + (rot ? ' · new holders rescanned every ~' + rot + ' runs' : '');
+    var pill = $('proPill');
+    if (st.delay) {
+      if (!pill) { pill = h('a', { class: 'pro-pill', id: 'proPill', href: '/pro/' }); var hd = $('movesNote').parentNode; hd.appendChild(pill); }
+      pill.className = 'pro-pill' + (st.proLive ? ' live-on' : '');
+      pill.textContent = st.proLive ? '💎 Pro · live' : '⏱ ' + st.delay + '-min delay · ⚡ Pro is live';
+    } else if (pill) pill.remove();
   }
 
   function load() {
@@ -132,6 +138,13 @@
       getJson(MG.CFG.dataUrl + t, { cache: 'no-store' }).catch(function () { return null; })
     ]).then(function (r) {
       st.pub = r[0]; st.moves = validMoves(r[1] && r[1].moves); st.movesFailed = !r[1];
+      st.delay = r[1] && +r[1].delayMinutes > 0 ? +r[1].delayMinutes : 0; st.proLive = false;
+      if (st.delay && window.MGPro && window.MGPro.session()) {
+        window.MGPro.proData().then(function (d) {
+          if (!d || !d.whaleMoves || !Array.isArray(d.whaleMoves.moves)) return;
+          st.moves = validMoves(d.whaleMoves.moves); st.proLive = true; renderMoves(); stats();
+        });
+      }
       st.called = {};
       ((r[2] && r[2].calls) || []).forEach(function (c) { if (c && WH.isSol(c.address)) st.called[c.address] = c; });
       var ok = !!r[0], age = ok ? Date.now() - Date.parse(r[0].updatedAt) : NaN;

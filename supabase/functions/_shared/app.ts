@@ -229,8 +229,9 @@ export const handleProData = wrap(async (req, d) => {
 
 // ------------------------------------------------------------------ ingest (engine → live Pro data)
 export const handleIngest = wrap(async (req, d) => {
-  if (req.method !== 'POST') return json(req, d.env, { error: 'POST only' }, 405);
   if (!safeSecretEq(req.headers.get('x-ingest-secret') || '', d.env.INGEST_SECRET || '')) return json(req, d.env, { error: 'forbidden' }, 403);
+  if (req.method === 'GET') return json(req, d.env, { whaleMoves: (await d.store.getFeed('whale_moves'))?.data ?? null }); // engine reads back the live list
+  if (req.method !== 'POST') return json(req, d.env, { error: 'Method not allowed' }, 405);
   const t = await req.text();
   if (t.length > 900000) return json(req, d.env, { error: 'too large' }, 413);
   const b = JSON.parse(t);

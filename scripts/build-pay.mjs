@@ -34,5 +34,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (!addr) { console.error('treasury in site/config.js is missing or not a valid Solana address'); process.exit(1); }
   const b = await buildPayBundle(addr);
   fs.writeFileSync(path.join(ROOT, PAY_BUNDLE), b);
+  // cache-bust: /assets/pro.js loads /assets/pay.js?v=<sha256[:10]>
+  const v = (await import('node:crypto')).createHash('sha256').update(b).digest('hex').slice(0, 10);
+  const pj = path.join(ROOT, 'site', 'assets', 'pro.js');
+  fs.writeFileSync(pj, fs.readFileSync(pj, 'utf8').replace(/var PAY_SRC = '\/assets\/pay\.js\?v=[0-9a-f]*'/, `var PAY_SRC = '/assets/pay.js?v=${v}'`));
   console.log(`pay: treasury ${addr} → ${PAY_BUNDLE} (${(b.length / 1024).toFixed(1)} KB)`);
 }

@@ -10,7 +10,7 @@ import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
 import { readJson, writeJsonAtomic, emptyState, normalizeState } from './state.js';
-import { proCfg, publicMoves, publicWatchlist, digestDue, digestMessage, pushProData } from './pro.js';
+import { proCfg, publicMoves, publicWatchlist, digestDue, digestMessage, pushProData, fetchLiveMoves, mergeMoves } from './pro.js';
 import { cleanText, safeUrl, num, log, sleep, fmtX } from './util.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -28,7 +28,6 @@ PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
 PATHS.whales = path.join(path.dirname(PATHS.site), 'whales.json');
 PATHS.whaleMoves = path.join(path.dirname(PATHS.site), 'whale-moves.json');
 PATHS.holders = process.env.MAXIGEMS_HOLDERS || path.join(path.dirname(PATHS.state), 'holders.json');
-PATHS.liveMoves = path.join(path.dirname(PATHS.state), 'whale-moves-live.json'); // Pro launched: undelayed moves (repo data/, not site/)
 
 const DAY = 86400000;
 
@@ -323,9 +322,8 @@ export async function runOnce({ forceRecap = false } = {}) {
   if (whaleOut) {
     writeJsonAtomic(PATHS.holders, whaleOut.store, { compact: true });
     writeJsonAtomic(PATHS.whales, whaleOut.pub, { compact: true });
-    // live moves are kept in data/ (engine memory) and pushed to Pro; the public file is delayed once Pro launches
+    // live moves go only to Supabase (pushProData below; the repo is public); the public file is delayed once Pro launches
     writeJsonAtomic(PATHS.whaleMoves, publicMoves(whaleOut.movesFile, pc, now), { compact: true });
-    if (pc.launched) writeJsonAtomic(PATHS.liveMoves, whaleOut.movesFile, { compact: true });
   }
   await pushProData({ movesFile: whaleOut?.movesFile ?? null, watchlist: liveWatch });
   if (PATHS.siteDir && cfg.share?.enabled !== false) {
@@ -333,6 +331,14 @@ export async function runOnce({ forceRecap = false } = {}) {
   }
   log(`done: ${newCalls.length} new, ${state.calls.length} stored, ${milestoneHits.length} milestones`);
   return { newCalls, milestoneHits, state, rejectStats, passRate: { fresh: fresh.length, market: marketPassed, safety: passed.length } };
+}
+
+/** Previous moves feed. Pro launched: the public file is delayed, so the live list comes back from Supabase (merged with the public file). */
+async function prevWhaleMoves(cfg) {
+  const pub = readJson(PATHS.whaleMoves, {})?.moves ?? [];
+  if (!proCfg(cfg).launched) return pub;
+  const live = await fetchLiveMoves();
+  return live ? mergeMoves(live, pub) : pub;
 }
 
 /** Whale Watcher step. Alerts reply under the coin's call message (standalone if unknown); DRY_RUN prints them. */
@@ -348,7 +354,7 @@ async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
       if (mode === 'live') await sleep(delay);
       return Boolean(r?.ok) && !r?.result?.dry; // DRY_RUN prints only: not 'alerted', does not consume caps
     } : null;
-    return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: (proCfg(cfg).launched ? readJson(PATHS.liveMoves, null) : null)?.moves ?? readJson(PATHS.whaleMoves, {})?.moves ?? [], reports, post });
+    return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: await prevWhaleMoves(cfg), reports, post });
   } catch (e) {
     log(`WARN whale watcher failed: ${e.stack || e.message}`);
     return null;

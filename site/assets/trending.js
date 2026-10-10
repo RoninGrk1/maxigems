@@ -57,12 +57,34 @@
   }
   function soft(p, errs, name) { return p.catch(function (e) { errs.push(name + ': ' + (e && e.message || e)); return null; }); }
 
+  // ---------- Pro: once Pro launches the public watchlist is {proOnly, count, items: []}; Pro members load it live ----------
+  function proWatch(w) {
+    if (!w || !w.proOnly) { state.watchLocked = null; return w; }
+    var P = window.MGPro;
+    if (!P || !P.session()) { state.watchLocked = { count: +w.count || 0, http: 401 }; return w; }
+    return P.proData().then(function (d) {
+      if (d && d.watchlist && Array.isArray(d.watchlist.items)) { state.watchLocked = null; return d.watchlist; }
+      state.watchLocked = { count: +w.count || 0, http: d && d.http }; return w;
+    });
+  }
+  function lockCard() {
+    var L = state.watchLocked, P = window.MGPro, signed = P && P.session();
+    var acts = [h('a', { class: 'btn-gold', href: '/pro/' }, [L.http === 402 ? 'Get or extend Pro' : 'See MaxiGems Pro'])];
+    if (!signed && P) { var b = h('button', { type: 'button', class: 'btn-line' }, ['Sign in']); b.addEventListener('click', function () { var a = document.getElementById('acctBtn'); if (a) a.click(); }); acts.push(b); }
+    return h('div', { class: 'pro-lock', role: 'note' }, [
+      h('h3', {}, ['🔒 On watch is a Pro extra']),
+      h('p', {}, [(L.count ? L.count + ' near-misses' : 'Near-misses') + ' the bot is watching right now: tokens that did NOT pass the call filters. Every actual call stays free and instant in the channel and on the Calls page.']),
+      h('div', { class: 'pro-lock-acts' }, acts)
+    ]);
+  }
+  window.addEventListener('mg:session', function () { if (!state.busy) refresh(); });
+
   // ---------- data ----------
   function refresh() {
     if (state.busy) return; state.busy = true;
     var errs = [];
     var local = Promise.all([
-      soft(getJson(DATA + 'watchlist.json?t=' + Date.now()), errs, 'watchlist'),
+      soft(getJson(DATA + 'watchlist.json?t=' + Date.now()).then(proWatch), errs, 'watchlist'),
       soft(getJson(DATA + 'calls.json?t=' + Date.now()), errs, 'calls'),
       soft(getJson(DATA + 'trending.json?t=' + Date.now()), errs, 'snapshot')
     ]);
@@ -215,13 +237,15 @@
   function render() {
     var list = R.sortRows(R.search(state[state.tab] || [], state.q), state.sorts[state.tab]);
     var feed = $('radar'), frag = document.createDocumentFragment();
+    var locked = state.tab === 'watch' && state.watchLocked;
+    if (locked) { list = []; frag.appendChild(lockCard()); }
     list.forEach(function (r) { var el = card(r, state.tab); setBar(el, r); frag.appendChild(el); });
     feed.replaceChildren(frag);
     feed.setAttribute('aria-busy', state.busy ? 'true' : 'false');
     feed.setAttribute('aria-labelledby', 'tab-' + state.tab);
     $('nHot').textContent = state.hot.length ? String(state.hot.length) : '';
     $('nGrads').textContent = state.grads.length ? String(state.grads.length) : '';
-    $('nWatch').textContent = state.watch.length ? String(state.watch.length) : '';
+    $('nWatch').textContent = state.watchLocked ? '🔒' : state.watch.length ? String(state.watch.length) : '';
     $('tabDesc').textContent = TABS[state.tab].desc;
     $('sort').value = state.sorts[state.tab];
     var fb = $('fallback');
@@ -229,7 +253,7 @@
     else if (state.mode === 'down') { fb.hidden = false; fb.textContent = 'Live data is unavailable right now. Retrying every minute…'; }
     else fb.hidden = true;
     var empty = $('empty');
-    if (list.length) empty.hidden = true;
+    if (list.length || locked) empty.hidden = true;
     else {
       empty.hidden = false;
       empty.textContent = state.busy && state.first ? 'Loading…'

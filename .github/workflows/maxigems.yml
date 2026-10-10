@@ -53,6 +53,9 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           SITE_URL: ${{ vars.SITE_URL }}
           TELEGRAM_CHANNEL_URL: ${{ vars.TELEGRAM_CHANNEL_URL }}
+          # MaxiGems Pro (no-ops until set by scripts/supabase-deploy.sh): live whale moves + watchlist → Supabase
+          PRO_INGEST_URL: ${{ vars.PRO_INGEST_URL }}
+          PRO_INGEST_SECRET: ${{ secrets.PRO_INGEST_SECRET }}
           # repo variable DRY_RUN=1 forces dry run for every run (scheduled too); data is still tracked + committed
           DRY_RUN: ${{ (inputs.dry_run || vars.DRY_RUN == '1') && '1' || '0' }}
         run: |
