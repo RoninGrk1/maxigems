@@ -10,7 +10,7 @@
 export const FEATURED_RULES = Object.freeze({
   hours: 24,
   maxConcurrent: 3,
-  maxPostsPerDay: 1,
+  maxPostsPerDay: 3, // posts spaced ≥ 24h/3 = 8h apart (schedule() gap)
   postLeadMs: 3600000, // a listing's post must be due ≥ 1h before its window closes
   minLiquidityUsd: 20000, // = config.json filters.minLiquidityUsd (test/featured.test.js keeps them in sync)
   minAgeMinutes: 90, // = config.json filters.minAgeMinutes

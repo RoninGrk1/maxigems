@@ -98,15 +98,16 @@ Deno.test('create-order (test wallet, payments off) → verify-payment → fulfi
   assertEquals(w.tg.filter((x) => x.m === 'sendMessage').length, 1);
 });
 
-Deno.test('caps: 4th concurrent booking is waitlisted; posts are spaced 24h; same coin twice → manual refund DM', async () => {
+Deno.test('caps: 4th concurrent booking is waitlisted; posts are spaced ≥ 8h (3/day); same coin twice → manual refund DM', async () => {
   const w = world();
   for (let i = 0; i < 4; i++) assertEquals((await fulfilFeatured(w.d, order(`o${i}`, CAS[i]), `sig${i}`)).ok, true);
   const rows = w.featured.rows;
   const starts = rows.map((r) => Date.parse(r.starts_at) - T0);
-  assertEquals(starts[0], 0);
-  for (let i = 1; i < 4; i++) assert(starts[i] > 0, 'later bookings wait for a post slot');
+  assertEquals(starts.slice(0, 3), [0, 0, 0]); // 3 live at once
+  assert(starts[3] > 0, '4th booking is waitlisted');
   const posts = rows.map((r) => Date.parse(r.post_due_at)).sort((a, b) => a - b);
-  for (let i = 1; i < posts.length; i++) assert(posts[i] - posts[i - 1] >= DAY);
+  for (let i = 1; i < posts.length; i++) assert(posts[i] - posts[i - 1] >= 8 * H, 'sponsored posts ≥ 8h apart');
+  for (const r of rows) assert(Date.parse(r.post_due_at) <= Date.parse(r.ends_at) - H, 'each post lands inside its own window');
   // quote shown on the page equals the next booking's slot
   const q: any = await validateFeaturedOrder(CAS[4], w.d);
   const r5: any = await fulfilFeatured(w.d, order('o4', CAS[4]), 'sig4');
@@ -166,12 +167,14 @@ Deno.test('public featured function: check / status / admin-view / pull (signed 
 
 Deno.test('sweep: featured lifecycle (queued → active → ended); callbacks are not used', async () => {
   const w = world();
-  for (let i = 0; i < 2; i++) await fulfilFeatured(w.d, order(`o${i}`, CAS[i]), `s${i}`);
-  assertEquals(w.featured.rows.map((r) => r.status), ['active', 'queued']);
-  w.setNow(Date.parse(w.featured.rows[1].starts_at) + 1000);
-  assertEquals(await sweepFeatured(w.d), { featuredActivated: 1, featuredEnded: 0 });
-  w.setNow(Date.parse(w.featured.rows[1].ends_at) + 1000);
+  for (let i = 0; i < 4; i++) await fulfilFeatured(w.d, order(`o${i}`, CAS[i]), `s${i}`);
+  assertEquals(w.featured.rows.map((r) => r.status), ['active', 'active', 'active', 'queued']);
+  w.setNow(Date.parse(w.featured.rows[3].starts_at) + 1000);
+  const a: any = await sweepFeatured(w.d);
+  assertEquals(a.featuredActivated, 1);
+  w.setNow(Date.parse(w.featured.rows[3].ends_at) + 1000);
   const s = await (await handleSweep(new Request('https://x/f', { method: 'POST', headers: { 'x-sweep-secret': 'w'.repeat(40) } }), w.d)).json();
-  assertEquals(s.featuredEnded, 2);
+  assertEquals(a.featuredEnded + s.featuredEnded, 4);
+  assertEquals(w.featured.rows.map((r) => r.status), ['ended', 'ended', 'ended', 'ended']);
   assertEquals(await handleFeaturedCallback(w.d, { data: 'pull:x' }), false);
 });

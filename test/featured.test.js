@@ -1,4 +1,4 @@
-// Featured listings: validation, caps, waitlist scheduling, 1 post/day, signed admin links, XSS escaping, DRY_RUN.
+// Featured listings: validation, caps, waitlist scheduling, posts/day cap (3, ≥8h apart), signed admin links, XSS escaping, DRY_RUN.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -30,7 +30,9 @@ test('featured minimums + safety rules are the engine’s (config.json)', () => 
   assert.equal(FEATURED_RULES.minAgeMinutes, CFG.filters.minAgeMinutes);
   for (const [k, v] of Object.entries(SAFETY_DEFAULTS)) assert.equal(CFG.safety[k], v, `safety.${k}`);
   assert.equal(featuredRules(CFG).maxConcurrent, 3);
-  assert.equal(featuredRules(CFG).maxPostsPerDay, 1);
+  assert.equal(featuredRules(CFG).maxPostsPerDay, 3);
+  assert.equal(FEATURED_RULES.maxPostsPerDay, CFG.featured.maxPostsPerDay); // edge functions == engine
+  assert.ok(24 / FEATURED_RULES.maxPostsPerDay >= 6, 'sponsored posts stay ≥ 6h apart');
   assert.equal(CFG.featured.adminChatId, '8995645285');
 });
 
@@ -83,15 +85,20 @@ test('evaluate: every failure is explained and has no quote (no payment option)'
   assert.match(humanReason('safety: top10 41.2%'), /41.2%.*maximum 35%/);
 });
 
-// ------------------------------------------------------------------ caps + waitlist + 1 post/day
+// ------------------------------------------------------------------ caps + waitlist + posts/day cap
 test('schedule: free slot now; post cap pushes the next booking so its post fits its own window', () => {
   assert.deepEqual(schedule([], T0), { startsAt: iso(T0), endsAt: iso(T0 + DAY), postDueAt: iso(T0), waitlisted: false, ahead: 0 });
   const a = row('a', T0, { post_due_at: iso(T0) });
+  // default 3 posts/day → next post ≥ 8h after a's; it fits inside a window starting now
   const q = schedule([a], T0);
-  // next post ≥ 24h after a's → start at T0+1h, post at T0+24h (1h before the window closes)
-  assert.equal(q.startsAt, iso(T0 + H));
-  assert.equal(q.postDueAt, iso(T0 + DAY));
-  assert.equal(q.waitlisted, true);
+  assert.equal(q.startsAt, iso(T0));
+  assert.equal(q.postDueAt, iso(T0 + 8 * H));
+  assert.equal(q.waitlisted, false);
+  // with 1 post/day: next post ≥ 24h after a's → start at T0+1h, post at T0+24h (1h before the window closes)
+  const q1 = schedule([a], T0, { ...FEATURED_RULES, maxPostsPerDay: 1 });
+  assert.equal(q1.startsAt, iso(T0 + H));
+  assert.equal(q1.postDueAt, iso(T0 + DAY));
+  assert.equal(q1.waitlisted, true);
 });
 
 test('schedule: max 3 concurrent → waitlist with the next available start', () => {
@@ -125,7 +132,7 @@ test('schedule: random booking storms never break the caps (≤3 live, posts ≥
   }
 });
 
-test('tick: queued → active → ended by time, and at most ONE sponsored post per 24h', () => {
+test('tick: queued → active → ended by time, and at most one sponsored post per 8h (3/day)', () => {
   const ls = [
     row('a', T0 - 2 * H, { status: 'queued' }),
     row('b', T0 - DAY - H, { status: 'active' }),
@@ -136,9 +143,9 @@ test('tick: queued → active → ended by time, and at most ONE sponsored post 
   assert.deepEqual(t.activate, ['a']);
   assert.deepEqual(t.end, ['b']);
   assert.deepEqual(t.post, ['c'], 'oldest due first, only one');
-  // a post 23h ago blocks everything
-  assert.deepEqual(tick([...ls, row('z', T0 - 30 * H, { status: 'ended', posted_at: iso(T0 - 23 * H) })], T0).post, []);
-  assert.deepEqual(tick([...ls, row('z', T0 - 30 * H, { status: 'ended', posted_at: iso(T0 - 24 * H) })], T0).post, ['c']);
+  // a post 7h59m ago blocks everything; 8h ago is fine (posts spaced ≥ 24h/3)
+  assert.deepEqual(tick([...ls, row('z', T0 - 30 * H, { status: 'ended', posted_at: iso(T0 - 8 * H + 60000) })], T0).post, []);
+  assert.deepEqual(tick([...ls, row('z', T0 - 30 * H, { status: 'ended', posted_at: iso(T0 - 8 * H) })], T0).post, ['c']);
   // pulled / already posted / not started / post skipped → never posted
   assert.deepEqual(tick([row('p', T0 - H, { status: 'pulled' }), row('q', T0 - H, { posted_at: iso(T0 - 25 * H) }), row('r', T0 + H, { status: 'queued' }), row('s', T0 - H, { post_skipped: 'x' })], T0).post, []);
   assert.deepEqual(visibleNow(ls, T0).map((l) => l.id), ['c', 'a'], 'live by time, oldest first (b already ended, d not started)');
@@ -230,7 +237,7 @@ test('engine DRY_RUN: prints the post, writes featured.json, never writes to Sup
   assert.ok(!JSON.stringify(f).includes(CA2), 'no payer wallet in featured.json');
 });
 
-test('engine live: posts once, stores post_message_id, then respects the 24h cap across runs', async () => {
+test('engine live: posts once, stores post_message_id, then keeps posts ≥ 8h apart across runs', async () => {
   const db = fakeDb([
     { ...EVIL, id: 'L1', status: 'active', starts_at: iso(T0 - H), post_due_at: iso(T0 - H) },
     { ...EVIL, ca: CA2, id: 'L2', status: 'active', starts_at: iso(T0 - H), post_due_at: iso(T0 - 30 * 60000) },
@@ -240,8 +247,12 @@ test('engine live: posts once, stores post_message_id, then respects the 24h cap
   assert.equal(out.posts.length, 1);
   assert.deepEqual(db.calls.find((c) => c[0] === 'patch' && c[2].post_message_id), ['patch', 'L1', { posted_at: iso(T0), post_message_id: 4242 }]);
   await runFeatured({ cfg: CFG, now: T0 + 20 * 60000, mode: 'live', deps: d });
-  await runFeatured({ cfg: CFG, now: T0 + 23 * H, mode: 'live', deps: d });
-  assert.equal(out.posts.length, 1, 'no second sponsored post inside 24h');
+  await runFeatured({ cfg: CFG, now: T0 + 8 * H - 60000, mode: 'live', deps: d });
+  assert.equal(out.posts.length, 1, 'no second sponsored post inside 8h');
+  await runFeatured({ cfg: CFG, now: T0 + 8 * H, mode: 'live', deps: d });
+  assert.equal(out.posts.length, 2, 'second listing posts once the 8h gap has passed');
+  await runFeatured({ cfg: CFG, now: T0 + 16 * H, mode: 'live', deps: d });
+  assert.equal(out.posts.length, 2, 'each listing posts only once');
   assert.equal(out.files.at(-1).listings.length, 2);
 });
 
