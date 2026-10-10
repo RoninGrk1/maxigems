@@ -80,7 +80,9 @@ do $$ declare t text; begin
   foreach t in array array['profiles','auth_nonces','orders','subscriptions','telegram_links','pro_feed','audit_log'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('revoke all on public.%I from anon, authenticated', t);
+    execute format('grant select, insert, update, delete on public.%I to service_role', t);
   end loop;
+  grant usage, select on all sequences in schema public to service_role;
 end $$;
 
 drop policy if exists own_subscription on public.subscriptions;
