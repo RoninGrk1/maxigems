@@ -326,3 +326,28 @@ tr.is-rug .tok,tr.is-rug td.num{opacity:.72}
 .badge.st{font-size:11px}
 .pod-act{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
 .lbt .lnk .share-btn{padding:5px 9px;min-height:30px}
+/* ── Tip the Gem Engine ── */
+.tip{margin-top:34px}
+.tip-card{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 0 22px -12px rgba(57,255,136,.35);min-width:0}
+.tip-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.tip-sm .tip-card{flex-direction:column;align-items:stretch;gap:10px}
+.tip-h{display:flex;align-items:center;gap:8px}
+.tip-h h2{margin:0;font-size:15px;font-weight:800;letter-spacing:.2px}
+.tip-ic{width:18px;height:18px;fill:var(--green);filter:drop-shadow(0 0 6px rgba(57,255,136,.5));flex:none}
+.tip-txt{margin:0;color:var(--mut);font-size:13px;line-height:1.5}
+.tip-addr{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tip-addr code{font-size:13px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--txt)}
+.tip-chips,.tip-acts{display:flex;flex-wrap:wrap;gap:8px}
+.tip-chip,.tip-wallet,.tip-scan-link{display:inline-flex;align-items:center;min-height:34px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;border:1px solid var(--line);color:var(--txt);background:rgba(255,255,255,.03);transition:border-color .2s,color .2s,box-shadow .2s}
+.tip-chip{color:var(--green);border-color:rgba(57,255,136,.4)}
+.tip-chip:hover,.tip-wallet:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 12px rgba(57,255,136,.25)}
+.tip-wallet{color:#bfe9ff;border-color:rgba(0,168,255,.5)}
+.tip-scan-link{color:var(--mut)}
+.tip-scan-link:hover{color:var(--txt)}
+.tip-qr{margin:0;flex:none;display:flex;flex-direction:column;align-items:center;gap:6px}
+.tip-qr img{display:block;width:132px;height:132px;border-radius:10px;background:#fff;box-shadow:0 0 16px rgba(57,255,136,.18)}
+.tip-qr figcaption{font-size:12px;color:var(--mut);text-align:center;max-width:140px}
+.tip-note{margin:0;font-size:12px}
+.tip-note a{color:var(--mut)}
+.ftr-tip span{font-size:13px}
+@media (max-width:560px){.tip-card{flex-direction:column;align-items:stretch}.tip-qr{align-self:center}.tip-qr figcaption::after{content:" (or tap a chip above)"}}

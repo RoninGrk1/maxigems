@@ -170,3 +170,7 @@ test/                       node:test suites
 - Token names/symbols are attacker-controlled: stripped of control/RTL chars, length-capped, HTML-escaped for Telegram; the site renders with `textContent` only, rebuilds all links from validated Solana addresses, whitelists image hosts, and ships a strict CSP.
 
 *Not financial advice. Memecoins are extremely risky.*
+
+## Tips (SOL)
+
+The tip address lives in one place: `tipAddress` in `site/config.js`. After changing it run `npm run build:tip`. That validates the address (32-byte base58), regenerates `site/assets/tip-qr.svg` (Solana Pay URI `solana:<address>?label=MaxiGems&message=Tip%20for%20MaxiGems`) and the tip card on the static pages. Coin pages get a compact tip section on every engine run. Telegram call posts never include tipping. `test/tip.test.js` fails if the pages or QR are out of date, and it decodes the QR to check the exact URI.

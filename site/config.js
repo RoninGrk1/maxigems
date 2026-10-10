@@ -5,4 +5,6 @@ window.MAXIGEMS_CONFIG = {
   xUrl: 'https://x.com/maxigems_sol',          // ← X / Twitter profile ('' hides the buttons)
   dataUrl: '/data/calls.json',
   refreshSeconds: 60,
+  // SOL tip address (site tip card, footer link, coin pages). After changing it run: npm run build:tip
+  tipAddress: '2vrom1iH7Fr3fCJwfQvg9tCL5Y1n6EVpLn7zyqdnJfwD',
 };

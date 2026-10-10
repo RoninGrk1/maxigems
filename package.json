@@ -13,11 +13,16 @@
     "dry": "DRY_RUN=1 node src/index.js --once",
     "recap": "node src/index.js --recap",
     "serve": "node scripts/serve.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "build:tip": "node scripts/build-tip.mjs"
   },
   "license": "MIT",
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
     "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.5.4"
   }
 }

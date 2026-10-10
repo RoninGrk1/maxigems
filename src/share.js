@@ -1,6 +1,7 @@
 // Per-coin share pages (/c/<CA>/index.html) + 1200x630 OG cards (/c/<CA>/card.png) + sitemap.
 // Never throws into the engine: generateShare() catches and logs. Everything dynamic is escaped;
 // a CA is only used in a path after strict base58 validation.
+import { tipAddress, tipCardHtml } from './tip.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -296,6 +297,8 @@ export function coinPageHtml(c, snap, parts = templateParts()) {
     <p class="note muted">Peak x = highest price since the call ÷ call price, tracked every ~10 minutes. Not financial advice.</p>
   </main>
 
+  ${tipCardHtml(tipAddress(), { compact: true })}
+
   ${parts.footer}
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -303,6 +306,7 @@ export function coinPageHtml(c, snap, parts = templateParts()) {
   <script src="/assets/common.js"></script>
   <script src="/assets/share.js"></script>
   <script src="/assets/coin.js"></script>
+  <script src="/assets/tip.js"></script>
 </body>
 </html>
 `;
