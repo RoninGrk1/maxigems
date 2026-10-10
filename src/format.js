@@ -107,3 +107,54 @@ export function recapMessage(top, hours, cfg) {
     `<i>Multiples = ATH price since call ÷ call price. NFA.</i>`,
   ].filter((x) => x !== null).join('\n');
 }
+
+/** Public status/share page for a sponsored listing (also the "Track & Share" target). */
+export function featuredPageUrl(ca, cfg) {
+  const site = safeUrl(cfg.siteUrl);
+  if (!site || !/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(String(ca ?? ''))) return null;
+  try { return new URL(`featured/?ca=${ca}`, site.endsWith('/') ? site : site + '/').toString(); } catch { return null; }
+}
+
+export const SPONSORED_LABEL = 'Sponsored – not financial advice';
+
+/**
+ * ONE channel post per featured listing. Same escaping as calls (everything dynamic through escapeHtml()).
+ * listing: featured_listings row (+ .live = fresh DexScreener pair when available).
+ */
+export function sponsoredMessage(listing, cfg) {
+  const t = listing.token ?? {};
+  const p = listing.live ?? null;
+  const ca = listing.ca;
+  const L = links(ca, t.pairAddress);
+  const site = safeUrl(cfg.siteUrl);
+  const page = featuredPageUrl(ca, cfg);
+  const price = p ? Number(p.priceUsd) : t.priceUsd;
+  const mc = p ? (p.marketCap ?? p.fdv) : t.marketCap;
+  const liq = p ? p.liquidity?.usd : t.liquidityUsd;
+  const s = listing.safety;
+  const lines = [
+    `🟡 <b>SPONSORED</b> • <i>${e(SPONSORED_LABEL)}</i>`,
+    ``,
+    `🪙 <b>${e(t.name || listing.symbol)}</b> ($${e(listing.symbol)})`,
+    t.dex ? `🏦 ${e(dexName(t.dex))}` : null,
+    `📋 <code>${e(ca)}</code>`,
+    ``,
+    `💰 Price: <b>${e(fmtPrice(price))}</b>`,
+    `📈 MC: <b>${e(fmtUsd(mc))}</b> | 💧 Liq: <b>${e(fmtUsd(liq))}</b>`,
+    s ? e(safetyLine(s)) : null,
+    `✅ Passed the MaxiGems safety checks when booked. This is a paid placement, <b>not a MaxiGems call</b>.`,
+    ``,
+    [a(L.dexscreener, 'DexScreener'), a(L.solscan, 'Solscan'), a(L.birdeye, 'Birdeye')].join(' • '),
+    site ? `🌐 ${page ? a(page, 'Track & Share') + ' • ' : ''}${a(site, 'All calls → MaxiGems')}` : null,
+    `<i>⚠️ ${e(SPONSORED_LABEL)}. High risk. DYOR.</i>`,
+  ];
+  return lines.filter((x) => x !== null).join('\n');
+}
+
+export function sponsoredButtons(listing, cfg) {
+  const L = links(listing.ca, listing.token?.pairAddress);
+  const page = featuredPageUrl(listing.ca, cfg);
+  const rows = [[{ text: '📊 Chart', url: L.dexscreener }, { text: '🔎 Solscan', url: L.solscan }]];
+  if (page) rows.push([{ text: '💎 Track & Share', url: page }]);
+  return rows;
+}
