@@ -171,6 +171,13 @@ test/                       node:test suites
 
 *Not financial advice. Memecoins are extremely risky.*
 
-## Tips (SOL)
+## Tips (SOL, wallet only)
 
-The tip address lives in one place: `tipAddress` in `site/config.js`. After changing it run `npm run build:tip`. That validates the address (32-byte base58), regenerates `site/assets/tip-qr.svg` (Solana Pay URI `solana:<address>?label=MaxiGems&message=Tip%20for%20MaxiGems`) and the tip card on the static pages. Coin pages get a compact tip section on every engine run. Telegram call posts never include tipping. `test/tip.test.js` fails if the pages or QR are out of date, and it decodes the QR to check the exact URI.
+The tip address lives in one place: `tipAddress` in `site/config.js`. Tipping is Solana wallets only (Phantom, Solflare, Jupiter) through a "Tip with wallet" modal. There is no QR code and there are no `solana:` links.
+
+- `site-src/tip-core.js` holds the pure logic: integer lamports math (0.001–100 SOL), 32-byte recipient validation, building one `SystemProgram.transfer` with `@solana/kit`, filtering wallets to the 3 allowed, and error messages.
+- `site-src/tip-wallet.js` is the modal. It detects wallets through Wallet Standard (`@wallet-standard/app`), with an injected Phantom fallback. The wallet signs and sends; the page only fetches the blockhash and balance and confirms over RPC (PublicNode, then Solana Vibe Station, then Solana Tracker). It never requests `signMessage`.
+- `npm run build:tip` bundles these with esbuild into `site/assets/tip-wallet.js` (minified, ~23 KB gzipped, recipient baked in from config) and refreshes the tip card on the static pages. `/assets/tip.js` lazy-loads the bundle only when the modal opens. Coin pages get a compact card on every engine run.
+- `test/tip.test.js` fails if the bundle or any page is stale, if any tip address differs from config, or if a QR or `solana:` link is still present. `test/tip-wallet.test.js` decodes the built transaction byte by byte.
+- On mobile with no wallet in the browser, the modal shows the documented browse deep links for Phantom (`phantom.com/ul/browse`) and Solflare (`solflare.com/ul/v1/browse`). Jupiter Mobile has no documented browse link, so it links to `jup.ag/mobile`.
+- Telegram call posts never include tipping.

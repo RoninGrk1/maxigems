@@ -1,5 +1,4 @@
-// Tip card: copy the full SOL address (works with or without common.js) and give feedback when
-// a solana: link opens nothing (desktop without a wallet app).
+// Tip card: copy the full SOL address (works with or without common.js) and open the lazy-loaded wallet tip modal.
 (function () {
   'use strict';
   var RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
@@ -31,24 +30,30 @@
       if (RE.test(a)) copy(a, e.currentTarget);
     });
   }
-  // solana: links do nothing on a desktop without a wallet app: if the page keeps focus, point to the QR / Copy.
-  var links = document.querySelectorAll('.tip a[href^="solana:"]');
-  for (var j = 0; j < links.length; j++) {
-    links[j].addEventListener('click', function (e) {
-      var card = e.currentTarget.closest('.tip');
-      var left = false, mark = function () { left = true; };
-      window.addEventListener('blur', mark, { once: true });
-      document.addEventListener('visibilitychange', mark, { once: true });
-      setTimeout(function () {
-        window.removeEventListener('blur', mark); document.removeEventListener('visibilitychange', mark);
-        if (left || document.hidden) return;
-        var qr = card && card.querySelector('.tip-qr');
-        if (qr) {
-          toast('No wallet app opened? Scan the QR code with your phone’s wallet.');
-          qr.classList.add('tip-flash'); setTimeout(function () { qr.classList.remove('tip-flash'); }, 2400);
-          if (qr.getBoundingClientRect().bottom > window.innerHeight) qr.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        } else toast('No wallet app opened? Copy the address, or scan the QR on the home page.');
-      }, 1600);
+  // "Tip with wallet": lazy-load the wallet bundle (only when asked), then open the modal.
+  var loading = null;
+  function loadBundle(src) {
+    if (window.MGTipWallet) return Promise.resolve(window.MGTipWallet);
+    if (loading) return loading;
+    loading = new Promise(function (resolve, reject) {
+      if (!/^\/assets\/tip-wallet\.js(\?v=[0-9a-f]{1,16})?$/.test(src)) return reject(new Error('bad bundle path'));
+      var s = document.createElement('script'); s.src = src; s.async = true;
+      s.onload = function () { window.MGTipWallet ? resolve(window.MGTipWallet) : reject(new Error('bundle')); };
+      s.onerror = function () { reject(new Error('load')); };
+      document.head.appendChild(s);
     });
+    loading.catch(function () { loading = null; });
+    return loading;
   }
+  function openTip(btn) {
+    var label = btn.getAttribute('data-label') || btn.textContent; btn.setAttribute('data-label', label);
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Loading…';
+    loadBundle(btn.getAttribute('data-bundle') || '/assets/tip-wallet.js').then(function (w) { w.open(btn); }, function () {
+      toast('Couldn’t load the wallet module — check your connection and try again.');
+    }).then(function () { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = label; });
+  }
+  var wb = document.querySelectorAll('.tip-wallet-btn');
+  for (var k = 0; k < wb.length; k++) wb[k].addEventListener('click', function (e) { openTip(e.currentTarget); });
+  // Opened from a wallet's in-app browser deep link (?tip=1): open the modal straight away.
+  try { if (wb.length && new URLSearchParams(location.search).get('tip') === '1') openTip(wb[0]); } catch (e) { /* ignore */ }
 })();

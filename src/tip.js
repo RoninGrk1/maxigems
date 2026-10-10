@@ -1,7 +1,8 @@
 // Tip card: one source of truth = site/config.js `tipAddress`.
 // Pure HTML builders used by scripts/build-tip.mjs (static pages) and src/share.js (coin pages).
-// The QR SVG is generated at build time only (devDependency `qrcode`) and committed.
+// Tipping = Solana wallets only (Phantom / Solflare / Jupiter) via the lazy-loaded /assets/tip-wallet.js bundle.
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,55 +32,34 @@ export function tipAddress(src) {
   return a;
 }
 
-export const TIP_LABEL = 'MaxiGems';
-export const TIP_MESSAGE = 'Tip for MaxiGems';
-export const TIP_AMOUNTS = ['0.05', '0.1', '0.5'];
-
-/** Solana Pay transfer-request URI. */
-export function payUri(addr, amount) {
-  if (!isPubkey(addr)) throw new Error('invalid tip address');
-  const q = [];
-  if (amount !== undefined) { if (!/^\d+(\.\d+)?$/.test(String(amount))) throw new Error('bad amount'); q.push(`amount=${amount}`); }
-  q.push(`label=${encodeURIComponent(TIP_LABEL)}`, `message=${encodeURIComponent(TIP_MESSAGE)}`);
-  return `solana:${addr}?${q.join('&')}`;
+export const BUNDLE = 'site/assets/tip-wallet.js';
+let _ver;
+/** Cache-busting version of the committed wallet bundle (sha256 prefix); '' if missing. */
+export function bundleVersion() {
+  if (_ver !== undefined) return _ver;
+  try { _ver = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, BUNDLE))).digest('hex').slice(0, 10); } catch { _ver = ''; }
+  return _ver;
 }
+export function resetBundleVersion() { _ver = undefined; }
 
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 export const shortAddr = (a) => `${a.slice(0, 4)}…${a.slice(-4)}`;
 export const TIP_COPY = 'Printing with MaxiGems? 💎 Toss a tip to keep the gem engine running and the calls free. Every lamport fuels the next 10x. WAGMI 🚀';
 const GEM = '<svg class="tip-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h11L22 9l-10 12L2 9l4.5-6zm.9 2L5 8.3h4.1L10.6 5H7.4zm5.9 0 1.5 3.3H19L16.6 5h-3.3zm-1.3.4L10.6 8.3h2.8L12 5.4zM4.9 10l5.5 6.6L8.3 10H4.9zm5.5 0L12 15.6l1.6-5.6h-3.2zm5.3 0-2.1 6.6L19.1 10h-3.4z"/></svg>';
 
-/** Tip card HTML. compact = coin pages (no QR). */
-export function tipCardHtml(addr, { compact = false } = {}) {
+const LOGOS = '<span class="tip-logos" aria-hidden="true"><img src="/assets/wallets/phantom.png" alt="" width="20" height="20" loading="lazy" /><img src="/assets/wallets/solflare.png" alt="" width="20" height="20" loading="lazy" /><img src="/assets/wallets/jupiter.png" alt="" width="20" height="20" loading="lazy" /></span>';
+
+/** Tip card HTML. compact = coin pages. No solana: links, no QR: tipping goes through the wallet modal only. */
+export function tipCardHtml(addr, { compact = false, version = bundleVersion() } = {}) {
   if (!isPubkey(addr)) return '';
-  const chips = TIP_AMOUNTS.map((a) => `<a class="tip-chip" href="${attr(payUri(addr, a))}" aria-label="Tip ${a} SOL with a Solana wallet">${a} SOL</a>`).join('');
-  const addrRow = `<div class="tip-addr"><code title="${attr(addr)}">${attr(shortAddr(addr))}</code><button type="button" class="copy tip-copy" data-tip="${attr(addr)}" aria-label="Copy full SOL tip address">Copy</button></div>`;
-  const acts = `<div class="tip-acts"><a class="tip-wallet" href="${attr(payUri(addr))}">Open in Phantom / wallet</a><a class="tip-scan-link" href="https://solscan.io/account/${attr(addr)}" target="_blank" rel="noopener noreferrer">Solscan ↗</a></div>`;
-  if (compact) {
-    return `<section class="tip tip-sm wrap" id="tip" aria-label="Tip MaxiGems">
+  const src = `/assets/tip-wallet.js${version ? `?v=${version}` : ''}`;
+  return `<section class="tip${compact ? ' tip-sm' : ''} wrap" id="tip" aria-label="Tip MaxiGems">
     <div class="tip-card">
       <div class="tip-h">${GEM}<h2>Tip the Gem Engine</h2></div>
       <p class="tip-txt">${attr(TIP_COPY)}</p>
-      ${addrRow}
-      <div class="tip-chips">${chips}</div>
-      ${acts}
-      <p class="tip-note muted">On desktop? <a href="/#tip">Scan the QR code</a> with your wallet app.</p>
-    </div>
-  </section>`;
-  }
-  return `<section class="tip wrap" id="tip" aria-label="Tip MaxiGems">
-    <div class="tip-card">
-      <div class="tip-main">
-        <div class="tip-h">${GEM}<h2>Tip the Gem Engine</h2></div>
-        <p class="tip-txt">${attr(TIP_COPY)}</p>
-        ${addrRow}
-        <div class="tip-chips">${chips}</div>
-        ${acts}
-      </div>
-      <figure class="tip-qr">
-        <img src="/assets/tip-qr.svg" width="132" height="132" alt="QR code: Solana Pay tip link for ${attr(addr)}" loading="lazy" decoding="async" />
-        <figcaption>Scan with your wallet app</figcaption>
-      </figure>
+      <div class="tip-acts"><button type="button" class="tip-wallet-btn" data-tip="${attr(addr)}" data-bundle="${attr(src)}" aria-haspopup="dialog">Tip with wallet</button>${LOGOS}</div>
+      <div class="tip-addr"><code title="${attr(addr)}">${attr(shortAddr(addr))}</code><button type="button" class="copy tip-copy" data-tip="${attr(addr)}" aria-label="Copy full SOL tip address">Copy address</button><a class="tip-scan-link" href="https://solscan.io/account/${attr(addr)}" target="_blank" rel="noopener noreferrer">Solscan ↗</a></div>
+      <p class="tip-note muted">Solana only · Phantom, Solflare or Jupiter. You approve the exact amount in your wallet.</p>
     </div>
   </section>`;
 }

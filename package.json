@@ -22,7 +22,9 @@
     "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "jsqr": "^1.4.0",
-    "qrcode": "^1.5.4"
+    "@solana-program/system": "^0.15.0",
+    "@solana/kit": "^8.4.0",
+    "@wallet-standard/app": "^1.1.1",
+    "esbuild": "0.28.2"
   }
 }
