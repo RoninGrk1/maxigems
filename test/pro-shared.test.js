@@ -52,7 +52,7 @@ test('site config + /pro/ show the same prices as the functions', () => {
   const cfg = fs.readFileSync(new URL('../site/config.js', import.meta.url), 'utf8');
   assert.match(cfg, /proPrices:\s*\{\s*30:\s*0\.48,\s*90:\s*1\.28,\s*365:\s*4\s*\}/);
   assert.match(cfg, /featuredPriceSol:\s*1\b/);
-  assert.match(cfg, /paymentsEnabled:\s*false/);
+  assert.match(cfg, /paymentsEnabled:\s*true/);
 });
 
 test('payments flag: disabled refuses every order; test wallet gets only the 0.001 SOL test price', () => {
