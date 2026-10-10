@@ -1,0 +1,58 @@
+/* Featured listings: the gold "Sponsored" card (Trending + /featured/) and the /featured/ pages. */
+.sp-wrap{margin:0 0 16px}
+.sp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 8px;font-size:12px;color:var(--mut)}
+.sp-head a{color:#ffd76a;font-weight:700;text-decoration:none;white-space:nowrap}
+.sp-head a:hover{text-decoration:underline}
+.sp-list{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr))}
+.card.sp-card{border:1px solid rgba(245,197,66,.55);background:linear-gradient(180deg,rgba(245,197,66,.07),rgba(16,22,30,.6) 40%);box-shadow:0 0 0 1px rgba(245,197,66,.12),0 0 22px -6px rgba(245,197,66,.35),0 20px 40px -24px rgba(0,0,0,.8)}
+.card.sp-card::before{background:linear-gradient(135deg,rgba(255,229,138,.7),transparent 45%,transparent 60%,rgba(201,151,28,.55));opacity:.75}
+.card.sp-card:hover{box-shadow:0 0 0 1px rgba(245,197,66,.3),0 0 28px -4px rgba(245,197,66,.45)}
+.badge.sp-badge{color:#1b1200;background:linear-gradient(180deg,#FFE58A,#F5C542 60%,#C9971C);border-color:rgba(255,229,138,.8);font-weight:800;letter-spacing:.02em}
+.sp-label{font-size:11.5px;color:#f4e6b8;opacity:.9}
+.sp-safe{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--mut);background:rgba(0,0,0,.28);border:1px solid rgba(245,197,66,.18);border-radius:12px;padding:7px 10px}
+.sp-safe b{color:var(--txt);font-weight:700}
+.sp-safe .ok b{color:var(--green)}
+.sp-safe .bad b{color:var(--red)}
+.sp-time{font-size:12px;color:var(--mut)}
+.sp-card .lnk a.sp-more{border-color:rgba(245,197,66,.55);color:#ffd76a}
+
+/* /featured/ page */
+.ft-hero h1{font-size:clamp(26px,6vw,42px);line-height:1.1;margin:10px 0 8px;letter-spacing:-.02em}
+.ft-hero h1 .gd{color:#F5C542}
+.ft-sub{color:var(--mut);max-width:640px;margin:0 auto;font-size:15px}
+.ft-grid{display:grid;gap:14px;grid-template-columns:1fr;margin:22px 0}
+@media (min-width:860px){.ft-grid{grid-template-columns:1.25fr 1fr}}
+.ft-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.ft-box h2{font-size:17px;margin:0 0 10px}
+.ft-box p{margin:6px 0}
+.ft-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+.ft-price b{font-size:30px;color:#F5C542;letter-spacing:-.02em}
+.ft-list{margin:8px 0 0;padding-left:20px;color:var(--txt)}
+.ft-list li{margin:4px 0}
+.ft-muted{color:var(--mut);font-size:13px}
+.ft-form{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+.ft-form input{flex:1 1 220px;min-width:0;min-height:46px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.4);color:var(--txt);font:14px var(--mono);padding:10px 12px}
+.ft-form input:focus{border-color:rgba(245,197,66,.6);outline:none;box-shadow:0 0 0 3px rgba(245,197,66,.15)}
+.ft-btn{min-height:46px;padding:10px 18px;border-radius:12px;border:0;cursor:pointer;font:800 15px var(--font);color:#1b1200;background:linear-gradient(180deg,#FFE58A,#F5C542 60%,#C9971C);box-shadow:0 0 16px rgba(245,197,66,.3)}
+.ft-btn[disabled]{cursor:not-allowed;filter:grayscale(.6);opacity:.65;box-shadow:none}
+.ft-btn.ghost{background:transparent;color:#ffd76a;border:1px solid rgba(245,197,66,.55);box-shadow:none}
+.ft-result{margin-top:14px}
+.ft-fail{border:1px solid rgba(255,92,122,.45);background:rgba(255,92,122,.07);border-radius:14px;padding:12px 14px}
+.ft-fail h3{margin:0 0 6px;font-size:15px;color:#ffb3c1}
+.ft-fail ul{margin:0;padding-left:20px}
+.ft-fail li{margin:3px 0;font-size:14px}
+.ft-quote{display:grid;gap:12px}
+.ft-kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px}
+.ft-kv span{color:var(--mut)}
+.ft-kv b{min-width:0;overflow-wrap:anywhere}
+.ft-acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ft-status{font-weight:800;border-radius:999px;padding:3px 10px;font-size:12px;border:1px solid var(--line)}
+.ft-status.active{color:#1b1200;background:#F5C542}
+.ft-status.queued{color:#bfe9ff;border-color:rgba(0,168,255,.6)}
+.ft-status.ended,.ft-status.pulled{color:var(--mut)}
+.ft-terms{font-size:13px;color:var(--mut)}
+.ft-terms h2{color:var(--txt)}
+.ft-terms ol{padding-left:20px}
+.ft-terms li{margin:5px 0}
+.ft-note{margin:14px 0;padding:10px 14px;border-radius:12px;border:1px solid rgba(245,197,66,.35);background:rgba(245,197,66,.06);color:#f4e6b8;font-size:13px}
+@media (max-width:420px){.ft-box{padding:14px}.ft-price b{font-size:26px}}

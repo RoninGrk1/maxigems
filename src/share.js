@@ -14,7 +14,7 @@ const SOL_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 /** DexScreener CDN serves fixed sizes only (64/128/160/256/800); the page avatar is 56 CSS px. */
 export function dsThumb(u, w = 160) { const m = /^(https:\/\/cdn\.dexscreener\.com\/cms\/images\/[A-Za-z0-9_-]+)(\?[^#]*)?$/.exec(String(u || '')); return m ? `${m[1]}?width=${w}&height=${w}&quality=90&format=auto` : u; }
 const IMG_RE = /^https:\/\/(cdn\.dexscreener\.com|dd\.dexscreener\.com|assets\.geckoterminal\.com|coin-images\.coingecko\.com)\//;
-const BASE_URLS = ['/', '/trending/', '/leaderboard/', '/whales/', '/pro/'];
+const BASE_URLS = ['/', '/trending/', '/leaderboard/', '/whales/', '/pro/', '/featured/'];
 
 export const isSolAddress = (s) => typeof s === 'string' && SOL_RE.test(s);
 /** HTML/attribute/XML escape (incl. single quotes). */

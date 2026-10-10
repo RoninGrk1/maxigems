@@ -8,7 +8,8 @@ import { generateShare } from './share.js';
 import { runWhales, whaleCfg, whalePostArgs } from './whales.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
-import { postMessage, telegramConfigured } from './telegram.js';
+import { postMessage, telegramConfigured, tgApi } from './telegram.js';
+import { runFeatured, restClient, featuredRules } from './featured.js';
 import { readJson, writeJsonAtomic, emptyState, normalizeState } from './state.js';
 import { proCfg, publicMoves, publicWatchlist, digestDue, digestMessage, pushProData, fetchLiveMoves, mergeMoves } from './pro.js';
 import { cleanText, safeUrl, num, log, sleep, fmtX } from './util.js';
@@ -27,6 +28,7 @@ PATHS.watchlist = path.join(path.dirname(PATHS.site), 'watchlist.json');
 PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
 PATHS.whales = path.join(path.dirname(PATHS.site), 'whales.json');
 PATHS.whaleMoves = path.join(path.dirname(PATHS.site), 'whale-moves.json');
+PATHS.featured = path.join(path.dirname(PATHS.site), 'featured.json');
 PATHS.holders = process.env.MAXIGEMS_HOLDERS || path.join(path.dirname(PATHS.state), 'holders.json');
 
 const DAY = 86400000;
@@ -290,6 +292,9 @@ export async function runOnce({ forceRecap = false } = {}) {
     }
   }
 
+  // 4d) featured listings: statuses, ≤1 sponsored post/day, site/data/featured.json (never fails the run)
+  await featuredStep({ state, cfg, now, mode, tgBroken });
+
   // 5) periodic recap
   const rc = cfg.recap ?? {};
   const due = forceRecap || (rc.enabled && (!state.lastRecapAt || now - Date.parse(state.lastRecapAt) >= (rc.everyHours ?? 12) * 3600000));
@@ -357,6 +362,42 @@ async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
     return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: await prevWhaleMoves(cfg), reports, post });
   } catch (e) {
     log(`WARN whale watcher failed: ${e.stack || e.message}`);
+    return null;
+  }
+}
+
+/** Featured listings step. Supabase via the service role key (env only); DRY_RUN = read-only + printed posts. */
+export async function featuredStep({ state, cfg, now, mode, tgBroken, db = restClient() }) {
+  if (cfg.featured?.enabled === false) return null;
+  const rules = featuredRules(cfg);
+  const pmode = tgBroken && mode === 'live' ? 'off' : mode;
+  try {
+    return await runFeatured({
+      cfg, now, mode: pmode,
+      deps: {
+        db,
+        previous: readJson(PATHS.featured, null),
+        write: (file) => writeJsonAtomic(PATHS.featured, file),
+        post: async (html, buttons, photo) => {
+          const r = await postMessage({ html, photo, fallbackPhoto: fallbackPhoto(cfg), buttons, cfg });
+          return r?.result?.message_id ?? null;
+        },
+        dm: (chatId, html) => tgApi('sendMessage', { chat_id: chatId, text: html, parse_mode: 'HTML', link_preview_options: { is_disabled: true } }),
+        recheck: async (l) => {
+          if (state.calls.some((c) => c.address === l.ca && c.status === 'rugged')) return { ok: false, reasons: ['flagged rugged by MaxiGems'] };
+          const pair = pickPair((await fetchPairs([l.ca])).get(l.ca), l.token?.pairAddress);
+          if (!pair) return { ok: false, transient: true, reasons: ['no DexScreener data'] };
+          const liq = num(pair.liquidity?.usd);
+          if (liq === null || liq < rules.minLiquidityUsd) return { ok: false, reasons: [`liquidity $${Math.round(liq ?? 0)} < $${rules.minLiquidityUsd}`], pair };
+          if (cfg.safety?.enabled === false) return { ok: true, pair };
+          const r = (await checkSafety([{ address: l.ca, pairAddress: pair.pairAddress }], cfg.safety ?? {})).get(l.ca);
+          if (!r || !r.safety) return { ok: false, transient: true, reasons: r?.reasons ?? ['rugcheck unavailable'] };
+          return { ok: r.reasons.length === 0, reasons: r.reasons, safety: r.safety, pair };
+        },
+      },
+    });
+  } catch (e) {
+    log(`WARN featured step failed: ${e.stack || e.message}`);
     return null;
   }
 }

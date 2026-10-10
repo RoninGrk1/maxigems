@@ -5,6 +5,7 @@ import { assert, assertEquals } from 'jsr:@std/assert@1';
 import { MemoryStore } from '../_shared/store.ts';
 import { handleAuth, handleAccount, handleCreateOrder, handleVerifyPayment, handleProData, handleIngest, handleTelegram, handleSweep, type Deps } from '../_shared/app.ts';
 import { b58encode } from '../_shared/b58.js';
+import { MemoryFeatured } from '../_shared/featured-db.ts';
 
 const TREASURY = '9dw32avaHbCsySNJNrwreV5onRTUubMpq88tp5XMwLMX';
 const CA = 'DK1enXZB5wKaDtvTGPy1dt6qh2kvhkZnFKEGg4Ypump';
@@ -138,14 +139,16 @@ Deno.test('pro-data gated: 401 → 402 → 200 → 402 after expiry; sweep catch
   assert((await w.store.getLink(wallet))!.removed_at);
 });
 
-Deno.test('featured kind goes through the featured hook (stub on pro rejects with 501 — no order is created)', async () => {
+Deno.test('featured kind goes through the featured hook (fails closed: an unsafe/too-new token creates no order)', async () => {
   const w = world({ PAYMENTS_ENABLED: 'true' });
+  (w.store as any).featured = new MemoryFeatured();
   const { auth } = await signIn(w);
   const r = await handleCreateOrder(req('POST', { kind: 'featured', ca: CA }, auth), w.d);
-  assertEquals(r.status, 501);
+  assertEquals(r.status, 422); // this fixture's pair has no pairCreatedAt → age unknown → rejected with reasons
+  assert((await r.json()).reasons.some((x: string) => /minimum 90 minutes/.test(x)));
   assertEquals(w.store.orders.size, 0);
   assertEquals((await handleCreateOrder(req('POST', { kind: 'featured', ca: 'nope' }, auth), w.d)).status, 400);
-  // telegram callback queries are delegated to the featured hook; unhandled ones are just acknowledged
+  // telegram callback queries are delegated to the featured hook; featured uses URL buttons, so they're just acknowledged
   await handleTelegram(req('POST', { callback_query: { id: 'q', from: { id: 1 }, data: 'pull:x' } }, { 'x-telegram-bot-api-secret-token': 'h'.repeat(40) }), w.d);
   assertEquals(w.tg.at(-1).m, 'answerCallbackQuery');
 });

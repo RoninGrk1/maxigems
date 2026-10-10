@@ -31,6 +31,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/assets/styles.css" />
   <link rel="stylesheet" href="/assets/trending.css" />
+  <link rel="stylesheet" href="/assets/featured.css" />
 </head>
 <body class="page-trending">
   <a class="skip" href="#radar">Skip to radar</a>
@@ -77,6 +78,8 @@
 
   <main class="wrap" id="main">
     <p class="tr-note" role="note"><b>⚠️ Not a call — DYOR.</b> This radar is raw market data, unfiltered for rugs. Only posts in the MaxiGems channel are calls.</p>
+
+    <section id="sponsored" class="sp-wrap" aria-label="Sponsored listings" hidden></section>
 
     <div class="tr-tabs" role="tablist" aria-label="Radar views">
       <button class="tr-tab" role="tab" type="button" id="tab-hot" aria-controls="radar" aria-selected="true" data-tab="hot">🔥 Hot now <span class="tr-n" id="nHot"></span></button>
@@ -139,6 +142,7 @@
   <script src="/assets/share.js"></script>
   <script src="/assets/radar-core.js"></script>
   <script src="/assets/trending.js"></script>
+  <script src="/assets/sponsored.js"></script>
   <script src="/assets/tip.js"></script>
 </body>
 </html>

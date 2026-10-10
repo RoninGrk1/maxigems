@@ -18,5 +18,10 @@
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
 
+# Signed admin page (token in the #fragment): never indexed, never cached.
+/featured/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
 https://:name.:sub.workers.dev/*
   X-Robots-Tag: noindex
