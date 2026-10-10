@@ -141,13 +141,7 @@
 
   // ---------- render ----------
   function badge(cls, text, title) { return h('span', { class: 'badge ' + cls, title: title || null, text: text }); }
-  function avatar(r) {
-    var fb = h('div', { class: 'ava', 'aria-hidden': 'true', text: r.symbol.charAt(0).toUpperCase() });
-    if (!r.imageUrl) return fb;
-    var img = h('img', { class: 'ava', src: r.imageUrl, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', width: 46, height: 46 });
-    img.addEventListener('error', function () { if (img.parentNode) img.parentNode.replaceChild(fb, img); });
-    return img;
-  }
+  function avatar(r) { return MG.avatar(r.imageUrl, r.symbol, 46); }
   function chg(label, v) { var n = R.num(v); return h('span', { class: 'tr-chg ' + (n == null ? '' : n >= 0 ? 'pos' : 'neg') }, [h('i', { text: label }), pct(n)]); }
   function kv(k, v, cls) { return h('div', null, [h('span', { text: k }), h('b', { class: cls || null, text: v })]); }
   function safetyRow(s) {

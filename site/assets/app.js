@@ -86,15 +86,10 @@
 
   // ---------- render ----------
   var SOL_SVG = '<svg viewBox="0 0 397 311" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9945FF"/><stop offset="1" stop-color="#14F195"/></linearGradient></defs><path fill="url(#sg)" d="M64 237a13 13 0 0 1 9-4h317c6 0 9 7 5 11l-62 63a13 13 0 0 1-9 4H7c-6 0-9-7-5-11zM64 4a13 13 0 0 1 9-4h317c6 0 9 7 5 11l-62 63a13 13 0 0 1-9 4H7c-6 0-9-7-5-11zm269 116a13 13 0 0 0-9-4H7c-6 0-9 7-5 11l62 63a13 13 0 0 0 9 4h317c6 0 9-7 5-11z"/></svg>';
-  function solBadge() { var b = h('span', { class: 'badge sol', title: 'Solana' }); b.innerHTML = SOL_SVG; b.appendChild(document.createTextNode('Solana')); return b; } // static markup only
+  var solN = 0;
+  function solBadge() { var b = h('span', { class: 'badge sol', title: 'Solana' }); b.innerHTML = SOL_SVG.replace(/\bsg\b/g, 'sg' + (++solN)); /* unique gradient id per badge */ b.appendChild(document.createTextNode('Solana')); return b; } // static markup only
 
-  function avatar(c) {
-    var fallback = h('div', { class: 'ava', 'aria-hidden': 'true', text: c.symbol.charAt(0).toUpperCase() });
-    if (!c.img) return fallback;
-    var img = h('img', { class: 'ava', src: c.img, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', width: 46, height: 46 });
-    img.addEventListener('error', function () { if (img.parentNode) img.parentNode.replaceChild(fallback, img); });
-    return img;
-  }
+  function avatar(c) { return MG.avatar(c.img, c.symbol, 46); }
 
   function safetyRow(s) {
     if (!s) return null;

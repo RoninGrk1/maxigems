@@ -47,8 +47,9 @@ a{color:var(--blue)}
 .hero{text-align:center;padding:26px 18px 8px}
 .tg-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 28px;border-radius:999px;font-weight:800;font-size:17px;color:#021008;text-decoration:none;background:linear-gradient(135deg,var(--green) 0%,#22e3c4 50%,var(--blue) 100%);box-shadow:0 10px 40px -10px rgba(57,255,136,.6),0 0 0 1px rgba(255,255,255,.25) inset;overflow:hidden;transition:transform .2s,box-shadow .2s;max-width:100%}
 .tg-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 55%);pointer-events:none}
-.tg-btn::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.5s infinite}
-@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.tg-btn::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.5s infinite;will-change:transform;pointer-events:none}
+/* transform-only (no layout): animating `left` logged a layout shift every frame and inflated CLS */
+@keyframes shine{0%,60%{transform:translateX(0) skewX(-20deg)}100%{transform:translateX(475%) skewX(-20deg)}}
 .tg-btn:hover{transform:translateY(-2px);box-shadow:0 16px 50px -10px rgba(0,168,255,.7),0 0 0 1px rgba(255,255,255,.3) inset}
 .tg-btn svg{width:24px;height:24px;fill:currentColor;flex:none}
 .cta{display:flex;justify-content:center;align-items:stretch;gap:12px;flex-wrap:wrap}

@@ -11,6 +11,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const CARD_VERSION = 1;
 export const SITE = 'https://maxigems.fun';
 const SOL_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+/** DexScreener CDN serves fixed sizes only (64/128/160/256/800); the page avatar is 56 CSS px. */
+export function dsThumb(u, w = 160) { const m = /^(https:\/\/cdn\.dexscreener\.com\/cms\/images\/[A-Za-z0-9_-]+)(\?[^#]*)?$/.exec(String(u || '')); return m ? `${m[1]}?width=${w}&height=${w}&quality=90&format=auto` : u; }
 const IMG_RE = /^https:\/\/(cdn\.dexscreener\.com|dd\.dexscreener\.com|assets\.geckoterminal\.com|coin-images\.coingecko\.com)\//;
 const BASE_URLS = ['/', '/trending/', '/leaderboard/', '/whales/'];
 
@@ -269,7 +271,7 @@ export function coinPageHtml(c, snap, parts = templateParts()) {
   <main class="wrap coin-wrap" id="main">
     <article class="card coin" id="coin" aria-label="${esc(`${name} ($${sym})`)}">
       <div class="top">
-        ${iconOk ? `<img class="ava" src="${esc(c.imageUrl)}" alt="" width="56" height="56" referrerpolicy="no-referrer" decoding="async" />` : `<div class="ava" aria-hidden="true">${esc(sym.charAt(0).toUpperCase())}</div>`}
+        ${iconOk ? `<img class="ava" src="${esc(dsThumb(c.imageUrl))}" alt="" width="56" height="56" referrerpolicy="no-referrer" decoding="async" fetchpriority="high" />` : `<div class="ava" aria-hidden="true">${esc(sym.charAt(0).toUpperCase())}</div>`}
         <div class="ttl"><h1 class="nm">${esc(name)}</h1><div class="sym">$${esc(sym)} <span class="badge sol">Solana</span> <span class="badge st ${st === 'live' ? 'st-live' : st === 'pulled' ? 'st-pull' : 'st-rug'}" id="cStatus">${esc(STATUS_LABEL[st])}</span></div></div>
         <div class="xbox"><div class="x ${st !== 'live' ? 'down' : xc(snap.peak)}" id="cPeak">${esc(fmtX(snap.peak))}</div><div class="xl">peak since call</div></div>
       </div>

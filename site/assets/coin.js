@@ -43,7 +43,6 @@
     ]).then(function (r) {
       var h = MG.h, coin = r[0] && r[0].coins && r[0].coins[ca];
       var moves = ((r[1] && r[1].moves) || []).filter(function (m) { return m && m.ca === ca && MG.SOL_RE.test(m.o || '') && KIND[m.k]; }).slice(0, 5);
-      var old = $('coinWh'); if (old) old.parentNode.removeChild(old);
       var kids = [h('div', { class: 'wh-h' }, [h('h2', { text: '🐳 Top holders' }), h('span', { class: 'muted', text: coin ? 'balances ' + MG.ago(coin.bat || coin.at) : '' })])];
       var holders = coin && Array.isArray(coin.holders) ? coin.holders.filter(function (x) { return x && MG.SOL_RE.test(x.o || ''); }) : [];
       if (holders.length) {
@@ -74,10 +73,29 @@
       })));
       kids.push(h('p', { class: 'wh-src' }, [h('a', { href: '/whales/?ca=' + ca + '#lookup', text: 'Full holder lookup →' }), ' · ', h('a', { href: '/whales/', text: 'All whales' })]));
       var sec = h('section', { class: 'card coin-wh', id: 'coinWh', 'aria-label': 'Top holders' }, kids);
-      var art = $('coin'); if (art && art.parentNode) art.parentNode.insertBefore(sec, art.nextSibling);
+      // Insert below the short note (not between the coin card and the note) so late-arriving holder data
+      // doesn't shove visible content down (CLS). Refreshes swap in place.
+      var cur = $('coinWh'), art = $('coin');
+      if (cur && cur.parentNode) { cur.parentNode.replaceChild(sec, cur); return; }
+      var note = art && art.parentNode ? art.parentNode.querySelector(':scope > .note') : null;
+      var anchor = note || art;
+      if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor.nextSibling);
     });
   }
   whales();
   load();
   setInterval(function () { if (!document.hidden) { load(); whales(); } }, Math.max(30, MG.num(MG.CFG.refreshSeconds) || 60) * 1000);
+})();
+
+// Avatar uses a small DexScreener CDN size; if the CDN refuses it, fall back to the original once, then hide.
+(function () {
+  var av = document.querySelector('#coin img.ava'); if (!av) return;
+  var orig = null;
+  function fail() {
+    var src = av.getAttribute('src') || '';
+    if (!orig && /[?&]width=\d+/.test(src)) { orig = src.replace(/\?.*$/, '?width=800&height=800&quality=95&format=auto'); av.setAttribute('src', orig); return; }
+    av.style.visibility = 'hidden';
+  }
+  av.addEventListener('error', fail);
+  if (av.complete && av.naturalWidth === 0) fail();
 })();

@@ -11,6 +11,10 @@
   function telegramHref(u) { var s = safeHttpUrl(u); return s && /^https:\/\/(t\.me|telegram\.me)\//.test(s) ? s : null; }
   function xHref(u) { var s = safeHttpUrl(u); return s && /^https:\/\/(www\.)?(x|twitter)\.com\//.test(s) ? s : null; }
   function imgUrl(u) { return u && IMG_RE.test(String(u)) ? safeHttpUrl(u) : null; }
+  // DexScreener token images arrive as 800×800 q95 (often 300–500 KB) but render at ≤56 CSS px.
+  // Their CDN only serves fixed sizes (64/128/160/256/800); 128 covers 46 px @ 3x.
+  var DS_IMG = /^(https:\/\/cdn\.dexscreener\.com\/cms\/images\/[A-Za-z0-9_-]+)(\?[^#]*)?$/;
+  function thumb(u, w) { var m = DS_IMG.exec(String(u || '')); var s = w === 160 || w === 256 || w === 64 ? w : 128; return m ? m[1] + '?width=' + s + '&height=' + s + '&quality=90&format=auto' : u; }
   function h(tag, attrs, kids) {
     var el = document.createElement(tag);
     if (attrs) for (var k in attrs) {
@@ -61,8 +65,12 @@
   function avatar(img, symbol, size) {
     var fb = h('div', { class: 'ava', 'aria-hidden': 'true', text: (symbol || '?').charAt(0).toUpperCase() });
     if (!img) return fb;
-    var el = h('img', { class: 'ava', src: img, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', width: size || 46, height: size || 46 });
-    el.addEventListener('error', function () { if (el.parentNode) el.parentNode.replaceChild(fb, el); });
+    var small = thumb(img);
+    var el = h('img', { class: 'ava', src: small, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', width: size || 46, height: size || 46 });
+    el.addEventListener('error', function () {
+      if (small !== img && el.getAttribute('src') === small) { el.setAttribute('src', img); return; } // CDN size refused → original once
+      if (el.parentNode) el.parentNode.replaceChild(fb, el);
+    });
     return el;
   }
 
@@ -87,5 +95,5 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire); else wire();
 
-  window.MG = { CFG: CFG, SOL_RE: SOL_RE, $: $, num: num, h: h, usd: usd, pct: pct, xf: xf, ago: ago, clean: clean, dexName: dexName, links: links, copy: copy, toast: toast, avatar: avatar, imgUrl: imgUrl, safeHttpUrl: safeHttpUrl };
+  window.MG = { CFG: CFG, SOL_RE: SOL_RE, $: $, num: num, h: h, usd: usd, pct: pct, xf: xf, ago: ago, clean: clean, dexName: dexName, links: links, copy: copy, toast: toast, avatar: avatar, imgUrl: imgUrl, thumb: thumb, safeHttpUrl: safeHttpUrl };
 })();
