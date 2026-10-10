@@ -110,6 +110,12 @@ export function whaleAlertMessage(call, moves, cfg, max = 4) {
   return lines.join('\n');
 }
 
+/** postMessage() args for an alert: reply under the coin's original call when its message_id is known, else standalone. */
+export function whalePostArgs(call, html, buttons, cfg) {
+  const id = Number(call?.tg?.messageId);
+  return { html, buttons, cfg, ...(Number.isInteger(id) && id > 0 ? { replyTo: id } : {}) };
+}
+
 export function whaleAlertButtons(call, cfg) {
   const row = [];
   const page = coinPageUrl(call, cfg);
@@ -173,7 +179,7 @@ export async function runWhales({ calls, cfg, now = Date.now(), store, prevMoves
       v.a = b.a;
     }
     balOk[ca] = ok;
-    if (ok) { s.bat = now; stats.refreshed++; }
+    if (ok) { s.bat = now; s.v = 1; stats.refreshed++; }
   }
 
   // 3) rotating discovery: coins without a baseline first, then the stalest holder lists
@@ -202,7 +208,7 @@ export async function runWhales({ calls, cfg, now = Date.now(), store, prevMoves
       for (const x of list) {
         if (s.accts[x.address]) continue;
         const b = info.get(x.address);
-        if (!b || !b.o || W.excludeReason(b.o, x.address, { excluded: s.ex ?? {}, mint: ca })) continue;
+        if (!b || !b.o || W.excludeReason(b.o, x.address, { excluded: { ...(s.ex ?? {}), ...(W.isSol(c.pairAddress) ? { [c.pairAddress]: 1 } : {}) }, mint: ca })) continue;
         s.accts[x.address] = { o: b.o, a: b.a, ins: 0 };
         discoveredNew.push(x.address);
       }
@@ -232,21 +238,32 @@ export async function runWhales({ calls, cfg, now = Date.now(), store, prevMoves
   const verify = [...discoveredNew, ...baseAccts];
   if (verify.length) {
     const info = await getBalances(verify);
-    const set = new Set(verify);
-    for (const ca of Object.keys(store.coins)) for (const [acc, v] of Object.entries(store.coins[ca].accts ?? {})) {
-      if (!set.has(acc)) continue;
-      const b = info.get(acc);
-      if (b && (!b.mint || b.mint === ca)) { v.a = b.a; if (b.o && W.isSol(b.o)) v.o = b.o; }
+    const set = new Set(verify), disc = new Set(discoveredNew);
+    for (const ca of Object.keys(store.coins)) {
+      const s = store.coins[ca], baseline = !prev[ca];
+      let allOk = true;
+      for (const [acc, v] of Object.entries(s.accts ?? {})) {
+        if (!set.has(acc)) continue;
+        const b = info.get(acc);
+        const owner = b && W.isSol(b.o) ? b.o : v.o;
+        if (b && (!b.mint || b.mint === ca) && !W.excludeReason(owner, acc, { excluded: s.ex ?? {}, mint: ca })) { v.a = b.a; v.o = owner; continue; }
+        if (b && b.o === null) { v.a = 0; continue; } // closed account
+        // not confirmed on-chain (RPC miss) or now owned by a program: a stale RugCheck amount must never become a move
+        if (disc.has(acc) && !baseline) { delete s.accts[acc]; continue; }
+        if (b) { delete s.accts[acc]; continue; }
+        allOk = false;
+      }
+      if (baseline) s.v = allOk ? 1 : 0; // unverified baseline → the next run re-baselines instead of diffing
     }
     stats.discovered = discoveredNew.length;
-  }
+  } else for (const ca of Object.keys(store.coins)) if (!prev[ca]) store.coins[ca].v = 1;
 
   // 4) diff → events (never on a coin's first snapshot; skip coins whose balances couldn't be read)
   const moves = [];
   const alertsByCoin = new Map();
   for (const ca of Object.keys(prev)) {
     const c = byCa.get(ca), s = store.coins[ca];
-    if (!c || !s || !balOk[ca]) continue;
+    if (!c || !s || !balOk[ca] || prev[ca].v === 0) continue; // unverified previous snapshot = baseline only
     const price = num(c.currentPrice);
     const before = ownersOf(prev[ca]), after = ownersOf(s);
     const evs = W.diff(before, after, { supply: s.supply, prevCut: prev[ca].cut, complete: true });

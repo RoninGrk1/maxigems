@@ -5,7 +5,7 @@ import { discoverCandidates, fetchPairs, pickPair, fetchUniqueTraders } from './
 import { checkSafety } from './safety.js';
 import { buildWatchlist, buildTrending } from './radar.js';
 import { generateShare } from './share.js';
-import { runWhales, whaleCfg } from './whales.js';
+import { runWhales, whaleCfg, whalePostArgs } from './whales.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
@@ -324,9 +324,9 @@ async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
   try {
     const delay = cfg.telegram?.delayBetweenPostsMs ?? 3500;
     const post = mode !== 'off' && !tgBroken ? async (call, html, buttons) => {
-      const r = await postMessage({ html, buttons, replyTo: call.tg?.messageId || undefined, cfg });
+      const r = await postMessage(whalePostArgs(call, html, buttons, cfg));
       if (mode === 'live') await sleep(delay);
-      return Boolean(r?.ok);
+      return Boolean(r?.ok) && !r?.result?.dry; // DRY_RUN prints only: not 'alerted', does not consume caps
     } : null;
     return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: readJson(PATHS.whaleMoves, {})?.moves ?? [], reports, post });
   } catch (e) {

@@ -61,7 +61,7 @@
           }))
         ])]));
       } else {
-        kids.push(h('p', { class: 'muted', text: /Rugged|pulled/i.test(($('cStatus') || {}).textContent || '') ? 'Holder tracking stops once a call is marked rugged.' : 'Holder snapshot not ready yet — it builds up over the next bot runs (~15–25 min each).' }));
+        kids.push(h('p', { class: 'muted', text: !r[0] ? 'Holder data is unavailable right now — retrying.' : /Rugged|pulled/i.test(($('cStatus') || {}).textContent || '') ? 'Holder tracking stops once a call is marked rugged.' : r[0].coins && !coin && Date.now() - Date.parse($('cCalled') ? $('cCalled').getAttribute('datetime') : '') > 7 * 864e5 ? 'Holder tracking covers the first 7 days after a call.' : 'Holder snapshot not ready yet — it builds up over the next bot runs (~15–25 min each).' }));
       }
       if (moves.length) kids.push(h('ol', { class: 'wh-moves' }, moves.map(function (m) {
         var k = KIND[m.k], ge = m.min ? '≥' : '';

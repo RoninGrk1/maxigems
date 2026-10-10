@@ -48,11 +48,11 @@
     box.setAttribute('aria-busy', 'false');
     while (box.firstChild) box.removeChild(box.firstChild);
     var list = pub && Array.isArray(pub.whales) ? pub.whales.filter(function (w) { return w && WH.isSol(w.o); }) : [];
-    var mega = num(pub && pub.megaWhaleUsd) || 50000;
+    var mega = num(pub && pub.megaWhaleUsd) || 100000; // config.whales.megaWhaleUsd, carried in whales.json
     var megaTxt = MG.usd(mega).replace(/\.0([KMB])$/, '$1'); // $100K, not $100.0K
-    $('megaUsd').textContent = megaTxt;
+    if (pub && num(pub.megaWhaleUsd)) $('megaUsd').textContent = megaTxt; // no data → keep the page's own text
     $('whEmpty').hidden = !!list.length;
-    if (!list.length) $('whEmpty').textContent = 'No whale data yet — holder snapshots build up over the next few bot runs.';
+    if (!list.length) $('whEmpty').textContent = pub ? 'No whale data yet — holder snapshots build up over the next few bot runs.' : 'Whale data is unavailable right now — retrying every minute.';
     list.forEach(function (w, i) {
       var hold = (Array.isArray(w.h) ? w.h : []).filter(function (x) { return x && WH.isSol(x.ca); });
       var badges = [];
@@ -108,7 +108,7 @@
     list.slice(0, st.shown).forEach(function (m) { ol.appendChild(moveRow(m)); });
     $('mvMore').hidden = list.length <= st.shown;
     $('mvEmpty').hidden = !!list.length;
-    if (!list.length) $('mvEmpty').textContent = st.moves.length ? 'No moves of this type yet.' : 'No whale moves yet — moves appear once a coin has two holder snapshots (baseline first, no alerts on it).';
+    if (!list.length) $('mvEmpty').textContent = st.moves.length ? 'No moves of this type yet.' : st.movesFailed ? 'Whale moves are unavailable right now — retrying every minute.' : 'No whale moves yet — moves appear once a coin has two holder snapshots (baseline first, no alerts on it).';
   }
 
   function stats() {
@@ -131,12 +131,13 @@
       getJson('/data/whale-moves.json' + t, { cache: 'no-store' }).catch(function () { return null; }),
       getJson(MG.CFG.dataUrl + t, { cache: 'no-store' }).catch(function () { return null; })
     ]).then(function (r) {
-      st.pub = r[0]; st.moves = validMoves(r[1] && r[1].moves);
+      st.pub = r[0]; st.moves = validMoves(r[1] && r[1].moves); st.movesFailed = !r[1];
       st.called = {};
       ((r[2] && r[2].calls) || []).forEach(function (c) { if (c && WH.isSol(c.address)) st.called[c.address] = c; });
-      var ok = !!r[0];
-      $('live').className = 'live ' + (ok ? 'ok' : 'err');
-      $('liveText').textContent = ok ? 'Live · updated ' + MG.ago(r[0].updatedAt) : 'Offline · retrying';
+      var ok = !!r[0], age = ok ? Date.now() - Date.parse(r[0].updatedAt) : NaN;
+      var stale = ok && !(age < 90 * 60e3); // bot runs every ~15–25 min; > 90 min (or a bad timestamp) = stale
+      $('live').className = 'live ' + (ok && !stale ? 'ok' : 'err');
+      $('liveText').textContent = !ok ? 'Offline · retrying' : (stale ? 'Stale · updated ' : 'Live · updated ') + MG.ago(r[0].updatedAt);
       renderWhales(); renderMoves(); stats();
     });
   }
@@ -146,7 +147,7 @@
   function fromRugcheck(ca) {
     return getJson(RC + ca + '/report', null, 20000).then(function (r) {
       var snap = WH.snapshotFromReport(r, { mint: ca });
-      if (!snap || !Object.keys(snap.accts).length) throw new Error('no holders');
+      if (!snap || !Array.isArray(r.topHolders) || !r.topHolders.length) { var e0 = new Error('no list'); e0.empty = true; throw e0; }
       snap.removed = (r.topHolders || []).length - Object.keys(snap.accts).length;
       var meta = r.tokenMeta || r.fileMeta || null;
       var res = { snap: snap, meta: meta, src: 'RugCheck holder list', verified: false, total: num(r.totalHolders) };
@@ -239,7 +240,7 @@
       return price(ca).then(function (px) { renderLookup(ca, res, px); msg(''); });
     }).catch(function (e) {
       var busy = e && e.status === 429;
-      msg(busy ? 'The free holder API is rate-limiting right now. Try again in a minute.' : (e && e.status === 400) || (e && e.status === 404) || (e && /no holders/.test(e.message)) ? 'No holder data for that address. Is it a Solana token mint (not a wallet)?' : 'Couldn’t reach the holder API. Check your connection and try again.', true);
+      msg(busy ? 'The free holder API is rate-limiting right now. Try again in a minute.' : e && e.empty ? 'RugCheck has no holder list for this token (common for very large or brand-new tokens).' : (e && e.status === 400) || (e && e.status === 404) || (e && /no holders/.test(e.message)) ? 'No holder data for that address. Is it a Solana token mint (not a wallet)?' : 'Couldn’t reach the holder API. Check your connection and try again.', true);
     }).then(function () { st.busy = false; $('lkGo').disabled = false; });
   }
 
