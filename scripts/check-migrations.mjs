@@ -1,6 +1,6 @@
 // Runs supabase/migrations/*_pro.sql against an in-process Postgres (PGlite) with minimal Supabase stubs
 // (roles anon/authenticated/service_role, auth.jwt()), then exercises public.fulfil_order():
-// stacking, idempotency, duplicate signatures, featured cap/waitlist and the 1-post-per-day rule.
+// stacking, idempotency, duplicate signatures, featured paid → fulfilled.
 // Usage: npm i --no-save @electric-sql/pglite && node scripts/check-migrations.mjs
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -36,15 +36,14 @@ const r2 = await fulfil(o2, 'sig2', 1280000000);
 const days = (Date.parse(r2.expires_at) - Date.now()) / 86400000;
 assert.ok(days > 119.9 && days <= 120.01, `stacked days ${days}`);
 
-// featured: 3 concurrent then waitlist; one post per 24h
-const res = [];
-for (let i = 0; i < 4; i++) res.push(await fulfil(await order('featured', { ca: `CA${i}`, lamports: 1000000000 }), `fs${i}`, 1000000000));
-assert.deepEqual(res.map((r) => r.ok), [true, true, true, true]);
-assert.ok(Math.abs(Date.parse(res[3].starts_at) - Date.parse(res[0].ends_at)) < 1000, '4th starts when 1st ends');
-const st = await q(`select status, post_due_at from featured_listings order by created_at`);
-assert.deepEqual(st.map((x) => x.status), ['active', 'active', 'active', 'scheduled']);
-assert.ok(st[0].post_due_at && st[1].post_due_at === null && st[2].post_due_at === null, 'only one post in the first 24h');
-assert.ok(st[3].post_due_at, '4th listing (tomorrow) gets the next day’s post');
+// featured: only marked paid here (fulfilment is the featured hook's job); mark_order_fulfilled is idempotent
+const of = await order('featured', { ca: 'CA0', lamports: 1000000000 });
+const rf = await fulfil(of, 'fs0', 1000000000);
+assert.deepEqual([rf.ok, rf.kind, rf.fulfilled], [true, 'featured', false]);
+assert.equal((await fulfil(of, 'fs0', 1000000000)).fulfilled, false);
+await q('select mark_order_fulfilled($1)', [of]); await q('select mark_order_fulfilled($1)', [of]);
+assert.equal((await fulfil(of, 'fs0', 1000000000)).fulfilled, true);
+assert.equal((await fulfil(of, 'other', 1000000000)).error, 'order_already_paid');
 
 // grants: anon/authenticated can't touch tables or call fulfil_order
 for (const role of ['anon', 'authenticated']) {
@@ -58,4 +57,4 @@ assert.equal((await q('select count(*)::int as n from subscriptions'))[0].n, 1);
 await db.exec(`select set_config('request.jwt.claims', '{"wallet":"other"}', false);`);
 assert.equal((await q('select count(*)::int as n from subscriptions'))[0].n, 0);
 await db.exec('reset role');
-console.log('migrations OK: tables, RLS/grants, fulfil_order (stacking, idempotency, dup signature, featured cap/waitlist, 1 post/day)');
+console.log('migrations OK: tables, RLS/grants, fulfil_order (stacking, idempotency, dup signature, featured paid→hook→fulfilled)');

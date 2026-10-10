@@ -3,7 +3,7 @@
 // deno-lint-ignore-file no-explicit-any
 import { assert, assertEquals } from 'jsr:@std/assert@1';
 import { MemoryStore } from '../_shared/store.ts';
-import { handleAuth, handleAccount, handlePay, handleFeatured, handleProData, handleIngest, handleTelegram, handleSweep, type Deps } from '../_shared/app.ts';
+import { handleAuth, handleAccount, handleCreateOrder, handleVerifyPayment, handleProData, handleIngest, handleTelegram, handleSweep, type Deps } from '../_shared/app.ts';
 import { b58encode } from '../_shared/b58.js';
 
 const TREASURY = '9dw32avaHbCsySNJNrwreV5onRTUubMpq88tp5XMwLMX';
@@ -60,48 +60,48 @@ const SIG1 = '3'.repeat(88), SIG2 = '4'.repeat(88);
 Deno.test('payments disabled by default: orders refused, account says coming soon', async () => {
   const w = world();
   const { auth } = await signIn(w);
-  const r = await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p30' }, auth), w.d);
+  const r = await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p30' }, auth), w.d);
   assertEquals(r.status, 403);
   const a = await (await handleAccount(req('GET'), w.d)).json();
   assertEquals(a.paymentsEnabled, false);
   assertEquals(a.plans.map((p: any) => p.sol), ['0.48', '1.28', '4']);
   assertEquals(a.featured.sol, '1');
-  assertEquals((await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p30' }), w.d)).status, 401);
+  assertEquals((await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p30' }), w.d)).status, 401);
 });
 
 Deno.test('test wallet: 0.001 SOL order → pay → verify → Pro active; reused signature + stacking', async () => {
   const w = world();
   const { wallet, auth } = await signIn(w);
   w.d.env.TEST_WALLETS = wallet;
-  const o = await (await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p30' }, auth), w.d)).json();
-  assertEquals(o.lamports, '1000000'); assertEquals(o.test, true); assertEquals(o.recipient, TREASURY);
+  const o = await (await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p30' }, auth), w.d)).json();
+  assertEquals(o.lamports, '1000000'); assertEquals(o.test, true); assertEquals(o.treasury, TREASURY); assert(o.reference && o.expiresAt && o.orderId);
   // not on-chain yet → 202 retry
-  assertEquals((await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG1 }, auth), w.d)).status, 202);
+  assertEquals((await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG1 }, auth), w.d)).status, 202);
   w.txs.set(SIG1, payTx(wallet, o.reference, o.lamports, SIG1));
-  const v = await (await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG1 }, auth), w.d)).json();
+  const v = await (await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG1 }, auth), w.d)).json();
   assertEquals(v.ok, true); assertEquals(v.account.pro.active, true); assertEquals(v.account.pro.daysLeft, 30);
   // second order may not reuse the same signature
-  const o2 = await (await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p90' }, auth), w.d)).json();
-  const reuse = await handlePay(req('POST', { action: 'verify', orderId: o2.orderId, signature: SIG1 }, auth), w.d);
+  const o2 = await (await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p90' }, auth), w.d)).json();
+  const reuse = await handleVerifyPayment(req('POST', { orderId: o2.orderId, signature: SIG1 }, auth), w.d);
   assertEquals(reuse.status, 422); assertEquals((await reuse.json()).reason, 'signature_used');
   // paying early stacks: 30 + 90
   w.txs.set(SIG2, payTx(wallet, o2.reference, o2.lamports, SIG2));
-  const v2 = await (await handlePay(req('POST', { action: 'verify', orderId: o2.orderId, signature: SIG2 }, auth), w.d)).json();
+  const v2 = await (await handleVerifyPayment(req('POST', { orderId: o2.orderId, signature: SIG2 }, auth), w.d)).json();
   assertEquals(v2.account.pro.daysLeft, 120);
 });
 
 Deno.test('live prices + wrong recipient / short amount rejected', async () => {
   const w = world({ PAYMENTS_ENABLED: 'true' });
   const { wallet, auth } = await signIn(w);
-  const o = await (await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p365' }, auth), w.d)).json();
+  const o = await (await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p365' }, auth), w.d)).json();
   assertEquals(o.lamports, '4000000000');
   w.txs.set(SIG1, payTx(wallet, o.reference, o.lamports, SIG1, CA));
-  assertEquals((await (await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG1 }, auth), w.d)).json()).reason, 'wrong_recipient');
+  assertEquals((await (await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG1 }, auth), w.d)).json()).reason, 'wrong_recipient');
   w.txs.set(SIG2, payTx(wallet, o.reference, '3999999999', SIG2));
-  assertEquals((await (await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG2 }, auth), w.d)).json()).reason, 'short_amount');
+  assertEquals((await (await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG2 }, auth), w.d)).json()).reason, 'short_amount');
   // someone else's order is invisible
   const other = await signIn(w);
-  assertEquals((await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG2 }, other.auth), w.d)).status, 404);
+  assertEquals((await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG2 }, other.auth), w.d)).status, 404);
 });
 
 Deno.test('pro-data gated: 401 → 402 → 200 → 402 after expiry; sweep catches a closed-tab payment and kicks on expiry', async () => {
@@ -111,7 +111,7 @@ Deno.test('pro-data gated: 401 → 402 → 200 → 402 after expiry; sweep catch
   assertEquals((await handleProData(req('GET', undefined, auth), w.d)).status, 402);
   await handleIngest(req('POST', { whaleMoves: { updatedAt: 'now', moves: [{ t: 'x' }] }, watchlist: { items: [{ address: CA }] } }, { 'x-ingest-secret': 'i'.repeat(40) }), w.d);
   assertEquals((await handleIngest(req('POST', {}, { 'x-ingest-secret': 'nope' }), w.d)).status, 403);
-  const o = await (await handlePay(req('POST', { action: 'create', kind: 'pro', plan: 'p30' }, auth), w.d)).json();
+  const o = await (await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p30' }, auth), w.d)).json();
   // tab closed: never called verify. The sweep finds it via the reference key.
   w.txs.set(SIG1, payTx(wallet, o.reference, o.lamports, SIG1));
   w.sigsByRef.set(o.reference, [{ signature: SIG1, err: null }]);
@@ -138,59 +138,28 @@ Deno.test('pro-data gated: 401 → 402 → 200 → 402 after expiry; sweep catch
   assert((await w.store.getLink(wallet))!.removed_at);
 });
 
-Deno.test('featured: RugCheck fail → no quote/no order; pass → book, admin DM with Pull button, one sponsored post, pull works', async () => {
+Deno.test('featured kind goes through the featured hook (stub on pro rejects with 501 — no order is created)', async () => {
   const w = world({ PAYMENTS_ENABLED: 'true' });
-  w.setRug({ ...goodReport(), mintAuthority: 'EVIL' });
-  const bad = await (await handleFeatured(req('POST', { action: 'check', ca: CA }), w.d)).json();
-  assertEquals(bad.pass, false); assertEquals(bad.quote, undefined);
-  const { wallet, auth } = await signIn(w);
-  assertEquals((await handlePay(req('POST', { action: 'create', kind: 'featured', ca: CA }, auth), w.d)).status, 422);
-  w.setRug(null); // RugCheck down → fail closed
-  assertEquals((await (await handleFeatured(req('POST', { action: 'check', ca: CA }), w.d)).json()).pass, false);
-  w.setRug(goodReport());
-  const ok = await (await handleFeatured(req('POST', { action: 'check', ca: CA }), w.d)).json();
-  assertEquals(ok.pass, true); assertEquals(ok.price.sol, '1'); assertEquals(ok.quote.waitlisted, false);
-  const o = await (await handlePay(req('POST', { action: 'create', kind: 'featured', ca: CA }, auth), w.d)).json();
-  assertEquals(o.lamports, '1000000000');
-  w.txs.set(SIG1, payTx(wallet, o.reference, o.lamports, SIG1));
-  const v = await (await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: SIG1 }, auth), w.d)).json();
-  assertEquals(v.result.kind, 'featured');
-  const dm = w.tg.find((x) => x.m === 'sendMessage' && x.b.chat_id === '8995645285');
-  assert(dm && /pull:/.test(dm.b.reply_markup.inline_keyboard[0][0].callback_data));
-  const list = await (await handleFeatured(req('GET'), w.d)).json();
-  assertEquals(list.listings.length, 1); assertEquals(list.listings[0].ca, CA);
-  // same CA can't be booked twice while live
-  assertEquals((await handlePay(req('POST', { action: 'create', kind: 'featured', ca: CA }, auth), w.d)).status, 409);
-  const s = await (await handleSweep(req('POST', {}, { 'x-sweep-secret': 'w'.repeat(40) }), w.d)).json();
-  assertEquals(s.posted, 1);
-  const post = w.tg.find((x) => x.m === 'sendMessage' && x.b.chat_id === '@maxigems_calls');
-  assert(/Sponsored – not financial advice/.test(post.b.text));
-  assertEquals((await (await handleSweep(req('POST', {}, { 'x-sweep-secret': 'w'.repeat(40) }), w.d)).json()).posted, 0); // never twice
-  // only the admin can pull
-  const id = list.listings.length && [...w.store.listings.keys()][0];
-  const hdr = { 'x-telegram-bot-api-secret-token': 'h'.repeat(40) };
-  await handleTelegram(req('POST', { callback_query: { id: 'q1', from: { id: 1 }, data: `pull:${id}` } }, hdr), w.d);
-  assertEquals((await w.store.getListing(id))!.status, 'active');
-  await handleTelegram(req('POST', { callback_query: { id: 'q2', from: { id: 8995645285 }, data: `pull:${id}` } }, hdr), w.d);
-  assertEquals((await w.store.getListing(id))!.status, 'pulled');
-  assert(w.tg.some((x) => x.m === 'deleteMessage'));
-  assertEquals((await (await handleFeatured(req('GET'), w.d)).json()).listings.length, 0);
+  const { auth } = await signIn(w);
+  const r = await handleCreateOrder(req('POST', { kind: 'featured', ca: CA }, auth), w.d);
+  assertEquals(r.status, 501);
+  assertEquals(w.store.orders.size, 0);
+  assertEquals((await handleCreateOrder(req('POST', { kind: 'featured', ca: 'nope' }, auth), w.d)).status, 400);
+  // telegram callback queries are delegated to the featured hook; unhandled ones are just acknowledged
+  await handleTelegram(req('POST', { callback_query: { id: 'q', from: { id: 1 }, data: 'pull:x' } }, { 'x-telegram-bot-api-secret-token': 'h'.repeat(40) }), w.d);
+  assertEquals(w.tg.at(-1).m, 'answerCallbackQuery');
 });
 
-Deno.test('featured: 4th booking is waitlisted until the first slot ends', async () => {
+Deno.test('verify-payment is idempotent and a paid order cannot be re-paid with another signature', async () => {
   const w = world({ PAYMENTS_ENABLED: 'true' });
   const { wallet, auth } = await signIn(w);
-  const cas = ['So11111111111111111111111111111111111111112', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', CA];
-  let last: any;
-  for (const [i, ca] of cas.entries()) {
-    const o = await (await handlePay(req('POST', { action: 'create', kind: 'featured', ca }, auth), w.d)).json();
-    const sig = String(i + 5).repeat(88);
-    w.txs.set(sig, payTx(wallet, o.reference, o.lamports, sig));
-    last = await (await handlePay(req('POST', { action: 'verify', orderId: o.orderId, signature: sig }, auth), w.d)).json();
-    w.setNow(w.getNow() + 3600000);
-  }
-  assertEquals(Date.parse(last.result.starts_at), Date.parse('2026-10-11T12:00:00Z'));
-  assertEquals((await (await handleFeatured(req('GET'), w.d)).json()).listings.length, 3);
+  const o = await (await handleCreateOrder(req('POST', { kind: 'pro', plan: 'p30' }, auth), w.d)).json();
+  w.txs.set(SIG1, payTx(wallet, o.reference, o.lamports, SIG1));
+  assertEquals((await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG1 }, auth), w.d)).status, 200);
+  const again = await (await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG1 }, auth), w.d)).json();
+  assertEquals(again.ok, true); assertEquals(again.account.pro.daysLeft, 30); // not double-credited
+  w.txs.set(SIG2, payTx(wallet, o.reference, o.lamports, SIG2));
+  assertEquals((await handleVerifyPayment(req('POST', { orderId: o.orderId, signature: SIG2 }, auth), w.d)).status, 422);
 });
 
 Deno.test('CORS: only maxigems.fun origins are reflected', async () => {

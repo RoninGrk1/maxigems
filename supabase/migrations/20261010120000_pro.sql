@@ -1,4 +1,4 @@
--- MaxiGems Pro pass + Featured listings.
+-- MaxiGems shared payments/auth core + Pro pass. (featured_listings lives in the featured branch's later migration.)
 -- All writes go through Edge Functions using the service role. anon/authenticated get NO table access
 -- (sessions are MaxiGems SIWS JWTs verified inside the functions, not Supabase Auth). RLS is on everywhere as
 -- defence in depth; the "own rows" SELECT policies only apply if a Supabase-auth JWT carrying a `wallet` claim is used later.
@@ -37,7 +37,8 @@ create table if not exists public.orders (
   created_at timestamptz not null default now(),
   expires_at timestamptz not null,
   paid_at timestamptz,
-  checked_at timestamptz
+  checked_at timestamptz,
+  fulfilled_at timestamptz                  -- set after the per-kind hook succeeded (pro: in fulfil_order; featured: fulfilFeatured)
 );
 create index if not exists orders_pending on public.orders (status, created_at) where status = 'pending';
 create index if not exists orders_wallet on public.orders (wallet, created_at desc);
@@ -48,23 +49,6 @@ create table if not exists public.subscriptions (
   expires_at timestamptz not null,
   updated_at timestamptz not null default now()
 );
-
-create table if not exists public.featured_listings (
-  id uuid primary key default gen_random_uuid(),
-  order_id uuid unique references public.orders(id),
-  wallet text not null,
-  ca text not null,
-  symbol text, name text, image_url text,
-  status text not null default 'scheduled' check (status in ('scheduled', 'active', 'ended', 'pulled')),
-  starts_at timestamptz not null,
-  ends_at timestamptz not null,
-  post_due_at timestamptz,
-  posted_at timestamptz,
-  post_message_id bigint,
-  pulled_at timestamptz,
-  created_at timestamptz not null default now()
-);
-create index if not exists featured_live on public.featured_listings (status, ends_at);
 
 create table if not exists public.telegram_links (
   wallet text primary key references public.profiles(wallet),
@@ -93,7 +77,7 @@ create table if not exists public.audit_log (
 
 -- ---------------------------------------------------------------- RLS + grants
 do $$ declare t text; begin
-  foreach t in array array['profiles','auth_nonces','orders','subscriptions','featured_listings','telegram_links','pro_feed','audit_log'] loop
+  foreach t in array array['profiles','auth_nonces','orders','subscriptions','telegram_links','pro_feed','audit_log'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('revoke all on public.%I from anon, authenticated', t);
   end loop;
@@ -106,19 +90,22 @@ create policy own_orders on public.orders for select to authenticated using (wal
 grant select on public.subscriptions, public.orders to authenticated;
 
 -- ---------------------------------------------------------------- atomic fulfilment
--- Called by the pay + sweep functions AFTER the transaction was verified on-chain.
--- Locks the order; idempotent (a second call for the same order returns the existing result).
+-- Called by verify-payment and the sweep AFTER the transaction was verified on-chain. Locks the order and marks it
+-- paid (idempotent: the same signature again → already=true; a different signature → order_already_paid).
+-- kind 'pro': extends the subscription in the same transaction (paying early stacks) and sets fulfilled_at.
+-- kind 'featured': only marks it paid; the Edge Function then runs fulfilFeatured() (_shared/featured.ts) and sets
+-- fulfilled_at via mark_order_fulfilled(). The sweep retries paid orders whose fulfilled_at is still null.
 create or replace function public.fulfil_order(p_order uuid, p_signature text, p_paid bigint)
 returns jsonb language plpgsql security definer set search_path = public as $$
 declare
   o public.orders%rowtype;
   cur timestamptz; nexp timestamptz;
-  n int; st timestamptz; en timestamptz; last_post timestamptz; due timestamptz; fid uuid;
 begin
   select * into o from public.orders where id = p_order for update;
   if not found then return jsonb_build_object('ok', false, 'error', 'no_order'); end if;
   if o.status = 'paid' then
-    return jsonb_build_object('ok', o.signature = p_signature, 'already', true, 'error', case when o.signature = p_signature then null else 'order_already_paid' end);
+    return jsonb_build_object('ok', o.signature = p_signature, 'already', true, 'kind', o.kind, 'fulfilled', o.fulfilled_at is not null,
+      'error', case when o.signature = p_signature then null else 'order_already_paid' end);
   end if;
   if p_paid < o.lamports then return jsonb_build_object('ok', false, 'error', 'short_amount'); end if;
   update public.orders set status = 'paid', signature = p_signature, paid_lamports = p_paid, paid_at = now() where id = o.id;
@@ -129,27 +116,20 @@ begin
     insert into public.subscriptions (wallet, plan, expires_at, updated_at) values (o.wallet, o.plan, nexp, now())
       on conflict (wallet) do update set plan = excluded.plan, expires_at = excluded.expires_at, updated_at = now();
     update public.telegram_links set removed_at = null where wallet = o.wallet;
+    update public.orders set fulfilled_at = now() where id = o.id;
     insert into public.audit_log (actor, action, detail) values (o.wallet, 'pro_paid', jsonb_build_object('order', o.id, 'sig', p_signature, 'lamports', p_paid, 'expires_at', nexp, 'test', o.test));
-    return jsonb_build_object('ok', true, 'kind', 'pro', 'expires_at', nexp);
+    return jsonb_build_object('ok', true, 'kind', 'pro', 'fulfilled', true, 'expires_at', nexp);
   end if;
 
-  -- featured: 3 concurrent 24h slots, FIFO waitlist; 1 sponsored channel post per 24h
-  perform pg_advisory_xact_lock(hashtext('maxigems_featured'));
-  select count(*) into n from public.featured_listings where status in ('scheduled', 'active') and ends_at > now();
-  if n < 3 then st := now();
-  else
-    select ends_at into st from public.featured_listings where status in ('scheduled', 'active') and ends_at > now()
-      order by ends_at asc offset (n - 3) limit 1;
-  end if;
-  en := st + interval '24 hours';
-  select max(coalesce(posted_at, post_due_at)) into last_post from public.featured_listings where status <> 'pulled' and (posted_at is not null or post_due_at is not null);
-  due := greatest(st, coalesce(last_post + interval '24 hours', st));
-  if due > en - interval '1 hour' then due := null; end if; -- no free post slot inside its window: listing only
-  insert into public.featured_listings (order_id, wallet, ca, symbol, name, image_url, status, starts_at, ends_at, post_due_at)
-    values (o.id, o.wallet, o.ca, o.meta ->> 'symbol', o.meta ->> 'name', o.meta ->> 'image', case when st <= now() then 'active' else 'scheduled' end, st, en, due)
-    returning id into fid;
-  insert into public.audit_log (actor, action, detail) values (o.wallet, 'featured_paid', jsonb_build_object('order', o.id, 'listing', fid, 'sig', p_signature, 'lamports', p_paid, 'starts_at', st, 'test', o.test));
-  return jsonb_build_object('ok', true, 'kind', 'featured', 'listing', fid, 'starts_at', st, 'ends_at', en, 'post_due_at', due);
+  insert into public.audit_log (actor, action, detail) values (o.wallet, o.kind || '_paid', jsonb_build_object('order', o.id, 'sig', p_signature, 'lamports', p_paid, 'test', o.test));
+  return jsonb_build_object('ok', true, 'kind', o.kind, 'fulfilled', false);
 end $$;
 revoke all on function public.fulfil_order(uuid, text, bigint) from public, anon, authenticated;
 grant execute on function public.fulfil_order(uuid, text, bigint) to service_role;
+
+create or replace function public.mark_order_fulfilled(p_order uuid)
+returns void language sql security definer set search_path = public as $$
+  update public.orders set fulfilled_at = coalesce(fulfilled_at, now()) where id = p_order and status = 'paid';
+$$;
+revoke all on function public.mark_order_fulfilled(uuid) from public, anon, authenticated;
+grant execute on function public.mark_order_fulfilled(uuid) to service_role;

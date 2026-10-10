@@ -1,7 +1,7 @@
 // Data access for the Pro functions. RestStore = PostgREST with the service role (inside Supabase only).
 // MemoryStore = same contract in memory, used by the Deno tests (its fulfil() mirrors public.fulfil_order()).
+// The featured branch extends both classes with its own listing methods.
 // deno-lint-ignore-file no-explicit-any
-import { nextStart, nextPostAt } from './featured.js';
 import { DAY_MS } from './plans.js';
 
 export type Row = Record<string, any>;
@@ -18,10 +18,8 @@ export interface Store {
   touchOrder(id: string, patch: Row): Promise<void>;
   signatureUsed(sig: string): Promise<boolean>;
   fulfil(orderId: string, signature: string, paid: string): Promise<Row>;
-  liveListings(): Promise<Row[]>;
-  recentListings(): Promise<Row[]>;
-  getListing(id: string): Promise<Row | null>;
-  updateListing(id: string, patch: Row): Promise<void>;
+  markFulfilled(orderId: string): Promise<void>;
+  paidUnfulfilled(limit: number): Promise<Row[]>;
   getLink(wallet: string): Promise<Row | null>;
   getLinkByToken(token: string): Promise<Row | null>;
   getLinkByTg(tg: number): Promise<Row | null>;
@@ -57,10 +55,8 @@ export class RestStore implements Store {
   async touchOrder(id: string, patch: Row) { await this.q(`orders?id=eq.${this.e(id)}`, { method: 'PATCH', body: JSON.stringify(patch) }); }
   async signatureUsed(sig: string) { return !!(await this.one(`orders?signature=eq.${this.e(sig)}&select=id`)); }
   async fulfil(o: string, s: string, p: string) { return await this.q('rpc/fulfil_order', { method: 'POST', body: JSON.stringify({ p_order: o, p_signature: s, p_paid: Number(p) }) }); }
-  liveListings() { return this.q(`featured_listings?status=in.(scheduled,active)&ends_at=gt.${this.e(new Date().toISOString())}&order=starts_at.asc&select=*`); }
-  recentListings() { return this.q(`featured_listings?ends_at=gt.${this.e(new Date(Date.now() - 2 * DAY_MS).toISOString())}&order=starts_at.asc&select=*`); }
-  getListing(id: string) { return this.one(`featured_listings?id=eq.${this.e(id)}&select=*`); }
-  async updateListing(id: string, patch: Row) { await this.q(`featured_listings?id=eq.${this.e(id)}`, { method: 'PATCH', body: JSON.stringify(patch) }); }
+  async markFulfilled(id: string) { await this.q('rpc/mark_order_fulfilled', { method: 'POST', body: JSON.stringify({ p_order: id }) }); }
+  paidUnfulfilled(limit: number) { return this.q(`orders?status=eq.paid&fulfilled_at=is.null&order=paid_at.asc&limit=${limit}&select=*`); }
   getLink(w: string) { return this.one(`telegram_links?wallet=eq.${this.e(w)}&select=*`); }
   getLinkByToken(t: string) { return this.one(`telegram_links?token=eq.${this.e(t)}&select=*`); }
   getLinkByTg(tg: number) { return this.one(`telegram_links?tg_user_id=eq.${Number(tg)}&select=*`); }
@@ -73,7 +69,7 @@ export class RestStore implements Store {
 
 export class MemoryStore implements Store {
   nonces = new Map<string, Row>(); profiles = new Set<string>(); subs = new Map<string, Row>(); orders = new Map<string, Row>();
-  listings = new Map<string, Row>(); links = new Map<string, Row>(); feed = new Map<string, Row>(); log: Row[] = [];
+  links = new Map<string, Row>(); feed = new Map<string, Row>(); log: Row[] = [];
   now = () => Date.now();
   async putNonce(r: Row) { this.nonces.set(r.nonce, { ...r }); }
   async getNonce(n: string) { return this.nonces.get(n) ?? null; }
@@ -89,7 +85,7 @@ export class MemoryStore implements Store {
   async fulfil(id: string, sig: string, paid: string) {
     const o = this.orders.get(id); const now = this.now();
     if (!o) return { ok: false, error: 'no_order' };
-    if (o.status === 'paid') return { ok: o.signature === sig, already: true, error: o.signature === sig ? null : 'order_already_paid' };
+    if (o.status === 'paid') return { ok: o.signature === sig, already: true, kind: o.kind, fulfilled: !!o.fulfilled_at, error: o.signature === sig ? null : 'order_already_paid' };
     if ([...this.orders.values()].some((x) => x.signature === sig)) throw Object.assign(new Error('db 409: duplicate key orders_signature_key'), { status: 409 });
     if (BigInt(paid) < BigInt(o.lamports)) return { ok: false, error: 'short_amount' };
     Object.assign(o, { status: 'paid', signature: sig, paid_lamports: paid, paid_at: new Date(now).toISOString() });
@@ -99,19 +95,13 @@ export class MemoryStore implements Store {
       const exp = new Date(base + o.days * DAY_MS).toISOString();
       this.subs.set(o.wallet, { wallet: o.wallet, plan: o.plan, expires_at: exp });
       const l = this.links.get(o.wallet); if (l) l.removed_at = null;
-      return { ok: true, kind: 'pro', expires_at: exp };
+      o.fulfilled_at = new Date(now).toISOString();
+      return { ok: true, kind: 'pro', fulfilled: true, expires_at: exp };
     }
-    const all = [...this.listings.values()];
-    const st = nextStart(all, now); const en = st + DAY_MS;
-    let due: number | null = nextPostAt(all, st); if (due > en - 3600000) due = null;
-    const l = { id: crypto.randomUUID(), order_id: o.id, wallet: o.wallet, ca: o.ca, symbol: o.meta?.symbol, name: o.meta?.name, image_url: o.meta?.image, status: st <= now ? 'active' : 'scheduled', starts_at: new Date(st).toISOString(), ends_at: new Date(en).toISOString(), post_due_at: due ? new Date(due).toISOString() : null, posted_at: null, post_message_id: null };
-    this.listings.set(l.id, l);
-    return { ok: true, kind: 'featured', listing: l.id, starts_at: l.starts_at, ends_at: l.ends_at, post_due_at: l.post_due_at };
+    return { ok: true, kind: o.kind, fulfilled: false };
   }
-  async liveListings() { const n = this.now(); return [...this.listings.values()].filter((l) => ['scheduled', 'active'].includes(l.status) && Date.parse(l.ends_at) > n); }
-  async recentListings() { return [...this.listings.values()]; }
-  async getListing(id: string) { return this.listings.get(id) ?? null; }
-  async updateListing(id: string, p: Row) { Object.assign(this.listings.get(id)!, p); }
+  async markFulfilled(id: string) { const o = this.orders.get(id); if (o && o.status === 'paid' && !o.fulfilled_at) o.fulfilled_at = new Date(this.now()).toISOString(); }
+  async paidUnfulfilled(limit: number) { return [...this.orders.values()].filter((o) => o.status === 'paid' && !o.fulfilled_at).slice(0, limit); }
   async getLink(w: string) { return this.links.get(w) ?? null; }
   async getLinkByToken(t: string) { return [...this.links.values()].find((l) => l.token === t) ?? null; }
   async getLinkByTg(tg: number) { return [...this.links.values()].find((l) => l.tg_user_id === tg) ?? null; }

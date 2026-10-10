@@ -1,13 +1,12 @@
 // MaxiGems Pro + Featured pure logic (shared with the Supabase Edge Functions): prices, lamports math, payment
-// verification, expiry stacking, gating, featured caps/waitlist, Telegram invite/kick, SIWS, JWT, RugCheck gating.
+// verification, expiry stacking, gating, Telegram invite/kick, SIWS, JWT, shared RugCheck rules.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { webcrypto } from 'node:crypto';
 import { PLANS, FEATURED, TEST_SOL, solToLamports, lamportsToSol, priceOrder, stackExpiry, daysLeft, gate, publicPlans, parseWalletList, DAY_MS } from '../supabase/functions/_shared/plans.js';
 import { verifyPayment } from '../supabase/functions/_shared/verify.js';
-import { nextStart, nextPostAt, quote, tick, alreadyLive } from '../supabase/functions/_shared/featured.js';
-import { inviteParams, kickList, kickCalls, kick, startToken, parsePull, pullData, bookingMessage, sponsoredPost } from '../supabase/functions/_shared/tg.js';
+import { inviteParams, kickList, kickCalls, kick, startToken, esc } from '../supabase/functions/_shared/tg.js';
 import { buildMessage, parseMessage, checkSignIn } from '../supabase/functions/_shared/siws.js';
 import { signJwt, verifyJwt } from '../supabase/functions/_shared/jwt.js';
 import { b58encode, b58decode, randomPubkey } from '../supabase/functions/_shared/b58.js';
@@ -46,12 +45,14 @@ test('prices: 0.48 / 1.28 / 4 SOL Pro, 1 SOL featured, exact integer lamports', 
   assert.equal(pub.featured.lamports, '1000000000');
 });
 
-test('site config + /pro/ + /featured/ show the same prices as the functions', () => {
+test('site config + /pro/ show the same prices as the functions', () => {
   const pro = fs.readFileSync(new URL('../site/pro/index.html', import.meta.url), 'utf8');
   for (const p of Object.values(PLANS)) assert.match(pro, new RegExp(`data-plan="${p.id}"[\\s\\S]*?${p.sol.replace('.', '\\.')} SOL`));
-  const feat = fs.readFileSync(new URL('../site/featured/index.html', import.meta.url), 'utf8');
-  assert.match(feat, /1 SOL/);
-  assert.doesNotMatch(pro + feat, /0\.195|0\.52 SOL|1\.625|1\.3 SOL|0\.15 SOL|0\.4 SOL|1\.25 SOL/);
+  assert.doesNotMatch(pro, /0\.195|0\.52 SOL|1\.625|1\.3 SOL|0\.15 SOL|0\.4 SOL|1\.25 SOL/);
+  const cfg = fs.readFileSync(new URL('../site/config.js', import.meta.url), 'utf8');
+  assert.match(cfg, /proPrices:\s*\{\s*30:\s*0\.48,\s*90:\s*1\.28,\s*365:\s*4\s*\}/);
+  assert.match(cfg, /featuredPriceSol:\s*1\b/);
+  assert.match(cfg, /paymentsEnabled:\s*false/);
 });
 
 test('payments flag: disabled refuses every order; test wallet gets only the 0.001 SOL test price', () => {
@@ -124,41 +125,6 @@ test('gate: 401 signed out, 402 no/expired pass or someone else’s row, 200 act
   assert.equal(ok.status, 200); assert.equal(ok.daysLeft, 3);
 });
 
-// ------------------------------------------------------------------ featured caps + waitlist
-const H = 3600000;
-const L = (i, startH, status = 'active', extra = {}) => ({ id: `l${i}`, ca: `CA${i}`, status, starts_at: new Date(NOW + startH * H).toISOString(), ends_at: new Date(NOW + (startH + 24) * H).toISOString(), ...extra });
-test('featured: max 3 concurrent; the 4th waits for the first slot to end (FIFO waitlist)', () => {
-  assert.equal(nextStart([], NOW), NOW);
-  assert.equal(nextStart([L(1, -10), L(2, -5)], NOW), NOW);
-  const three = [L(1, -10), L(2, -5), L(3, -1)];
-  assert.equal(nextStart(three, NOW), NOW + 14 * H); // l1 ends at +14h
-  const four = [...three, L(4, 14, 'scheduled')];
-  assert.equal(nextStart(four, NOW), NOW + 19 * H); // then l2 at +19h
-  assert.equal(nextStart([...three.slice(0, 2), L(3, -1, 'pulled')], NOW), NOW); // pulled frees the slot
-  assert.equal(nextStart([L(1, -30, 'active'), L(2, -5), L(3, -1)], NOW), NOW); // already ended
-  const q = quote(three, NOW);
-  assert.equal(q.waitlisted, true); assert.equal(q.startsAt, new Date(NOW + 14 * H).toISOString());
-  assert.equal(quote([], NOW).waitlisted, false);
-  assert.equal(alreadyLive(three, 'CA2'), true);
-  assert.equal(alreadyLive(three, 'CA9'), false);
-});
-test('featured: max 1 sponsored channel post per 24h', () => {
-  assert.equal(nextPostAt([], NOW), NOW);
-  const posted = [L(1, -2, 'active', { posted_at: new Date(NOW - 2 * H).toISOString() })];
-  assert.equal(nextPostAt(posted, NOW), NOW + 22 * H);
-  const planned = [...posted, L(2, 0, 'active', { post_due_at: new Date(NOW + 22 * H).toISOString() })];
-  assert.equal(nextPostAt(planned, NOW), NOW + 46 * H);
-  // tick posts at most one due listing, and never within 24h of the last post
-  const due = [L(1, -1, 'active', { post_due_at: new Date(NOW - H).toISOString() }), L(2, -1, 'active', { post_due_at: new Date(NOW - H).toISOString() })];
-  assert.deepEqual(tick(due, NOW).post, ['l1']);
-  assert.deepEqual(tick([...due, L(3, -30, 'ended', { posted_at: new Date(NOW - 3 * H).toISOString() })], NOW).post, []);
-  assert.deepEqual(tick([L(1, -1, 'pulled', { post_due_at: new Date(NOW - H).toISOString() })], NOW).post, []);
-});
-test('featured tick: scheduled → active at start; → ended after 24h', () => {
-  const t = tick([L(1, -1, 'scheduled'), L(2, 5, 'scheduled'), L(3, -25, 'active')], NOW);
-  assert.deepEqual(t.activate, ['l1']); assert.deepEqual(t.end, ['l3']);
-});
-
 // ------------------------------------------------------------------ Telegram invite / kick
 test('telegram: single-use invite expiring in ~1 day', () => {
   const p = inviteParams(-1004352042429, PAYER, NOW);
@@ -187,21 +153,12 @@ test('telegram: kick() calls ban then unban; "user not found" counts as removed'
   const down = async () => new Response(JSON.stringify({ ok: false, description: 'Bad Request: not enough rights to restrict/unrestrict chat member' }), { status: 403 });
   await assert.rejects(kick('T', -1, 9, down));
 });
-test('telegram: deep-link token + admin pull button parsing; messages escape token names', () => {
+test('telegram: deep-link token parsing + HTML escaping', () => {
   assert.equal(startToken('/start abcdefghijklmnopQR'), 'abcdefghijklmnopQR');
+  assert.equal(startToken('/start@Maxigems_bot abcdefghijklmnopQR'), 'abcdefghijklmnopQR');
   assert.equal(startToken('/start'), null);
   assert.equal(startToken('/start <script>'), null);
-  const id = '123e4567-e89b-12d3-a456-426614174000';
-  assert.equal(parsePull(pullData(id)), id);
-  assert.equal(parsePull('pull:../../x'), null);
-  const l = { id, ca: PAYER, symbol: '<b>X', name: 'A & <i>', wallet: OTHER, starts_at: 'a', ends_at: 'b', sol: '1', signature: SIG };
-  const b = bookingMessage(l);
-  assert.doesNotMatch(b.text, /<b>X|<i>/); assert.match(b.text, /&lt;b&gt;X/);
-  assert.equal(b.reply_markup.inline_keyboard[0][0].callback_data, `pull:${id}`);
-  const s = sponsoredPost(l);
-  assert.match(s.text, /Sponsored – not financial advice/);
-  assert.match(s.text, /not a MaxiGems call/);
-  assert.doesNotMatch(s.text, /<i>/);
+  assert.equal(esc('<b>&"'), '&lt;b&gt;&amp;&quot;');
 });
 
 // ------------------------------------------------------------------ SIWS + JWT

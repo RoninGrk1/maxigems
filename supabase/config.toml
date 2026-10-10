@@ -1,0 +1,21 @@
+# Supabase project config for MaxiGems Pro (project ref wrlsgqfpcvdjzsueikxw). Deploy: scripts/supabase-deploy.sh
+project_id = "maxigems"
+
+# Sessions are MaxiGems SIWS JWTs verified inside each function (not Supabase Auth JWTs),
+# and the Telegram webhook / cron sweep authenticate with shared secrets, so the gateway JWT check is off.
+[functions.auth]
+verify_jwt = false
+[functions.account]
+verify_jwt = false
+[functions.create-order]
+verify_jwt = false
+[functions.verify-payment]
+verify_jwt = false
+[functions.pro-data]
+verify_jwt = false
+[functions.ingest]
+verify_jwt = false
+[functions.telegram]
+verify_jwt = false
+[functions.sweep]
+verify_jwt = false

@@ -1,15 +1,14 @@
-// MaxiGems Pro + Featured: every Edge Function handler, written as (req, deps) => Response so the Deno tests can run
+// MaxiGems shared payments/auth core + Pro pass: every Edge Function handler, written as (req, deps) => Response so the Deno tests can run
 // them against MemoryStore + a fake fetch (Helius / RugCheck / DexScreener / Telegram).
 // deno-lint-ignore-file no-explicit-any
 import { type Store, type Row, RestStore } from './store.ts';
 import { PLANS, ORDER_TTL_MS, priceOrder, publicPlans, lamportsToSol, gate, daysLeft, isAddr, parseWalletList } from './plans.js';
 import { verifyPayment, VERIFY_TEXT } from './verify.js';
-import { quote, alreadyLive, tick } from './featured.js';
+import { validateFeaturedOrder, fulfilFeatured, handleFeaturedCallback, sweepFeatured } from './featured.ts';
 import { buildMessage, checkSignIn, SIWS_TTL_MS } from './siws.js';
 import { signJwt, verifyJwt, SESSION_TTL_S } from './jwt.js';
 import { randomPubkey, randomToken } from './b58.js';
-import { inviteParams, kickList, kick, startToken, parsePull, bookingMessage, sponsoredPost, tgCall } from './tg.js';
-import { analyzeReport, SAFETY_DEFAULTS } from './safety-rules.js';
+import { inviteParams, kickList, kick, startToken, tgCall } from './tg.js';
 
 export type Env = {
   PAYMENTS_ENABLED?: string; TEST_WALLETS?: string; TREASURY_WALLET?: string; HELIUS_API_KEY?: string;
@@ -78,25 +77,7 @@ async function helius(d: Deps, method: string, params: unknown[]) {
 }
 const getTx = (d: Deps, sig: string) => helius(d, 'getTransaction', [sig, { encoding: 'jsonParsed', commitment: 'confirmed', maxSupportedTransactionVersion: 0 }]);
 
-/** Token info + the engine's RugCheck rules. Fail closed. */
-export async function safetyCheck(d: Deps, ca: string) {
-  const ds = await d.fetch(`https://api.dexscreener.com/tokens/v1/solana/${ca}`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  const pairs = (Array.isArray(ds) ? ds : []).filter((p: any) => p?.chainId === 'solana' && p?.baseToken?.address === ca);
-  pairs.sort((a: any, b: any) => (b?.liquidity?.usd ?? 0) - (a?.liquidity?.usd ?? 0));
-  const p = pairs[0];
-  if (!p) return { pass: false, reasons: ['No Solana trading pair found on DexScreener for this contract address.'], token: null };
-  const token = { ca, symbol: String(p.baseToken.symbol || '').slice(0, 16), name: String(p.baseToken.name || '').slice(0, 40), image: typeof p.info?.imageUrl === 'string' && /^https:\/\//.test(p.info.imageUrl) ? p.info.imageUrl : null, liquidity: p.liquidity?.usd ?? null, marketCap: p.marketCap ?? p.fdv ?? null, pairAddress: p.pairAddress };
-  const rep = await d.fetch(`https://api.rugcheck.xyz/v1/tokens/${ca}/report`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  if (!rep) return { pass: false, reasons: ['safety: rugcheck unavailable (fail closed) — try again in a few minutes'], token };
-  let rpc: any;
-  try {
-    const v = await helius(d, 'getMultipleAccounts', [[ca], { encoding: 'jsonParsed' }]);
-    const info = v?.value?.[0]?.data?.parsed?.info;
-    if (info) rpc = { mintAuthority: info.mintAuthority ?? null, freezeAuthority: info.freezeAuthority ?? null };
-  } catch { /* RugCheck alone, like the engine when RPC fails */ }
-  const { reasons, safety } = analyzeReport(rep, { pairAddress: p.pairAddress, rpc }, SAFETY_DEFAULTS);
-  return { pass: reasons.length === 0, reasons, safety, token };
-}
+export { helius };
 
 // ------------------------------------------------------------------ auth (SIWS)
 export const handleAuth = wrap(async (req, d) => {
@@ -163,20 +144,25 @@ export const handleAccount = wrap(async (req, d) => {
   return json(req, d.env, { error: 'Unknown action.' }, 400);
 });
 
-// ------------------------------------------------------------------ pay (create order / verify)
-async function notifyAdminBooking(d: Deps, order: Row, res: Row, sig: string) {
-  if (!d.env.TELEGRAM_ADMIN_CHAT_ID || !d.env.TELEGRAM_BOT_TOKEN || res.kind !== 'featured') return;
-  const l = await d.store.getListing(res.listing);
-  if (!l) return;
-  try { await tgCall(d.env.TELEGRAM_BOT_TOKEN, 'sendMessage', { chat_id: d.env.TELEGRAM_ADMIN_CHAT_ID, ...bookingMessage({ ...l, sol: lamportsToSol(order.lamports), signature: sig, test: order.test }, siteUrl(d.env)) }, d.fetch); } catch (e: any) { console.error('admin notify failed', e?.message); }
+// ------------------------------------------------------------------ create-order / verify-payment (shared core)
+/** Per-kind fulfilment after fulfil_order() marked the order paid. pro: done in SQL. featured: the featured hook. */
+async function runFulfilment(d: Deps, order: Row, signature: string, res: Row): Promise<Row> {
+  if (res.kind === 'pro' || res.fulfilled) return { ok: true, result: res };
+  if (order.kind === 'featured') {
+    const f = await fulfilFeatured(d, { ...order, status: 'paid', signature }, signature);
+    if (f.ok) await d.store.markFulfilled(order.id);
+    return { ok: true, result: { ...res, ...(f.result ?? {}), fulfilled: f.ok }, fulfilError: f.ok ? undefined : f.error };
+  }
+  return { ok: true, result: res };
 }
 
-/** Verify one signature against one order and fulfil it. Shared by pay/verify and the sweep. */
-export async function settle(d: Deps, order: Row, signature: string) {
-  if (await d.store.signatureUsed(signature)) {
-    const again = order.signature === signature;
-    return again ? { ok: true, already: true } : { ok: false, reason: 'signature_used' };
+/** Verify one signature against one order, mark it paid and fulfil it. Shared by verify-payment and the sweep. */
+export async function settle(d: Deps, order: Row, signature: string): Promise<Row> {
+  if (order.status === 'paid') {
+    if (order.signature !== signature) return { ok: false, reason: 'signature_used' };
+    return await runFulfilment(d, order, signature, { ok: true, already: true, kind: order.kind, fulfilled: !!order.fulfilled_at });
   }
+  if (await d.store.signatureUsed(signature)) return { ok: false, reason: 'signature_used' };
   const tx = await getTx(d, signature);
   const v = verifyPayment(tx, { signature, treasury: treasury(d.env), wallet: order.wallet, reference: order.reference, lamports: order.lamports });
   if (!v.ok) return v;
@@ -186,63 +172,49 @@ export async function settle(d: Deps, order: Row, signature: string) {
     throw e;
   }
   if (!res.ok) return { ok: false, reason: res.error };
-  if (!res.already) await notifyAdminBooking(d, order, res, signature);
-  return { ok: true, result: res };
+  return await runFulfilment(d, order, signature, res);
 }
 
-export const handlePay = wrap(async (req, d) => {
+/** POST {kind:'pro'|'featured', plan?, ca?} (signed in) → {orderId, reference, lamports, treasury, expiresAt, …} */
+export const handleCreateOrder = wrap(async (req, d) => {
   if (req.method !== 'POST') return json(req, d.env, { error: 'POST only' }, 405);
   const s = await session(req, d.env, d.now());
   if (!s) return json(req, d.env, { error: 'Sign in with your wallet.' }, 401);
   const b = await body(req);
-  if (b.action === 'create') {
-    const p: any = priceOrder({ kind: b.kind, plan: b.plan, wallet: s.wallet, paymentsEnabled: on(d.env.PAYMENTS_ENABLED), testWallets: parseWalletList(d.env.TEST_WALLETS) });
-    if (!p.ok) return json(req, d.env, { error: p.error }, p.status);
-    let meta: Row = {}, ca: string | null = null;
-    if (b.kind === 'featured') {
-      if (!isAddr(b.ca)) return json(req, d.env, { error: 'Bad contract address.' }, 400);
-      ca = b.ca;
-      if (alreadyLive(await d.store.liveListings(), ca)) return json(req, d.env, { error: 'This token already has a live or scheduled featured slot.' }, 409);
-      const chk = await safetyCheck(d, ca!); // re-checked server-side: the client can never skip it
-      if (!chk.pass) return json(req, d.env, { error: 'This token doesn’t pass the MaxiGems safety rules, so it can’t be featured.', reasons: chk.reasons }, 422);
-      meta = { symbol: chk.token!.symbol, name: chk.token!.name, image: chk.token!.image, safety: chk.safety };
-    }
-    const order = await d.store.createOrder({
-      wallet: s.wallet, kind: b.kind, plan: p.plan, days: (p as any).days ?? null, ca, meta, lamports: String(p.lamports), test: p.test,
-      reference: randomPubkey(), expires_at: new Date(d.now() + ORDER_TTL_MS).toISOString(),
-    });
-    await d.store.audit(s.wallet, 'order_created', { order: order.id, kind: b.kind, plan: p.plan, lamports: String(p.lamports), test: p.test });
-    return json(req, d.env, { orderId: order.id, reference: order.reference, recipient: treasury(d.env), lamports: String(p.lamports), sol: p.sol, test: p.test, expiresAt: order.expires_at, label: b.kind === 'pro' ? `MaxiGems Pro ${PLANS[b.plan as keyof typeof PLANS].label}` : 'MaxiGems Featured 24h' });
+  const p: any = priceOrder({ kind: b.kind, plan: b.plan, wallet: s.wallet, paymentsEnabled: on(d.env.PAYMENTS_ENABLED), testWallets: parseWalletList(d.env.TEST_WALLETS) });
+  if (!p.ok) return json(req, d.env, { error: p.error }, p.status);
+  let meta: Row = {}, ca: string | null = null;
+  if (b.kind === 'featured') {
+    if (!isAddr(b.ca)) return json(req, d.env, { error: 'Bad contract address.' }, 400);
+    ca = b.ca;
+    const v = await validateFeaturedOrder(ca!, d, s.wallet); // server-side: the client can never skip the safety gate
+    if (!v.ok) return json(req, d.env, { error: v.error, reasons: v.reasons ?? [] }, v.status);
+    meta = v.meta;
   }
-  if (b.action === 'verify') {
-    if (typeof b.orderId !== 'string' || typeof b.signature !== 'string' || !/^[1-9A-HJ-NP-Za-km-z]{64,90}$/.test(b.signature)) return json(req, d.env, { error: 'Bad request.' }, 400);
-    const order = await d.store.getOrder(b.orderId);
-    if (!order || order.wallet !== s.wallet) return json(req, d.env, { error: 'Order not found.' }, 404);
-    if (order.status === 'paid') return json(req, d.env, { ok: order.signature === b.signature, status: 'paid', account: await status(d, s.wallet) });
-    await d.store.touchOrder(order.id, { checked_at: new Date(d.now()).toISOString() });
-    const r: Row = await settle(d, order, b.signature);
-    if (!r.ok) return json(req, d.env, { ok: false, reason: r.reason, message: VERIFY_TEXT[r.reason as keyof typeof VERIFY_TEXT] || 'Payment could not be verified.', retry: !!r.retry }, r.retry ? 202 : 422);
-    return json(req, d.env, { ok: true, status: 'paid', result: r.result ?? null, account: await status(d, s.wallet) });
-  }
-  return json(req, d.env, { error: 'Unknown action.' }, 400);
+  const order = await d.store.createOrder({
+    wallet: s.wallet, kind: b.kind, plan: p.plan, days: p.days ?? null, ca, meta, lamports: String(p.lamports), test: p.test,
+    reference: randomPubkey(), expires_at: new Date(d.now() + ORDER_TTL_MS).toISOString(),
+  });
+  await d.store.audit(s.wallet, 'order_created', { order: order.id, kind: b.kind, plan: p.plan, lamports: String(p.lamports), test: p.test });
+  return json(req, d.env, {
+    orderId: order.id, reference: order.reference, lamports: String(p.lamports), treasury: treasury(d.env), expiresAt: order.expires_at,
+    kind: b.kind, plan: p.plan, sol: p.sol, test: p.test, label: b.kind === 'pro' ? `MaxiGems Pro ${PLANS[b.plan as keyof typeof PLANS].label}` : 'MaxiGems Featured 24h',
+  });
 });
 
-// ------------------------------------------------------------------ featured (public list + pre-pay check)
-export const handleFeatured = wrap(async (req, d) => {
-  if (req.method === 'GET') {
-    const now = d.now();
-    const live = (await d.store.liveListings()).filter((l) => l.status === 'active' && Date.parse(l.starts_at) <= now);
-    return json(req, d.env, { listings: live.slice(0, 3).map((l) => ({ ca: l.ca, symbol: l.symbol, name: l.name, image: l.image_url, startsAt: l.starts_at, endsAt: l.ends_at })) }, 200, { 'cache-control': 'public, max-age=60' });
-  }
-  if (req.method !== 'POST') return json(req, d.env, { error: 'Method not allowed' }, 405);
+/** POST {orderId, signature} (signed in) → 200 {ok,status:'paid',result,account} | 202 {retry:true} | 422 {reason,message} */
+export const handleVerifyPayment = wrap(async (req, d) => {
+  if (req.method !== 'POST') return json(req, d.env, { error: 'POST only' }, 405);
+  const s = await session(req, d.env, d.now());
+  if (!s) return json(req, d.env, { error: 'Sign in with your wallet.' }, 401);
   const b = await body(req);
-  if (b.action !== 'check') return json(req, d.env, { error: 'Unknown action.' }, 400);
-  if (!isAddr(b.ca)) return json(req, d.env, { error: 'That doesn’t look like a Solana contract address.' }, 400);
-  const live = await d.store.liveListings();
-  if (alreadyLive(live, b.ca)) return json(req, d.env, { pass: false, reasons: ['This token already has a live or scheduled featured slot.'] });
-  const chk = await safetyCheck(d, b.ca);
-  if (!chk.pass) return json(req, d.env, { pass: false, reasons: chk.reasons, token: chk.token });
-  return json(req, d.env, { pass: true, token: chk.token, safety: chk.safety, quote: quote(live, d.now()), price: publicPlans().featured, paymentsEnabled: on(d.env.PAYMENTS_ENABLED) });
+  if (typeof b.orderId !== 'string' || typeof b.signature !== 'string' || !/^[1-9A-HJ-NP-Za-km-z]{64,90}$/.test(b.signature)) return json(req, d.env, { error: 'Bad request.' }, 400);
+  const order = await d.store.getOrder(b.orderId);
+  if (!order || order.wallet !== s.wallet) return json(req, d.env, { error: 'Order not found.' }, 404);
+  if (order.status === 'pending') await d.store.touchOrder(order.id, { checked_at: new Date(d.now()).toISOString() });
+  const r: Row = await settle(d, order, b.signature);
+  if (!r.ok) return json(req, d.env, { ok: false, reason: r.reason, message: VERIFY_TEXT[r.reason as keyof typeof VERIFY_TEXT] || 'Payment could not be verified.', retry: !!r.retry }, r.retry ? 202 : 422);
+  return json(req, d.env, { ok: true, status: 'paid', result: r.result ?? null, account: await status(d, s.wallet) });
 });
 
 // ------------------------------------------------------------------ pro-data (gated on every call)
@@ -269,25 +241,14 @@ export const handleIngest = wrap(async (req, d) => {
 });
 
 // ------------------------------------------------------------------ telegram webhook (/start link, admin "Pull listing")
-async function pullListing(d: Deps, id: string, by: string) {
-  const l = await d.store.getListing(id);
-  if (!l || l.status === 'pulled') return l ? 'already pulled' : 'not found';
-  await d.store.updateListing(id, { status: 'pulled', pulled_at: new Date(d.now()).toISOString() });
-  if (l.post_message_id && d.env.TELEGRAM_CHANNEL_ID) { try { await tgCall(d.env.TELEGRAM_BOT_TOKEN!, 'deleteMessage', { chat_id: d.env.TELEGRAM_CHANNEL_ID, message_id: l.post_message_id }, d.fetch); } catch { /* >48h old posts can't be deleted */ } }
-  await d.store.audit(by, 'featured_pulled', { listing: id, ca: l.ca });
-  return 'pulled';
-}
 export const handleTelegram = wrap(async (req, d) => {
   if (req.method !== 'POST') return json(req, d.env, { error: 'POST only' }, 405);
   if (!safeSecretEq(req.headers.get('x-telegram-bot-api-secret-token') || '', d.env.TELEGRAM_WEBHOOK_SECRET || '')) return json(req, d.env, { error: 'forbidden' }, 403);
   const u = await body(req);
   const tok = d.env.TELEGRAM_BOT_TOKEN!;
-  const admin = String(d.env.TELEGRAM_ADMIN_CHAT_ID || '');
   if (u.callback_query) {
-    const cq = u.callback_query, id = parsePull(cq.data);
-    let text = 'Not allowed.';
-    if (id && admin && String(cq.from?.id) === admin) text = `Listing ${await pullListing(d, id, `tg:${cq.from.id}`)}. Refunds are manual.`;
-    try { await tgCall(tok, 'answerCallbackQuery', { callback_query_id: cq.id, text, show_alert: true }, d.fetch); } catch { /* ignore */ }
+    const handled = await handleFeaturedCallback(d, u.callback_query); // admin "Pull listing" lives in _shared/featured.ts
+    if (!handled) { try { await tgCall(tok, 'answerCallbackQuery', { callback_query_id: u.callback_query.id }, d.fetch); } catch { /* ignore */ } }
     return json(req, d.env, { ok: true });
   }
   const m = u.message;
@@ -313,7 +274,7 @@ export const handleTelegram = wrap(async (req, d) => {
 // ------------------------------------------------------------------ sweep (cron every ~2 min)
 export const handleSweep = wrap(async (req, d) => {
   if (!safeSecretEq(req.headers.get('x-sweep-secret') || '', d.env.SWEEP_SECRET || '')) return json(req, d.env, { error: 'forbidden' }, 403);
-  const now = d.now(), out: Row = { settled: 0, expired: 0, kicked: 0, activated: 0, ended: 0, posted: 0, errors: 0 };
+  const now = d.now(), out: Row = { settled: 0, expired: 0, kicked: 0, errors: 0 };
   // 1) payments that were sent but never verified (tab closed, network drop): look up by the order's reference key
   for (const o of await d.store.pendingOrders(new Date(now - 24 * 3600000).toISOString(), 25)) {
     try {
@@ -333,15 +294,11 @@ export const handleSweep = wrap(async (req, d) => {
       try { if (await kick(d.env.TELEGRAM_BOT_TOKEN, group, k.tg_user_id, d.fetch)) { await d.store.upsertLink({ wallet: k.wallet, removed_at: new Date(now).toISOString() }); await d.store.audit(k.wallet, 'tg_removed', { tg: k.tg_user_id }); out.kicked++; } } catch (e: any) { out.errors++; console.error('kick', e?.message); }
     }
   }
-  // 3) featured lifecycle + the ONE sponsored post (max 1/day)
-  const all = await d.store.recentListings();
-  const t = tick(all, now);
-  for (const id of t.activate) { await d.store.updateListing(id, { status: 'active' }); out.activated++; }
-  for (const id of t.end) { await d.store.updateListing(id, { status: 'ended' }); out.ended++; }
-  if (t.post.length && d.env.TELEGRAM_CHANNEL_ID && d.env.TELEGRAM_BOT_TOKEN) {
-    const l = all.find((x) => x.id === t.post[0])!;
-    await d.store.updateListing(l.id, { posted_at: new Date(now).toISOString() }); // claim first: never double-post
-    try { const r = await tgCall(d.env.TELEGRAM_BOT_TOKEN, 'sendMessage', { chat_id: d.env.TELEGRAM_CHANNEL_ID, ...sponsoredPost(l, siteUrl(d.env)) }, d.fetch); await d.store.updateListing(l.id, { post_message_id: r.message_id }); out.posted++; } catch (e: any) { out.errors++; console.error('sponsored post', e?.message); }
+  // 3) paid orders whose per-kind hook hasn't succeeded yet (e.g. featured fulfilment hit an error) → retry
+  for (const o of await d.store.paidUnfulfilled(10)) {
+    try { const r = await runFulfilment(d, o, o.signature, { ok: true, kind: o.kind, fulfilled: false }); if (r.result?.fulfilled) out.fulfilled = (out.fulfilled ?? 0) + 1; } catch (e: any) { out.errors++; console.error('fulfil retry', o.id, e?.message); }
   }
+  // 4) featured lifecycle + sponsored post (featured hook)
+  try { Object.assign(out, await sweepFeatured(d)); } catch (e: any) { out.errors++; console.error('sweepFeatured', e?.message); }
   return json(req, d.env, out);
 });

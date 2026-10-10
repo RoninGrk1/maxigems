@@ -2,7 +2,7 @@
 import { daysLeft } from './plans.js';
 
 export const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const clean = (s, max) => { const t = String(s ?? '').replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]/g, '').replace(/\s+/g, ' ').trim(); return t.length > max ? t.slice(0, max - 1) + '…' : t; };
+export const clean = (s, max) => { const t = String(s ?? '').replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]/g, '').replace(/\s+/g, ' ').trim(); return t.length > max ? t.slice(0, max - 1) + '…' : t; };
 
 /** createChatInviteLink params: single use, expires in ~1 day, creates no join-request. */
 export function inviteParams(groupId, wallet, nowMs = Date.now()) {
@@ -25,39 +25,6 @@ export function kickCalls(groupId, userId) {
 export function startToken(text) {
   const m = /^\/start(?:@\w+)?\s+([A-Za-z0-9_-]{16,64})\s*$/.exec(String(text || ''));
   return m ? m[1] : null;
-}
-
-/** Callback data for the admin's "Pull listing" button. */
-export const pullData = (id) => `pull:${id}`;
-export function parsePull(data) { const m = /^pull:([0-9a-f-]{36})$/.exec(String(data || '')); return m ? m[1] : null; }
-
-/** Admin DM for a booking, with a one-tap "Pull listing" button. */
-export function bookingMessage(l, siteUrl = 'https://maxigems.fun/') {
-  const html = [
-    '🆕 <b>Featured listing booked</b>',
-    `$${esc(clean(l.symbol, 16))} · ${esc(clean(l.name, 40))}`,
-    `📋 <code>${esc(l.ca)}</code>`,
-    `👛 Paid by <code>${esc(l.wallet)}</code>${l.test ? ' (TEST price)' : ''}`,
-    `💰 ${esc(l.sol)} SOL · <a href="https://solscan.io/tx/${esc(l.signature)}">tx</a>`,
-    `🕒 ${esc(l.starts_at)} → ${esc(l.ends_at)}`,
-    `📣 Channel post planned: ${esc(l.post_due_at || '—')}`,
-    '',
-    'Tap <b>Pull listing</b> to remove it from Trending (and the channel post). Refunds are manual.',
-  ].join('\n');
-  return { text: html, parse_mode: 'HTML', link_preview_options: { is_disabled: true }, reply_markup: { inline_keyboard: [[{ text: '🛑 Pull listing', callback_data: pullData(l.id) }, { text: 'DexScreener', url: `https://dexscreener.com/solana/${l.ca}` }]] } };
-}
-
-/** The ONE public-channel post, clearly labelled. */
-export function sponsoredPost(l, siteUrl = 'https://maxigems.fun/') {
-  const html = [
-    '📢 <b>Sponsored – not financial advice</b>',
-    '',
-    `<b>$${esc(clean(l.symbol, 16))}</b> · ${esc(clean(l.name, 40))}`,
-    `📋 <code>${esc(l.ca)}</code>`,
-    '',
-    'This is a paid placement, <b>not a MaxiGems call</b>. It passed the same automated RugCheck safety rules as our calls, which does not make it safe. Memecoins are extremely risky — DYOR.',
-  ].join('\n');
-  return { text: html, parse_mode: 'HTML', link_preview_options: { is_disabled: true }, reply_markup: { inline_keyboard: [[{ text: 'DexScreener', url: `https://dexscreener.com/solana/${l.ca}` }, { text: 'Featured on MaxiGems', url: new URL('trending/', siteUrl).toString() }]] } };
 }
 
 /** Telegram Bot API call. Never logs the token. */
