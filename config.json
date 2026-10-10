@@ -126,5 +126,15 @@
       "topHolderRank": 10,
       "maxLinesPerAlert": 4
     }
+  },
+  "pro": {
+    "launched": false,
+    "groupId": "-1004352042429",
+    "whaleDelayMinutes": 15,
+    "digest": {
+      "enabled": true,
+      "everyHours": 6,
+      "maxItems": 5
+    }
   }
 }

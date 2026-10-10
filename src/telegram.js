@@ -79,8 +79,8 @@ export async function tgApi(method, body, { attempts = 4 } = {}) {
  * Post with image: sendPhoto (token image URL, else the local MaxiGems fallback logo upload),
  * falling back token-image → logo → plain text if Telegram rejects a photo.
  */
-export async function postMessage({ html, photo, fallbackPhoto, buttons, replyTo, cfg }) {
-  const chat_id = channelId(cfg);
+export async function postMessage({ html, photo, fallbackPhoto, buttons, replyTo, cfg, chatId }) {
+  const chat_id = chatId || channelId(cfg); // chatId: the private Pro group (whale alerts only); default = public channel
   const common = {
     chat_id,
     parse_mode: 'HTML',

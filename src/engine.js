@@ -10,6 +10,7 @@ import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
 import { readJson, writeJsonAtomic, emptyState, normalizeState } from './state.js';
+import { proCfg, publicMoves, publicWatchlist, digestDue, digestMessage, pushProData } from './pro.js';
 import { cleanText, safeUrl, num, log, sleep, fmtX } from './util.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -27,6 +28,7 @@ PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
 PATHS.whales = path.join(path.dirname(PATHS.site), 'whales.json');
 PATHS.whaleMoves = path.join(path.dirname(PATHS.site), 'whale-moves.json');
 PATHS.holders = process.env.MAXIGEMS_HOLDERS || path.join(path.dirname(PATHS.state), 'holders.json');
+PATHS.liveMoves = path.join(path.dirname(PATHS.state), 'whale-moves-live.json'); // Pro launched: undelayed moves (repo data/, not site/)
 
 const DAY = 86400000;
 
@@ -279,6 +281,16 @@ export async function runOnce({ forceRecap = false } = {}) {
   // 4b) whale watcher: holder snapshots → moves feed + big-move alerts (never fails the run)
   const whaleOut = await whaleStep({ state, cfg, now, mode, tgBroken, reports });
 
+  // 4c) Pro launched: short delayed whale digest in the public channel (max once per digest.everyHours)
+  const pcD = proCfg(cfg);
+  if (whaleOut && mode !== 'off' && !tgBroken && digestDue(state, pcD, now)) {
+    const since = Date.parse(state.lastWhaleDigestAt ?? '') || null;
+    const html = digestMessage(whaleOut.movesFile?.moves, pcD, cfg, now, since);
+    if (html) {
+      try { const r = await postMessage({ html, cfg }); if (r?.ok && !r?.result?.dry) state.lastWhaleDigestAt = new Date(now).toISOString(); } catch (e) { log(`ERROR whale digest failed: ${e.message}`); }
+    }
+  }
+
   // 5) periodic recap
   const rc = cfg.recap ?? {};
   const due = forceRecap || (rc.enabled && (!state.lastRecapAt || now - Date.parse(state.lastRecapAt) >= (rc.everyHours ?? 12) * 3600000));
@@ -305,12 +317,17 @@ export async function runOnce({ forceRecap = false } = {}) {
   writeJsonAtomic(PATHS.state, state);
   const pub = siteData(state, cfg, now);
   writeJsonAtomic(PATHS.site, pub);
-  writeRadar({ evaluated, scored, shortlist, picks, f, now });
+  // Pro extras never touch calls: calls.json above and the channel posts in step 3 are identical with Pro on or off.
+  const pc = proCfg(cfg);
+  const liveWatch = writeRadar({ evaluated, scored, shortlist, picks, f, now, pc });
   if (whaleOut) {
     writeJsonAtomic(PATHS.holders, whaleOut.store, { compact: true });
     writeJsonAtomic(PATHS.whales, whaleOut.pub, { compact: true });
-    writeJsonAtomic(PATHS.whaleMoves, whaleOut.movesFile, { compact: true });
+    // live moves are kept in data/ (engine memory) and pushed to Pro; the public file is delayed once Pro launches
+    writeJsonAtomic(PATHS.whaleMoves, publicMoves(whaleOut.movesFile, pc, now), { compact: true });
+    if (pc.launched) writeJsonAtomic(PATHS.liveMoves, whaleOut.movesFile, { compact: true });
   }
+  await pushProData({ movesFile: whaleOut?.movesFile ?? null, watchlist: liveWatch });
   if (PATHS.siteDir && cfg.share?.enabled !== false) {
     await generateShare(pub.calls, { siteDir: PATHS.siteDir, manifestFile: PATHS.share, maxRenders: cfg.share?.maxRendersPerRun ?? 25, timeBudgetMs: (cfg.share?.timeBudgetSeconds ?? 90) * 1000, now });
   }
@@ -323,12 +340,15 @@ async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
   if (whaleCfg(cfg).enabled === false) return null;
   try {
     const delay = cfg.telegram?.delayBetweenPostsMs ?? 3500;
+    const pc = proCfg(cfg);
     const post = mode !== 'off' && !tgBroken ? async (call, html, buttons) => {
-      const r = await postMessage(whalePostArgs(call, html, buttons, cfg));
+      // Pro launched: instant alerts go to the private Pro group (no reply threading across chats); else the public channel as before
+      const args = pc.alertsToGroup ? { html, buttons, cfg, chatId: pc.groupId } : whalePostArgs(call, html, buttons, cfg);
+      const r = await postMessage(args);
       if (mode === 'live') await sleep(delay);
       return Boolean(r?.ok) && !r?.result?.dry; // DRY_RUN prints only: not 'alerted', does not consume caps
     } : null;
-    return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: readJson(PATHS.whaleMoves, {})?.moves ?? [], reports, post });
+    return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: (proCfg(cfg).launched ? readJson(PATHS.liveMoves, null) : null)?.moves ?? readJson(PATHS.whaleMoves, {})?.moves ?? [], reports, post });
   } catch (e) {
     log(`WARN whale watcher failed: ${e.stack || e.message}`);
     return null;
@@ -336,12 +356,15 @@ async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
 }
 
 /** /trending/ data (watchlist + capped snapshot). Never fails the run. */
-export function writeRadar({ evaluated, scored, shortlist, picks, f, now }) {
+export function writeRadar({ evaluated, scored, shortlist, picks, f, now, pc = proCfg({}) }) {
   try {
-    writeJsonAtomic(PATHS.watchlist, buildWatchlist({ evaluated, scored, shortlist, picks, f, now }));
+    const watch = buildWatchlist({ evaluated, scored, shortlist, picks, f, now });
+    writeJsonAtomic(PATHS.watchlist, publicWatchlist(watch, pc)); // Pro launched: near-misses move to Pro (never calls)
     writeJsonAtomic(PATHS.trending, buildTrending({ pairs: evaluated.map((e) => e.pair), now }));
+    return watch;
   } catch (e) {
     log(`WARN radar export failed: ${e.message}`);
+    return null;
   }
 }
 
