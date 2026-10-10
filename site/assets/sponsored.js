@@ -43,7 +43,7 @@
         h('div', null, [h('span', { text: 'Market cap' }), h('b', { text: MG.usd(mc) })]),
         h('div', null, [h('span', { text: 'Liquidity' }), h('b', { text: MG.usd(liq) })]),
         h('div', null, [h('span', { text: '24h' }), h('b', { class: MG.num(ch) === null ? null : ch >= 0 ? 'pos' : 'neg', text: MG.pct(ch) })]),
-        h('div', null, [h('span', { text: 'Featured' }), h('b', { text: left(Date.parse(l.endsAt) - now) + ' left' })])
+        h('div', null, [h('span', { text: 'Featured' }), h('b', { text: Date.parse(l.startsAt) > now + 60000 ? 'starts in ' + left(Date.parse(l.startsAt) - now) : left(Date.parse(l.endsAt) - now) + ' left' })])
       ]),
       safety(l.safety),
       h('div', { class: 'ca' }, [h('code', { title: l.ca, text: l.ca }), copyBtn]),
@@ -52,7 +52,7 @@
         h('div', { class: 'lnk' }, [
           h('a', { class: 'pri', href: L.dexscreener, target: '_blank', rel: 'noopener noreferrer', text: 'Chart' }),
           h('a', { href: L.solscan, target: '_blank', rel: 'noopener noreferrer', text: 'Solscan' }),
-          h('a', { class: 'gold', href: '/featured/?ca=' + l.ca, text: 'Details' })
+          h('a', { class: 'sp-more', href: '/featured/?ca=' + l.ca, text: 'Details' })
         ])
       ])
     ]);
@@ -82,7 +82,7 @@
         if (!list.length) { el.hidden = true; el.replaceChildren(); return list; }
         return live(list.map(function (l) { return l.ca; })).then(function (best) {
           var grid = h('div', { class: 'sp-list' }, list.map(function (l) { return card(l, best[l.ca], Date.now()); }));
-          var kids = opts.bare ? [grid] : [h('div', { class: 'sp-head' }, [h('span', { text: 'Sponsored · ' + LABEL }), h('a', { href: '/featured/', text: 'Get featured →' })]), grid];
+          var kids = opts.bare ? [grid] : [h('div', { class: 'sp-head' }, [h('span', { text: 'Paid placements · not financial advice' }), h('a', { href: '/featured/', text: 'Get featured →' })]), grid];
           el.replaceChildren.apply(el, kids);
           el.hidden = false;
           return list;

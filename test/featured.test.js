@@ -294,3 +294,13 @@ test('engine wiring: featuredStep in DRY_RUN prints via Telegram DRY path and wr
     assert.equal(f.listings[0].ca, CA);
   } finally { console.log = realLog; globalThis.fetch = realFetch; delete process.env.DRY_RUN; }
 });
+
+test('build gate: a changed sponsored listing set deploys right away; unchanged stays batched', async () => {
+  const { decide, featuredKey } = await import('../scripts/build-gate.mjs');
+  const a = JSON.stringify({ updatedAt: '1', listings: [{ ca: CA, startsAt: 's', endsAt: 'e' }] });
+  const b = JSON.stringify({ updatedAt: '2', listings: [{ ca: CA, startsAt: 's', endsAt: 'e' }] });
+  assert.equal(featuredKey(a), featuredKey(b), 'timestamps alone don’t force a build');
+  assert.notEqual(featuredKey(a), featuredKey(JSON.stringify({ listings: [] })), 'pull → build');
+  assert.deepEqual(decide([], 1000, 1060, 1680, true).reason, 'featured changed');
+  assert.equal(decide([], 1000, 1060, 1680, false).build, false);
+});

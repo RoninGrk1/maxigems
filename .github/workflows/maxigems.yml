@@ -53,6 +53,9 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           SITE_URL: ${{ vars.SITE_URL }}
           TELEGRAM_CHANNEL_URL: ${{ vars.TELEGRAM_CHANNEL_URL }}
+          # Featured listings (docs/FEATURED.md): unset → empty site/data/featured.json, no sponsored posts
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           # repo variable DRY_RUN=1 forces dry run for every run (scheduled too); data is still tracked + committed
           DRY_RUN: ${{ (inputs.dry_run || vars.DRY_RUN == '1') && '1' || '0' }}
         run: |
@@ -65,7 +68,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/state.json site/data/calls.json site/data/watchlist.json site/data/trending.json site/sitemap.xml
           if [ -f data/share.json ]; then git add data/share.json; fi
-          for f in data/holders.json site/data/whales.json site/data/whale-moves.json; do if [ -f "$f" ]; then git add "$f"; fi; done
+          for f in data/holders.json site/data/whales.json site/data/whale-moves.json site/data/featured.json; do if [ -f "$f" ]; then git add "$f"; fi; done
           if [ -d site/c ]; then git add -A site/c; fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           # Cloudflare Workers Builds budget: most data commits get "[skip ci]" (see scripts/build-gate.mjs)
