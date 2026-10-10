@@ -5,6 +5,7 @@ import { discoverCandidates, fetchPairs, pickPair, fetchUniqueTraders } from './
 import { checkSafety } from './safety.js';
 import { buildWatchlist, buildTrending } from './radar.js';
 import { generateShare } from './share.js';
+import { runWhales, whaleCfg } from './whales.js';
 import { metrics, filterReasons, score } from './scoring.js';
 import { callMessage, callButtons, milestoneMessage, recapMessage, links } from './format.js';
 import { postMessage, telegramConfigured } from './telegram.js';
@@ -23,6 +24,9 @@ PATHS.siteDir = process.env.MAXIGEMS_SITE_DIR || (process.env.MAXIGEMS_SITE_DATA
 PATHS.share = process.env.MAXIGEMS_SHARE || path.join(path.dirname(PATHS.state), 'share.json');
 PATHS.watchlist = path.join(path.dirname(PATHS.site), 'watchlist.json');
 PATHS.trending = path.join(path.dirname(PATHS.site), 'trending.json');
+PATHS.whales = path.join(path.dirname(PATHS.site), 'whales.json');
+PATHS.whaleMoves = path.join(path.dirname(PATHS.site), 'whale-moves.json');
+PATHS.holders = process.env.MAXIGEMS_HOLDERS || path.join(path.dirname(PATHS.state), 'holders.json');
 
 const DAY = 86400000;
 
@@ -227,6 +231,7 @@ export async function runOnce({ forceRecap = false } = {}) {
         continue;
       }
       x.safety = r.safety;
+      x.report = r.report;
       passed.push(x);
     }
   }
@@ -238,8 +243,10 @@ export async function runOnce({ forceRecap = false } = {}) {
   let tgBroken = false;
   const delay = cfg.telegram?.delayBetweenPostsMs ?? 3500;
   const newCalls = [];
-  for (const { m, sc, safety, traders: tr } of picks) {
+  const reports = new Map();
+  for (const { m, sc, safety, traders: tr, report } of picks) {
     const call = buildCall(m, sc, now, safety, tr);
+    if (report) reports.set(call.address, report);
     if (mode !== 'off' && !tgBroken) {
       try {
         const r = await postMessage({ html: callMessage(call, cfg), photo: call.imageUrl, fallbackPhoto: fallbackPhoto(cfg), buttons: callButtons(call, cfg), cfg });
@@ -269,6 +276,9 @@ export async function runOnce({ forceRecap = false } = {}) {
     }
   }
 
+  // 4b) whale watcher: holder snapshots → moves feed + big-move alerts (never fails the run)
+  const whaleOut = await whaleStep({ state, cfg, now, mode, tgBroken, reports });
+
   // 5) periodic recap
   const rc = cfg.recap ?? {};
   const due = forceRecap || (rc.enabled && (!state.lastRecapAt || now - Date.parse(state.lastRecapAt) >= (rc.everyHours ?? 12) * 3600000));
@@ -296,11 +306,33 @@ export async function runOnce({ forceRecap = false } = {}) {
   const pub = siteData(state, cfg, now);
   writeJsonAtomic(PATHS.site, pub);
   writeRadar({ evaluated, scored, shortlist, picks, f, now });
+  if (whaleOut) {
+    writeJsonAtomic(PATHS.holders, whaleOut.store, { compact: true });
+    writeJsonAtomic(PATHS.whales, whaleOut.pub, { compact: true });
+    writeJsonAtomic(PATHS.whaleMoves, whaleOut.movesFile, { compact: true });
+  }
   if (PATHS.siteDir && cfg.share?.enabled !== false) {
     await generateShare(pub.calls, { siteDir: PATHS.siteDir, manifestFile: PATHS.share, maxRenders: cfg.share?.maxRendersPerRun ?? 25, timeBudgetMs: (cfg.share?.timeBudgetSeconds ?? 90) * 1000, now });
   }
   log(`done: ${newCalls.length} new, ${state.calls.length} stored, ${milestoneHits.length} milestones`);
   return { newCalls, milestoneHits, state, rejectStats, passRate: { fresh: fresh.length, market: marketPassed, safety: passed.length } };
+}
+
+/** Whale Watcher step. Alerts reply under the coin's call message (standalone if unknown); DRY_RUN prints them. */
+async function whaleStep({ state, cfg, now, mode, tgBroken, reports }) {
+  if (whaleCfg(cfg).enabled === false) return null;
+  try {
+    const delay = cfg.telegram?.delayBetweenPostsMs ?? 3500;
+    const post = mode !== 'off' && !tgBroken ? async (call, html, buttons) => {
+      const r = await postMessage({ html, buttons, replyTo: call.tg?.messageId || undefined, cfg });
+      if (mode === 'live') await sleep(delay);
+      return Boolean(r?.ok);
+    } : null;
+    return await runWhales({ calls: state.calls, cfg, now, store: readJson(PATHS.holders, {}), prevMoves: readJson(PATHS.whaleMoves, {})?.moves ?? [], reports, post });
+  } catch (e) {
+    log(`WARN whale watcher failed: ${e.stack || e.message}`);
+    return null;
+  }
 }
 
 /** /trending/ data (watchlist + capped snapshot). Never fails the run. */

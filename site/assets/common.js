@@ -47,9 +47,9 @@
   }
   var tt;
   function toast(msg) { var t = $('toast'); if (!t) return; t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { t.classList.remove('show'); }, 1800); }
-  function copy(text, btn) {
+  function copy(text, btn, msg) {
     var label = btn ? btn.textContent : '';
-    var done = function () { toast('Contract address copied'); if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = label; }, 1500); } };
+    var done = function () { toast(msg || 'Contract address copied'); if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = label; }, 1500); } };
     function legacy() {
       var ta = h('textarea', { readonly: '', 'aria-hidden': 'true' }); ta.value = text;
       ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
@@ -81,6 +81,9 @@
       var href = a.getAttribute('href');
       if ((href === '/' && path === '/') || (href !== '/' && path.indexOf(href) === 0)) a.setAttribute('aria-current', 'page');
     });
+    // narrow screens: the nav is a horizontally scrollable pill row — keep the active item in view (no page scroll)
+    var nav = document.querySelector('.nav'), cur = nav && nav.querySelector('a[aria-current="page"]');
+    if (nav && cur && nav.scrollWidth > nav.clientWidth) { var nr = nav.getBoundingClientRect(), cr = cur.getBoundingClientRect(); nav.scrollLeft += (cr.left + cr.width / 2) - (nr.left + nr.width / 2); }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire); else wire();
 

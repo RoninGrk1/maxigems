@@ -92,7 +92,7 @@ test('generateShare: cap, idempotent (no rewrites), invalid CA skipped, sitemap,
   const r4 = await generateShare(moved, { siteDir: dir, manifestFile: man, maxRenders: 5, render });
   assert.equal(r4.rendered, 1, 'only the coin whose peak moved ≥0.05 re-renders'); assert.equal(r4.pages, 1);
   const sm = fs.readFileSync(path.join(dir, 'sitemap.xml'), 'utf8');
-  assert.equal((sm.match(/<url>/g) || []).length, 3 + 7);
+  assert.equal((sm.match(/<url>/g) || []).length, 4 + 7); // 4 base pages incl. /whales/
   assert.ok(sm.includes('https://maxigems.fun/leaderboard/') && sm.includes(`https://maxigems.fun/c/${mk(1).address}/`));
   // renderer failure never throws; pages still written with fallback OG image
   const dir2 = fs.mkdtempSync(path.join(os.tmpdir(), 'mg-share-'));
@@ -129,7 +129,7 @@ test('telegram: share page link + button, max 3 buttons per row', () => {
 
 test('sitemap + template parts', () => {
   const xml = sitemapXml([CA, 'bad/../x']);
-  assert.equal((xml.match(/<url>/g) || []).length, 4);
+  assert.equal((xml.match(/<url>/g) || []).length, 5);
   const p = templateParts();
   assert.ok(p.header.includes('/trending/') && p.cta.includes('tgBtn') && p.footer.includes('ftrX'));
 });

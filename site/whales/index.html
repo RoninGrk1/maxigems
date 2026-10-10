@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Whale Watcher — Top Wallets in MaxiGems Calls | MaxiGems</title>
+  <meta name="description" content="Track the biggest wallets holding MaxiGems-called Solana coins: top 15 whales, live buy/sell/exit moves, and a free top-holders lookup for any Solana token." />
+  <meta name="theme-color" content="#030507" />
+  <link rel="canonical" href="https://maxigems.fun/whales/" />
+  <meta property="og:url" content="https://maxigems.fun/whales/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MaxiGems" />
+  <meta property="og:title" content="MaxiGems Whale Watcher — Who’s Holding the Calls" />
+  <meta property="og:description" content="Top 15 whales across MaxiGems calls, their buys, sells and exits, plus a top-holders lookup for any Solana CA." />
+  <meta property="og:image" content="https://maxigems.fun/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MaxiGems logo — pixel ape with gems" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@maxigems_sol" />
+  <meta name="twitter:creator" content="@maxigems_sol" />
+  <meta name="twitter:title" content="MaxiGems Whale Watcher — Who’s Holding the Calls" />
+  <meta name="twitter:description" content="Top 15 whales across MaxiGems calls, their buys, sells and exits, plus a top-holders lookup for any Solana CA." />
+  <meta name="twitter:image" content="https://maxigems.fun/assets/og-image.jpg" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self' https://api.rugcheck.xyz https://solana-rpc.publicnode.com https://api.dexscreener.com; manifest-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/whales.css" />
+</head>
+<body class="page-whales">
+  <a class="skip" href="#whales">Skip to whales</a>
+  <div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="brand" href="/" aria-label="MaxiGems home">
+        <picture>
+          <source srcset="/assets/avatar-96.webp" type="image/webp" />
+          <img class="avatar" src="/assets/avatar-96.png" alt="" width="40" height="40" decoding="async" fetchpriority="high" />
+        </picture>
+        <span class="word">Maxi<b>Gems</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/"><span aria-hidden="true">💎</span> Calls</a>
+        <a href="/trending/"><span aria-hidden="true">🔥</span> Trending</a>
+        <a href="/leaderboard/"><span aria-hidden="true">🏆</span> Leaderboard</a>
+        <a href="/whales/" aria-current="page"><span aria-hidden="true">🐳</span> Whales</a>
+      </nav>
+      <div class="live" id="live" title="Whale data status"><span class="dot"></span><span id="liveText">Connecting…</span></div>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <div class="cta">
+    <a class="tg-btn" id="tgBtn" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1 1.4 11.6c-1-.3-1.1-1 .2-1.5L20.5 2.9c.9-.3 1.7.2 1.4 1.4z"/></svg>
+      <span>Join MaxiGems on Telegram</span>
+    </a>
+    <a class="chat-btn" id="chatBtn" href="https://t.me/MGcalls_gc" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+      <span>Join the Chat</span>
+    </a>
+    <a class="x-btn" id="xBtn" href="https://x.com/maxigems_sol" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.8 2h6.4l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.3 3.8H5.5l12.3 16.3z"/></svg>
+      <span>Follow on X</span>
+    </a>
+    </div>
+    <h1>Whale <span class="g">Watcher</span>: who’s <span class="b">holding the calls</span>.</h1>
+    <p class="sub">The biggest wallets across MaxiGems-called coins, what they’re buying and dumping, and a free top-holders lookup for any Solana token.</p>
+  </section>
+
+  <main class="wrap wh" id="main">
+    <p class="wh-note" role="note" id="whNote"><b>🔄 Updated every bot run (~15–25 min).</b> Balances of tracked top holders are re-read on-chain each run; new top holders are found on a rotating batch of coins. Pools, lockers, burn, CEX and program-owned accounts are excluded.</p>
+
+    <section class="stats wh-stats" aria-label="Whale stats">
+      <div class="stat"><span class="k">Coins tracked</span><span class="v" id="sCoins">—</span></div>
+      <div class="stat"><span class="k">Whales shown</span><span class="v b2" id="sWhales">—</span></div>
+      <div class="stat"><span class="k">Moves 24h</span><span class="v g2" id="sMoves">—</span></div>
+      <div class="stat"><span class="k">Alerts 24h</span><span class="v gd" id="sAlerts">—</span></div>
+    </section>
+
+    <section class="wh-sec" aria-labelledby="hTop">
+      <div class="wh-h"><h2 id="hTop">🐳 Top 15 whales</h2><span class="muted" id="topNote"></span></div>
+      <p class="wh-legend muted"><span class="wb mega">🐳 Mega whale</span> holds ≥ <span id="megaUsd">$50K</span> · <span class="wb multi">🔁 3+ calls</span> holds 3 or more called coins · <span class="wb ins">⚠️ Insider/dev</span> flagged by RugCheck or the token creator</p>
+      <div class="wh-grid" id="whales" aria-live="polite" aria-busy="true"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+      <p class="empty" id="whEmpty" hidden></p>
+    </section>
+
+    <section class="wh-sec" aria-labelledby="hMoves">
+      <div class="wh-h"><h2 id="hMoves">📡 Whale moves</h2><span class="muted" id="movesNote"></span></div>
+      <div class="period wh-filter" role="group" aria-label="Filter moves" id="mvFilter">
+        <button type="button" class="chip" data-k="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-k="buy" aria-pressed="false">🟢 Buys</button>
+        <button type="button" class="chip" data-k="sell" aria-pressed="false">🔴 Sells</button>
+        <button type="button" class="chip" data-k="exit" aria-pressed="false">🚪 Exits</button>
+        <button type="button" class="chip" data-k="new" aria-pressed="false">🆕 New</button>
+      </div>
+      <ol class="wh-moves" id="moves" aria-live="polite"></ol>
+      <p class="empty" id="mvEmpty" hidden></p>
+      <button type="button" class="wh-more" id="mvMore" hidden>Show more</button>
+    </section>
+
+    <section class="wh-sec" aria-labelledby="hLookup" id="lookup">
+      <div class="wh-h"><h2 id="hLookup">🔍 Top holders lookup</h2><span class="muted">any Solana token</span></div>
+      <form class="wh-form" id="lkForm" novalidate>
+        <label class="search">
+          <span class="sr">Token contract address</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+          <input id="lkCa" type="text" inputmode="text" placeholder="Paste a Solana CA" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="64" />
+        </label>
+        <button type="submit" class="wh-go" id="lkGo">Check holders</button>
+      </form>
+      <p class="wh-msg" id="lkMsg" role="status" aria-live="polite"></p>
+      <div id="lkOut"></div>
+    </section>
+  </main>
+
+  <footer class="ftr wrap">
+    <p><strong>Not financial advice.</strong> Holder data comes from public, keyless sources (Solana RPC, RugCheck) and can be delayed or incomplete. Large holders can be exchanges, market makers or the same person across several wallets. Memecoins are extremely high risk; always DYOR.</p>
+    <p class="social"><a id="ftrX" href="https://x.com/maxigems_sol" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.8 2h6.4l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.3 3.8H5.5l12.3 16.3z"/></svg><span>@maxigems_sol</span></a><a id="ftrTg" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">Telegram</a><a id="ftrChat" href="https://t.me/MGcalls_gc" target="_blank" rel="noopener noreferrer">Chat</a></p>
+    <p class="muted">© <span id="yr"></span> MaxiGems · Data: Solana RPC, RugCheck, DexScreener</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/config.js"></script>
+  <script src="/assets/common.js"></script>
+  <script src="/assets/whales-core.js"></script>
+  <script src="/assets/whales.js"></script>
+</body>
+</html>

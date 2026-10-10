@@ -17,10 +17,10 @@ export function readJson(file, fallback) {
   }
 }
 
-export function writeJsonAtomic(file, data) {
+export function writeJsonAtomic(file, data, { compact = false } = {}) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const tmp = `${file}.tmp-${process.pid}`;
-  fs.writeFileSync(tmp, JSON.stringify(data, null, 2) + '\n');
+  fs.writeFileSync(tmp, (compact ? JSON.stringify(data) : JSON.stringify(data, null, 2)) + '\n');
   fs.renameSync(tmp, file);
 }
 

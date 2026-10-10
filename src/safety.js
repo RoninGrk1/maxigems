@@ -104,7 +104,7 @@ export async function checkSafety(items, s) {
     let report = null;
     try { report = await fetchRugcheck(it.address); } catch (e) { log(`WARN rugcheck ${it.address}: ${e.message}`); }
     if (!report) { out.set(it.address, { reasons: ['safety: rugcheck unavailable (fail closed)'], safety: null }); continue; }
-    out.set(it.address, analyzeReport(report, { pairAddress: it.pairAddress, rpc: rpc.get(it.address) }, s));
+    out.set(it.address, { ...analyzeReport(report, { pairAddress: it.pairAddress, rpc: rpc.get(it.address) }, s), report }); // report reused for the whale baseline
   }
   return out;
 }

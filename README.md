@@ -18,12 +18,43 @@ acceleration + buyers + buy share), **🎓 New graduates** (pump.fun mints on Pu
 it already fetched (`src/radar.js`, no extra requests). Page logic: `site/assets/radar-core.js` (pure, unit-tested) +
 `trending.js`, styles in `trending.css`. Not calls — DYOR.
 
+## Whale Watcher (`/whales/`)
+**Top 15 whales** across MaxiGems-called coins (non-rugged, inside the 7-day tracking window) ranked by USD held, a **whale
+moves** feed (🟢 bought more / 🔴 sold / 🚪 exited / 🆕 new top holder, last 200), a **Top holders** block on every `/c/<CA>/`
+page, and a client-side **holder lookup** for any Solana CA.
+
+* **Data (engine, `src/whales.js` + pure core `site/assets/whales-core.js`):** the safety check's RugCheck report gives a new
+  call its baseline holder list (no extra request). Every run re-reads the exact balances of all tracked top-holder token
+  accounts with batched `getMultipleAccounts` (Solana public RPC, PublicNode fallback). New top holders are discovered on a
+  rotating batch (`whales.holdersPerRun`, default 10 coins/run → each coin every ~3 runs): RPC `getTokenLargestAccounts` when the
+  public endpoint allows it, else RugCheck. Discovered accounts are re-read on-chain before use (RugCheck lists can lag).
+* **Excluded:** RugCheck known accounts (AMM / pool / locker / CLOB…), market vault accounts, the pair, the mint, a curated
+  deny-list (burn, launchpad fee and well-known CEX hot wallets — best effort) and every **program-owned** owner (off the ed25519
+  curve = PDA: pool authorities, bonding curves, lockers, escrows). Insider flags come from RugCheck, dev = token creator.
+* **Diff rules:** the first snapshot of a coin is a baseline (no events, no alerts). A holder absent from the new list was
+  re-read on-chain, so "exited" means the balance really is ~0. "New" sizes are a conservative minimum (holding − previous
+  cut-off, shown as ≥). Feed keeps moves ≥ 0.1 % of supply or ≥ $2.5k (and ≥ $100).
+* **Telegram alerts (`whales.alerts`):** top-10 holder of the coin or global top-15 whale, sell/exit or buy of **≥ 1 % of supply
+  AND ≥ $5k**; insider/dev **sells** from 0.25 % / $1k. Moves on one coin are batched into one message, posted as a reply to the
+  coin's call (standalone if unknown) with Track & Share + Whales buttons. Max **1 alert per coin per hour, 6 per rolling 24 h**;
+  DRY_RUN prints them. Caps only count alerts that were actually posted.
+* **Files:** `site/data/whales.json` (top 15 + per-coin top 10 holders), `site/data/whale-moves.json` (feed),
+  `data/holders.json` (engine snapshots + alert log). All compact JSON.
+* **Lookup (browser):** RugCheck `/v1/tokens/{CA}/report` (CORS *) for the holder list + labels, balances re-checked on
+  `solana-rpc.publicnode.com` (CORS *, ≤10 accounts/call), price from DexScreener. `api.mainnet-beta.solana.com` returns 403 to
+  browsers and `getTokenLargestAccounts` needs a key on every free browser RPC, so RugCheck is the list source; 429s are retried
+  once, input is base58-validated, lookups are spaced ≥ 4 s.
+* **Limits:** a wallet moving tokens to its own second wallet looks like a sell + new holder; CEX/market-maker wallets not in
+  the deny-list or RugCheck labels can appear; holders are only the top ~20 accounts per coin.
+
 ## Free APIs used (no keys)
 | API | Endpoint | Used for |
 |---|---|---|
 | DexScreener | `/token-boosts/latest/v1`, `/token-boosts/top/v1`, `/token-profiles/latest/v1` | discovery |
 | DexScreener | `/tokens/v1/solana/{up to 30 CAs}` | pair data (price, MC, liq, vol, txns, change) + tracking |
 | GeckoTerminal | `/networks/solana/trending_pools`, `/networks/solana/new_pools` (2 pages each) | discovery |
+| RugCheck | `/v1/tokens/{mint}/report` | safety check, whale baseline/discovery, browser lookup |
+| Solana RPC | `getMultipleAccounts`, `getTokenLargestAccounts` (public RPC; PublicNode fallback) | authorities, whale balances |
 | Telegram Bot API | `sendPhoto` / `sendMessage` | posting |
 
 Requests are spaced per host (DexScreener ≥1.1 s, GeckoTerminal ≥2.5 s), with retries + backoff on 429/5xx. A run uses ~15 requests.
@@ -116,10 +147,12 @@ src/engine.js               run cycle: track → discover → filter/score → p
 src/sources.js              DexScreener + GeckoTerminal clients
 src/scoring.js              metrics, rug filters, score
 src/format.js               Telegram HTML templates (all values escaped)
+src/whales.js               Whale Watcher: holder snapshots, diffs, moves feed, alerts (core: site/assets/whales-core.js)
 src/telegram.js             Bot API client (429 retry_after, fallbacks, DRY_RUN)
 src/state.js / util.js      atomic JSON state, fetch w/ rate-limit, formatters
 data/state.json             engine state (committed by the Action)
-site/                       static website (index.html, leaderboard/, trending/, 404.html, sitemap.xml, robots.txt, config.js, assets/, data/calls.json)
+data/holders.json           whale holder snapshots + alert log (committed by the Action)
+site/                       static website (index.html, leaderboard/, trending/, whales/, 404.html, sitemap.xml, robots.txt, config.js, assets/, data/calls.json)
 site/assets/leaderboard-core.js  pure leaderboard maths (median, rates, periods, ranking) — unit-tested in test/leaderboard.test.js
 .github/workflows/maxigems.yml   10-min cron: engine + data commit + Pages deploy
 test/                       node:test suites

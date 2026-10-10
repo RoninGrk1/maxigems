@@ -11,7 +11,7 @@ export const CARD_VERSION = 1;
 export const SITE = 'https://maxigems.fun';
 const SOL_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 const IMG_RE = /^https:\/\/(cdn\.dexscreener\.com|dd\.dexscreener\.com|assets\.geckoterminal\.com|coin-images\.coingecko\.com)\//;
-const BASE_URLS = ['/', '/trending/', '/leaderboard/'];
+const BASE_URLS = ['/', '/trending/', '/leaderboard/', '/whales/'];
 
 export const isSolAddress = (s) => typeof s === 'string' && SOL_RE.test(s);
 /** HTML/attribute/XML escape (incl. single quotes). */
@@ -253,6 +253,7 @@ export function coinPageHtml(c, snap, parts = templateParts()) {
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/whales.css" />
 </head>
 <body class="coin-page" data-ca="${esc(ca)}" data-symbol="${esc(sym)}" data-peak="${esc(snap.peak)}" data-card="${snap.hasCard ? '1' : '0'}">
   <a class="skip" href="#coin">Skip to coin</a>
