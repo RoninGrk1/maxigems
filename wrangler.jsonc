@@ -1,0 +1,13 @@
+// Cloudflare Workers static-assets-only deploy of the public site (no Worker script).
+// Workers Builds runs `npx wrangler deploy` from the repo root; everything served comes from ./site.
+// Headers: site/_headers. Files excluded from upload: site/.assetsignore.
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "maxigems",
+  "compatibility_date": "2026-10-10",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
