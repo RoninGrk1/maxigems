@@ -17,7 +17,8 @@
     "build:tip": "node scripts/build-tip.mjs",
     "build:pay": "node scripts/build-pay.mjs",
     "test:functions": "deno test -A --no-lock supabase/functions/tests/",
-    "check:sql": "node scripts/check-migrations.mjs"
+    "check:sql": "node scripts/check-migrations.mjs",
+    "check:sql:featured": "node scripts/check-featured-migration.mjs"
   },
   "license": "MIT",
   "dependencies": {

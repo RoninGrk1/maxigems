@@ -275,7 +275,11 @@ export const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(
 const fmtWhen = (t) => new Date(t).toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
 const usd = (v) => { const n = num(v); if (n === null) return '?'; return n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M` : n >= 1e3 ? `$${(n / 1e3).toFixed(1)}K` : `$${n.toFixed(0)}`; };
 
-/** Admin DM on every paid booking. The only button is a URL to the signed admin page (no callback/webhook). */
+/**
+ * Admin DM on every paid booking. The only button is a URL to the signed admin page (no callback/webhook).
+ * @param {any} listing
+ * @param {{url?: string, sol?: string, signature?: string, test?: boolean}} [opts]
+ */
 export function adminBookingMessage(listing, { url, sol, signature, test = false } = {}) {
   const t = listing.token || {};
   const s = listing.safety || {};

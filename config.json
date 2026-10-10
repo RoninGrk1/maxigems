@@ -136,5 +136,11 @@
       "everyHours": 6,
       "maxItems": 5
     }
+  },
+  "featured": {
+    "enabled": true,
+    "adminChatId": "8995645285",
+    "maxConcurrent": 3,
+    "maxPostsPerDay": 1
   }
 }

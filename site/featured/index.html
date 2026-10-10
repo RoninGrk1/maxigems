@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Get Featured on MaxiGems — Sponsored Spot on Trending | MaxiGems</title>
+  <meta name="description" content="Feature your Solana token for 24 hours: a clearly labelled Sponsored card at the top of MaxiGems Trending and one sponsored post in the channel. 1 SOL. Safety-checked first." />
+  <meta name="theme-color" content="#030507" />
+  <link rel="canonical" href="https://maxigems.fun/featured/" />
+  <meta property="og:url" content="https://maxigems.fun/featured/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MaxiGems" />
+  <meta property="og:title" content="Get Featured on MaxiGems — Sponsored Spot on Trending | MaxiGems" />
+  <meta property="og:description" content="Feature your Solana token for 24 hours: a clearly labelled Sponsored card at the top of MaxiGems Trending and one sponsored post in the channel. 1 SOL. Safety-checked first." />
+  <meta property="og:image" content="https://maxigems.fun/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@maxigems_sol" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self' https://api.dexscreener.com https://wrlsgqfpcvdjzsueikxw.supabase.co https://solana-rpc.publicnode.com https://public.rpc.solanavibestation.com https://rpc.solanatracker.io; manifest-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/featured.css" />
+</head>
+<body class="page-featured">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="brand" href="/" aria-label="MaxiGems home">
+        <picture>
+          <source srcset="/assets/avatar-96.webp" type="image/webp" />
+          <img class="avatar" src="/assets/avatar-96.png" alt="" width="40" height="40" decoding="async" fetchpriority="high" />
+        </picture>
+        <span class="word">Maxi<b>Gems</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/"><span aria-hidden="true">💎</span> Calls</a>
+        <a href="/trending/"><span aria-hidden="true">🔥</span> Trending</a>
+        <a href="/leaderboard/"><span aria-hidden="true">🏆</span> Leaderboard</a>
+        <a href="/whales/"><span aria-hidden="true">🐳</span> Whales</a>
+      </nav>
+      <div class="live" id="live" title="Featured slots"><span class="dot"></span><span id="liveText">Featured</span></div>
+    </div>
+  </header>
+
+  <section class="hero wrap ft-hero">
+    <h1>Get <span class="gd">featured</span> on MaxiGems</h1>
+    <p class="ft-sub">A clearly labelled <b>Sponsored</b> spot at the top of Trending for 24 hours, plus one sponsored post in the MaxiGems channel. Every token has to pass the same safety checks as our calls first.</p>
+  </section>
+
+  <main class="wrap" id="main">
+    <section class="ft-box" id="statusBox" aria-labelledby="stH" hidden>
+      <h2 id="stH">Listing status</h2>
+      <div id="statusBody" aria-live="polite"></div>
+    </section>
+
+    <div class="ft-grid">
+      <section class="ft-box" aria-labelledby="chkH">
+        <h2 id="chkH">1. Check your token</h2>
+        <p class="ft-muted">Paste the Solana contract address (CA). We check it on DexScreener and RugCheck before showing a price.</p>
+        <form class="ft-form" id="chkForm" novalidate>
+          <label class="sr" for="ca">Solana contract address</label>
+          <input id="ca" name="ca" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="Token contract address (CA)" required />
+          <button class="ft-btn" id="chkBtn" type="submit">Check token</button>
+        </form>
+        <div class="ft-result" id="result" aria-live="polite"></div>
+      </section>
+
+      <aside class="ft-box" aria-labelledby="whatH">
+        <h2 id="whatH">What you get</h2>
+        <div class="ft-price"><b id="price">1 SOL</b><span class="ft-muted">for 24 hours</span></div>
+        <ul class="ft-list">
+          <li>📌 A gold <b>Sponsored</b> card pinned at the top of <a href="/trending/">Trending</a> for 24h</li>
+          <li>📣 One post in <a id="chanLink" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">@maxigems_calls</a>, labelled “Sponsored – not financial advice”</li>
+          <li>🛡 Shown with its safety line (mint, freeze, LP, top 10)</li>
+        </ul>
+        <p class="ft-note" id="avail">Up to 3 tokens can be featured at once, and the channel gets at most 1 sponsored post a day. When it’s full, your slot starts at the next available time.</p>
+        <p class="ft-muted">Calls stay free and unaffected: sponsored tokens are never called, and a sponsor can’t buy a call.</p>
+      </aside>
+    </div>
+
+    <section class="ft-box ft-terms" id="terms" aria-labelledby="termsH">
+      <h2 id="termsH">Featured listing terms (draft)</h2>
+      <ol>
+        <li><b>What you buy.</b> 1 SOL buys 24 hours in the Sponsored section of maxigems.fun/trending and one channel post. Times are set when your payment confirms. If slots are full, your 24 hours start at the next available time shown before you pay.</li>
+        <li><b>Safety first.</b> The token must pass the MaxiGems safety rules (mint and freeze authority revoked, LP at least 80% locked or burned, top 10 holders at most 35%, insiders at most 15%, creator at most 8%, at least 200 holders, no RugCheck danger flags), have at least $20K liquidity, and a trading pair at least 90 minutes old. It’s checked again before the channel post.</li>
+        <li><b>Clearly labelled.</b> Every placement is marked “Sponsored – not financial advice”. It’s an ad, not a MaxiGems call or recommendation.</li>
+        <li><b>We can pull a listing</b> at any time, for example if the token fails a later safety check, is reported as a scam, or the listing breaks these terms.</li>
+        <li><b>Refunds are manual.</b> If we pull a listing or can’t deliver it, contact us on Telegram with your payment transaction. Refunds are decided case by case and sent by hand to the paying wallet.</li>
+        <li><b>Payment.</b> You pay in SOL from your own wallet straight to the MaxiGems treasury. You approve the exact amount in your wallet, and the payment is verified on-chain.</li>
+        <li><b>No guarantees.</b> We don’t promise any price, volume or holder outcome. Crypto assets are high risk and you could lose everything you put in.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="ftr wrap">
+    <p><strong>Sponsored listings are paid placements, not MaxiGems calls and not financial advice.</strong> Passing the safety check only means the token met our on-chain rules when it was checked. Memecoins are extremely high risk; most go to zero. Always DYOR.</p>
+    <p class="social"><a id="ftrX" href="https://x.com/maxigems_sol" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.8 2h6.4l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.3 3.8H5.5l12.3 16.3z"/></svg><span>@maxigems_sol</span></a><a id="ftrTg" href="https://t.me/maxigems_calls" target="_blank" rel="noopener noreferrer">Telegram</a><a id="ftrChat" href="https://t.me/MGcalls_gc" target="_blank" rel="noopener noreferrer">Chat</a><a href="/featured/#terms">Featured terms</a></p>
+    <p class="muted">© <span id="yr"></span> MaxiGems · Data by DexScreener &amp; RugCheck</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/config.js"></script>
+  <script src="/assets/common.js"></script>
+  <script src="/assets/sponsored.js"></script>
+  <script src="/assets/featured.js"></script>
+</body>
+</html>

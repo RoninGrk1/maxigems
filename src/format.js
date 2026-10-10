@@ -125,7 +125,7 @@ export function sponsoredMessage(listing, cfg) {
   const t = listing.token ?? {};
   const p = listing.live ?? null;
   const ca = listing.ca;
-  const L = links(ca, t.pairAddress);
+  const L = links(ca, validPair(t.pairAddress));
   const site = safeUrl(cfg.siteUrl);
   const page = featuredPageUrl(ca, cfg);
   const price = p ? Number(p.priceUsd) : t.priceUsd;
@@ -151,8 +151,10 @@ export function sponsoredMessage(listing, cfg) {
   return lines.filter((x) => x !== null).join('\n');
 }
 
+const validPair = (a) => (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(String(a ?? '')) ? a : null);
+
 export function sponsoredButtons(listing, cfg) {
-  const L = links(listing.ca, listing.token?.pairAddress);
+  const L = links(listing.ca, validPair(listing.token?.pairAddress));
   const page = featuredPageUrl(listing.ca, cfg);
   const rows = [[{ text: '📊 Chart', url: L.dexscreener }, { text: '🔎 Solscan', url: L.solscan }]];
   if (page) rows.push([{ text: '💎 Track & Share', url: page }]);

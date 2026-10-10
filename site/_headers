@@ -4,7 +4,7 @@
 # Only ONE rule may set each header: matching rules are merged with a comma.
 
 /*
-  Content-Security-Policy: default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self' https://api.dexscreener.com https://api.geckoterminal.com https://api.rugcheck.xyz https://solana-rpc.publicnode.com https://public.rpc.solanavibestation.com https://rpc.solanatracker.io; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self' https://wrlsgqfpcvdjzsueikxw.supabase.co https://api.dexscreener.com https://api.geckoterminal.com https://api.rugcheck.xyz https://solana-rpc.publicnode.com https://public.rpc.solanavibestation.com https://rpc.solanatracker.io; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -17,6 +17,11 @@
 # Not content-hashed (tip-wallet.js is ?v=hash), so keep it short and revalidate.
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
+
+# Signed admin page (token in the #fragment): never indexed, never cached.
+/featured/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
 
 https://:name.:sub.workers.dev/*
   X-Robots-Tag: noindex
