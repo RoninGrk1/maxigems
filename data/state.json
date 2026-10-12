@@ -2,6 +2,73 @@
   "version": 1,
   "calls": [
     {
+      "id": "A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump-1791796829454",
+      "chain": "solana",
+      "address": "A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump",
+      "name": "Token Battles",
+      "symbol": "FIGHT",
+      "dex": "pumpswap",
+      "pairAddress": "BoW9h5GBqdNR55fKE3VHdzNgPLANzmYKY1eiqmx1DRLZ",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/5QB592Gz6-1hIuma?width=800&height=800&quality=95&format=auto",
+      "calledAt": "2026-10-12T09:20:29.454Z",
+      "score": 76,
+      "priceAtCall": 0.0002459,
+      "mcAtCall": 215514,
+      "fdvAtCall": 215514,
+      "liquidity": 43351,
+      "volume24h": 389505.17,
+      "volume1h": 32761.53,
+      "change": {
+        "m5": 0.55,
+        "h1": -1.53,
+        "h6": 51.63,
+        "h24": 438
+      },
+      "buysH1": 469,
+      "sellsH1": 271,
+      "ageMsAtCall": 26941454,
+      "pairCreatedAt": "2026-10-12T01:51:28.000Z",
+      "links": {
+        "dexscreener": "https://dexscreener.com/solana/BoW9h5GBqdNR55fKE3VHdzNgPLANzmYKY1eiqmx1DRLZ",
+        "solscan": "https://solscan.io/token/A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump",
+        "birdeye": "https://birdeye.so/token/A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump?chain=solana",
+        "photon": "https://photon-sol.tinyastro.io/en/lp/BoW9h5GBqdNR55fKE3VHdzNgPLANzmYKY1eiqmx1DRLZ",
+        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump",
+        "jupiter": "https://jup.ag/swap/SOL-A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump",
+        "pumpfun": "https://pump.fun/coin/A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump"
+      },
+      "safety": {
+        "mintRevoked": true,
+        "freezeRevoked": true,
+        "lpLockedPct": 100,
+        "top10Pct": 13.7,
+        "insiderPct": 0,
+        "creatorPct": 2.35,
+        "holders": 1011,
+        "rugcheckScore": 29,
+        "risks": [
+          "warn:Copycat token"
+        ],
+        "source": "rugcheck+rpc"
+      },
+      "uniqueBuyersH1": 437,
+      "currentPrice": 0.0002459,
+      "currentMc": 215514,
+      "currentLiquidity": 43351,
+      "currentMultiple": 1,
+      "athPrice": 0.0002459,
+      "athMc": 215514,
+      "athMultiple": 1,
+      "athAt": "2026-10-12T09:20:29.454Z",
+      "status": "active",
+      "milestonesHit": [],
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
+      "tg": {
+        "posted": true,
+        "messageId": 121
+      }
+    },
+    {
       "id": "AVfEas6mLgkXNvVWcc6qeHLpYeA8nRx42iB9WBKhpump-1791771212051",
       "chain": "solana",
       "address": "AVfEas6mLgkXNvVWcc6qeHLpYeA8nRx42iB9WBKhpump",
@@ -50,21 +117,22 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1239,
-      "currentPrice": 0.0002837,
-      "currentMc": 281052,
-      "currentLiquidity": 46214.12,
-      "currentMultiple": 1,
+      "currentPrice": 0.000002161,
+      "currentMc": 2141,
+      "currentLiquidity": 2326.36,
+      "currentMultiple": 0.0076,
       "athPrice": 0.0002837,
       "athMc": 281052,
       "athMultiple": 1,
       "athAt": "2026-10-12T02:13:32.051Z",
-      "status": "active",
+      "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 117
-      }
+      },
+      "ruggedAt": "2026-10-12T09:20:29.454Z"
     },
     {
       "id": "8PGyHCKvSUjezHkV7KLwMacnmSJLe1YbRM1zvDVApump-1791771212051",
@@ -115,17 +183,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 5237,
-      "currentPrice": 0.001776,
-      "currentMc": 1758675,
-      "currentLiquidity": 122384.14,
-      "currentMultiple": 1,
+      "currentPrice": 0.001775,
+      "currentMc": 1757821,
+      "currentLiquidity": 125009.64,
+      "currentMultiple": 0.9994,
       "athPrice": 0.001776,
       "athMc": 1758675,
       "athMultiple": 1,
       "athAt": "2026-10-12T02:13:32.051Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 118
@@ -180,17 +248,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 2615,
-      "currentPrice": 0.000116,
-      "currentMc": 111876,
-      "currentLiquidity": 31110.96,
-      "currentMultiple": 0.5989,
+      "currentPrice": 0.0001384,
+      "currentMc": 133396,
+      "currentLiquidity": 34437.41,
+      "currentMultiple": 0.7145,
       "athPrice": 0.0001937,
       "athMc": 186752,
       "athMultiple": 1,
       "athAt": "2026-10-11T22:59:01.606Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 115
@@ -245,21 +313,22 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 290,
-      "currentPrice": 0.00007545,
-      "currentMc": 73527,
-      "currentLiquidity": 22901.28,
-      "currentMultiple": 0.8931,
+      "currentPrice": 0.000003455,
+      "currentMc": 3367,
+      "currentLiquidity": 3381.38,
+      "currentMultiple": 0.0409,
       "athPrice": 0.00008448,
       "athMc": 82332,
       "athMultiple": 1,
       "athAt": "2026-10-11T22:59:01.606Z",
-      "status": "active",
+      "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 116
-      }
+      },
+      "ruggedAt": "2026-10-12T09:20:29.454Z"
     },
     {
       "id": "BBZ3sgY66QVsxcXXBVpuQfDzH2b5Ub8qmfKNQJjBpump-1791730272156",
@@ -310,17 +379,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 401,
-      "currentPrice": 0.0001583,
-      "currentMc": 157032,
-      "currentLiquidity": 39334.35,
-      "currentMultiple": 0.5373,
+      "currentPrice": 0.00008993,
+      "currentMc": 89201,
+      "currentLiquidity": 29283.07,
+      "currentMultiple": 0.3053,
       "athPrice": 0.0002946,
       "athMc": 292311,
       "athMultiple": 1,
       "athAt": "2026-10-11T14:51:12.156Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 112
@@ -375,17 +444,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1667,
-      "currentPrice": 0.0002109,
-      "currentMc": 206572,
-      "currentLiquidity": 43202.72,
-      "currentMultiple": 0.8967,
+      "currentPrice": 0.0002369,
+      "currentMc": 232044,
+      "currentLiquidity": 46108.24,
+      "currentMultiple": 1.0072,
       "athPrice": 0.0002766,
       "athMc": 270892,
       "athMultiple": 1.176,
       "athAt": "2026-10-11T13:42:01.845Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 108
@@ -440,17 +509,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 84,
-      "currentPrice": 0.0000525,
-      "currentMc": 50549,
-      "currentLiquidity": 20385.56,
-      "currentMultiple": 0.7376,
+      "currentPrice": 0.000033,
+      "currentMc": 31773,
+      "currentLiquidity": 15768.41,
+      "currentMultiple": 0.4636,
       "athPrice": 0.00009076,
       "athMc": 87377,
       "athMultiple": 1.2751,
       "athAt": "2026-10-11T13:58:15.465Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 109
@@ -505,17 +574,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 791,
-      "currentPrice": 0.00007242,
-      "currentMc": 69984,
-      "currentLiquidity": 24632.69,
-      "currentMultiple": 0.1775,
+      "currentPrice": 0.00002692,
+      "currentMc": 26017,
+      "currentLiquidity": 14290.69,
+      "currentMultiple": 0.066,
       "athPrice": 0.000408,
       "athMc": 394386,
       "athMultiple": 1,
       "athAt": "2026-10-11T12:18:51.849Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 104
@@ -571,17 +640,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 444,
-      "currentPrice": 0.0002904,
-      "currentMc": 280008,
-      "currentLiquidity": 52281.69,
-      "currentMultiple": 0.4784,
+      "currentPrice": 0.0003016,
+      "currentMc": 290817,
+      "currentLiquidity": 53548.53,
+      "currentMultiple": 0.4969,
       "athPrice": 0.0006967,
       "athMc": 671725,
       "athMultiple": 1.1478,
       "athAt": "2026-10-11T13:24:30.469Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 105
@@ -636,10 +705,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 2010,
-      "currentPrice": 0.0005868,
-      "currentMc": 574464,
-      "currentLiquidity": 75870.6,
-      "currentMultiple": 1.9946,
+      "currentPrice": 0.0005865,
+      "currentMc": 574142,
+      "currentLiquidity": 77648.97,
+      "currentMultiple": 1.9935,
       "athPrice": 0.001026,
       "athMc": 1005266,
       "athMultiple": 3.4874,
@@ -649,7 +718,7 @@
         2,
         3
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 103
@@ -704,17 +773,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 897,
-      "currentPrice": 0.000007467,
-      "currentMc": 7073,
-      "currentLiquidity": 5889.03,
-      "currentMultiple": 0.041,
+      "currentPrice": 0.000007354,
+      "currentMc": 6965,
+      "currentLiquidity": 5840.11,
+      "currentMultiple": 0.0403,
       "athPrice": 0.0001823,
       "athMc": 172986,
       "athMultiple": 1,
       "athAt": "2026-10-11T09:46:10.776Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 99
@@ -770,17 +839,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 4159,
-      "currentPrice": 0.000002387,
-      "currentMc": 2349,
-      "currentLiquidity": 2693.08,
-      "currentMultiple": 0.0083,
+      "currentPrice": 0.000002375,
+      "currentMc": 2338,
+      "currentLiquidity": 2683.84,
+      "currentMultiple": 0.0082,
       "athPrice": 0.0004561,
       "athMc": 448949,
       "athMultiple": 1.5831,
       "athAt": "2026-10-11T03:09:51.128Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 96
@@ -836,17 +905,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1021,
-      "currentPrice": 0.00000374,
-      "currentMc": 3278,
-      "currentLiquidity": 3601.64,
-      "currentMultiple": 0.0211,
+      "currentPrice": 0.000003788,
+      "currentMc": 3319,
+      "currentLiquidity": 3643.18,
+      "currentMultiple": 0.0214,
       "athPrice": 0.0002299,
       "athMc": 201449,
       "athMultiple": 1.2959,
       "athAt": "2026-10-11T02:16:06.929Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 91
@@ -912,7 +981,7 @@
       "athAt": "2026-10-10T21:57:48.685Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 90
@@ -968,17 +1037,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 274,
-      "currentPrice": 0.000192,
-      "currentMc": 182133,
-      "currentLiquidity": 39097.49,
-      "currentMultiple": 1.6681,
+      "currentPrice": 0.0001862,
+      "currentMc": 176435,
+      "currentLiquidity": 38633.22,
+      "currentMultiple": 1.6177,
       "athPrice": 0.0001947,
       "athMc": 185978,
       "athMultiple": 1.6916,
       "athAt": "2026-10-11T02:16:06.929Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 87
@@ -1033,10 +1102,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1715,
-      "currentPrice": 0.000003915,
-      "currentMc": 3869,
-      "currentLiquidity": 4009.99,
-      "currentMultiple": 0.0129,
+      "currentPrice": 0.000004091,
+      "currentMc": 4044,
+      "currentLiquidity": 4147.08,
+      "currentMultiple": 0.0134,
       "athPrice": 0.003295,
       "athMc": 3257139,
       "athMultiple": 10.8175,
@@ -1048,7 +1117,7 @@
         5,
         10
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 86
@@ -1104,17 +1173,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 600,
-      "currentPrice": 0.001174,
-      "currentMc": 1174768,
-      "currentLiquidity": 140691.06,
-      "currentMultiple": 0.6886,
+      "currentPrice": 0.001457,
+      "currentMc": 1457939,
+      "currentLiquidity": 145607.11,
+      "currentMultiple": 0.8545,
       "athPrice": 0.00277,
       "athMc": 2770349,
       "athMultiple": 1.6246,
       "athAt": "2026-10-11T09:46:10.776Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 83
@@ -1169,10 +1238,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 87,
-      "currentPrice": 0.001238,
-      "currentMc": 1238368,
-      "currentLiquidity": 133152.9,
-      "currentMultiple": 5.4658,
+      "currentPrice": 0.0008531,
+      "currentMc": 853152,
+      "currentLiquidity": 102588.67,
+      "currentMultiple": 3.7664,
       "athPrice": 0.001238,
       "athMc": 1238368,
       "athMultiple": 5.4658,
@@ -1183,7 +1252,7 @@
         3,
         5
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 84
@@ -1304,17 +1373,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 738,
-      "currentPrice": 0.00001207,
-      "currentMc": 11604,
-      "currentLiquidity": 8805.79,
-      "currentMultiple": 0.0798,
+      "currentPrice": 0.00001017,
+      "currentMc": 9784,
+      "currentLiquidity": 7931.69,
+      "currentMultiple": 0.0673,
       "athPrice": 0.0002167,
       "athMc": 208466,
       "athMultiple": 1.4332,
       "athAt": "2026-10-10T18:54:00.358Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 80
@@ -1370,10 +1439,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 2794,
-      "currentPrice": 0.0002263,
-      "currentMc": 222688,
-      "currentLiquidity": 60204.53,
-      "currentMultiple": 0.3501,
+      "currentPrice": 0.0002063,
+      "currentMc": 203020,
+      "currentLiquidity": 57680.42,
+      "currentMultiple": 0.3192,
       "athPrice": 0.001678,
       "athMc": 1651904,
       "athMultiple": 2.5959,
@@ -1382,7 +1451,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 78
@@ -1437,10 +1506,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 832,
-      "currentPrice": 0.00001815,
-      "currentMc": 17279,
-      "currentLiquidity": 13241.58,
-      "currentMultiple": 0.0648,
+      "currentPrice": 0.00001866,
+      "currentMc": 17762,
+      "currentLiquidity": 13488.4,
+      "currentMultiple": 0.0666,
       "athPrice": 0.0007642,
       "athMc": 727869,
       "athMultiple": 2.7273,
@@ -1449,7 +1518,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 77
@@ -1505,17 +1574,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 955,
-      "currentPrice": 0.00001428,
-      "currentMc": 14193,
-      "currentLiquidity": 10368.2,
-      "currentMultiple": 0.0068,
+      "currentPrice": 0.00000934,
+      "currentMc": 9281,
+      "currentLiquidity": 8013.88,
+      "currentMultiple": 0.0045,
       "athPrice": 0.002144,
       "athMc": 2130905,
       "athMultiple": 1.0278,
       "athAt": "2026-10-10T16:32:35.753Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 76
@@ -1571,17 +1640,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 2739,
-      "currentPrice": 0.000004681,
-      "currentMc": 4524,
-      "currentLiquidity": 5328.53,
-      "currentMultiple": 0.0277,
+      "currentPrice": 0.000004827,
+      "currentMc": 4666,
+      "currentLiquidity": 5455.19,
+      "currentMultiple": 0.0286,
       "athPrice": 0.0001687,
       "athMc": 163064,
       "athMultiple": 1,
       "athAt": "2026-10-10T15:57:51.243Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 75
@@ -1637,17 +1706,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 60,
-      "currentPrice": 0.0002228,
-      "currentMc": 221790,
-      "currentLiquidity": 58780.02,
-      "currentMultiple": 0.2783,
+      "currentPrice": 0.0001439,
+      "currentMc": 143240,
+      "currentLiquidity": 45176.46,
+      "currentMultiple": 0.1797,
       "athPrice": 0.0008006,
       "athMc": 799778,
       "athMultiple": 1,
       "athAt": "2026-10-10T13:57:26.064Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 73
@@ -1703,17 +1772,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 3272,
-      "currentPrice": 0.0000529,
-      "currentMc": 50537,
-      "currentLiquidity": 20667.56,
-      "currentMultiple": 0.1307,
+      "currentPrice": 0.00005953,
+      "currentMc": 56878,
+      "currentLiquidity": 22093.72,
+      "currentMultiple": 0.1471,
       "athPrice": 0.0004048,
       "athMc": 386805,
       "athMultiple": 1,
       "athAt": "2026-10-10T13:41:18.228Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 72
@@ -1769,17 +1838,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1037,
-      "currentPrice": 0.000005181,
-      "currentMc": 4972,
-      "currentLiquidity": 4691.63,
-      "currentMultiple": 0.0263,
+      "currentPrice": 0.000004822,
+      "currentMc": 4628,
+      "currentLiquidity": 4470.97,
+      "currentMultiple": 0.0245,
       "athPrice": 0.0002189,
       "athMc": 210157,
       "athMultiple": 1.1123,
       "athAt": "2026-10-10T12:35:41.997Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 64
@@ -1835,17 +1904,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1530,
-      "currentPrice": 0.000005515,
-      "currentMc": 5355,
-      "currentLiquidity": 5212.81,
-      "currentMultiple": 0.0286,
+      "currentPrice": 0.000006134,
+      "currentMc": 5957,
+      "currentLiquidity": 5611.08,
+      "currentMultiple": 0.0318,
       "athPrice": 0.0002612,
       "athMc": 253763,
       "athMultiple": 1.3534,
       "athAt": "2026-10-10T11:41:16.709Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 60
@@ -1901,21 +1970,22 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1083,
-      "currentPrice": 0.0001039,
-      "currentMc": 102056,
-      "currentLiquidity": 26849.05,
-      "currentMultiple": 0.4103,
+      "currentPrice": 0.00001016,
+      "currentMc": 9981,
+      "currentLiquidity": 7055.4,
+      "currentMultiple": 0.0401,
       "athPrice": 0.0002965,
       "athMc": 291164,
       "athMultiple": 1.171,
       "athAt": "2026-10-10T11:57:29.274Z",
-      "status": "active",
+      "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 58
-      }
+      },
+      "ruggedAt": "2026-10-12T09:20:29.454Z"
     },
     {
       "id": "8TiMkgvsrat9tM2esko8zVTt99LZLpefUM4SnZaziXaQ-1791625374391",
@@ -1966,17 +2036,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 440,
-      "currentPrice": 0.001944,
-      "currentMc": 1852491,
-      "currentLiquidity": 156387.03,
-      "currentMultiple": 0.5708,
+      "currentPrice": 0.001521,
+      "currentMc": 1449551,
+      "currentLiquidity": 138670.92,
+      "currentMultiple": 0.4466,
       "athPrice": 0.003651,
       "athMc": 3478682,
       "athMultiple": 1.0719,
       "athAt": "2026-10-10T10:49:57.943Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 55
@@ -2031,10 +2101,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1357,
-      "currentPrice": 0.0005493,
-      "currentMc": 528112,
-      "currentLiquidity": 77495.96,
-      "currentMultiple": 1.1126,
+      "currentPrice": 0.0007173,
+      "currentMc": 689629,
+      "currentLiquidity": 89405.74,
+      "currentMultiple": 1.4529,
       "athPrice": 0.001261,
       "athMc": 1212677,
       "athMultiple": 2.5542,
@@ -2043,7 +2113,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 50
@@ -2098,17 +2168,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 95,
-      "currentPrice": 0.00009992,
-      "currentMc": 66415,
-      "currentLiquidity": 27138.52,
-      "currentMultiple": 1.1235,
+      "currentPrice": 0.00009874,
+      "currentMc": 65626,
+      "currentLiquidity": 27057.52,
+      "currentMultiple": 1.1102,
       "athPrice": 0.0001598,
       "athMc": 106252,
       "athMultiple": 1.7967,
       "athAt": "2026-10-10T18:13:43.210Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 51
@@ -2163,17 +2233,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1208,
-      "currentPrice": 0.00001206,
-      "currentMc": 11782,
-      "currentLiquidity": 8402.3,
-      "currentMultiple": 0.0468,
+      "currentPrice": 0.000006523,
+      "currentMc": 6369,
+      "currentLiquidity": 5667.27,
+      "currentMultiple": 0.0253,
       "athPrice": 0.0002575,
       "athMc": 251483,
       "athMultiple": 1,
       "athAt": "2026-10-10T04:28:27.578Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 47
@@ -2229,17 +2299,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 642,
-      "currentPrice": 0.00001129,
-      "currentMc": 10818,
-      "currentLiquidity": 7794.36,
-      "currentMultiple": 0.072,
+      "currentPrice": 0.000007286,
+      "currentMc": 6977,
+      "currentLiquidity": 5875.54,
+      "currentMultiple": 0.0465,
       "athPrice": 0.0001567,
       "athMc": 150139,
       "athMultiple": 1,
       "athAt": "2026-10-10T04:28:27.578Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 48
@@ -2295,17 +2365,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 403,
-      "currentPrice": 0.000004105,
-      "currentMc": 4105,
-      "currentLiquidity": 5852.29,
-      "currentMultiple": 0.0264,
+      "currentPrice": 0.00000347,
+      "currentMc": 3470,
+      "currentLiquidity": 5381.04,
+      "currentMultiple": 0.0223,
       "athPrice": 0.0001554,
       "athMc": 155494,
       "athMultiple": 1,
       "athAt": "2026-10-10T03:53:48.275Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 46
@@ -2361,17 +2431,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 3508,
-      "currentPrice": 0.00001395,
-      "currentMc": 13582,
-      "currentLiquidity": 10578.13,
-      "currentMultiple": 0.0326,
+      "currentPrice": 0.00001501,
+      "currentMc": 14615,
+      "currentLiquidity": 11035.61,
+      "currentMultiple": 0.0351,
       "athPrice": 0.0004275,
       "athMc": 416196,
       "athMultiple": 1,
       "athAt": "2026-10-10T03:18:20.321Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 45
@@ -2427,17 +2497,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 936,
-      "currentPrice": 0.00001179,
-      "currentMc": 11320,
-      "currentLiquidity": 8600.21,
-      "currentMultiple": 0.0742,
+      "currentPrice": 0.00001153,
+      "currentMc": 11070,
+      "currentLiquidity": 8496.56,
+      "currentMultiple": 0.0725,
       "athPrice": 0.0001814,
       "athMc": 174164,
       "athMultiple": 1.1409,
       "athAt": "2026-10-10T04:28:27.578Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 43
@@ -2493,17 +2563,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 137,
-      "currentPrice": 0.000002891,
-      "currentMc": 2729,
-      "currentLiquidity": 2834.75,
-      "currentMultiple": 0.0388,
+      "currentPrice": 0.000002929,
+      "currentMc": 2765,
+      "currentLiquidity": 2868.94,
+      "currentMultiple": 0.0393,
       "athPrice": 0.0001265,
       "athMc": 119425,
       "athMultiple": 1.6987,
       "athAt": "2026-10-10T04:48:38.526Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 44
@@ -2559,10 +2629,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1259,
-      "currentPrice": 0.000002418,
-      "currentMc": 2382,
-      "currentLiquidity": 2544.11,
-      "currentMultiple": 0.0076,
+      "currentPrice": 0.000002458,
+      "currentMc": 2422,
+      "currentLiquidity": 2582.34,
+      "currentMultiple": 0.0078,
       "athPrice": 0.0008518,
       "athMc": 839171,
       "athMultiple": 2.6922,
@@ -2571,7 +2641,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 40
@@ -2627,17 +2697,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 75,
-      "currentPrice": 0.000003542,
-      "currentMc": 3127,
-      "currentLiquidity": 3602.72,
-      "currentMultiple": 0.0575,
+      "currentPrice": 0.000003518,
+      "currentMc": 3105,
+      "currentLiquidity": 3586.1,
+      "currentMultiple": 0.0571,
       "athPrice": 0.0000616,
       "athMc": 55189,
       "athMultiple": 1,
       "athAt": "2026-10-09T23:41:59.841Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 38
@@ -2693,17 +2763,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1996,
-      "currentPrice": 0.000005522,
-      "currentMc": 5222,
-      "currentLiquidity": 4921.95,
-      "currentMultiple": 0.0345,
+      "currentPrice": 0.000005438,
+      "currentMc": 5143,
+      "currentLiquidity": 4868.47,
+      "currentMultiple": 0.034,
       "athPrice": 0.00016,
       "athMc": 151460,
       "athMultiple": 1,
       "athAt": "2026-10-09T22:53:05.047Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 36
@@ -2759,17 +2829,19 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 98,
-      "currentPrice": 0.003161,
-      "currentMc": 3160925,
-      "currentLiquidity": 166217.45,
-      "currentMultiple": 1.76,
-      "athPrice": 0.003233,
-      "athMc": 3232995,
-      "athMultiple": 1.8001,
-      "athAt": "2026-10-10T01:35:08.149Z",
+      "currentPrice": 0.003698,
+      "currentMc": 3698322,
+      "currentLiquidity": 179975.37,
+      "currentMultiple": 2.059,
+      "athPrice": 0.003698,
+      "athMc": 3698322,
+      "athMultiple": 2.059,
+      "athAt": "2026-10-12T09:20:29.454Z",
       "status": "active",
-      "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "milestonesHit": [
+        2
+      ],
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 35
@@ -2824,10 +2896,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 445,
-      "currentPrice": 0.00009795,
-      "currentMc": 96134,
-      "currentLiquidity": 27602.11,
-      "currentMultiple": 1.0387,
+      "currentPrice": 0.00007429,
+      "currentMc": 72912,
+      "currentLiquidity": 23876.15,
+      "currentMultiple": 0.7878,
       "athPrice": 0.0003106,
       "athMc": 304855,
       "athMultiple": 3.2937,
@@ -2837,7 +2909,7 @@
         2,
         3
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 33
@@ -2892,10 +2964,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 244,
-      "currentPrice": 0.008538,
-      "currentMc": 8079359,
-      "currentLiquidity": 367338.4,
-      "currentMultiple": 5.7611,
+      "currentPrice": 0.007464,
+      "currentMc": 7063618,
+      "currentLiquidity": 345545.09,
+      "currentMultiple": 5.0364,
       "athPrice": 0.01141,
       "athMc": 10803641,
       "athMultiple": 7.6991,
@@ -2906,7 +2978,7 @@
         3,
         5
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 34
@@ -2961,17 +3033,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 183,
-      "currentPrice": 0.00001039,
-      "currentMc": 9633,
-      "currentLiquidity": 7287.53,
-      "currentMultiple": 0.151,
+      "currentPrice": 0.000009752,
+      "currentMc": 9035,
+      "currentLiquidity": 7013.75,
+      "currentMultiple": 0.1417,
       "athPrice": 0.00009723,
       "athMc": 90090,
       "athMultiple": 1.4128,
       "athAt": "2026-10-09T23:58:09.306Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 32
@@ -3027,9 +3099,9 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 1760,
-      "currentPrice": 0.000002407,
-      "currentMc": 2377,
-      "currentLiquidity": 2573.06,
+      "currentPrice": 0.000002374,
+      "currentMc": 2344,
+      "currentLiquidity": 2542.33,
       "currentMultiple": 0.0049,
       "athPrice": 0.0005074,
       "athMc": 500955,
@@ -3037,7 +3109,7 @@
       "athAt": "2026-10-09T21:09:30.459Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 31
@@ -3093,17 +3165,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 198,
-      "currentPrice": 0.000007876,
-      "currentMc": 7644,
-      "currentLiquidity": 6258.59,
-      "currentMultiple": 0.1194,
+      "currentPrice": 0.000008558,
+      "currentMc": 8306,
+      "currentLiquidity": 6605.97,
+      "currentMultiple": 0.1297,
       "athPrice": 0.00007579,
       "athMc": 73562,
       "athMultiple": 1.1487,
       "athAt": "2026-10-09T20:33:51.211Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 30
@@ -3159,10 +3231,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 181,
-      "currentPrice": 0.0006152,
-      "currentMc": 615260,
-      "currentLiquidity": 95366.29,
-      "currentMultiple": 8.1118,
+      "currentPrice": 0.0003234,
+      "currentMc": 323497,
+      "currentLiquidity": 64360.38,
+      "currentMultiple": 4.2642,
       "athPrice": 0.0006152,
       "athMc": 615260,
       "athMultiple": 8.1118,
@@ -3173,7 +3245,7 @@
         3,
         5
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 29
@@ -3228,17 +3300,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 161,
-      "currentPrice": 0.00001061,
-      "currentMc": 10271,
-      "currentLiquidity": 8575.64,
-      "currentMultiple": 0.0592,
+      "currentPrice": 0.000009437,
+      "currentMc": 9135,
+      "currentLiquidity": 7980.62,
+      "currentMultiple": 0.0526,
       "athPrice": 0.0001793,
       "athMc": 173596,
       "athMultiple": 1,
       "athAt": "2026-10-09T19:42:09.211Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 28
@@ -3294,10 +3366,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 88,
-      "currentPrice": 0.000003402,
-      "currentMc": 3263,
-      "currentLiquidity": 3415.95,
-      "currentMultiple": 0.0482,
+      "currentPrice": 0.00000312,
+      "currentMc": 2993,
+      "currentLiquidity": 3193.28,
+      "currentMultiple": 0.0442,
       "athPrice": 0.0002253,
       "athMc": 216118,
       "athMultiple": 3.1894,
@@ -3307,7 +3379,7 @@
         2,
         3
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 27
@@ -3363,17 +3435,17 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 147,
-      "currentPrice": 0.001138,
-      "currentMc": 1101715,
-      "currentLiquidity": 143803.76,
-      "currentMultiple": 0.798,
+      "currentPrice": 0.0009816,
+      "currentMc": 949497,
+      "currentLiquidity": 133721.82,
+      "currentMultiple": 0.6884,
       "athPrice": 0.00146,
       "athMc": 1413250,
       "athMultiple": 1.0238,
       "athAt": "2026-10-10T04:48:38.526Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 26
@@ -3430,9 +3502,9 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 2697,
-      "currentPrice": 0.000002342,
-      "currentMc": 2320,
-      "currentLiquidity": 2601.5,
+      "currentPrice": 0.000002348,
+      "currentMc": 2326,
+      "currentLiquidity": 2607.78,
       "currentMultiple": 0.0028,
       "athPrice": 0.001077,
       "athMc": 1066794,
@@ -3440,7 +3512,7 @@
       "athAt": "2026-10-09T19:58:00.942Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 25
@@ -3496,10 +3568,10 @@
         "source": "rugcheck+rpc"
       },
       "uniqueBuyersH1": 79,
-      "currentPrice": 0.0016,
-      "currentMc": 1328913,
-      "currentLiquidity": 127449.28,
-      "currentMultiple": 2.2478,
+      "currentPrice": 0.001495,
+      "currentMc": 1241796,
+      "currentLiquidity": 123334.25,
+      "currentMultiple": 2.1003,
       "athPrice": 0.001767,
       "athMc": 1467076,
       "athMultiple": 2.4824,
@@ -3508,7 +3580,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 24
@@ -3550,17 +3622,17 @@
         "jupiter": "https://jup.ag/swap/SOL-8dkma1dyJryHznaFKSZzoRu4Dmyy5SJAapQLRatipump",
         "pumpfun": "https://pump.fun/coin/8dkma1dyJryHznaFKSZzoRu4Dmyy5SJAapQLRatipump"
       },
-      "currentPrice": 0.000002457,
-      "currentMc": 2417,
-      "currentLiquidity": 2631.43,
-      "currentMultiple": 0.0093,
+      "currentPrice": 0.000002539,
+      "currentMc": 2497,
+      "currentLiquidity": 2707.6,
+      "currentMultiple": 0.0097,
       "athPrice": 0.0002628,
       "athMc": 258505,
       "athMultiple": 1,
       "athAt": "2026-10-09T16:02:05.906Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 22
@@ -3603,17 +3675,17 @@
         "jupiter": "https://jup.ag/swap/SOL-6GH8KgotzU3Waqkw2FPoDw8R3qt7SVYwB71Wc6DchUXx",
         "pumpfun": null
       },
-      "currentPrice": 0.00001329,
-      "currentMc": 13295,
-      "currentLiquidity": 13696.07,
-      "currentMultiple": 0.1302,
+      "currentPrice": 0.000009234,
+      "currentMc": 9234,
+      "currentLiquidity": 10439.08,
+      "currentMultiple": 0.0904,
       "athPrice": 0.0001021,
       "athMc": 102146,
       "athMultiple": 1,
       "athAt": "2026-10-09T15:44:54.429Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 21
@@ -3656,17 +3728,17 @@
         "jupiter": "https://jup.ag/swap/SOL-6WpWchQ9BvDRdEBXSaSZ5DszEwTDBqv29V4Gvtwxpump",
         "pumpfun": "https://pump.fun/coin/6WpWchQ9BvDRdEBXSaSZ5DszEwTDBqv29V4Gvtwxpump"
       },
-      "currentPrice": 0.000002612,
-      "currentMc": 2578,
-      "currentLiquidity": 2650.49,
-      "currentMultiple": 0.0125,
+      "currentPrice": 0.000002636,
+      "currentMc": 2602,
+      "currentLiquidity": 2673.48,
+      "currentMultiple": 0.0126,
       "athPrice": 0.0002094,
       "athMc": 209425,
       "athMultiple": 1,
       "athAt": "2026-10-09T15:02:24.032Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 19
@@ -3709,17 +3781,17 @@
         "jupiter": "https://jup.ag/swap/SOL-9vHPLDY6wa9ZkNBNZoWcv2AABdiNj97tpHc3u56npump",
         "pumpfun": "https://pump.fun/coin/9vHPLDY6wa9ZkNBNZoWcv2AABdiNj97tpHc3u56npump"
       },
-      "currentPrice": 0.00005303,
-      "currentMc": 51554,
-      "currentLiquidity": 22239.54,
-      "currentMultiple": 0.1357,
+      "currentPrice": 0.00004461,
+      "currentMc": 43368,
+      "currentLiquidity": 20242.14,
+      "currentMultiple": 0.1142,
       "athPrice": 0.0004955,
       "athMc": 482131,
       "athMultiple": 1.2679,
       "athAt": "2026-10-09T15:44:54.429Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 20
@@ -3762,17 +3834,17 @@
         "jupiter": "https://jup.ag/swap/SOL-H72pex1VtfY2M7v2Tfk9D9PgvCocRuFN3owCveERSa4s",
         "pumpfun": null
       },
-      "currentPrice": 0.00009577,
-      "currentMc": 92177,
-      "currentLiquidity": 30498.69,
-      "currentMultiple": 0.6084,
+      "currentPrice": 0.00009341,
+      "currentMc": 89905,
+      "currentLiquidity": 30157.4,
+      "currentMultiple": 0.5935,
       "athPrice": 0.0001871,
       "athMc": 180101,
       "athMultiple": 1.1887,
       "athAt": "2026-10-09T15:44:54.429Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 17
@@ -3814,17 +3886,17 @@
         "jupiter": "https://jup.ag/swap/SOL-48Fx5EWQ2RSUshqiNzx1VfWSvFwNgMft2nxbqwbXpump",
         "pumpfun": "https://pump.fun/coin/48Fx5EWQ2RSUshqiNzx1VfWSvFwNgMft2nxbqwbXpump"
       },
-      "currentPrice": 0.0001248,
-      "currentMc": 119029,
-      "currentLiquidity": 39174.31,
-      "currentMultiple": 0.6922,
+      "currentPrice": 0.0001261,
+      "currentMc": 120288,
+      "currentLiquidity": 40900.1,
+      "currentMultiple": 0.6994,
       "athPrice": 0.0001841,
       "athMc": 175560,
       "athMultiple": 1.0211,
       "athAt": "2026-10-09T16:02:05.906Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 18
@@ -3866,17 +3938,17 @@
         "jupiter": "https://jup.ag/swap/SOL-DdcLYo8T6gniuLjYPsAHqASC1ViTaMyPwKEVWFqYpump",
         "pumpfun": "https://pump.fun/coin/DdcLYo8T6gniuLjYPsAHqASC1ViTaMyPwKEVWFqYpump"
       },
-      "currentPrice": 0.000002665,
-      "currentMc": 2585,
-      "currentLiquidity": 2821.71,
-      "currentMultiple": 0.0359,
+      "currentPrice": 0.000002715,
+      "currentMc": 2634,
+      "currentLiquidity": 2868.13,
+      "currentMultiple": 0.0366,
       "athPrice": 0.0001379,
       "athMc": 133889,
       "athMultiple": 1.8585,
       "athAt": "2026-10-10T00:52:14.747Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 15
@@ -3919,17 +3991,17 @@
         "jupiter": "https://jup.ag/swap/SOL-HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump",
         "pumpfun": "https://pump.fun/coin/HMYd9tosnUXuNHmq7pXmoePRVBLBBjA3JBfydq6upump"
       },
-      "currentPrice": 0.001411,
-      "currentMc": 1368700,
-      "currentLiquidity": 116598.05,
-      "currentMultiple": 0.8256,
+      "currentPrice": 0.001292,
+      "currentMc": 1251754,
+      "currentLiquidity": 111881.61,
+      "currentMultiple": 0.756,
       "athPrice": 0.001713,
       "athMc": 1694483,
       "athMultiple": 1.0023,
       "athAt": "2026-10-09T14:41:37.520Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 16
@@ -3971,17 +4043,17 @@
         "jupiter": "https://jup.ag/swap/SOL-7pYdm6bXhVf1J9Qv1fyWB9nkxdnG5RhFKA9yjW1Dpump",
         "pumpfun": "https://pump.fun/coin/7pYdm6bXhVf1J9Qv1fyWB9nkxdnG5RhFKA9yjW1Dpump"
       },
-      "currentPrice": 0.00003791,
-      "currentMc": 35729,
-      "currentLiquidity": 18017.9,
-      "currentMultiple": 0.1799,
+      "currentPrice": 0.00003194,
+      "currentMc": 30106,
+      "currentLiquidity": 16424.17,
+      "currentMultiple": 0.1516,
       "athPrice": 0.0002586,
       "athMc": 243793,
       "athMultiple": 1.2273,
       "athAt": "2026-10-09T16:02:05.906Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 14
@@ -4024,17 +4096,17 @@
         "jupiter": "https://jup.ag/swap/SOL-CmCHvr99aXrLDQB7jAtFtsBwg3DnXqq4spcTEMt7pump",
         "pumpfun": "https://pump.fun/coin/CmCHvr99aXrLDQB7jAtFtsBwg3DnXqq4spcTEMt7pump"
       },
-      "currentPrice": 0.000003609,
-      "currentMc": 3582,
-      "currentLiquidity": 4743.44,
-      "currentMultiple": 0.0105,
+      "currentPrice": 0.000003579,
+      "currentMc": 3552,
+      "currentLiquidity": 4718.98,
+      "currentMultiple": 0.0104,
       "athPrice": 0.0003427,
       "athMc": 340160,
       "athMultiple": 1,
       "athAt": "2026-10-09T13:19:17.730Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 13
@@ -4077,17 +4149,17 @@
         "jupiter": "https://jup.ag/swap/SOL-7dCkdo2stVFNkXeyvkdQ82UhNJatwyaWFNve56kA28hj",
         "pumpfun": null
       },
-      "currentPrice": 0.00002015,
-      "currentMc": 20156,
-      "currentLiquidity": 13684.65,
-      "currentMultiple": 0.1088,
+      "currentPrice": 0.00001853,
+      "currentMc": 18536,
+      "currentLiquidity": 12992.52,
+      "currentMultiple": 0.1001,
       "athPrice": 0.0001852,
       "athMc": 185265,
       "athMultiple": 1,
       "athAt": "2026-10-09T12:57:59.856Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 11
@@ -4130,17 +4202,17 @@
         "jupiter": "https://jup.ag/swap/SOL-NTRNDMqQSiwEC2jJs3wJiZS6bpGYQJtMNQJgiX3WyV6",
         "pumpfun": null
       },
-      "currentPrice": 0.00004996,
-      "currentMc": 47080,
-      "currentLiquidity": 19662.87,
-      "currentMultiple": 0.2804,
+      "currentPrice": 0.00008415,
+      "currentMc": 78958,
+      "currentLiquidity": 26408.5,
+      "currentMultiple": 0.4722,
       "athPrice": 0.0002689,
       "athMc": 258538,
       "athMultiple": 1.509,
       "athAt": "2026-10-09T13:19:17.730Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 12
@@ -4183,10 +4255,10 @@
         "jupiter": "https://jup.ag/swap/SOL-HoLyRoDEQvK5zPsGpcz3BbCWhceTGhWAGnVifSoUShit",
         "pumpfun": null
       },
-      "currentPrice": 0.00005295,
-      "currentMc": 49653,
-      "currentLiquidity": 20397.73,
-      "currentMultiple": 0.3649,
+      "currentPrice": 0.0000497,
+      "currentMc": 46609,
+      "currentLiquidity": 19750.12,
+      "currentMultiple": 0.3425,
       "athPrice": 0.0003185,
       "athMc": 298676,
       "athMultiple": 2.195,
@@ -4195,7 +4267,7 @@
       "milestonesHit": [
         2
       ],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 8
@@ -4237,17 +4309,17 @@
         "jupiter": "https://jup.ag/swap/SOL-HbPDWSqu8hpVMX6gMjwMDGe5rVgicWo3Qh3Jaojypump",
         "pumpfun": "https://pump.fun/coin/HbPDWSqu8hpVMX6gMjwMDGe5rVgicWo3Qh3Jaojypump"
       },
-      "currentPrice": 0.0003942,
-      "currentMc": 374735,
-      "currentLiquidity": 69586.79,
-      "currentMultiple": 0.4714,
+      "currentPrice": 0.0004303,
+      "currentMc": 409088,
+      "currentLiquidity": 73428.83,
+      "currentMultiple": 0.5145,
       "athPrice": 0.0008363,
       "athMc": 795011,
       "athMultiple": 1,
       "athAt": "2026-10-09T12:31:41.055Z",
       "status": "active",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 9
@@ -4289,17 +4361,17 @@
         "jupiter": "https://jup.ag/swap/SOL-DK1enXZB5wKaDtvTGPy1dt6qh2kvhkZnFKEGg4Ypump",
         "pumpfun": "https://pump.fun/coin/DK1enXZB5wKaDtvTGPy1dt6qh2kvhkZnFKEGg4Ypump"
       },
-      "currentPrice": 0.000003153,
-      "currentMc": 3115,
-      "currentLiquidity": 3152.42,
-      "currentMultiple": 0.0104,
+      "currentPrice": 0.000003213,
+      "currentMc": 3174,
+      "currentLiquidity": 3202.77,
+      "currentMultiple": 0.0106,
       "athPrice": 0.0003904,
       "athMc": 385653,
       "athMultiple": 1.2834,
       "athAt": "2026-10-09T12:57:59.856Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 6
@@ -4352,7 +4424,7 @@
       "athAt": "2026-10-09T12:31:41.055Z",
       "status": "rugged",
       "milestonesHit": [],
-      "lastUpdated": "2026-10-12T02:13:32.051Z",
+      "lastUpdated": "2026-10-12T09:20:29.454Z",
       "tg": {
         "posted": true,
         "messageId": 7
@@ -4429,8 +4501,9 @@
     "EQ46GCkgPctvueFDt2edutfa1hKxsDzo2EZeSMiHpump": 1791759541606,
     "3qMx2ZFFxFBjYPrwCyngGXNizeAFnNBrimhPQZcjpump": 1791759541606,
     "AVfEas6mLgkXNvVWcc6qeHLpYeA8nRx42iB9WBKhpump": 1791771212051,
-    "8PGyHCKvSUjezHkV7KLwMacnmSJLe1YbRM1zvDVApump": 1791771212051
+    "8PGyHCKvSUjezHkV7KLwMacnmSJLe1YbRM1zvDVApump": 1791771212051,
+    "A8JUiZLzjGAsKxE74evdspHcuW4hvhPbvryDhaDZpump": 1791796829454
   },
   "lastRecapAt": "2026-10-12T02:13:32.051Z",
-  "lastRunAt": "2026-10-12T02:13:32.051Z"
+  "lastRunAt": "2026-10-12T09:20:29.454Z"
 }
