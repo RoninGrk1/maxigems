@@ -93,13 +93,13 @@
   },
   "DoVAVzViX8Bjy3r15nwikSaSbzE6dV4ovd28aWpJpump": {
    "v": 1,
-   "peak": 1,
-   "cur": 0.87,
-   "status": "live",
-   "peakMc": 1381295,
+   "peak": 1.02,
+   "cur": 0.19,
+   "curMc": 259873,
+   "status": "rugged",
+   "peakMc": 1413250,
    "hasCard": true,
-   "symbol": "HIGGS",
-   "curMc": 1092502
+   "symbol": "HIGGS"
   },
   "7SsZWPvLHpMizSGD8RByEbjUA8VatHWAts4UpjB4pump": {
    "v": 1,
@@ -734,9 +734,9 @@
   "7jNwX4Me9zGEjmWY7zARDG2LYjVs1WXD6DZ1JvSfpump": {
    "v": 1,
    "peak": 1,
-   "cur": 0.15,
-   "curMc": 353761,
-   "status": "rugged",
+   "cur": 0,
+   "curMc": 6888,
+   "status": "pulled",
    "peakMc": 2290125,
    "hasCard": true,
    "symbol": "HUMPH"
@@ -813,13 +813,23 @@
   },
   "DFMt2FyLpB6ekPNAzVErLXgpSnJ9CRf1VnxBAkTLpump": {
    "v": 1,
-   "peak": 1,
-   "cur": 1,
-   "curMc": 308882,
+   "peak": 2.79,
+   "cur": 2.79,
+   "curMc": 862293,
    "status": "live",
-   "peakMc": 308882,
+   "peakMc": 862293,
    "hasCard": true,
    "symbol": "FTR"
+  },
+  "7fumw7GYTHZJJxkKJ8sSh1CqTdHmB234vX3xsKjepump": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 988436,
+   "status": "live",
+   "peakMc": 988436,
+   "hasCard": true,
+   "symbol": "VEILTRUMP"
   }
  }
 }
