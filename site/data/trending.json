@@ -1,166 +1,454 @@
 {
-  "updatedAt": "2026-10-15T18:54:14.435Z",
+  "updatedAt": "2026-10-15T21:55:16.405Z",
   "source": "engine",
   "hot": [
     {
-      "address": "9UDNU3zn32BdB8s82gxC7aJwKHii7PYaKH9dyQ5spump",
-      "pairAddress": "7n3BMktqd2sJTkrpJSkxfpVKrmUybwLqWC8FCQq6oe7M",
-      "name": "OTCatwalk",
-      "symbol": "OTCATWALK",
+      "address": "D61pTaTqR93axxVvu7AX5TW6c3a4vhffPPMfCnsYpump",
+      "pairAddress": "GGM3WPy8Mtxx7AFvS1RsxbZTbnz9KK1HEG9MbFMyADA1",
+      "name": "The Owldacity",
+      "symbol": "OWLDACITY",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/R6bRD2htlqaMLc7J?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792081006000,
-      "mc": 58326,
-      "liq": 20504.58,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/kmAW8gHTa2pUo1HY?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792096236000,
+      "mc": 1033362,
+      "liq": 89433.65,
       "ch": {
-        "m5": -9.9,
-        "h1": -83.89,
-        "h24": -11.38
+        "m5": 19.58,
+        "h1": 377,
+        "h24": 1535
       },
       "vol": {
-        "m5": 10671.07,
-        "h1": 469829.91,
-        "h24": 1584806.38
+        "m5": 62691.96,
+        "h1": 496424.43,
+        "h24": 838653.93
       },
       "txns": {
         "m5": {
-          "b": 363,
-          "s": 46
+          "b": 889,
+          "s": 377
         },
         "h1": {
-          "b": 11086,
-          "s": 1885
+          "b": 8766,
+          "s": 2495
         }
       },
-      "heat": 76
+      "heat": 86
     },
     {
-      "address": "7PcRX5EX8gBrpT64q1fzTMw49Qk1T5e9yamzgppNpump",
-      "pairAddress": "21aR22BrUCAmFzWohFRsqJWefwTdD7mTU6SBgEYkYmbm",
-      "name": "Modus Research",
-      "symbol": "MDR",
+      "address": "GmRZNKavuh2KxpdQ3QL5jmZfQpJm8zvubdCR4ddQpump",
+      "pairAddress": "75SFch8XYerA4w9KibFW1AFD1h5L24XWrGAK5rjkdH2u",
+      "name": "The DogeFather",
+      "symbol": "DOGEFATHER",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/MUeLQEALeLWCDSPg?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792089614000,
-      "mc": 18900,
-      "liq": 10268.34,
+      "imageUrl": null,
+      "pairCreatedAt": 1792101201000,
+      "mc": 232340,
+      "liq": 39878.2,
       "ch": {
-        "m5": 34.68,
-        "h1": -55.45,
-        "h24": -55.45
+        "m5": 337,
+        "h1": 337,
+        "h24": 337
       },
       "vol": {
-        "m5": 5327.05,
-        "h1": 99295.84,
-        "h24": 99295.84
+        "m5": 24799.79,
+        "h1": 24799.79,
+        "h24": 24799.79
       },
       "txns": {
         "m5": {
-          "b": 79,
-          "s": 65
+          "b": 125,
+          "s": 39
         },
         "h1": {
-          "b": 1418,
-          "s": 1113
+          "b": 125,
+          "s": 39
+        }
+      },
+      "heat": 86
+    },
+    {
+      "address": "9h59uAnvim2rpQxk2HmDDB1tqvVyg4ufWfhyR3Gpump",
+      "pairAddress": "9XDkSTnAdnkcfZPY79JMrpVYJxHeCUmwRic2hdd8SFw5",
+      "name": "Google Gemini",
+      "symbol": "Gemini",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792101180000,
+      "mc": 395064,
+      "liq": 52411.45,
+      "ch": {
+        "m5": 798,
+        "h1": 798,
+        "h24": 798
+      },
+      "vol": {
+        "m5": 17647.56,
+        "h1": 17647.56,
+        "h24": 17647.56
+      },
+      "txns": {
+        "m5": {
+          "b": 925,
+          "s": 680
+        },
+        "h1": {
+          "b": 925,
+          "s": 680
+        }
+      },
+      "heat": 85
+    },
+    {
+      "address": "8T5Re4R9imAmCkjDmWvd97Ns51cn5M8WCZYoyrAPiECm",
+      "pairAddress": "HunwqLP9p93KgyT9EhSwi4XNuX5xQLE2ZiuDUnMYDQ55",
+      "name": "CureFi",
+      "symbol": "CURE",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/X4dCMsd62faQXE4p?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792101152000,
+      "mc": 26719,
+      "liq": 12320,
+      "ch": {
+        "m5": -38.3,
+        "h1": -38.3,
+        "h24": -38.3
+      },
+      "vol": {
+        "m5": 16861.23,
+        "h1": 16861.23,
+        "h24": 16861.23
+      },
+      "txns": {
+        "m5": {
+          "b": 219,
+          "s": 161
+        },
+        "h1": {
+          "b": 219,
+          "s": 161
+        }
+      },
+      "heat": 81
+    },
+    {
+      "address": "EkFRff9a2jKztJHML1LG9FRmEkPJDR6XAYp3uCPdpump",
+      "pairAddress": "3UMUTZeeVSLywQjeZ6sjngu3jc6oQSxpy2ApNH3xL8sf",
+      "name": "SLOPCORE",
+      "symbol": "SLOPCORE",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/crB7zLylJBlspmJg?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1790553920000,
+      "mc": 311807,
+      "liq": 63937.55,
+      "ch": {
+        "m5": 21.21,
+        "h1": 28.67,
+        "h24": 32
+      },
+      "vol": {
+        "m5": 39961.67,
+        "h1": 41964.99,
+        "h24": 237897.54
+      },
+      "txns": {
+        "m5": {
+          "b": 177,
+          "s": 144
+        },
+        "h1": {
+          "b": 194,
+          "s": 159
+        }
+      },
+      "heat": 81
+    },
+    {
+      "address": "H2pkmDKUio79yzzj5cRF6fqf6Xeq6AmpTsVVGG9wpump",
+      "pairAddress": "AW1NPKi2JC6zw17hUv4GttiMDECoengd6eWG62WRusFy",
+      "name": "Roadster Starman",
+      "symbol": "Starman",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/0K775SE0UWMGkBvB?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792095443000,
+      "mc": 461802,
+      "liq": 58580.28,
+      "ch": {
+        "m5": -8.17,
+        "h1": 143,
+        "h24": 854
+      },
+      "vol": {
+        "m5": 4913.95,
+        "h1": 222033.19,
+        "h24": 502523.8
+      },
+      "txns": {
+        "m5": {
+          "b": 209,
+          "s": 32
+        },
+        "h1": {
+          "b": 3845,
+          "s": 768
+        }
+      },
+      "heat": 74
+    },
+    {
+      "address": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "pairAddress": "Ckp1kwZqosaLU1h3zWtuaMBubyWM7LX3cxYezRVin7p2",
+      "name": "OFFICIAL TRUMP",
+      "symbol": "TRUMP",
+      "dex": "orca",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/85a2613c51c8ded8e51b1b3910487ab66691cb60fecec7d0905481a603bba899?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1737215500000,
+      "mc": 531379047,
+      "liq": 241519.64,
+      "ch": {
+        "m5": 0.16,
+        "h1": 0.32,
+        "h24": 0.05
+      },
+      "vol": {
+        "m5": 31459.26,
+        "h1": 730407.02,
+        "h24": 1668063.06
+      },
+      "txns": {
+        "m5": {
+          "b": 520,
+          "s": 401
+        },
+        "h1": {
+          "b": 8498,
+          "s": 6657
+        }
+      },
+      "heat": 72
+    },
+    {
+      "address": "4si66xJZV7MSykgRn4AHM5ytYmZftqYx4J6uqLewpump",
+      "pairAddress": "CncxfTpXzMYimKW6cLYoduuDPK45HVhbak8xSAZjYMQs",
+      "name": "called.bet",
+      "symbol": "CALLED",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/lYzs0kOTcFcoyawm?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792100907000,
+      "mc": 3907,
+      "liq": 3572.25,
+      "ch": {
+        "m5": -25.16,
+        "h1": -90.67,
+        "h24": -90.67
+      },
+      "vol": {
+        "m5": 4672.34,
+        "h1": 22800.65,
+        "h24": 22800.65
+      },
+      "txns": {
+        "m5": {
+          "b": 37,
+          "s": 122
+        },
+        "h1": {
+          "b": 221,
+          "s": 319
         }
       },
       "heat": 68
     },
     {
-      "address": "CM54aeZaVCUokycv4Ypq77mBYB3GpC17R7CAHS4zpump",
-      "pairAddress": "6HWrNjZMU9LDUhaZMBy3zuY29qAL2LY7dgsBeGFQYfhp",
-      "name": "POKEMON",
-      "symbol": "POKEMON",
+      "address": "ASbEHkXWwYqatvgx7BLxyuqgzhTRKYxrDTL9py56pump",
+      "pairAddress": "8tSrhxmKDASKiQfsbBN9HccWQF3vwsZXQKn2geyuUYWW",
+      "name": "Silvia Elon ETF",
+      "symbol": "SVIA",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/T2yI9QEZLx-TYKZB?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792087203000,
-      "mc": 14032,
-      "liq": 9051.31,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/DB8XpfJ5FX6mHsWI?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792099950000,
+      "mc": 13182,
+      "liq": 8407.9,
       "ch": {
-        "m5": -12.28,
-        "h1": -68.33,
-        "h24": -68.33
+        "m5": 103,
+        "h1": -70.22,
+        "h24": -70.22
       },
       "vol": {
-        "m5": 503.12,
-        "h1": 404752.09,
-        "h24": 404752.09
+        "m5": 5760.1,
+        "h1": 340222.99,
+        "h24": 340222.99
       },
       "txns": {
         "m5": {
-          "b": 8,
-          "s": 11
+          "b": 126,
+          "s": 90
         },
         "h1": {
-          "b": 4217,
-          "s": 3080
+          "b": 5171,
+          "s": 4166
         }
       },
       "heat": 67
     },
     {
-      "address": "G97EU185vTD9simFiUK1EQYPWig8e2A7b4T488nZamnR",
-      "pairAddress": "62TfGiU1Y6QYo2BuH124yGQzJyi2W1DmkEQzrt1CK7FU",
-      "name": "hdegroott",
-      "symbol": "Hugo",
+      "address": "G8mF2dtUPBZKpj8QACqm9mYCr1qdKvc6XVDcgCASDboo",
+      "pairAddress": "jtNGS9zCJBPBuk87k42SRpPVKRmtcuDL1EBoS8qvubn",
+      "name": "The Spooky Mascot",
+      "symbol": "BOO",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/QA8BZ8v3rRm7J1Z4?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792086584000,
-      "mc": 14915,
-      "liq": 9085.11,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/rVMvk3NwBGbnoTI9?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792098469000,
+      "mc": 36806,
+      "liq": 15208.93,
       "ch": {
-        "m5": 39.56,
-        "h1": -73.8,
-        "h24": -63.62
+        "m5": -10.42,
+        "h1": -13.43,
+        "h24": -13.43
       },
       "vol": {
-        "m5": 3581.03,
-        "h1": 174447.52,
-        "h24": 262147.49
+        "m5": 4507.51,
+        "h1": 174735.92,
+        "h24": 174735.92
       },
       "txns": {
         "m5": {
-          "b": 62,
-          "s": 41
+          "b": 59,
+          "s": 42
         },
         "h1": {
-          "b": 2615,
-          "s": 2207
+          "b": 2459,
+          "s": 1832
+        }
+      },
+      "heat": 67
+    },
+    {
+      "address": "Ao8ZN16xseGmKiFonHYTSGuPDQ2JcNN8CwjmVvpGpump",
+      "pairAddress": "EcGyMB3UeMQqrH3YFgvFcQLGjtqTxU3vaVvAMp7n7n4A",
+      "name": "uni",
+      "symbol": "uni",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/HezB8YKYWsrbj-60?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792099473000,
+      "mc": 18961,
+      "liq": 10222.84,
+      "ch": {
+        "m5": -20.92,
+        "h1": -57.59,
+        "h24": -57.59
+      },
+      "vol": {
+        "m5": 4604.04,
+        "h1": 185268.23,
+        "h24": 185268.23
+      },
+      "txns": {
+        "m5": {
+          "b": 48,
+          "s": 52
+        },
+        "h1": {
+          "b": 2310,
+          "s": 2099
         }
       },
       "heat": 65
     },
     {
-      "address": "EAJ1auhSGyoFBpugVindEjWNHnSrqbzczfmNBZbCpump",
-      "pairAddress": "3F6BjzU8eJ3XeJuwfV9KN37Zf9awrDgfwYZLUpubUqkY",
-      "name": "Jean Cul",
-      "symbol": "Cul",
+      "address": "F4GpAFr6vrxU3Y887F3XWkXRgybCVjZNk63m72f6pump",
+      "pairAddress": "FpJFWZ3nGFVYWkpDXZQM8QaLJzmy6U3NgaA8nc7SNDag",
+      "name": "Trump Coin",
+      "symbol": "TrumpCoin",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/Tg3lPMYUKHN7zm5B?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792087225000,
-      "mc": 11548,
-      "liq": 7803.78,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/Fh-yh2Iu4PE6qR8F?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1784006805000,
+      "mc": 53815,
+      "liq": 35460.71,
       "ch": {
-        "m5": 27.15,
-        "h1": -71.2,
-        "h24": -71.2
+        "m5": 11.58,
+        "h1": 14.26,
+        "h24": 58.92
       },
       "vol": {
-        "m5": 1426.58,
-        "h1": 197056.23,
-        "h24": 197056.23
+        "m5": 1790.59,
+        "h1": 24558.82,
+        "h24": 42265.78
+      },
+      "txns": {
+        "m5": {
+          "b": 7,
+          "s": 6
+        },
+        "h1": {
+          "b": 151,
+          "s": 103
+        }
+      },
+      "heat": 63
+    },
+    {
+      "address": "3cGQBtWU54Gxp1PR9F6ZLVzV6YCMY6cSM7mXJPiYg1fj",
+      "pairAddress": "1CVqDR11e5zUFrR72aja9fCUTEAgkzeFVb2mdDUP5qo",
+      "name": "Yeezy Mowalola Kitty",
+      "symbol": "MERCY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/jObClBaINEUpdlP0?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792099117000,
+      "mc": 4543,
+      "liq": 4144.03,
+      "ch": {
+        "m5": -13.03,
+        "h1": -89.04,
+        "h24": -89.04
+      },
+      "vol": {
+        "m5": 127.68,
+        "h1": 177574.65,
+        "h24": 177574.65
+      },
+      "txns": {
+        "m5": {
+          "b": 0,
+          "s": 15
+        },
+        "h1": {
+          "b": 2441,
+          "s": 2418
+        }
+      },
+      "heat": 61
+    },
+    {
+      "address": "DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+      "pairAddress": "B4VFURUHHzyt8YzBGBV9jiarBvjh1EbMAbRNBnNqaxUD",
+      "name": "Super Inu",
+      "symbol": "SI",
+      "dex": "raydium",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/ZrYeLBHVyK_v6fGQ?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1790005501000,
+      "mc": 19266917,
+      "liq": 624198.29,
+      "ch": {
+        "m5": -2.36,
+        "h1": 13.11,
+        "h24": 23.37
+      },
+      "vol": {
+        "m5": 16375.56,
+        "h1": 142163.62,
+        "h24": 1427812.55
       },
       "txns": {
         "m5": {
           "b": 23,
-          "s": 14
+          "s": 11
         },
         "h1": {
-          "b": 3405,
-          "s": 2842
+          "b": 175,
+          "s": 167
         }
       },
-      "heat": 64
+      "heat": 58
     },
     {
       "address": "9a98oQHtxfqmr4EyzsP6wfw69uYAK3JbUeVEuNW1pump",
@@ -170,61 +458,29 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/F4zDaeZ9Hujya0MJ?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1792005509000,
-      "mc": 22979451,
-      "liq": 462964.22,
+      "mc": 21643680,
+      "liq": 450400.4,
       "ch": {
-        "m5": -7.36,
-        "h1": 2.22,
-        "h24": 43408
+        "m5": 2.82,
+        "h1": 0.6,
+        "h24": 3945
       },
       "vol": {
-        "m5": 32734.21,
-        "h1": 581119.22,
-        "h24": 8396329.26
+        "m5": 15798.61,
+        "h1": 169478.74,
+        "h24": 7822786.72
       },
       "txns": {
         "m5": {
-          "b": 250,
-          "s": 322
+          "b": 156,
+          "s": 59
         },
         "h1": {
-          "b": 7463,
-          "s": 3341
+          "b": 2037,
+          "s": 1032
         }
       },
-      "heat": 64
-    },
-    {
-      "address": "AMQ8BusAhpwbt3ufSCTi4k3BEQ7AecX9u12Jnk6Spump",
-      "pairAddress": "AmJYXEDj5Q9BJscXMXXnDcNKrT39ZX4JqZ9NWp8hudrn",
-      "name": "Dikshit Hardik",
-      "symbol": "DIKSHIT",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/u-dDX1M2oY_u97md?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1791984163000,
-      "mc": 297339,
-      "liq": 51635.93,
-      "ch": {
-        "m5": -4.65,
-        "h1": 69.51,
-        "h24": 68.31
-      },
-      "vol": {
-        "m5": 2769.95,
-        "h1": 184956.56,
-        "h24": 963171.49
-      },
-      "txns": {
-        "m5": {
-          "b": 30,
-          "s": 45
-        },
-        "h1": {
-          "b": 772,
-          "s": 773
-        }
-      },
-      "heat": 62
+      "heat": 57
     },
     {
       "address": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
@@ -234,413 +490,29 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/2bajn2a05AdQGV-4?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1791311393000,
-      "mc": 410646,
-      "liq": 64693.65,
+      "mc": 406912,
+      "liq": 64577.55,
       "ch": {
-        "m5": 6.65,
-        "h1": 22,
-        "h24": 84.99
+        "m5": 2.1,
+        "h1": -31.18,
+        "h24": 103
       },
       "vol": {
-        "m5": 768.23,
-        "h1": 24894.86,
-        "h24": 72801.56
+        "m5": 816.27,
+        "h1": 27824.93,
+        "h24": 173840.64
       },
       "txns": {
         "m5": {
-          "b": 2,
-          "s": 7
-        },
-        "h1": {
-          "b": 149,
-          "s": 89
-        }
-      },
-      "heat": 61
-    },
-    {
-      "address": "EZvDXGwfHyRWnAnJo1WHjVUhxpTn2V4kMWmWjh8ypump",
-      "pairAddress": "AVnCtKX5nfx5RLcYv6wY7dsWkaoQAiUhrRkkd5t7TApx",
-      "name": "Star Mind",
-      "symbol": "STARMIND",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/DLX0iucOomtCnMnO?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792088108000,
-      "mc": 8426,
-      "liq": 6362.1,
-      "ch": {
-        "m5": 29.88,
-        "h1": -79.43,
-        "h24": -79.43
-      },
-      "vol": {
-        "m5": 493.98,
-        "h1": 76293.72,
-        "h24": 76293.72
-      },
-      "txns": {
-        "m5": {
-          "b": 20,
-          "s": 3
-        },
-        "h1": {
-          "b": 1187,
-          "s": 1092
-        }
-      },
-      "heat": 61
-    },
-    {
-      "address": "8x5VqbHA8D7NkD52uNuS5nnt3PwA8pLD34ymskeSo2Wn",
-      "pairAddress": "3sjNoCnkkhWPVXYGDtem8rCciHSGc9jSFZuUAzKbvRVp",
-      "name": "zerebro",
-      "symbol": "ZEREBRO",
-      "dex": "raydium",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/2eb3b0a304e9ed93ee44ff263a7cd1c5b376589644b70618aef104a037f391c2?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1730142507000,
-      "mc": 45352907,
-      "liq": 3716492.76,
-      "ch": {
-        "m5": 0.46,
-        "h1": -13.21,
-        "h24": 15.42
-      },
-      "vol": {
-        "m5": 43361.87,
-        "h1": 971221.62,
-        "h24": 16269716.68
-      },
-      "txns": {
-        "m5": {
-          "b": 119,
-          "s": 81
-        },
-        "h1": {
-          "b": 2137,
-          "s": 1512
-        }
-      },
-      "heat": 58
-    },
-    {
-      "address": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
-      "pairAddress": "HnhpJPJgBG2KwniMTNW8cVBHvk1hFog3RC3kjnyc23tD",
-      "name": "Collector Crypt",
-      "symbol": "CARDS",
-      "dex": "raydium",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3277f5f414a940e7d009f9cbc9147c6ab25eae6a6cda10e682319f7b6394e328?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1756493686000,
-      "mc": 313507844,
-      "liq": 4405114.64,
-      "ch": {
-        "m5": 0.07,
-        "h1": -0.91,
-        "h24": 27.36
-      },
-      "vol": {
-        "m5": 12706.77,
-        "h1": 607990.72,
-        "h24": 7229385.73
-      },
-      "txns": {
-        "m5": {
-          "b": 198,
-          "s": 138
-        },
-        "h1": {
-          "b": 4079,
-          "s": 3684
-        }
-      },
-      "heat": 55
-    },
-    {
-      "address": "HgTGdc29D5bDMrDvsCLnorxz899VyDj7ZN7FPa6vpump",
-      "pairAddress": "4MWjp1aBQqE9Y6iC5cd3NrVvWWcHsN2LgpjWYMDK7u7E",
-      "name": "Veil",
-      "symbol": "VEIL",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/-R1cKMiH-3j8pY93?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1791831681000,
-      "mc": 4161563,
-      "liq": 199166.87,
-      "ch": {
-        "m5": 0.32,
-        "h1": 0.23,
-        "h24": -26.03
-      },
-      "vol": {
-        "m5": 2567.7,
-        "h1": 45415.56,
-        "h24": 1323480.17
-      },
-      "txns": {
-        "m5": {
-          "b": 172,
-          "s": 51
-        },
-        "h1": {
-          "b": 1235,
-          "s": 487
-        }
-      },
-      "heat": 54
-    },
-    {
-      "address": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
-      "pairAddress": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
-      "name": "Jean Phil",
-      "symbol": "JEANPHIL",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/BqiLLFPFrRoiHTBQ?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1789844819000,
-      "mc": 7539629,
-      "liq": 436830.38,
-      "ch": {
-        "m5": 4.57,
-        "h1": 5.94,
-        "h24": 4.35
-      },
-      "vol": {
-        "m5": 15542.13,
-        "h1": 51480.48,
-        "h24": 1050175.83
-      },
-      "txns": {
-        "m5": {
-          "b": 7,
-          "s": 32
-        },
-        "h1": {
-          "b": 79,
-          "s": 139
-        }
-      },
-      "heat": 54
-    },
-    {
-      "address": "531sUAkuU7bPcoo9aS1feaD1FdCByTUZCQZp2o6qpump",
-      "pairAddress": "uMagY8HGPTYeFUuuuWjq3oft1uE5Y82XMPHVVj1nDRi",
-      "name": "Hugo Mode",
-      "symbol": "Hugo",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/d1UbCf2i6k3Omlqd?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792086269000,
-      "mc": 23495,
-      "liq": 10136.45,
-      "ch": {
-        "m5": 0.63,
-        "h1": 44.07,
-        "h24": -12.62
-      },
-      "vol": {
-        "m5": 1147.01,
-        "h1": 22588.93,
-        "h24": 42630
-      },
-      "txns": {
-        "m5": {
-          "b": 7,
-          "s": 72
-        },
-        "h1": {
-          "b": 262,
-          "s": 432
-        }
-      },
-      "heat": 53
-    },
-    {
-      "address": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
-      "pairAddress": "HMzvsEEmtzHhvZNw9uwbaG85HCTmFnkbhzUx16cy7ca3",
-      "name": "Catecoin",
-      "symbol": "CATE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/_aILGflqFiJQJ4A-?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1785083563000,
-      "mc": 60136538,
-      "liq": 2851181.77,
-      "ch": {
-        "m5": -0.04,
-        "h1": -2.85,
-        "h24": -5.15
-      },
-      "vol": {
-        "m5": 1282.21,
-        "h1": 83162.25,
-        "h24": 1487705.1
-      },
-      "txns": {
-        "m5": {
-          "b": 4,
-          "s": 4
-        },
-        "h1": {
-          "b": 291,
-          "s": 105
-        }
-      },
-      "heat": 51
-    },
-    {
-      "address": "MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump",
-      "pairAddress": "DA4pM4xSDY4M9V4CgAKKBVH1pw1yscTQQa5nEkGHuKpt",
-      "name": "OTC",
-      "symbol": "OTC",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/ZD7m020H3fY6_QON?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1787923990000,
-      "mc": 5705591,
-      "liq": 567511.4,
-      "ch": {
-        "m5": 0.18,
-        "h1": -6.17,
-        "h24": 47.22
-      },
-      "vol": {
-        "m5": 813.94,
-        "h1": 35964.68,
-        "h24": 1172656.31
-      },
-      "txns": {
-        "m5": {
-          "b": 170,
-          "s": 70
-        },
-        "h1": {
-          "b": 1787,
-          "s": 802
-        }
-      },
-      "heat": 49
-    },
-    {
-      "address": "AyYNfPtftg2zDP4ZbgcoQMggQtwLh4zpfVVmUJs2thto",
-      "pairAddress": "ASgoadVEDL8zJn6KLUiMSh9m8x2yYAEZPsUSpvxHj3LY",
-      "name": "Leopardus tilcayo",
-      "symbol": "Tilcayo",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/IWEYf7wsi23lYWKo?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1789657930000,
-      "mc": 155990,
-      "liq": 51784.49,
-      "ch": {
-        "m5": 0.81,
-        "h1": 1.65,
-        "h24": 11.91
-      },
-      "vol": {
-        "m5": 31.4,
-        "h1": 2119.61,
-        "h24": 14384.72
-      },
-      "txns": {
-        "m5": {
-          "b": 3,
-          "s": 0
-        },
-        "h1": {
           "b": 11,
-          "s": 4
-        }
-      },
-      "heat": 47
-    },
-    {
-      "address": "Diy4Q5aiNEcdn7CWhuwYtuoHtHD9rKBTHCa9hi4qpump",
-      "pairAddress": "91TcJ2v9wFs11pkvyZkNTswC35cB1tUJXpkUgsGnRJcQ",
-      "name": "streamoors.fun",
-      "symbol": "STREAM",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/lJzpJ0-_1aVliFVj?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792080275000,
-      "mc": 86899,
-      "liq": 25854.55,
-      "ch": {
-        "m5": 9.1,
-        "h1": -38.7,
-        "h24": 79.05
-      },
-      "vol": {
-        "m5": 2724.23,
-        "h1": 95674.36,
-        "h24": 2327517.06
-      },
-      "txns": {
-        "m5": {
-          "b": 36,
-          "s": 26
+          "s": 10
         },
         "h1": {
-          "b": 1118,
-          "s": 920
+          "b": 112,
+          "s": 123
         }
       },
-      "heat": 46
-    },
-    {
-      "address": "4jjQjDRYd7xLcFMViRsz4GvtgU6gPZgbVaxN3Rq9pump",
-      "pairAddress": "EDjt1EqFX2xbLmJDqYr2whCS3vZRH2bRXg2bMQXPaFw4",
-      "name": "Pepe Bonk",
-      "symbol": "PONK",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/KJSwLZ-KogmfrLWt?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792026717000,
-      "mc": 106729,
-      "liq": 28026.7,
-      "ch": {
-        "m5": 15.67,
-        "h1": 30.95,
-        "h24": 141
-      },
-      "vol": {
-        "m5": 1189.53,
-        "h1": 14348.48,
-        "h24": 610882.07
-      },
-      "txns": {
-        "m5": {
-          "b": 24,
-          "s": 5
-        },
-        "h1": {
-          "b": 233,
-          "s": 127
-        }
-      },
-      "heat": 46
-    },
-    {
-      "address": "33jENUQnjoitkMFpvNJcSHyLAHFWJuHwT6E3E8CNpump",
-      "pairAddress": "6iep3EgqksbZwgzMBCyAJtiVtVYkCgL9BnPBEwLR8AGQ",
-      "name": "Doge Pepe",
-      "symbol": "DOPE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/ObDmJrHZ3_LeFiF4?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1791725588000,
-      "mc": 5951274,
-      "liq": 305234.15,
-      "ch": {
-        "m5": 0.55,
-        "h1": -6.06,
-        "h24": 270
-      },
-      "vol": {
-        "m5": 4859.05,
-        "h1": 189102.01,
-        "h24": 5352053.18
-      },
-      "txns": {
-        "m5": {
-          "b": 33,
-          "s": 45
-        },
-        "h1": {
-          "b": 1136,
-          "s": 965
-        }
-      },
-      "heat": 46
+      "heat": 52
     },
     {
       "address": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
@@ -650,479 +522,29 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1781643948000,
-      "mc": 115125639,
-      "liq": 2094934.59,
+      "mc": 114461179,
+      "liq": 2089272.37,
       "ch": {
-        "m5": 0.69,
-        "h1": -1.38,
-        "h24": -1.17
+        "m5": -0.65,
+        "h1": -3.3,
+        "h24": -1.79
       },
       "vol": {
-        "m5": 1430.51,
-        "h1": 57407.41,
-        "h24": 892490.68
-      },
-      "txns": {
-        "m5": {
-          "b": 5,
-          "s": 4
-        },
-        "h1": {
-          "b": 139,
-          "s": 90
-        }
-      },
-      "heat": 46
-    },
-    {
-      "address": "3EC7gRDGKgqPHc9ipJxxChoeyseE2xAbQHZUSSTfpump",
-      "pairAddress": "5cX7awH9czi1VKK2SFabfCSzyVbytf7KBExiJiP6jYDq",
-      "name": "Sycamore Core",
-      "symbol": "SYCAMORE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/emG4oY_d2LJvg14X?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792050621000,
-      "mc": 264861,
-      "liq": 48600.43,
-      "ch": {
-        "m5": -3.48,
-        "h1": 4.01,
-        "h24": 438
-      },
-      "vol": {
-        "m5": 3850.7,
-        "h1": 62940.49,
-        "h24": 3658804.93
+        "m5": 5813.82,
+        "h1": 53954.39,
+        "h24": 1049777.04
       },
       "txns": {
         "m5": {
           "b": 16,
-          "s": 15
-        },
-        "h1": {
-          "b": 258,
-          "s": 190
-        }
-      },
-      "heat": 43
-    },
-    {
-      "address": "Fak3rJEBfR4Vb8DoFpecf6yoxbkkr1gGUH5tdj2rpump",
-      "pairAddress": "9dsiuydk5EFRCLk6VEywY95Nn3jjGbdWNijuACf1PXuA",
-      "name": "MarsX",
-      "symbol": "MarsX",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/6NjcukoeJVrGYKs_?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1791826718000,
-      "mc": 61542,
-      "liq": 25636.83,
-      "ch": {
-        "m5": 0.46,
-        "h1": -24.67,
-        "h24": -50.21
-      },
-      "vol": {
-        "m5": 262.3,
-        "h1": 6553.82,
-        "h24": 159043.9
-      },
-      "txns": {
-        "m5": {
-          "b": 7,
-          "s": 3
-        },
-        "h1": {
-          "b": 107,
-          "s": 40
-        }
-      },
-      "heat": 43
-    },
-    {
-      "address": "4qH8A5GxvRMZgpRFjXASc6U9HAoEzKeUqxY2dPB7pump",
-      "pairAddress": "7oDjba4hZozvNWboKSRwFetStnM4iA5WiTKwFr1Lsy8t",
-      "name": "Grok Mascot",
-      "symbol": "Groklet",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/15387b1c3440d5c1069778ef500471f602f8e078b2f43bd0455bf18a29002b19?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1750018382000,
-      "mc": 264436,
-      "liq": 50819.41,
-      "ch": {
-        "m5": -0.15,
-        "h1": -31.92,
-        "h24": 856
-      },
-      "vol": {
-        "m5": 2862.19,
-        "h1": 33866.67,
-        "h24": 2085858.08
-      },
-      "txns": {
-        "m5": {
-          "b": 20,
-          "s": 23
-        },
-        "h1": {
-          "b": 294,
-          "s": 256
-        }
-      },
-      "heat": 42
-    },
-    {
-      "address": "6RcuRmNgVAbeG7ZGweppgLTdbCTtEj41dZfA87yRLsbH",
-      "pairAddress": "ChwEgfpXR66xcxJhTDcehQRV1YBJCan3k3Q62iN6efcK",
-      "name": "Cladophialophora Bantiana",
-      "symbol": "Bantiana",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/UTbRsdoVAOmGWjKD?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792030971000,
-      "mc": 20031,
-      "liq": 10910.45,
-      "ch": {
-        "m5": -2.11,
-        "h1": 79.93,
-        "h24": -49.8
-      },
-      "vol": {
-        "m5": 774.05,
-        "h1": 4717.31,
-        "h24": 203979.96
-      },
-      "txns": {
-        "m5": {
-          "b": 7,
-          "s": 11
-        },
-        "h1": {
-          "b": 64,
-          "s": 54
-        }
-      },
-      "heat": 42
-    }
-  ],
-  "graduates": [
-    {
-      "address": "9mUobF5v71TuVmSEwBRpgBsMNYsqiDU7zE6ZuhaSpump",
-      "pairAddress": "FXiwM25Gc9sLPeD2xZLj523zLwy6A68P844gGKtAZM2j",
-      "name": "Jean Cul",
-      "symbol": "CUL",
-      "dex": "pumpswap",
-      "imageUrl": null,
-      "pairCreatedAt": 1792090369000,
-      "mc": 6,
-      "liq": 2.9,
-      "ch": {
-        "m5": -82.09,
-        "h1": -82.09,
-        "h24": -82.09
-      },
-      "vol": {
-        "m5": 37.65,
-        "h1": 37.65,
-        "h24": 37.65
-      },
-      "txns": {
-        "m5": {
-          "b": 58,
-          "s": 42
-        },
-        "h1": {
-          "b": 58,
-          "s": 42
-        }
-      },
-      "heat": 71
-    },
-    {
-      "address": "7PcRX5EX8gBrpT64q1fzTMw49Qk1T5e9yamzgppNpump",
-      "pairAddress": "21aR22BrUCAmFzWohFRsqJWefwTdD7mTU6SBgEYkYmbm",
-      "name": "Modus Research",
-      "symbol": "MDR",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/MUeLQEALeLWCDSPg?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792089614000,
-      "mc": 18900,
-      "liq": 10268.34,
-      "ch": {
-        "m5": 34.68,
-        "h1": -55.45,
-        "h24": -55.45
-      },
-      "vol": {
-        "m5": 5327.05,
-        "h1": 99295.84,
-        "h24": 99295.84
-      },
-      "txns": {
-        "m5": {
-          "b": 79,
-          "s": 65
-        },
-        "h1": {
-          "b": 1418,
-          "s": 1113
-        }
-      },
-      "heat": 68
-    },
-    {
-      "address": "26KXBUerUjNm2kGGeoYDjih1iZZ1jgar6Hd2qzfHpump",
-      "pairAddress": "3YEjqFm1fye9ULgUvpPe8fiFrc6uEMaou2Z1e1cxUgzG",
-      "name": "Magic State Cultivation",
-      "symbol": "MSC",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/kHEwe0Q3_gqua1T8?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792088885000,
-      "mc": 2785,
-      "liq": 2808.95,
-      "ch": {
-        "m5": -2.07,
-        "h1": -93.97,
-        "h24": -93.97
-      },
-      "vol": {
-        "m5": 24.46,
-        "h1": 185171.13,
-        "h24": 185171.13
-      },
-      "txns": {
-        "m5": {
-          "b": 0,
           "s": 4
         },
         "h1": {
-          "b": 1656,
-          "s": 1812
+          "b": 202,
+          "s": 181
         }
       },
-      "heat": 60
-    },
-    {
-      "address": "EZvDXGwfHyRWnAnJo1WHjVUhxpTn2V4kMWmWjh8ypump",
-      "pairAddress": "AVnCtKX5nfx5RLcYv6wY7dsWkaoQAiUhrRkkd5t7TApx",
-      "name": "Star Mind",
-      "symbol": "STARMIND",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/DLX0iucOomtCnMnO?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792088108000,
-      "mc": 8426,
-      "liq": 6362.1,
-      "ch": {
-        "m5": 29.88,
-        "h1": -79.43,
-        "h24": -79.43
-      },
-      "vol": {
-        "m5": 493.98,
-        "h1": 76293.72,
-        "h24": 76293.72
-      },
-      "txns": {
-        "m5": {
-          "b": 20,
-          "s": 3
-        },
-        "h1": {
-          "b": 1187,
-          "s": 1092
-        }
-      },
-      "heat": 61
-    },
-    {
-      "address": "EAJ1auhSGyoFBpugVindEjWNHnSrqbzczfmNBZbCpump",
-      "pairAddress": "3F6BjzU8eJ3XeJuwfV9KN37Zf9awrDgfwYZLUpubUqkY",
-      "name": "Jean Cul",
-      "symbol": "Cul",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/Tg3lPMYUKHN7zm5B?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792087225000,
-      "mc": 11548,
-      "liq": 7803.78,
-      "ch": {
-        "m5": 27.15,
-        "h1": -71.2,
-        "h24": -71.2
-      },
-      "vol": {
-        "m5": 1426.58,
-        "h1": 197056.23,
-        "h24": 197056.23
-      },
-      "txns": {
-        "m5": {
-          "b": 23,
-          "s": 14
-        },
-        "h1": {
-          "b": 3405,
-          "s": 2842
-        }
-      },
-      "heat": 64
-    },
-    {
-      "address": "CM54aeZaVCUokycv4Ypq77mBYB3GpC17R7CAHS4zpump",
-      "pairAddress": "6HWrNjZMU9LDUhaZMBy3zuY29qAL2LY7dgsBeGFQYfhp",
-      "name": "POKEMON",
-      "symbol": "POKEMON",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/T2yI9QEZLx-TYKZB?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792087203000,
-      "mc": 14032,
-      "liq": 9051.31,
-      "ch": {
-        "m5": -12.28,
-        "h1": -68.33,
-        "h24": -68.33
-      },
-      "vol": {
-        "m5": 503.12,
-        "h1": 404752.09,
-        "h24": 404752.09
-      },
-      "txns": {
-        "m5": {
-          "b": 8,
-          "s": 11
-        },
-        "h1": {
-          "b": 4217,
-          "s": 3080
-        }
-      },
-      "heat": 67
-    },
-    {
-      "address": "531sUAkuU7bPcoo9aS1feaD1FdCByTUZCQZp2o6qpump",
-      "pairAddress": "uMagY8HGPTYeFUuuuWjq3oft1uE5Y82XMPHVVj1nDRi",
-      "name": "Hugo Mode",
-      "symbol": "Hugo",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/d1UbCf2i6k3Omlqd?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792086269000,
-      "mc": 23495,
-      "liq": 10136.45,
-      "ch": {
-        "m5": 0.63,
-        "h1": 44.07,
-        "h24": -12.62
-      },
-      "vol": {
-        "m5": 1147.01,
-        "h1": 22588.93,
-        "h24": 42630
-      },
-      "txns": {
-        "m5": {
-          "b": 7,
-          "s": 72
-        },
-        "h1": {
-          "b": 262,
-          "s": 432
-        }
-      },
-      "heat": 53
-    },
-    {
-      "address": "SDJ7Qncp9ztv2uPEqWAzc2YDCY32Vf8S6xtBjQepump",
-      "pairAddress": "BM4aLPAnGu6kB5CLsio9Fuks4Wz9yeZiKBEYKS9thY5Q",
-      "name": "The Day Trader",
-      "symbol": "AIDEN",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/QWTp0TmIj2AppRY8?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792086146000,
-      "mc": 2084,
-      "liq": 2253.61,
-      "ch": {
-        "m5": null,
-        "h1": -97.12,
-        "h24": -95.69
-      },
-      "vol": {
-        "m5": 0,
-        "h1": 352875.25,
-        "h24": 535546.9
-      },
-      "txns": {
-        "m5": {
-          "b": 0,
-          "s": 0
-        },
-        "h1": {
-          "b": 6627,
-          "s": 7945
-        }
-      },
-      "heat": 60
-    },
-    {
-      "address": "HDbLsAiamKHCDLu4CgKqMvSQC71eAVTTi9CjcpjTpump",
-      "pairAddress": "GHfRSdC54YLVwRWN83EvKkENh2ahyAMMfv1tQN1fiKDh",
-      "name": "Dacity Doge",
-      "symbol": "DADOGE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/2s_ZZkHlhcTIY7iv?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792081501000,
-      "mc": 2228,
-      "liq": 2471.48,
-      "ch": {
-        "m5": null,
-        "h1": -98.93,
-        "h24": -95.23
-      },
-      "vol": {
-        "m5": 0,
-        "h1": 229236.8,
-        "h24": 1208242.39
-      },
-      "txns": {
-        "m5": {
-          "b": 0,
-          "s": 0
-        },
-        "h1": {
-          "b": 2447,
-          "s": 8388
-        }
-      },
-      "heat": 57
-    },
-    {
-      "address": "9UDNU3zn32BdB8s82gxC7aJwKHii7PYaKH9dyQ5spump",
-      "pairAddress": "7n3BMktqd2sJTkrpJSkxfpVKrmUybwLqWC8FCQq6oe7M",
-      "name": "OTCatwalk",
-      "symbol": "OTCATWALK",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/R6bRD2htlqaMLc7J?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792081006000,
-      "mc": 58326,
-      "liq": 20504.58,
-      "ch": {
-        "m5": -9.9,
-        "h1": -83.89,
-        "h24": -11.38
-      },
-      "vol": {
-        "m5": 10671.07,
-        "h1": 469829.91,
-        "h24": 1584806.38
-      },
-      "txns": {
-        "m5": {
-          "b": 363,
-          "s": 46
-        },
-        "h1": {
-          "b": 11086,
-          "s": 1885
-        }
-      },
-      "heat": 76
+      "heat": 49
     },
     {
       "address": "Diy4Q5aiNEcdn7CWhuwYtuoHtHD9rKBTHCa9hi4qpump",
@@ -1132,49 +554,659 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/lJzpJ0-_1aVliFVj?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1792080275000,
-      "mc": 86899,
-      "liq": 25854.55,
+      "mc": 241761,
+      "liq": 44798.2,
       "ch": {
-        "m5": 9.1,
-        "h1": -38.7,
-        "h24": 79.05
+        "m5": 5.41,
+        "h1": 68.94,
+        "h24": 398
       },
       "vol": {
-        "m5": 2724.23,
-        "h1": 95674.36,
-        "h24": 2327517.06
+        "m5": 4407.13,
+        "h1": 55051.8,
+        "h24": 2500440.51
       },
       "txns": {
         "m5": {
-          "b": 36,
-          "s": 26
+          "b": 42,
+          "s": 16
         },
         "h1": {
-          "b": 1118,
-          "s": 920
+          "b": 468,
+          "s": 329
+        }
+      },
+      "heat": 47
+    },
+    {
+      "address": "8QtbrC9d3BezyCwzBFUQbNsWJGte7ckrZ7HWcn81pump",
+      "pairAddress": "B2ajNVWAMef1xfjSW3QDrF7qWeLB7dTBwCR6va4pMB21",
+      "name": "Dickbuttifier",
+      "symbol": "DICKBUTTIFIER",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792087767000,
+      "mc": 23294,
+      "liq": 11823.18,
+      "ch": {
+        "m5": -27.37,
+        "h1": 25.5,
+        "h24": -42.93
+      },
+      "vol": {
+        "m5": 2063.8,
+        "h1": 21741.19,
+        "h24": 372408.07
+      },
+      "txns": {
+        "m5": {
+          "b": 15,
+          "s": 30
+        },
+        "h1": {
+          "b": 189,
+          "s": 157
+        }
+      },
+      "heat": 47
+    },
+    {
+      "address": "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
+      "pairAddress": "2uF4Xh61rDwxnG9woyxsVQP7zuA6kLFpb3NvnRQeoiSd",
+      "name": "Pump",
+      "symbol": "PUMP",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/a0d07b12d0c34be414b8ac98a827ff862cfd684554c8da4c63fa647eef0af501?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1752512149000,
+      "mc": 2111693444,
+      "liq": 23761596.75,
+      "ch": {
+        "m5": -0.21,
+        "h1": -0.06,
+        "h24": -4.41
+      },
+      "vol": {
+        "m5": 14213.32,
+        "h1": 97327.89,
+        "h24": 17284536.33
+      },
+      "txns": {
+        "m5": {
+          "b": 3,
+          "s": 27
+        },
+        "h1": {
+          "b": 241,
+          "s": 234
+        }
+      },
+      "heat": 47
+    },
+    {
+      "address": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+      "pairAddress": "HnhpJPJgBG2KwniMTNW8cVBHvk1hFog3RC3kjnyc23tD",
+      "name": "Collector Crypt",
+      "symbol": "CARDS",
+      "dex": "raydium",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/3277f5f414a940e7d009f9cbc9147c6ab25eae6a6cda10e682319f7b6394e328?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1756493686000,
+      "mc": 313334605,
+      "liq": 4382639.57,
+      "ch": {
+        "m5": 0.17,
+        "h1": 1.08,
+        "h24": 7.49
+      },
+      "vol": {
+        "m5": 16488.85,
+        "h1": 202206.74,
+        "h24": 6449200.2
+      },
+      "txns": {
+        "m5": {
+          "b": 131,
+          "s": 96
+        },
+        "h1": {
+          "b": 264,
+          "s": 258
         }
       },
       "heat": 46
     },
     {
-      "address": "796H6fnptDnpRUDpupkvZoMNMmnD6ZTayVnVUSaTpump",
-      "pairAddress": "5RtpCFRHoVZeHFmXs3RjU78DWYdjQXNATKTbPnaZaWDb",
-      "name": "Dacity Cat",
-      "symbol": "DACAT",
+      "address": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+      "pairAddress": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+      "name": "Jean Phil",
+      "symbol": "JEANPHIL",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/oNOHbwNiYkansrfo?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792078407000,
-      "mc": 2082,
-      "liq": 2181.55,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/BqiLLFPFrRoiHTBQ?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1789844819000,
+      "mc": 7920979,
+      "liq": 448026.54,
       "ch": {
-        "m5": null,
-        "h1": null,
-        "h24": -95.42
+        "m5": -0.95,
+        "h1": 7.92,
+        "h24": 8.16
+      },
+      "vol": {
+        "m5": 3558.14,
+        "h1": 88874.38,
+        "h24": 1107526.32
+      },
+      "txns": {
+        "m5": {
+          "b": 29,
+          "s": 3
+        },
+        "h1": {
+          "b": 222,
+          "s": 257
+        }
+      },
+      "heat": 45
+    },
+    {
+      "address": "nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump",
+      "pairAddress": "G2UuRbmVDzDFP4qyoBJrSKBXSi7d6V4bPP9tHPs36y4b",
+      "name": "Dacity Coin",
+      "symbol": "Dacity",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/iKZSFe4f9XKLJV8o?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1791717419000,
+      "mc": 1245972,
+      "liq": 127878.91,
+      "ch": {
+        "m5": -4.44,
+        "h1": -18.37,
+        "h24": 1012
+      },
+      "vol": {
+        "m5": 11006.32,
+        "h1": 193851.9,
+        "h24": 7476008.86
+      },
+      "txns": {
+        "m5": {
+          "b": 43,
+          "s": 33
+        },
+        "h1": {
+          "b": 687,
+          "s": 684
+        }
+      },
+      "heat": 45
+    },
+    {
+      "address": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+      "pairAddress": "zxTpi4BtaWX3mgdAPoezkMD1hxx8CdeCfrqXMWvSCLX",
+      "name": "STONK",
+      "symbol": "STONK",
+      "dex": "meteora",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/bJ1wrZe7IYIknT9a?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1786531900000,
+      "mc": 96344258,
+      "liq": 2439017.23,
+      "ch": {
+        "m5": 0.29,
+        "h1": 2.34,
+        "h24": 9.21
+      },
+      "vol": {
+        "m5": 5789.85,
+        "h1": 467033.85,
+        "h24": 7066154.37
+      },
+      "txns": {
+        "m5": {
+          "b": 6,
+          "s": 26
+        },
+        "h1": {
+          "b": 906,
+          "s": 1456
+        }
+      },
+      "heat": 44
+    },
+    {
+      "address": "7VertkgF9KLhxxJXHX6uaWuoYZTP9LdGj2bWmVXVpump",
+      "pairAddress": "CyJwKnLiiY4fmiwqMCSWFSHxo7T9Ubshgs2uRAuJCrk5",
+      "name": "Agency",
+      "symbol": "Agency",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/VkbggL6HtrRGK-Ue?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1790894555000,
+      "mc": 1367981,
+      "liq": 180979.68,
+      "ch": {
+        "m5": -3.07,
+        "h1": -12.84,
+        "h24": -10.34
+      },
+      "vol": {
+        "m5": 3549.97,
+        "h1": 29907.29,
+        "h24": 666539.98
+      },
+      "txns": {
+        "m5": {
+          "b": 24,
+          "s": 13
+        },
+        "h1": {
+          "b": 89,
+          "s": 86
+        }
+      },
+      "heat": 44
+    }
+  ],
+  "graduates": [
+    {
+      "address": "GmRZNKavuh2KxpdQ3QL5jmZfQpJm8zvubdCR4ddQpump",
+      "pairAddress": "75SFch8XYerA4w9KibFW1AFD1h5L24XWrGAK5rjkdH2u",
+      "name": "The DogeFather",
+      "symbol": "DOGEFATHER",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792101201000,
+      "mc": 232340,
+      "liq": 39878.2,
+      "ch": {
+        "m5": 337,
+        "h1": 337,
+        "h24": 337
+      },
+      "vol": {
+        "m5": 24799.79,
+        "h1": 24799.79,
+        "h24": 24799.79
+      },
+      "txns": {
+        "m5": {
+          "b": 125,
+          "s": 39
+        },
+        "h1": {
+          "b": 125,
+          "s": 39
+        }
+      },
+      "heat": 86
+    },
+    {
+      "address": "ACKwyd6BqZxTNK95iLct1qZe5pww1X5Y5LZhZ8Bwpump",
+      "pairAddress": "HXnpsQBFG7mjGFpmX3yLbgGfwptnuGMAi1WQew21z1yz",
+      "name": "Soljack",
+      "symbol": "SLJK",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792101188000,
+      "mc": 5,
+      "liq": 7.43,
+      "ch": {
+        "m5": -97.44,
+        "h1": -97.44,
+        "h24": -97.44
+      },
+      "vol": {
+        "m5": 337.1,
+        "h1": 337.1,
+        "h24": 337.1
+      },
+      "txns": {
+        "m5": {
+          "b": 108,
+          "s": 78
+        },
+        "h1": {
+          "b": 108,
+          "s": 78
+        }
+      },
+      "heat": 73
+    },
+    {
+      "address": "9h59uAnvim2rpQxk2HmDDB1tqvVyg4ufWfhyR3Gpump",
+      "pairAddress": "9XDkSTnAdnkcfZPY79JMrpVYJxHeCUmwRic2hdd8SFw5",
+      "name": "Google Gemini",
+      "symbol": "Gemini",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792101180000,
+      "mc": 395064,
+      "liq": 52411.45,
+      "ch": {
+        "m5": 798,
+        "h1": 798,
+        "h24": 798
+      },
+      "vol": {
+        "m5": 17647.56,
+        "h1": 17647.56,
+        "h24": 17647.56
+      },
+      "txns": {
+        "m5": {
+          "b": 925,
+          "s": 680
+        },
+        "h1": {
+          "b": 925,
+          "s": 680
+        }
+      },
+      "heat": 85
+    },
+    {
+      "address": "4si66xJZV7MSykgRn4AHM5ytYmZftqYx4J6uqLewpump",
+      "pairAddress": "CncxfTpXzMYimKW6cLYoduuDPK45HVhbak8xSAZjYMQs",
+      "name": "called.bet",
+      "symbol": "CALLED",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/lYzs0kOTcFcoyawm?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792100907000,
+      "mc": 3907,
+      "liq": 3572.25,
+      "ch": {
+        "m5": -25.16,
+        "h1": -90.67,
+        "h24": -90.67
+      },
+      "vol": {
+        "m5": 4672.34,
+        "h1": 22800.65,
+        "h24": 22800.65
+      },
+      "txns": {
+        "m5": {
+          "b": 37,
+          "s": 122
+        },
+        "h1": {
+          "b": 221,
+          "s": 319
+        }
+      },
+      "heat": 68
+    },
+    {
+      "address": "ASbEHkXWwYqatvgx7BLxyuqgzhTRKYxrDTL9py56pump",
+      "pairAddress": "8tSrhxmKDASKiQfsbBN9HccWQF3vwsZXQKn2geyuUYWW",
+      "name": "Silvia Elon ETF",
+      "symbol": "SVIA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/DB8XpfJ5FX6mHsWI?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792099950000,
+      "mc": 13182,
+      "liq": 8407.9,
+      "ch": {
+        "m5": 103,
+        "h1": -70.22,
+        "h24": -70.22
+      },
+      "vol": {
+        "m5": 5760.1,
+        "h1": 340222.99,
+        "h24": 340222.99
+      },
+      "txns": {
+        "m5": {
+          "b": 126,
+          "s": 90
+        },
+        "h1": {
+          "b": 5171,
+          "s": 4166
+        }
+      },
+      "heat": 67
+    },
+    {
+      "address": "Ao8ZN16xseGmKiFonHYTSGuPDQ2JcNN8CwjmVvpGpump",
+      "pairAddress": "EcGyMB3UeMQqrH3YFgvFcQLGjtqTxU3vaVvAMp7n7n4A",
+      "name": "uni",
+      "symbol": "uni",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/HezB8YKYWsrbj-60?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792099473000,
+      "mc": 18961,
+      "liq": 10222.84,
+      "ch": {
+        "m5": -20.92,
+        "h1": -57.59,
+        "h24": -57.59
+      },
+      "vol": {
+        "m5": 4604.04,
+        "h1": 185268.23,
+        "h24": 185268.23
+      },
+      "txns": {
+        "m5": {
+          "b": 48,
+          "s": 52
+        },
+        "h1": {
+          "b": 2310,
+          "s": 2099
+        }
+      },
+      "heat": 65
+    },
+    {
+      "address": "AEqqTu9iYMvzWJa8Ub9XtQaN1awYw3uyUEPJxVe9pump",
+      "pairAddress": "44wJGAHrSnegbgMkmZt4WTEKyBSD8shDfyQnZnjRCNpc",
+      "name": "Liquify",
+      "symbol": "LIQUIFY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/lEGYEkFUbZnAhjAk?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792098572000,
+      "mc": 2748,
+      "liq": 2912.49,
+      "ch": {
+        "m5": -0.62,
+        "h1": -93.38,
+        "h24": -93.38
+      },
+      "vol": {
+        "m5": 4.71,
+        "h1": 33090.1,
+        "h24": 33090.1
+      },
+      "txns": {
+        "m5": {
+          "b": 0,
+          "s": 2
+        },
+        "h1": {
+          "b": 481,
+          "s": 506
+        }
+      },
+      "heat": 55
+    },
+    {
+      "address": "GYdAhrQj3i2Rk6JufZnQiTLUCPwoN1SKT6VySysFpump",
+      "pairAddress": "ATyTkywfPsJ3J7JnyrTkSQQ3PuaA26txthpD4CHAgFHM",
+      "name": "Xstok",
+      "symbol": "Xstok",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/skrj_rJLvbWOXbH9?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792098286000,
+      "mc": 2504,
+      "liq": 2770.71,
+      "ch": {
+        "m5": 14.6,
+        "h1": -95.68,
+        "h24": -95.68
+      },
+      "vol": {
+        "m5": 902.05,
+        "h1": 1946408.1,
+        "h24": 1946408.1
+      },
+      "txns": {
+        "m5": {
+          "b": 3,
+          "s": 362
+        },
+        "h1": {
+          "b": 13140,
+          "s": 10735
+        }
+      },
+      "heat": 68
+    },
+    {
+      "address": "HBXhMNtvNLN6YWz8rAzjvXUQJZyeb5cnuuo2XW5Hpump",
+      "pairAddress": "8EBWYVbBGWHfNnWLcUnKZnDiMAs18Y9SJA5rHFZkyvkL",
+      "name": "Waldo",
+      "symbol": "Waldo",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/9jl8iL_DWOcc0GAD?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792097829000,
+      "mc": null,
+      "liq": null,
+      "ch": {
+        "m5": -5.03,
+        "h1": -91.69,
+        "h24": -91.69
       },
       "vol": {
         "m5": 0,
         "h1": 0,
-        "h24": 286351.01
+        "h24": 0
+      },
+      "txns": {
+        "m5": {
+          "b": 0,
+          "s": 5
+        },
+        "h1": {
+          "b": 1615,
+          "s": 1121
+        }
+      },
+      "heat": 30
+    },
+    {
+      "address": "D61pTaTqR93axxVvu7AX5TW6c3a4vhffPPMfCnsYpump",
+      "pairAddress": "GGM3WPy8Mtxx7AFvS1RsxbZTbnz9KK1HEG9MbFMyADA1",
+      "name": "The Owldacity",
+      "symbol": "OWLDACITY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/kmAW8gHTa2pUo1HY?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792096236000,
+      "mc": 1033362,
+      "liq": 89433.65,
+      "ch": {
+        "m5": 19.58,
+        "h1": 377,
+        "h24": 1535
+      },
+      "vol": {
+        "m5": 62691.96,
+        "h1": 496424.43,
+        "h24": 838653.93
+      },
+      "txns": {
+        "m5": {
+          "b": 889,
+          "s": 377
+        },
+        "h1": {
+          "b": 8766,
+          "s": 2495
+        }
+      },
+      "heat": 86
+    },
+    {
+      "address": "H2pkmDKUio79yzzj5cRF6fqf6Xeq6AmpTsVVGG9wpump",
+      "pairAddress": "AW1NPKi2JC6zw17hUv4GttiMDECoengd6eWG62WRusFy",
+      "name": "Roadster Starman",
+      "symbol": "Starman",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/0K775SE0UWMGkBvB?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792095443000,
+      "mc": 461802,
+      "liq": 58580.28,
+      "ch": {
+        "m5": -8.17,
+        "h1": 143,
+        "h24": 854
+      },
+      "vol": {
+        "m5": 4913.95,
+        "h1": 222033.19,
+        "h24": 502523.8
+      },
+      "txns": {
+        "m5": {
+          "b": 209,
+          "s": 32
+        },
+        "h1": {
+          "b": 3845,
+          "s": 768
+        }
+      },
+      "heat": 74
+    },
+    {
+      "address": "8QtbrC9d3BezyCwzBFUQbNsWJGte7ckrZ7HWcn81pump",
+      "pairAddress": "B2ajNVWAMef1xfjSW3QDrF7qWeLB7dTBwCR6va4pMB21",
+      "name": "Dickbuttifier",
+      "symbol": "DICKBUTTIFIER",
+      "dex": "pumpswap",
+      "imageUrl": null,
+      "pairCreatedAt": 1792087767000,
+      "mc": 23294,
+      "liq": 11823.18,
+      "ch": {
+        "m5": -27.37,
+        "h1": 25.5,
+        "h24": -42.93
+      },
+      "vol": {
+        "m5": 2063.8,
+        "h1": 21741.19,
+        "h24": 372408.07
+      },
+      "txns": {
+        "m5": {
+          "b": 15,
+          "s": 30
+        },
+        "h1": {
+          "b": 189,
+          "s": 157
+        }
+      },
+      "heat": 47
+    },
+    {
+      "address": "HDbLsAiamKHCDLu4CgKqMvSQC71eAVTTi9CjcpjTpump",
+      "pairAddress": "GHfRSdC54YLVwRWN83EvKkENh2ahyAMMfv1tQN1fiKDh",
+      "name": "Dacity Doge",
+      "symbol": "DADOGE",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/2s_ZZkHlhcTIY7iv?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792081501000,
+      "mc": 2249,
+      "liq": 2493.8,
+      "ch": {
+        "m5": null,
+        "h1": null,
+        "h24": -95.18
+      },
+      "vol": {
+        "m5": 0,
+        "h1": 0,
+        "h24": 1208251.97
       },
       "txns": {
         "m5": {
@@ -1189,100 +1221,68 @@
       "heat": 0
     },
     {
-      "address": "67YVFQSVdAY1C7YcBjP528rB9BgtDJg4tA7tMjVWpump",
-      "pairAddress": "6SNpQAS8mBtmpkGQ5hjeP5zFHCLFQt8eJz73kmMpSokW",
-      "name": "INU",
-      "symbol": "INU",
+      "address": "9UDNU3zn32BdB8s82gxC7aJwKHii7PYaKH9dyQ5spump",
+      "pairAddress": "7n3BMktqd2sJTkrpJSkxfpVKrmUybwLqWC8FCQq6oe7M",
+      "name": "OTCatwalk",
+      "symbol": "OTCATWALK",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/a-pj3dMkRz5SCDP0?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792071868000,
-      "mc": null,
-      "liq": null,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/R6bRD2htlqaMLc7J?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792081006000,
+      "mc": 2372,
+      "liq": 2648.86,
       "ch": {
-        "m5": -8.59,
-        "h1": -30.35,
-        "h24": 211
+        "m5": null,
+        "h1": null,
+        "h24": -96.4
       },
       "vol": {
         "m5": 0,
         "h1": 0,
-        "h24": 0
+        "h24": 1593918.7
       },
       "txns": {
         "m5": {
-          "b": 19,
-          "s": 8
+          "b": 0,
+          "s": 0
         },
         "h1": {
-          "b": 97,
-          "s": 88
+          "b": 0,
+          "s": 0
         }
       },
-      "heat": 19
+      "heat": 0
     },
     {
-      "address": "7HirFVJ6BV5sp11vnwNnC61XZGuGYsFaxzhYkjeWpump",
-      "pairAddress": "F3dWdhiVrCGARuRd94rP1deZfYvVbW1pkbvDY2i2bjHV",
-      "name": "X Shop",
-      "symbol": "XSHOP",
+      "address": "Diy4Q5aiNEcdn7CWhuwYtuoHtHD9rKBTHCa9hi4qpump",
+      "pairAddress": "91TcJ2v9wFs11pkvyZkNTswC35cB1tUJXpkUgsGnRJcQ",
+      "name": "streamoors.fun",
+      "symbol": "STREAM",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/Kd5L_aOFHPjFj3BY?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792068792000,
-      "mc": 12973,
-      "liq": 8781.89,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/lJzpJ0-_1aVliFVj?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792080275000,
+      "mc": 241761,
+      "liq": 44798.2,
       "ch": {
-        "m5": 7.82,
-        "h1": -45.37,
-        "h24": -66.81
+        "m5": 5.41,
+        "h1": 68.94,
+        "h24": 398
       },
       "vol": {
-        "m5": 581.48,
-        "h1": 9997.24,
-        "h24": 430887.7
+        "m5": 4407.13,
+        "h1": 55051.8,
+        "h24": 2500440.51
       },
       "txns": {
         "m5": {
-          "b": 2,
-          "s": 7
+          "b": 42,
+          "s": 16
         },
         "h1": {
-          "b": 73,
-          "s": 68
+          "b": 468,
+          "s": 329
         }
       },
-      "heat": 33
-    },
-    {
-      "address": "rc5QqCeRy58gCa4x3KMXiZNY9b86Z3YF3c3M8JLpump",
-      "pairAddress": "9Tu9YaHrrhjPvDi2tPTUQjMZsC4x4vZJVJA5fNwxUxVa",
-      "name": "bottle.capital",
-      "symbol": "BOTTLE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/-YzL9E6V-7WwBPcB?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792066630000,
-      "mc": 17646,
-      "liq": 12329.63,
-      "ch": {
-        "m5": 15.14,
-        "h1": 43.35,
-        "h24": -55.71
-      },
-      "vol": {
-        "m5": 581.1,
-        "h1": 12081.65,
-        "h24": 1692701.49
-      },
-      "txns": {
-        "m5": {
-          "b": 13,
-          "s": 6
-        },
-        "h1": {
-          "b": 208,
-          "s": 167
-        }
-      },
-      "heat": 34
+      "heat": 47
     }
   ]
 }
