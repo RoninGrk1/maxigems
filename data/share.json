@@ -1515,8 +1515,8 @@
    "v": 1,
    "peak": 1.04,
    "cur": 0.01,
-   "curMc": 2380,
-   "status": "rugged",
+   "curMc": 2181,
+   "status": "pulled",
    "peakMc": 381093,
    "hasCard": true,
    "symbol": "KURUMI"
@@ -1564,9 +1564,9 @@
   "3SVjZ7BfT9FxiR49nZc7UdBmLgzRLJY7XBZDKhEFpump": {
    "v": 1,
    "peak": 1,
-   "cur": 1,
-   "curMc": 875232,
-   "status": "live",
+   "cur": 0.1,
+   "curMc": 90213,
+   "status": "rugged",
    "peakMc": 875232,
    "hasCard": true,
    "symbol": "SWORDOPE"
@@ -1580,6 +1580,16 @@
    "peakMc": 561450,
    "hasCard": true,
    "symbol": "GTA"
+  },
+  "3p4LAKKCcsiBF5nuYYqLu8mJpfXStQJMk2LYubM3pump": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 405687,
+   "status": "live",
+   "peakMc": 405687,
+   "hasCard": true,
+   "symbol": "Chop"
   }
  }
 }
