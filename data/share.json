@@ -1585,8 +1585,8 @@
    "v": 1,
    "peak": 1.99,
    "cur": 0.01,
-   "curMc": 2344,
-   "status": "rugged",
+   "curMc": 2206,
+   "status": "pulled",
    "peakMc": 805455,
    "hasCard": true,
    "symbol": "Chop"
@@ -1774,9 +1774,9 @@
   "ASX4GtetW337jwG2rLZaU84eY64rRCoWbf63yXQepump": {
    "v": 1,
    "peak": 1.21,
-   "cur": 1.21,
-   "curMc": 95272,
-   "status": "live",
+   "cur": 0.19,
+   "curMc": 14775,
+   "status": "rugged",
    "peakMc": 95272,
    "hasCard": true,
    "symbol": "HERMIT"
@@ -1834,20 +1834,20 @@
   "ANVLA6eKiAq4nstD2Sg3SZhfVkSEwfnGccn12UQWpump": {
    "v": 1,
    "peak": 1.15,
-   "cur": 1.15,
-   "curMc": 563560,
-   "status": "live",
+   "cur": 0.01,
+   "curMc": 3141,
+   "status": "rugged",
    "peakMc": 563560,
    "hasCard": true,
    "symbol": "HEXN"
   },
   "HAsTKXYvv65zM7J6Cu5o5PcZsiKMQYo5oz4WPjgqwP6k": {
    "v": 1,
-   "peak": 1.84,
-   "cur": 1.84,
-   "curMc": 1936858,
+   "peak": 2.41,
+   "cur": 2.41,
+   "curMc": 2537500,
    "status": "live",
-   "peakMc": 1936858,
+   "peakMc": 2537500,
    "hasCard": true,
    "symbol": "jeff"
   },
@@ -1873,13 +1873,33 @@
   },
   "2fnGKgfwYjqv99ppnKCq5nCLLhRSJAPAhSMVkqjipump": {
    "v": 1,
-   "peak": 1,
-   "cur": 1,
-   "curMc": 161090,
+   "peak": 1.99,
+   "cur": 1.99,
+   "curMc": 319906,
    "status": "live",
-   "peakMc": 161090,
+   "peakMc": 319906,
    "hasCard": true,
    "symbol": "PODCAT"
+  },
+  "2gTbp2gwH46rqExzabSyrdR3294SLwCp2rSqWDS6Sim1": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 92980,
+   "status": "live",
+   "peakMc": 92980,
+   "hasCard": true,
+   "symbol": "CATPAD"
+  },
+  "C31uUcfLGPpQDHHieNtDkSWvp4PhNxeSs81cFQFdZVUQ": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 120102,
+   "status": "live",
+   "peakMc": 120102,
+   "hasCard": true,
+   "symbol": "FLUKE"
   }
  }
 }
