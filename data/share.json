@@ -2145,8 +2145,8 @@
    "v": 1,
    "peak": 1,
    "cur": 0.01,
-   "curMc": 2457,
-   "status": "rugged",
+   "curMc": 2412,
+   "status": "pulled",
    "peakMc": 477607,
    "hasCard": true,
    "symbol": "ANONVOYAGE"
@@ -2254,20 +2254,20 @@
   "E1PpVMPtWPhPUKL7DbF6f2eAmuwo3CHBkKusKk54pump": {
    "v": 1,
    "peak": 1,
-   "cur": 1,
-   "curMc": 127914,
-   "status": "live",
+   "cur": 0.19,
+   "curMc": 24916,
+   "status": "rugged",
    "peakMc": 127914,
    "hasCard": true,
    "symbol": "ZELDA"
   },
   "GdY4Z6pYUcr3HFrABV5FEZay3J4GnjN1Uzsw6Dvxpump": {
    "v": 1,
-   "peak": 1.77,
-   "cur": 1.77,
-   "curMc": 255133,
+   "peak": 5.5,
+   "cur": 5.5,
+   "curMc": 792607,
    "status": "live",
-   "peakMc": 255133,
+   "peakMc": 792607,
    "hasCard": true,
    "symbol": "coin"
   },
@@ -2284,12 +2284,22 @@
   "519AMDtBqCpVk8CTYCg2i9kJQH62ZSkT5Uvfn71Upump": {
    "v": 1,
    "peak": 1,
-   "cur": 1,
-   "curMc": 165360,
-   "status": "live",
+   "cur": 0.03,
+   "curMc": 5191,
+   "status": "rugged",
    "peakMc": 165360,
    "hasCard": true,
    "symbol": "RETIRE"
+  },
+  "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 183670,
+   "status": "live",
+   "peakMc": 183670,
+   "hasCard": true,
+   "symbol": "Leonida"
   }
  }
 }
