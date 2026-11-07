@@ -2145,8 +2145,8 @@
    "v": 1,
    "peak": 1,
    "cur": 0.01,
-   "curMc": 2412,
-   "status": "pulled",
+   "curMc": 2451,
+   "status": "rugged",
    "peakMc": 477607,
    "hasCard": true,
    "symbol": "ANONVOYAGE"
@@ -2293,13 +2293,23 @@
   },
   "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump": {
    "v": 1,
-   "peak": 1,
-   "cur": 1,
-   "curMc": 183670,
+   "peak": 1.15,
+   "cur": 1.15,
+   "curMc": 210763,
    "status": "live",
-   "peakMc": 183670,
+   "peakMc": 210763,
    "hasCard": true,
    "symbol": "Leonida"
+  },
+  "6mXFCoZ515w37YfmwXGJMPfQfiK5tr9WkihW3oN9pump": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 144442,
+   "status": "live",
+   "peakMc": 144442,
+   "hasCard": true,
+   "symbol": "PIRATE"
   }
  }
 }
