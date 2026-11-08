@@ -1,8 +1,152 @@
 {
-  "updatedAt": "2026-11-08T09:05:53.480Z",
+  "updatedAt": "2026-11-08T15:56:05.877Z",
   "telegramChannelUrl": "https://t.me/maxigems_calls",
   "count": 100,
   "calls": [
+    {
+      "address": "2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat",
+      "name": "Pirate Shop Token",
+      "symbol": "PIRATE",
+      "chain": "solana",
+      "dex": "raydium",
+      "pairAddress": "2ouNPACQVBoDqWJ7Ft6EGhmCGScKpmRzaQn6a9vhKp6D",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/JAtgNyJtLcgLS3AB?width=800&height=800&quality=95&format=auto",
+      "calledAt": "2026-11-08T15:56:05.877Z",
+      "score": 77,
+      "priceAtCall": 0.0007865,
+      "mcAtCall": 786583,
+      "liquidity": 173347.26,
+      "volume24h": 1551131.03,
+      "change": {
+        "m5": -4.09,
+        "h1": 5.34,
+        "h6": 116,
+        "h24": 108
+      },
+      "currentPrice": 0.0007865,
+      "currentMc": 786583,
+      "currentLiquidity": 173347.26,
+      "currentMultiple": 1,
+      "athMultiple": 1,
+      "athMc": 786583,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 786583,
+      "peakAt": "2026-11-08T15:56:05.877Z",
+      "status": "active",
+      "ruggedAt": null,
+      "safety": {
+        "mint": true,
+        "freeze": true,
+        "lp": 100,
+        "top10": 23.6
+      },
+      "links": {
+        "dexscreener": "https://dexscreener.com/solana/2ouNPACQVBoDqWJ7Ft6EGhmCGScKpmRzaQn6a9vhKp6D",
+        "solscan": "https://solscan.io/token/2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat",
+        "birdeye": "https://birdeye.so/token/2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat?chain=solana",
+        "photon": "https://photon-sol.tinyastro.io/en/lp/2ouNPACQVBoDqWJ7Ft6EGhmCGScKpmRzaQn6a9vhKp6D",
+        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat",
+        "jupiter": "https://jup.ag/swap/SOL-2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat",
+        "pumpfun": null
+      },
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
+    },
+    {
+      "address": "BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump",
+      "name": "Gigahug",
+      "symbol": "GIGAHUG",
+      "chain": "solana",
+      "dex": "pumpswap",
+      "pairAddress": "BrkcwRYAJ22Fgqh6GgeLbRmUEdXx7yLhNcAAsAJoR8yt",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/feVbhw9m07PzSDOG?width=800&height=800&quality=95&format=auto",
+      "calledAt": "2026-11-08T15:56:05.877Z",
+      "score": 71,
+      "priceAtCall": 0.0006752,
+      "mcAtCall": 671495,
+      "liquidity": 68528.95,
+      "volume24h": 2565223.26,
+      "change": {
+        "m5": 5.67,
+        "h1": 16.23,
+        "h6": -40.98,
+        "h24": 1063
+      },
+      "currentPrice": 0.0006752,
+      "currentMc": 671495,
+      "currentLiquidity": 68528.95,
+      "currentMultiple": 1,
+      "athMultiple": 1,
+      "athMc": 671495,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 671495,
+      "peakAt": "2026-11-08T15:56:05.877Z",
+      "status": "active",
+      "ruggedAt": null,
+      "safety": {
+        "mint": true,
+        "freeze": true,
+        "lp": 100,
+        "top10": 1.3
+      },
+      "links": {
+        "dexscreener": "https://dexscreener.com/solana/BrkcwRYAJ22Fgqh6GgeLbRmUEdXx7yLhNcAAsAJoR8yt",
+        "solscan": "https://solscan.io/token/BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump",
+        "birdeye": "https://birdeye.so/token/BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump?chain=solana",
+        "photon": "https://photon-sol.tinyastro.io/en/lp/BrkcwRYAJ22Fgqh6GgeLbRmUEdXx7yLhNcAAsAJoR8yt",
+        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump",
+        "jupiter": "https://jup.ag/swap/SOL-BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump",
+        "pumpfun": "https://pump.fun/coin/BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump"
+      },
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
+    },
+    {
+      "address": "HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump",
+      "name": "ELYSION",
+      "symbol": "Elysion Pad",
+      "chain": "solana",
+      "dex": "pumpswap",
+      "pairAddress": "7ZH2XzczdSLrDr7AnNMZWNTgYBX5ifvmAwK3hwFouEHe",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/HwzGanbqKx0icQF5?width=800&height=800&quality=95&format=auto",
+      "calledAt": "2026-11-08T15:56:05.877Z",
+      "score": 66,
+      "priceAtCall": 0.0001379,
+      "mcAtCall": 135306,
+      "liquidity": 33515.15,
+      "volume24h": 679921.49,
+      "change": {
+        "m5": 2.25,
+        "h1": 34.27,
+        "h6": 59.61,
+        "h24": 57.21
+      },
+      "currentPrice": 0.0001379,
+      "currentMc": 135306,
+      "currentLiquidity": 33515.15,
+      "currentMultiple": 1,
+      "athMultiple": 1,
+      "athMc": 135306,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 135306,
+      "peakAt": "2026-11-08T15:56:05.877Z",
+      "status": "active",
+      "ruggedAt": null,
+      "safety": {
+        "mint": true,
+        "freeze": true,
+        "lp": 100,
+        "top10": 21.1
+      },
+      "links": {
+        "dexscreener": "https://dexscreener.com/solana/7ZH2XzczdSLrDr7AnNMZWNTgYBX5ifvmAwK3hwFouEHe",
+        "solscan": "https://solscan.io/token/HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump",
+        "birdeye": "https://birdeye.so/token/HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump?chain=solana",
+        "photon": "https://photon-sol.tinyastro.io/en/lp/7ZH2XzczdSLrDr7AnNMZWNTgYBX5ifvmAwK3hwFouEHe",
+        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump",
+        "jupiter": "https://jup.ag/swap/SOL-HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump",
+        "pumpfun": "https://pump.fun/coin/HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump"
+      },
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
+    },
     {
       "address": "CZRtwCDJy4cKNvtVwtgGqeEGzLnCDJdTkexgpEsMpump",
       "name": "Bull Time Coin",
@@ -23,15 +167,15 @@
         "h6": 63.05,
         "h24": 1448
       },
-      "currentPrice": 0.0006066,
-      "currentMc": 598181,
-      "currentLiquidity": 62711.99,
-      "currentMultiple": 1,
-      "athMultiple": 1,
-      "athMc": 598181,
-      "athAt": "2026-11-08T09:05:53.480Z",
-      "peakMc": 598181,
-      "peakAt": "2026-11-08T09:05:53.480Z",
+      "currentPrice": 0.0007041,
+      "currentMc": 694384,
+      "currentLiquidity": 68991.72,
+      "currentMultiple": 1.1607,
+      "athMultiple": 1.1607,
+      "athMc": 694384,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 694384,
+      "peakAt": "2026-11-08T15:56:05.877Z",
       "status": "active",
       "ruggedAt": null,
       "safety": {
@@ -49,7 +193,7 @@
         "jupiter": "https://jup.ag/swap/SOL-CZRtwCDJy4cKNvtVwtgGqeEGzLnCDJdTkexgpEsMpump",
         "pumpfun": "https://pump.fun/coin/CZRtwCDJy4cKNvtVwtgGqeEGzLnCDJdTkexgpEsMpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "DSAKMZsWvRQL3c4RwhXpicbbygAJXiHz8PMCfoTUpump",
@@ -71,17 +215,17 @@
         "h6": 929,
         "h24": 929
       },
-      "currentPrice": 0.0008741,
-      "currentMc": 869619,
-      "currentLiquidity": 77044.9,
-      "currentMultiple": 1.4257,
+      "currentPrice": 0.000001838,
+      "currentMc": 1829,
+      "currentLiquidity": 2060.41,
+      "currentMultiple": 0.003,
       "athMultiple": 1.4257,
       "athMc": 869619,
       "athAt": "2026-11-08T09:05:53.480Z",
       "peakMc": 869619,
       "peakAt": "2026-11-08T09:05:53.480Z",
-      "status": "active",
-      "ruggedAt": null,
+      "status": "rugged",
+      "ruggedAt": "2026-11-08T15:56:05.877Z",
       "safety": {
         "mint": true,
         "freeze": true,
@@ -97,7 +241,7 @@
         "jupiter": "https://jup.ag/swap/SOL-DSAKMZsWvRQL3c4RwhXpicbbygAJXiHz8PMCfoTUpump",
         "pumpfun": "https://pump.fun/coin/DSAKMZsWvRQL3c4RwhXpicbbygAJXiHz8PMCfoTUpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "HxAyQ3CH4fpYE3gRAvaaDvbx4b1XyX87MyAGwgdipump",
@@ -119,17 +263,17 @@
         "h6": 839,
         "h24": 839
       },
-      "currentPrice": 0.0003926,
-      "currentMc": 389343,
-      "currentLiquidity": 50405.95,
-      "currentMultiple": 1.0221,
+      "currentPrice": 0.000002004,
+      "currentMc": 1987,
+      "currentLiquidity": 2187.16,
+      "currentMultiple": 0.0052,
       "athMultiple": 1.0221,
       "athMc": 389343,
       "athAt": "2026-11-08T09:05:53.480Z",
       "peakMc": 389343,
       "peakAt": "2026-11-08T09:05:53.480Z",
-      "status": "active",
-      "ruggedAt": null,
+      "status": "rugged",
+      "ruggedAt": "2026-11-08T15:56:05.877Z",
       "safety": {
         "mint": true,
         "freeze": true,
@@ -145,7 +289,7 @@
         "jupiter": "https://jup.ag/swap/SOL-HxAyQ3CH4fpYE3gRAvaaDvbx4b1XyX87MyAGwgdipump",
         "pumpfun": "https://pump.fun/coin/HxAyQ3CH4fpYE3gRAvaaDvbx4b1XyX87MyAGwgdipump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf",
@@ -167,10 +311,10 @@
         "h6": 224,
         "h24": 224
       },
-      "currentPrice": 0.00006026,
-      "currentMc": 60262,
-      "currentLiquidity": 47730.78,
-      "currentMultiple": 0.1416,
+      "currentPrice": 0.00006185,
+      "currentMc": 61852,
+      "currentLiquidity": 48483.33,
+      "currentMultiple": 0.1453,
       "athMultiple": 1,
       "athMc": 425619,
       "athAt": "2026-11-07T22:58:26.981Z",
@@ -193,7 +337,7 @@
         "jupiter": "https://jup.ag/swap/SOL-3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "87CQtouHSb6YCXaPZ1pp8jD56VudRMXBVqU3oDMD1UJT",
@@ -215,10 +359,10 @@
         "h6": 1331,
         "h24": 114
       },
-      "currentPrice": 0.0006463,
-      "currentMc": 635428,
-      "currentLiquidity": 77338.3,
-      "currentMultiple": 0.8808,
+      "currentPrice": 0.0006078,
+      "currentMc": 597647,
+      "currentLiquidity": 75527.91,
+      "currentMultiple": 0.8283,
       "athMultiple": 1.0123,
       "athMc": 730384,
       "athAt": "2026-11-08T02:12:29.693Z",
@@ -241,7 +385,7 @@
         "jupiter": "https://jup.ag/swap/SOL-87CQtouHSb6YCXaPZ1pp8jD56VudRMXBVqU3oDMD1UJT",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
@@ -263,15 +407,15 @@
         "h6": 55.53,
         "h24": 152
       },
-      "currentPrice": 0.001064,
-      "currentMc": 1050749,
-      "currentLiquidity": 83576.13,
-      "currentMultiple": 1.532,
-      "athMultiple": 1.532,
-      "athMc": 1050749,
-      "athAt": "2026-11-08T09:05:53.480Z",
-      "peakMc": 1050749,
-      "peakAt": "2026-11-08T09:05:53.480Z",
+      "currentPrice": 0.001178,
+      "currentMc": 1162693,
+      "currentLiquidity": 88402.31,
+      "currentMultiple": 1.6962,
+      "athMultiple": 1.6962,
+      "athMc": 1162693,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 1162693,
+      "peakAt": "2026-11-08T15:56:05.877Z",
       "status": "active",
       "ruggedAt": null,
       "safety": {
@@ -289,7 +433,7 @@
         "jupiter": "https://jup.ag/swap/SOL-ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
         "pumpfun": "https://pump.fun/coin/ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "iW4XP2BWd3iqf1LMZvpsKidb49wVAh3S8SfNUsDpump",
@@ -311,10 +455,10 @@
         "h6": 428,
         "h24": 428
       },
-      "currentPrice": 0.00002079,
-      "currentMc": 20007,
-      "currentLiquidity": 11161.74,
-      "currentMultiple": 0.1031,
+      "currentPrice": 0.00001819,
+      "currentMc": 17513,
+      "currentLiquidity": 10364.6,
+      "currentMultiple": 0.0902,
       "athMultiple": 1,
       "athMc": 194168,
       "athAt": "2026-11-07T15:37:32.011Z",
@@ -337,7 +481,7 @@
         "jupiter": "https://jup.ag/swap/SOL-iW4XP2BWd3iqf1LMZvpsKidb49wVAh3S8SfNUsDpump",
         "pumpfun": "https://pump.fun/coin/iW4XP2BWd3iqf1LMZvpsKidb49wVAh3S8SfNUsDpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "6JmDY4eYXiBJhKFjLhM2oG95UiwkEoAN2daqq6tUpump",
@@ -359,10 +503,10 @@
         "h6": 106,
         "h24": 106
       },
-      "currentPrice": 0.000001877,
-      "currentMc": 1769,
-      "currentLiquidity": 1969.59,
-      "currentMultiple": 0.0245,
+      "currentPrice": 0.000001917,
+      "currentMc": 1807,
+      "currentLiquidity": 2008.21,
+      "currentMultiple": 0.025,
       "athMultiple": 1,
       "athMc": 72163,
       "athAt": "2026-11-07T15:37:32.011Z",
@@ -385,7 +529,7 @@
         "jupiter": "https://jup.ag/swap/SOL-6JmDY4eYXiBJhKFjLhM2oG95UiwkEoAN2daqq6tUpump",
         "pumpfun": "https://pump.fun/coin/6JmDY4eYXiBJhKFjLhM2oG95UiwkEoAN2daqq6tUpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "GoqdpMVvqawNUvdfTmqXvvoSaDRrqDQexzG7wzf2pump",
@@ -407,10 +551,10 @@
         "h6": 191,
         "h24": 191
       },
-      "currentPrice": 0.00001199,
-      "currentMc": 11379,
-      "currentLiquidity": 7746.52,
-      "currentMultiple": 0.0891,
+      "currentPrice": 0.000009102,
+      "currentMc": 8634,
+      "currentLiquidity": 6557.11,
+      "currentMultiple": 0.0676,
       "athMultiple": 1,
       "athMc": 127747,
       "athAt": "2026-11-07T09:01:58.838Z",
@@ -433,7 +577,7 @@
         "jupiter": "https://jup.ag/swap/SOL-GoqdpMVvqawNUvdfTmqXvvoSaDRrqDQexzG7wzf2pump",
         "pumpfun": "https://pump.fun/coin/GoqdpMVvqawNUvdfTmqXvvoSaDRrqDQexzG7wzf2pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "oCZHH8HnEBCPipEGdEcP3f45pQAaM7nh7P6EkRPpump",
@@ -455,9 +599,9 @@
         "h6": -25.48,
         "h24": -24.59
       },
-      "currentPrice": 0.00000227,
-      "currentMc": 2241,
-      "currentLiquidity": 2704.5,
+      "currentPrice": 0.00000228,
+      "currentMc": 2251,
+      "currentLiquidity": 2716.09,
       "currentMultiple": 0.0016,
       "athMultiple": 1,
       "athMc": 1376397,
@@ -481,7 +625,7 @@
         "jupiter": "https://jup.ag/swap/SOL-oCZHH8HnEBCPipEGdEcP3f45pQAaM7nh7P6EkRPpump",
         "pumpfun": "https://pump.fun/coin/oCZHH8HnEBCPipEGdEcP3f45pQAaM7nh7P6EkRPpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "BdouwEr3mwXkT6S6EmHNCjn9oEtykRKCKiUSTRF9pump",
@@ -503,10 +647,10 @@
         "h6": 586,
         "h24": 586
       },
-      "currentPrice": 0.00006204,
-      "currentMc": 59561,
-      "currentLiquidity": 23169.35,
-      "currentMultiple": 0.201,
+      "currentPrice": 0.00004118,
+      "currentMc": 39538,
+      "currentLiquidity": 18544.64,
+      "currentMultiple": 0.1334,
       "athMultiple": 1,
       "athMc": 296233,
       "athAt": "2026-11-07T09:01:58.838Z",
@@ -529,7 +673,7 @@
         "jupiter": "https://jup.ag/swap/SOL-BdouwEr3mwXkT6S6EmHNCjn9oEtykRKCKiUSTRF9pump",
         "pumpfun": "https://pump.fun/coin/BdouwEr3mwXkT6S6EmHNCjn9oEtykRKCKiUSTRF9pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "6mXFCoZ515w37YfmwXGJMPfQfiK5tr9WkihW3oN9pump",
@@ -551,15 +695,15 @@
         "h6": 37.98,
         "h24": 81.38
       },
-      "currentPrice": 0.0001257,
-      "currentMc": 119542,
-      "currentLiquidity": 31439,
-      "currentMultiple": 0.8281,
-      "athMultiple": 1,
-      "athMc": 144442,
-      "athAt": "2026-11-07T02:24:12.448Z",
-      "peakMc": 144442,
-      "peakAt": "2026-11-07T02:24:12.448Z",
+      "currentPrice": 0.0002577,
+      "currentMc": 245128,
+      "currentLiquidity": 46636.16,
+      "currentMultiple": 1.6976,
+      "athMultiple": 1.6976,
+      "athMc": 245128,
+      "athAt": "2026-11-08T15:56:05.877Z",
+      "peakMc": 245128,
+      "peakAt": "2026-11-08T15:56:05.877Z",
       "status": "active",
       "ruggedAt": null,
       "safety": {
@@ -577,7 +721,7 @@
         "jupiter": "https://jup.ag/swap/SOL-6mXFCoZ515w37YfmwXGJMPfQfiK5tr9WkihW3oN9pump",
         "pumpfun": "https://pump.fun/coin/6mXFCoZ515w37YfmwXGJMPfQfiK5tr9WkihW3oN9pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump",
@@ -599,10 +743,10 @@
         "h6": 89.98,
         "h24": 61.39
       },
-      "currentPrice": 0.0001598,
-      "currentMc": 155139,
-      "currentLiquidity": 31616.6,
-      "currentMultiple": 0.8446,
+      "currentPrice": 0.0001941,
+      "currentMc": 188472,
+      "currentLiquidity": 35259.18,
+      "currentMultiple": 1.0259,
       "athMultiple": 1.3742,
       "athMc": 252389,
       "athAt": "2026-11-07T22:58:26.981Z",
@@ -625,7 +769,7 @@
         "jupiter": "https://jup.ag/swap/SOL-BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump",
         "pumpfun": "https://pump.fun/coin/BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
@@ -647,10 +791,10 @@
         "h6": 55.09,
         "h24": 268
       },
-      "currentPrice": 0.0006785,
-      "currentMc": 673830,
-      "currentLiquidity": 71707.47,
-      "currentMultiple": 3.9935,
+      "currentPrice": 0.0006142,
+      "currentMc": 609978,
+      "currentLiquidity": 68605.55,
+      "currentMultiple": 3.6151,
       "athMultiple": 5.3373,
       "athMc": 900586,
       "athAt": "2026-11-07T19:36:38.384Z",
@@ -673,7 +817,7 @@
         "jupiter": "https://jup.ag/swap/SOL-8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
         "pumpfun": "https://pump.fun/coin/8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "519AMDtBqCpVk8CTYCg2i9kJQH62ZSkT5Uvfn71Upump",
@@ -695,10 +839,10 @@
         "h6": 7.08,
         "h24": 296
       },
-      "currentPrice": 0.000007542,
-      "currentMc": 7176,
-      "currentLiquidity": 5618.59,
-      "currentMultiple": 0.0434,
+      "currentPrice": 0.000008919,
+      "currentMc": 8486,
+      "currentLiquidity": 6257.99,
+      "currentMultiple": 0.0513,
       "athMultiple": 1,
       "athMc": 165360,
       "athAt": "2026-11-06T11:02:00.272Z",
@@ -721,7 +865,7 @@
         "jupiter": "https://jup.ag/swap/SOL-519AMDtBqCpVk8CTYCg2i9kJQH62ZSkT5Uvfn71Upump",
         "pumpfun": "https://pump.fun/coin/519AMDtBqCpVk8CTYCg2i9kJQH62ZSkT5Uvfn71Upump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "5VCEFq1aATjga39QtDunYjJqYBx67w8V8TXwHrqopump",
@@ -743,10 +887,10 @@
         "h6": 824,
         "h24": 824
       },
-      "currentPrice": 0.0001309,
-      "currentMc": 125091,
-      "currentLiquidity": 35070.17,
-      "currentMultiple": 0.3035,
+      "currentPrice": 0.0001102,
+      "currentMc": 105387,
+      "currentLiquidity": 32424.7,
+      "currentMultiple": 0.2555,
       "athMultiple": 2.6501,
       "athMc": 1092929,
       "athAt": "2026-11-06T17:55:06.341Z",
@@ -769,7 +913,7 @@
         "jupiter": "https://jup.ag/swap/SOL-5VCEFq1aATjga39QtDunYjJqYBx67w8V8TXwHrqopump",
         "pumpfun": "https://pump.fun/coin/5VCEFq1aATjga39QtDunYjJqYBx67w8V8TXwHrqopump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "E1PpVMPtWPhPUKL7DbF6f2eAmuwo3CHBkKusKk54pump",
@@ -791,10 +935,10 @@
         "h6": 20.76,
         "h24": 240
       },
-      "currentPrice": 0.00001738,
-      "currentMc": 16406,
-      "currentLiquidity": 10109.71,
-      "currentMultiple": 0.1283,
+      "currentPrice": 0.00002046,
+      "currentMc": 19310,
+      "currentLiquidity": 11121.17,
+      "currentMultiple": 0.151,
       "athMultiple": 1,
       "athMc": 127914,
       "athAt": "2026-11-06T03:10:57.326Z",
@@ -817,7 +961,7 @@
         "jupiter": "https://jup.ag/swap/SOL-E1PpVMPtWPhPUKL7DbF6f2eAmuwo3CHBkKusKk54pump",
         "pumpfun": "https://pump.fun/coin/E1PpVMPtWPhPUKL7DbF6f2eAmuwo3CHBkKusKk54pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "GdY4Z6pYUcr3HFrABV5FEZay3J4GnjN1Uzsw6Dvxpump",
@@ -839,10 +983,10 @@
         "h6": 302,
         "h24": 302
       },
-      "currentPrice": 0.0001225,
-      "currentMc": 118889,
-      "currentLiquidity": 33227.9,
-      "currentMultiple": 0.8244,
+      "currentPrice": 0.0001006,
+      "currentMc": 97588,
+      "currentLiquidity": 30079.8,
+      "currentMultiple": 0.677,
       "athMultiple": 5.498,
       "athMc": 792607,
       "athAt": "2026-11-06T22:40:54.310Z",
@@ -865,7 +1009,7 @@
         "jupiter": "https://jup.ag/swap/SOL-GdY4Z6pYUcr3HFrABV5FEZay3J4GnjN1Uzsw6Dvxpump",
         "pumpfun": "https://pump.fun/coin/GdY4Z6pYUcr3HFrABV5FEZay3J4GnjN1Uzsw6Dvxpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "HZbiEpF2oM658EpjNRRqxharz5L9Ddm8akpSH2R5pump",
@@ -887,10 +1031,10 @@
         "h6": 647,
         "h24": 647
       },
-      "currentPrice": 0.0006594,
-      "currentMc": 642916,
-      "currentLiquidity": 78421.1,
-      "currentMultiple": 2.0122,
+      "currentPrice": 0.0006778,
+      "currentMc": 660862,
+      "currentLiquidity": 79782.22,
+      "currentMultiple": 2.0684,
       "athMultiple": 2.4556,
       "athMc": 784586,
       "athAt": "2026-11-07T15:37:32.011Z",
@@ -913,7 +1057,7 @@
         "jupiter": "https://jup.ag/swap/SOL-HZbiEpF2oM658EpjNRRqxharz5L9Ddm8akpSH2R5pump",
         "pumpfun": "https://pump.fun/coin/HZbiEpF2oM658EpjNRRqxharz5L9Ddm8akpSH2R5pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "DDmGnuvroxVrb7CSyjYcezFU8gnAfhKasg4ZZezmpump",
@@ -935,10 +1079,10 @@
         "h6": 54.26,
         "h24": -24.94
       },
-      "currentPrice": 0.000257,
-      "currentMc": 247110,
-      "currentLiquidity": 52839.19,
-      "currentMultiple": 0.2731,
+      "currentPrice": 0.0002322,
+      "currentMc": 223284,
+      "currentLiquidity": 50138.91,
+      "currentMultiple": 0.2468,
       "athMultiple": 1,
       "athMc": 904624,
       "athAt": "2026-11-05T09:50:51.438Z",
@@ -961,7 +1105,7 @@
         "jupiter": "https://jup.ag/swap/SOL-DDmGnuvroxVrb7CSyjYcezFU8gnAfhKasg4ZZezmpump",
         "pumpfun": "https://pump.fun/coin/DDmGnuvroxVrb7CSyjYcezFU8gnAfhKasg4ZZezmpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "9mWrj77gDZ7w4rwHF6STYXDZmYRMyf39L4go1mXepump",
@@ -983,10 +1127,10 @@
         "h6": 877,
         "h24": 877
       },
-      "currentPrice": 0.00000223,
-      "currentMc": 2220,
-      "currentLiquidity": 2772.71,
-      "currentMultiple": 0.0037,
+      "currentPrice": 0.000002189,
+      "currentMc": 2179,
+      "currentLiquidity": 2735.56,
+      "currentMultiple": 0.0036,
       "athMultiple": 1.3596,
       "athMc": 823337,
       "athAt": "2026-11-05T09:50:51.438Z",
@@ -1009,7 +1153,7 @@
         "jupiter": "https://jup.ag/swap/SOL-9mWrj77gDZ7w4rwHF6STYXDZmYRMyf39L4go1mXepump",
         "pumpfun": "https://pump.fun/coin/9mWrj77gDZ7w4rwHF6STYXDZmYRMyf39L4go1mXepump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "9Y1F6dZ6HpjZDYZdYuUGwMbkUiPsyU7WPTqTQU4Tpump",
@@ -1031,10 +1175,10 @@
         "h6": 1441,
         "h24": 1441
       },
-      "currentPrice": 0.000002617,
-      "currentMc": 2606,
-      "currentLiquidity": 2845.89,
-      "currentMultiple": 0.0033,
+      "currentPrice": 0.000002572,
+      "currentMc": 2561,
+      "currentLiquidity": 2809.26,
+      "currentMultiple": 0.0032,
       "athMultiple": 1.041,
       "athMc": 831218,
       "athAt": "2026-11-05T09:50:51.438Z",
@@ -1057,7 +1201,7 @@
         "jupiter": "https://jup.ag/swap/SOL-9Y1F6dZ6HpjZDYZdYuUGwMbkUiPsyU7WPTqTQU4Tpump",
         "pumpfun": "https://pump.fun/coin/9Y1F6dZ6HpjZDYZdYuUGwMbkUiPsyU7WPTqTQU4Tpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "3SpVLU6UAYi7rqJxgWmsZYmfU5kvVTDK6HFxGPefLoat",
@@ -1079,10 +1223,10 @@
         "h6": -24.27,
         "h24": -24.27
       },
-      "currentPrice": 0.00002007,
-      "currentMc": 20075,
-      "currentLiquidity": 27534.18,
-      "currentMultiple": 0.1874,
+      "currentPrice": 0.00002255,
+      "currentMc": 22552,
+      "currentLiquidity": 29250.99,
+      "currentMultiple": 0.2106,
       "athMultiple": 1,
       "athMc": 107187,
       "athAt": "2026-11-05T02:39:53.674Z",
@@ -1105,7 +1249,7 @@
         "jupiter": "https://jup.ag/swap/SOL-3SpVLU6UAYi7rqJxgWmsZYmfU5kvVTDK6HFxGPefLoat",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump",
@@ -1127,10 +1271,10 @@
         "h6": -63.85,
         "h24": 727
       },
-      "currentPrice": 0.000002179,
-      "currentMc": 2157,
-      "currentLiquidity": 2412.59,
-      "currentMultiple": 0.0063,
+      "currentPrice": 0.000002146,
+      "currentMc": 2124,
+      "currentLiquidity": 2382.1,
+      "currentMultiple": 0.0062,
       "athMultiple": 1,
       "athMc": 344525,
       "athAt": "2026-11-04T22:25:52.275Z",
@@ -1153,7 +1297,7 @@
         "jupiter": "https://jup.ag/swap/SOL-FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump",
         "pumpfun": "https://pump.fun/coin/FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "31HzUsjzTt7FBCGnDy68cBnELayVsnd3zYEBtsXXpump",
@@ -1175,10 +1319,10 @@
         "h6": 181,
         "h24": 207
       },
-      "currentPrice": 0.0002045,
-      "currentMc": 199414,
-      "currentLiquidity": 36945.9,
-      "currentMultiple": 0.7582,
+      "currentPrice": 0.0001961,
+      "currentMc": 191256,
+      "currentLiquidity": 36269.32,
+      "currentMultiple": 0.7271,
       "athMultiple": 1.2714,
       "athMc": 334377,
       "athAt": "2026-11-06T17:55:06.341Z",
@@ -1201,7 +1345,7 @@
         "jupiter": "https://jup.ag/swap/SOL-31HzUsjzTt7FBCGnDy68cBnELayVsnd3zYEBtsXXpump",
         "pumpfun": "https://pump.fun/coin/31HzUsjzTt7FBCGnDy68cBnELayVsnd3zYEBtsXXpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "5tdWkbqhTqVyPmksqX8WVKrHbjjqmvQfrMGwZoZPpump",
@@ -1223,10 +1367,10 @@
         "h6": 1423,
         "h24": 1423
       },
-      "currentPrice": 0.000001826,
-      "currentMc": 1810,
-      "currentLiquidity": 1980.62,
-      "currentMultiple": 0.0025,
+      "currentPrice": 0.000001793,
+      "currentMc": 1777,
+      "currentLiquidity": 1948.72,
+      "currentMultiple": 0.0024,
       "athMultiple": 1.0917,
       "athMc": 805613,
       "athAt": "2026-11-04T22:25:52.275Z",
@@ -1249,7 +1393,7 @@
         "jupiter": "https://jup.ag/swap/SOL-5tdWkbqhTqVyPmksqX8WVKrHbjjqmvQfrMGwZoZPpump",
         "pumpfun": "https://pump.fun/coin/5tdWkbqhTqVyPmksqX8WVKrHbjjqmvQfrMGwZoZPpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "G8Lf8uthQp5YHoswQZDRdeRxaWiUqnNFNoZ45y68pump",
@@ -1271,10 +1415,10 @@
         "h6": 139,
         "h24": 139
       },
-      "currentPrice": 0.000006426,
-      "currentMc": 5933,
-      "currentLiquidity": 5404.65,
-      "currentMultiple": 0.0702,
+      "currentPrice": 0.0000119,
+      "currentMc": 10990,
+      "currentLiquidity": 7952.83,
+      "currentMultiple": 0.13,
       "athMultiple": 1,
       "athMc": 84528,
       "athAt": "2026-11-04T16:56:41.925Z",
@@ -1297,7 +1441,7 @@
         "jupiter": "https://jup.ag/swap/SOL-G8Lf8uthQp5YHoswQZDRdeRxaWiUqnNFNoZ45y68pump",
         "pumpfun": "https://pump.fun/coin/G8Lf8uthQp5YHoswQZDRdeRxaWiUqnNFNoZ45y68pump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "4BCbx4hB1XPmC5mLHsFyHEghC5fb9Afu7THLGXiHpump",
@@ -1319,9 +1463,9 @@
         "h6": 392,
         "h24": 392
       },
-      "currentPrice": 0.000002347,
-      "currentMc": 2249,
-      "currentLiquidity": 2911.56,
+      "currentPrice": 0.000002359,
+      "currentMc": 2261,
+      "currentLiquidity": 2926.6,
       "currentMultiple": 0.0126,
       "athMultiple": 1,
       "athMc": 179263,
@@ -1345,7 +1489,7 @@
         "jupiter": "https://jup.ag/swap/SOL-4BCbx4hB1XPmC5mLHsFyHEghC5fb9Afu7THLGXiHpump",
         "pumpfun": "https://pump.fun/coin/4BCbx4hB1XPmC5mLHsFyHEghC5fb9Afu7THLGXiHpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "8muc9DdhqWfAPcvmEebNQCG89bLiwi12T2KtBtzVpump",
@@ -1367,10 +1511,10 @@
         "h6": -42.93,
         "h24": 694
       },
-      "currentPrice": 0.000002455,
-      "currentMc": 2443,
-      "currentLiquidity": 2997.7,
-      "currentMultiple": 0.0051,
+      "currentPrice": 0.000002419,
+      "currentMc": 2407,
+      "currentLiquidity": 2967.85,
+      "currentMultiple": 0.005,
       "athMultiple": 1,
       "athMc": 477607,
       "athAt": "2026-11-04T08:57:25.739Z",
@@ -1393,7 +1537,7 @@
         "jupiter": "https://jup.ag/swap/SOL-8muc9DdhqWfAPcvmEebNQCG89bLiwi12T2KtBtzVpump",
         "pumpfun": "https://pump.fun/coin/8muc9DdhqWfAPcvmEebNQCG89bLiwi12T2KtBtzVpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "22r9JGoWRBYc4Z1pkSFw8p2tdjefS2ZZshw1vr8bBC2K",
@@ -1415,10 +1559,10 @@
         "h6": -16.34,
         "h24": 514
       },
-      "currentPrice": 0.00006665,
-      "currentMc": 66658,
-      "currentLiquidity": 45449.07,
-      "currentMultiple": 0.0716,
+      "currentPrice": 0.00005102,
+      "currentMc": 51027,
+      "currentLiquidity": 36907.6,
+      "currentMultiple": 0.0548,
       "athMultiple": 1,
       "athMc": 930945,
       "athAt": "2026-11-04T02:00:08.692Z",
@@ -1441,7 +1585,7 @@
         "jupiter": "https://jup.ag/swap/SOL-22r9JGoWRBYc4Z1pkSFw8p2tdjefS2ZZshw1vr8bBC2K",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "6gnB2H2hbTVvKUWCzNuqjWY8Rod6EVBmfHi7YxZpTWa7",
@@ -1463,10 +1607,10 @@
         "h6": 889,
         "h24": 889
       },
-      "currentPrice": 0.0001022,
-      "currentMc": 102245,
-      "currentLiquidity": 26298.11,
-      "currentMultiple": 0.2618,
+      "currentPrice": 0.0001103,
+      "currentMc": 110348,
+      "currentLiquidity": 27554.82,
+      "currentMultiple": 0.2825,
       "athMultiple": 1.3904,
       "athMc": 542885,
       "athAt": "2026-11-05T02:39:53.674Z",
@@ -1489,7 +1633,7 @@
         "jupiter": "https://jup.ag/swap/SOL-6gnB2H2hbTVvKUWCzNuqjWY8Rod6EVBmfHi7YxZpTWa7",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "31SYoqWFhx3i9UsfnoXTjFp4ZwJA8F8UPrMxymfDpump",
@@ -1511,9 +1655,9 @@
         "h6": -20.11,
         "h24": 245
       },
-      "currentPrice": 0.000002368,
-      "currentMc": 2359,
-      "currentLiquidity": 2632.61,
+      "currentPrice": 0.000002376,
+      "currentMc": 2367,
+      "currentLiquidity": 2642.27,
       "currentMultiple": 0.0136,
       "athMultiple": 1,
       "athMc": 173406,
@@ -1537,7 +1681,7 @@
         "jupiter": "https://jup.ag/swap/SOL-31SYoqWFhx3i9UsfnoXTjFp4ZwJA8F8UPrMxymfDpump",
         "pumpfun": "https://pump.fun/coin/31SYoqWFhx3i9UsfnoXTjFp4ZwJA8F8UPrMxymfDpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "FK5tP4Zw7ujWzaz3TgeJ5NcqGe5LFufo7m6zH6YQpump",
@@ -1559,10 +1703,10 @@
         "h6": 46.34,
         "h24": 46.34
       },
-      "currentPrice": 0.000002304,
-      "currentMc": 2248,
-      "currentLiquidity": 2429.32,
-      "currentMultiple": 0.0269,
+      "currentPrice": 0.000002268,
+      "currentMc": 2213,
+      "currentLiquidity": 2400.19,
+      "currentMultiple": 0.0264,
       "athMultiple": 2.0986,
       "athMc": 175616,
       "athAt": "2026-11-05T22:55:53.723Z",
@@ -1585,7 +1729,7 @@
         "jupiter": "https://jup.ag/swap/SOL-FK5tP4Zw7ujWzaz3TgeJ5NcqGe5LFufo7m6zH6YQpump",
         "pumpfun": "https://pump.fun/coin/FK5tP4Zw7ujWzaz3TgeJ5NcqGe5LFufo7m6zH6YQpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "8kuQg3WivDtL85VEdw2jEmSXjYt6EEeYBATJ4DtQpump",
@@ -1607,10 +1751,10 @@
         "h6": -24,
         "h24": 750
       },
-      "currentPrice": 0.00007149,
-      "currentMc": 60299,
-      "currentLiquidity": 22340,
-      "currentMultiple": 0.1488,
+      "currentPrice": 0.00005174,
+      "currentMc": 43645,
+      "currentLiquidity": 18828.71,
+      "currentMultiple": 0.1077,
       "athMultiple": 1.0979,
       "athMc": 468611,
       "athAt": "2026-11-04T16:56:41.925Z",
@@ -1633,7 +1777,7 @@
         "jupiter": "https://jup.ag/swap/SOL-8kuQg3WivDtL85VEdw2jEmSXjYt6EEeYBATJ4DtQpump",
         "pumpfun": "https://pump.fun/coin/8kuQg3WivDtL85VEdw2jEmSXjYt6EEeYBATJ4DtQpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "J1pZjNKh4BnbXBsroE4acJv3TYzCGxTn46VrZii6orEZ",
@@ -1655,10 +1799,10 @@
         "h6": 52.17,
         "h24": 52.17
       },
-      "currentPrice": 0.00004248,
-      "currentMc": 42489,
-      "currentLiquidity": 42975.42,
-      "currentMultiple": 0.1805,
+      "currentPrice": 0.00004342,
+      "currentMc": 43422,
+      "currentLiquidity": 43775.52,
+      "currentMultiple": 0.1845,
       "athMultiple": 1.1211,
       "athMc": 263950,
       "athAt": "2026-11-03T16:33:06.277Z",
@@ -1681,7 +1825,7 @@
         "jupiter": "https://jup.ag/swap/SOL-J1pZjNKh4BnbXBsroE4acJv3TYzCGxTn46VrZii6orEZ",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "DBPTU2oKLDHXQjAEJ3rZi8bUGmt2uxUbipgg6xmXoMqr",
@@ -1703,10 +1847,10 @@
         "h6": 432,
         "h24": 424
       },
-      "currentPrice": 0.0002251,
-      "currentMc": 225187,
-      "currentLiquidity": 92222.54,
-      "currentMultiple": 0.321,
+      "currentPrice": 0.0002305,
+      "currentMc": 230598,
+      "currentLiquidity": 93534.88,
+      "currentMultiple": 0.3287,
       "athMultiple": 1,
       "athMc": 701344,
       "athAt": "2026-11-03T01:47:27.355Z",
@@ -1729,7 +1873,7 @@
         "jupiter": "https://jup.ag/swap/SOL-DBPTU2oKLDHXQjAEJ3rZi8bUGmt2uxUbipgg6xmXoMqr",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
@@ -1751,10 +1895,10 @@
         "h6": -32.43,
         "h24": 3.3
       },
-      "currentPrice": 0.0009098,
-      "currentMc": 892669,
-      "currentLiquidity": 92882.14,
-      "currentMultiple": 1.0915,
+      "currentPrice": 0.0008678,
+      "currentMc": 851450,
+      "currentLiquidity": 90920.32,
+      "currentMultiple": 1.0412,
       "athMultiple": 1.6293,
       "athMc": 1332999,
       "athAt": "2026-11-03T08:39:36.404Z",
@@ -1777,7 +1921,7 @@
         "jupiter": "https://jup.ag/swap/SOL-GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
         "pumpfun": "https://pump.fun/coin/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "DTVcrMAEMwpSSBvu6W7P3BLZsRhFZb6bSzARFDqobfCT",
@@ -1799,10 +1943,10 @@
         "h6": 31.89,
         "h24": 82.32
       },
-      "currentPrice": 0.000007581,
-      "currentMc": 7211,
-      "currentLiquidity": 6214.75,
-      "currentMultiple": 0.1007,
+      "currentPrice": 0.000007847,
+      "currentMc": 7464,
+      "currentLiquidity": 6353.7,
+      "currentMultiple": 0.1042,
       "athMultiple": 2.5611,
       "athMc": 183473,
       "athAt": "2026-11-03T01:47:27.355Z",
@@ -1825,7 +1969,7 @@
         "jupiter": "https://jup.ag/swap/SOL-DTVcrMAEMwpSSBvu6W7P3BLZsRhFZb6bSzARFDqobfCT",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "FAqiaGmrSdx2Z5qZmSRUkbyYCF2dFCUTfYVwP4Mypump",
@@ -1847,9 +1991,9 @@
         "h6": 417,
         "h24": 417
       },
-      "currentPrice": 0.000001951,
-      "currentMc": 1890,
-      "currentLiquidity": 2044.4,
+      "currentPrice": 0.000001957,
+      "currentMc": 1896,
+      "currentLiquidity": 2051.1,
       "currentMultiple": 0.0092,
       "athMultiple": 1,
       "athMc": 205859,
@@ -1873,7 +2017,7 @@
         "jupiter": "https://jup.ag/swap/SOL-FAqiaGmrSdx2Z5qZmSRUkbyYCF2dFCUTfYVwP4Mypump",
         "pumpfun": "https://pump.fun/coin/FAqiaGmrSdx2Z5qZmSRUkbyYCF2dFCUTfYVwP4Mypump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "7Ypg1rKLu8q32E1AQEDjaPCg8dfGeCSsMkFnK98zcash",
@@ -1895,10 +2039,10 @@
         "h6": 33.47,
         "h24": 150
       },
-      "currentPrice": 0.00008304,
-      "currentMc": 83045,
-      "currentLiquidity": 23689.02,
-      "currentMultiple": 0.4283,
+      "currentPrice": 0.00009497,
+      "currentMc": 94979,
+      "currentLiquidity": 25341.37,
+      "currentMultiple": 0.4898,
       "athMultiple": 1.1336,
       "athMc": 219883,
       "athAt": "2026-11-02T09:22:44.348Z",
@@ -1921,7 +2065,7 @@
         "jupiter": "https://jup.ag/swap/SOL-7Ypg1rKLu8q32E1AQEDjaPCg8dfGeCSsMkFnK98zcash",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
@@ -1943,10 +2087,10 @@
         "h6": 35.98,
         "h24": 227
       },
-      "currentPrice": 0.0004977,
-      "currentMc": 497776,
-      "currentLiquidity": 70080.76,
-      "currentMultiple": 0.4713,
+      "currentPrice": 0.0004219,
+      "currentMc": 421993,
+      "currentLiquidity": 64766.86,
+      "currentMultiple": 0.3995,
       "athMultiple": 1.0502,
       "athMc": 1109114,
       "athAt": "2026-11-02T02:04:13.832Z",
@@ -1969,7 +2113,7 @@
         "jupiter": "https://jup.ag/swap/SOL-APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "6QUHcqYuiPRHxhnYZoygewXtNQr9kUrhc9Tmwgtbpump",
@@ -1991,10 +2135,10 @@
         "h6": 48.9,
         "h24": 279
       },
-      "currentPrice": 0.00004253,
-      "currentMc": 40846,
-      "currentLiquidity": 20263.62,
-      "currentMultiple": 0.3066,
+      "currentPrice": 0.0000462,
+      "currentMc": 44372,
+      "currentLiquidity": 21262.78,
+      "currentMultiple": 0.3331,
       "athMultiple": 6.049,
       "athMc": 805947,
       "athAt": "2026-11-04T08:57:25.739Z",
@@ -2017,7 +2161,7 @@
         "jupiter": "https://jup.ag/swap/SOL-6QUHcqYuiPRHxhnYZoygewXtNQr9kUrhc9Tmwgtbpump",
         "pumpfun": "https://pump.fun/coin/6QUHcqYuiPRHxhnYZoygewXtNQr9kUrhc9Tmwgtbpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "nG3jfPQHU2ZQhPERkTZD8YPSAsrrWiePPDcm9jxpump",
@@ -2039,10 +2183,10 @@
         "h6": 18.89,
         "h24": -10.99
       },
-      "currentPrice": 0.0001989,
-      "currentMc": 194639,
-      "currentLiquidity": 45007.42,
-      "currentMultiple": 2.378,
+      "currentPrice": 0.0001781,
+      "currentMc": 174310,
+      "currentLiquidity": 42837.64,
+      "currentMultiple": 2.1294,
       "athMultiple": 2.9507,
       "athMc": 241576,
       "athAt": "2026-11-06T17:55:06.341Z",
@@ -2065,7 +2209,7 @@
         "jupiter": "https://jup.ag/swap/SOL-nG3jfPQHU2ZQhPERkTZD8YPSAsrrWiePPDcm9jxpump",
         "pumpfun": "https://pump.fun/coin/nG3jfPQHU2ZQhPERkTZD8YPSAsrrWiePPDcm9jxpump"
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "7Y6QNhQ2FxL6JEqZHooqgkXQubeQNC6N9emJxytdWp65",
@@ -2087,10 +2231,10 @@
         "h6": 234,
         "h24": 234
       },
-      "currentPrice": 0.00001154,
-      "currentMc": 11528,
-      "currentLiquidity": 9606.15,
-      "currentMultiple": 0.0876,
+      "currentPrice": 0.00001008,
+      "currentMc": 10077,
+      "currentLiquidity": 8942.32,
+      "currentMultiple": 0.0765,
       "athMultiple": 1,
       "athMc": 131564,
       "athAt": "2026-11-01T19:14:10.770Z",
@@ -2113,7 +2257,7 @@
         "jupiter": "https://jup.ag/swap/SOL-7Y6QNhQ2FxL6JEqZHooqgkXQubeQNC6N9emJxytdWp65",
         "pumpfun": null
       },
-      "lastUpdated": "2026-11-08T09:05:53.480Z"
+      "lastUpdated": "2026-11-08T15:56:05.877Z"
     },
     {
       "address": "DgkKGYiJZMCah6iphatZeqCGJ5S51ND7qxQZQdP5pump",
@@ -4658,150 +4802,6 @@
         "pumpfun": "https://pump.fun/coin/2ZTZPzwUH2fFBVy6rDSidVtq6hXVeZPZmxUSLqd7pump"
       },
       "lastUpdated": "2026-10-31T15:08:27.781Z"
-    },
-    {
-      "address": "3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump",
-      "name": "Trump Pepe",
-      "symbol": "TRUMPE",
-      "chain": "solana",
-      "dex": "pumpswap",
-      "pairAddress": "DS4HutcWzM14aAoCJ15yedyXpPdqmd32PKmUGPL9ojim",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/6QbExPHreIkWGMns?width=800&height=800&quality=95&format=auto",
-      "calledAt": "2026-10-24T16:58:12.493Z",
-      "score": 79,
-      "priceAtCall": 0.0001227,
-      "mcAtCall": 121524,
-      "liquidity": 28352.92,
-      "volume24h": 478209.02,
-      "change": {
-        "m5": 0.37,
-        "h1": 18.64,
-        "h6": 172,
-        "h24": 172
-      },
-      "currentPrice": 0.00000182,
-      "currentMc": 1802,
-      "currentLiquidity": 1921.88,
-      "currentMultiple": 0.0148,
-      "athMultiple": 1.0937,
-      "athMc": 132877,
-      "athAt": "2026-10-24T21:41:10.915Z",
-      "peakMc": 132877,
-      "peakAt": "2026-10-24T21:41:10.915Z",
-      "status": "rugged",
-      "ruggedAt": "2026-10-24T23:46:13.370Z",
-      "safety": {
-        "mint": true,
-        "freeze": true,
-        "lp": 100,
-        "top10": 17.4
-      },
-      "links": {
-        "dexscreener": "https://dexscreener.com/solana/DS4HutcWzM14aAoCJ15yedyXpPdqmd32PKmUGPL9ojim",
-        "solscan": "https://solscan.io/token/3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump",
-        "birdeye": "https://birdeye.so/token/3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump?chain=solana",
-        "photon": "https://photon-sol.tinyastro.io/en/lp/DS4HutcWzM14aAoCJ15yedyXpPdqmd32PKmUGPL9ojim",
-        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump",
-        "jupiter": "https://jup.ag/swap/SOL-3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump",
-        "pumpfun": "https://pump.fun/coin/3CQpA59r3Tw9qpwiVHEcDxj2HGoHXiX1gsn7YNEapump"
-      },
-      "lastUpdated": "2026-10-31T15:08:27.781Z"
-    },
-    {
-      "address": "BSBsxXFGHrew8FcxjYHDgx5EnzoRs9cWkZWxkvP5KAZQ",
-      "name": "Dylan Kerler",
-      "symbol": "PUMP DEV",
-      "chain": "solana",
-      "dex": "pumpswap",
-      "pairAddress": "5ez5uZfdq7p3Q5W8ECp576mdEcPH4eM6zCXXZ69h62iW",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/j-F63GO_uG8bUkK6?width=800&height=800&quality=95&format=auto",
-      "calledAt": "2026-10-24T09:47:47.257Z",
-      "score": 78,
-      "priceAtCall": 0.00008991,
-      "mcAtCall": 87042,
-      "liquidity": 24256.3,
-      "volume24h": 367422.34,
-      "change": {
-        "m5": 24.01,
-        "h1": 32.08,
-        "h6": 97.73,
-        "h24": 97.73
-      },
-      "currentPrice": 0.000002591,
-      "currentMc": 2507,
-      "currentLiquidity": 2655.3,
-      "currentMultiple": 0.0288,
-      "athMultiple": 1,
-      "athMc": 87042,
-      "athAt": "2026-10-24T09:47:47.257Z",
-      "peakMc": 87042,
-      "peakAt": "2026-10-24T09:47:47.257Z",
-      "status": "rugged",
-      "ruggedAt": "2026-10-24T13:39:24.825Z",
-      "safety": {
-        "mint": true,
-        "freeze": true,
-        "lp": 100,
-        "top10": 25.6
-      },
-      "links": {
-        "dexscreener": "https://dexscreener.com/solana/5ez5uZfdq7p3Q5W8ECp576mdEcPH4eM6zCXXZ69h62iW",
-        "solscan": "https://solscan.io/token/BSBsxXFGHrew8FcxjYHDgx5EnzoRs9cWkZWxkvP5KAZQ",
-        "birdeye": "https://birdeye.so/token/BSBsxXFGHrew8FcxjYHDgx5EnzoRs9cWkZWxkvP5KAZQ?chain=solana",
-        "photon": "https://photon-sol.tinyastro.io/en/lp/5ez5uZfdq7p3Q5W8ECp576mdEcPH4eM6zCXXZ69h62iW",
-        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=BSBsxXFGHrew8FcxjYHDgx5EnzoRs9cWkZWxkvP5KAZQ",
-        "jupiter": "https://jup.ag/swap/SOL-BSBsxXFGHrew8FcxjYHDgx5EnzoRs9cWkZWxkvP5KAZQ",
-        "pumpfun": null
-      },
-      "lastUpdated": "2026-10-31T08:56:54.301Z"
-    },
-    {
-      "address": "Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump",
-      "name": "COIL",
-      "symbol": "COIL",
-      "chain": "solana",
-      "dex": "pumpswap",
-      "pairAddress": "BDFCdXTi8JfCkioHtytKCBfy2axEMmQoUV6j9BoLj2KJ",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/QP3zofkODiNBnhUN?width=800&height=800&quality=95&format=auto",
-      "calledAt": "2026-10-24T09:47:47.257Z",
-      "score": 74,
-      "priceAtCall": 0.0001167,
-      "mcAtCall": 112273,
-      "liquidity": 28687.16,
-      "volume24h": 750729.73,
-      "change": {
-        "m5": -5.02,
-        "h1": -4.13,
-        "h6": 171,
-        "h24": 171
-      },
-      "currentPrice": 0.0000707,
-      "currentMc": 68006,
-      "currentLiquidity": 23014.01,
-      "currentMultiple": 0.6058,
-      "athMultiple": 1.8243,
-      "athMc": 204785,
-      "athAt": "2026-10-24T21:41:10.915Z",
-      "peakMc": 204785,
-      "peakAt": "2026-10-24T21:41:10.915Z",
-      "status": "active",
-      "ruggedAt": null,
-      "safety": {
-        "mint": true,
-        "freeze": true,
-        "lp": 100,
-        "top10": 18.2
-      },
-      "links": {
-        "dexscreener": "https://dexscreener.com/solana/BDFCdXTi8JfCkioHtytKCBfy2axEMmQoUV6j9BoLj2KJ",
-        "solscan": "https://solscan.io/token/Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump",
-        "birdeye": "https://birdeye.so/token/Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump?chain=solana",
-        "photon": "https://photon-sol.tinyastro.io/en/lp/BDFCdXTi8JfCkioHtytKCBfy2axEMmQoUV6j9BoLj2KJ",
-        "bullx": "https://neo.bullx.io/terminal?chainId=1399811149&address=Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump",
-        "jupiter": "https://jup.ag/swap/SOL-Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump",
-        "pumpfun": "https://pump.fun/coin/Bdmz1BAj5B2YbYVdMyZexWbjX33kfhNonHGDtQjipump"
-      },
-      "lastUpdated": "2026-10-31T08:56:54.301Z"
     }
   ]
 }
