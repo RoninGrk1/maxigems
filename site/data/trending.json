@@ -1,326 +1,486 @@
 {
-  "updatedAt": "2026-11-19T13:22:46.848Z",
+  "updatedAt": "2026-11-19T21:42:42.855Z",
   "source": "engine",
   "hot": [
     {
-      "address": "FrzTRPiKHdVW8e3yxQdZisBQiZtBukr18d6ZPv2ju2UK",
-      "pairAddress": "9qtgCm4zAukVtL59PuZA6QRZQSRemBmpPxri2iUQGECz",
-      "name": "Bawsaq Index",
-      "symbol": "BAWSAQ",
+      "address": "3hcJWcNvWJu3QBq6PiC8xavYQJJwBnr6adhdpHXppump",
+      "pairAddress": "DLxUmNSQArWSegkberb1Hu531tseqWfNE5ixuESJCREN",
+      "name": "Fiona the Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/JStmjQugDGjmcd2Z?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795123324000,
+      "mc": 62928,
+      "liq": 20168.53,
+      "ch": {
+        "m5": -54.87,
+        "h1": 114,
+        "h24": 114
+      },
+      "vol": {
+        "m5": 233295.01,
+        "h1": 418939.34,
+        "h24": 418939.34
+      },
+      "txns": {
+        "m5": {
+          "b": 2227,
+          "s": 1793
+        },
+        "h1": {
+          "b": 4189,
+          "s": 3596
+        }
+      },
+      "heat": 90
+    },
+    {
+      "address": "mXcP1bqxM8Tx6BQuFwTHqzE3m7JVMZspmxZ7pjQpump",
+      "pairAddress": "ELyCEcDXqeHy93nFuR1iuvECppobyFLkMvVJLx9xVaRP",
+      "name": "BUNCOIN",
+      "symbol": "BUNCOIN",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/8dqNnhV2e1BxVYfs?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795124174000,
+      "mc": 349120,
+      "liq": 44292.67,
+      "ch": {
+        "m5": 0.64,
+        "h1": 277,
+        "h24": 277
+      },
+      "vol": {
+        "m5": 79830.45,
+        "h1": 341456.35,
+        "h24": 341456.35
+      },
+      "txns": {
+        "m5": {
+          "b": 455,
+          "s": 521
+        },
+        "h1": {
+          "b": 975,
+          "s": 1058
+        }
+      },
+      "heat": 85
+    },
+    {
+      "address": "4afaoDL2KgyF8vaDziWug4ZaJHhdGhoVjoeKHnQLjtbQ",
+      "pairAddress": "Dxrq9WnGPJivyK5Hha1SD6MyCKsYzPw4P5KyjmQsa2AR",
+      "name": "fomo",
+      "symbol": "fomo",
       "dex": "meteora",
       "imageUrl": null,
-      "pairCreatedAt": 1795094505000,
-      "mc": 17995,
-      "liq": 31720.09,
+      "pairCreatedAt": 1795124476000,
+      "mc": 14265,
+      "liq": 27615.72,
       "ch": {
-        "m5": 28.65,
-        "h1": 28.65,
-        "h24": 28.65
+        "m5": 6.86,
+        "h1": 6.86,
+        "h24": 6.86
       },
       "vol": {
-        "m5": 34500.21,
-        "h1": 34500.21,
-        "h24": 34500.21
+        "m5": 24933.36,
+        "h1": 24933.36,
+        "h24": 24933.36
       },
       "txns": {
         "m5": {
-          "b": 290,
-          "s": 153
+          "b": 282,
+          "s": 169
         },
         "h1": {
-          "b": 290,
-          "s": 153
+          "b": 282,
+          "s": 169
         }
       },
-      "heat": 87
+      "heat": 85
     },
     {
-      "address": "A8cMEDWiqDuq1Md6PN8PCA84rkpCVhFBoM1KHwDwcdg8",
-      "pairAddress": "7e9pQUSQBrQkSTcjocGoZtf17ZGP9oAKYApWAsQ7L3TY",
-      "name": "PIPI",
-      "symbol": "PIPI",
-      "dex": "meteora",
-      "imageUrl": null,
-      "pairCreatedAt": 1795094527000,
-      "mc": 9080,
-      "liq": 15190.16,
-      "ch": {
-        "m5": 42.92,
-        "h1": 42.92,
-        "h24": 42.92
-      },
-      "vol": {
-        "m5": 10409.8,
-        "h1": 10409.8,
-        "h24": 10409.8
-      },
-      "txns": {
-        "m5": {
-          "b": 105,
-          "s": 41
-        },
-        "h1": {
-          "b": 105,
-          "s": 41
-        }
-      },
-      "heat": 84
-    },
-    {
-      "address": "5UUH9RTDiSpq6HKS6bp4NdU9PNJpXRXuiw6ShBTBhgH2",
-      "pairAddress": "4w2cysotX6czaUGmmWg13hDpY4QEMG2CzeKYEQyK9Ama",
-      "name": "TROLL",
-      "symbol": "TROLL",
+      "address": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+      "pairAddress": "DjbLtX1HRGZZrJgJ7CwTX6SN3D7tBLiytkGwomBUwTVB",
+      "name": "Fiona the Hippo",
+      "symbol": "FIONA",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/tLIgpz8Fa_O1THOX?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1745173826000,
-      "mc": 22983731,
-      "liq": 1930475.21,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/9NUIvShLJiopaTvw?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795121609000,
+      "mc": 682276,
+      "liq": 67471.64,
       "ch": {
-        "m5": -2.04,
-        "h1": -2.38,
-        "h24": -1.21
+        "m5": 54.82,
+        "h1": 2086,
+        "h24": 2086
       },
       "vol": {
-        "m5": 26138.4,
-        "h1": 32766.64,
-        "h24": 205212.3
+        "m5": 220150.81,
+        "h1": 1713622.67,
+        "h24": 1713622.67
       },
       "txns": {
         "m5": {
-          "b": 34,
-          "s": 5
+          "b": 1461,
+          "s": 1369
         },
         "h1": {
-          "b": 44,
-          "s": 9
+          "b": 15461,
+          "s": 13355
         }
       },
-      "heat": 82
+      "heat": 80
     },
     {
-      "address": "6MKD1NkLvWRqdbFtqmgACBwUV5o6GJpZry8HkNgzpump",
-      "pairAddress": "2EgUTKMqkeFQK3922TnSQbXMZZC6GnYUQAZBECmfK4eg",
-      "name": "PIPI",
-      "symbol": "PIPI",
+      "address": "EfFoZZgpDjJywmWqpA8Lqs5gC4NH6cj5N1G5D43vpump",
+      "pairAddress": "59cbwcBVKAc5QxLvCUWZwzE7GSpBv4iMYGbtTT18G3q9",
+      "name": "Mandy",
+      "symbol": "MANDY",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/mKMMEDoLG8fwmwMn?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089953000,
-      "mc": 865513,
-      "liq": 88960.39,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/kN5BIEHL0O69pYVC?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795121964000,
+      "mc": 295428,
+      "liq": 37967.94,
       "ch": {
-        "m5": 24.53,
-        "h1": 408,
-        "h24": 1940
+        "m5": -14.63,
+        "h1": 724,
+        "h24": 724
       },
       "vol": {
-        "m5": 151078.79,
-        "h1": 1628841,
-        "h24": 1949334.16
+        "m5": 12943.92,
+        "h1": 152850.41,
+        "h24": 152850.41
       },
       "txns": {
         "m5": {
-          "b": 1247,
-          "s": 1001
+          "b": 412,
+          "s": 37
         },
         "h1": {
-          "b": 15607,
-          "s": 14979
+          "b": 4936,
+          "s": 1266
         }
       },
-      "heat": 75
+      "heat": 79
     },
     {
-      "address": "Bd7mSgkiBbMs6jGG2651KXGnUNqFW89u5gTEMieppump",
-      "pairAddress": "HVk1fDKpn6YatZ83nUnJieiLNfW7oecDBWa2bN8gqV9B",
-      "name": "PIPITOAD",
-      "symbol": "PIPI",
+      "address": "82u71wqQSa4NmD1UTTDwKyh5EUm3xe9pMp4UZXhFpump",
+      "pairAddress": "3qNtWA3x9yRiDqLUZ7fLA1oFqeQ3wPthegCrGVkfcarU",
+      "name": "Dacity Inu",
+      "symbol": "DAINU",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/6xEO57RjdXNAIen8?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795090194000,
-      "mc": 124394,
-      "liq": 32493.85,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/nhHdkfeshcYebHxQ?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795120898000,
+      "mc": 758618,
+      "liq": 62590.95,
       "ch": {
-        "m5": -24.23,
-        "h1": 69.84,
-        "h24": 187
+        "m5": -5.72,
+        "h1": 99.47,
+        "h24": 1979
       },
       "vol": {
-        "m5": 41728.37,
-        "h1": 717360.98,
-        "h24": 901909.38
+        "m5": 14554.78,
+        "h1": 684747.59,
+        "h24": 723305.24
       },
       "txns": {
         "m5": {
-          "b": 492,
-          "s": 374
+          "b": 769,
+          "s": 398
         },
         "h1": {
-          "b": 9054,
-          "s": 6405
+          "b": 11448,
+          "s": 6228
         }
       },
       "heat": 74
     },
     {
-      "address": "HXT1UpmDkHmphFDrs3JWR3WHpsnoueCyABArTo7Apump",
-      "pairAddress": "8pw2YnRa1uig4NKVnHD9aGj8yUoLuYqqqcKWySKMqGVA",
-      "name": "OFFICIALGTA",
-      "symbol": "OGTA",
+      "address": "GQngHP8P6s45MxWnU7JsocfV2HjPQdJZmCEAYKpBpump",
+      "pairAddress": "6vHxZ8NQUxfGiiXy7erhZLRJBAmLtgCsD7mZbaRdoUJy",
+      "name": "Jason's ex",
+      "symbol": "MANDY",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3yRXnWusXZ-R--w6?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089816000,
-      "mc": 1522905,
-      "liq": 91671.57,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/OX8l6YDODMLBq1Zq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795120857000,
+      "mc": 979715,
+      "liq": 70902.6,
       "ch": {
-        "m5": 3.49,
-        "h1": 476,
-        "h24": 2207
+        "m5": 8.57,
+        "h1": 213,
+        "h24": 2301
       },
       "vol": {
-        "m5": 8908.22,
-        "h1": 308110.4,
-        "h24": 776422.28
+        "m5": 14644.93,
+        "h1": 427913.56,
+        "h24": 452168.69
       },
       "txns": {
         "m5": {
-          "b": 968,
-          "s": 397
+          "b": 130,
+          "s": 1095
         },
         "h1": {
-          "b": 12472,
-          "s": 7519
-        }
-      },
-      "heat": 72
-    },
-    {
-      "address": "GD8GhsCv7GHaimi3N5wZU5ZGsZGY3LB6vLN7LgJYpump",
-      "pairAddress": "EMjdUouGLWhNkjP3roSbb7eSD4GgH7XRycYMXmuS9uYp",
-      "name": "DCTY",
-      "symbol": "DCTY",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/NmIam1v9TPBh673T?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795021125000,
-      "mc": 67194,
-      "liq": 18253.14,
-      "ch": {
-        "m5": -2.6,
-        "h1": 55.03,
-        "h24": 131
-      },
-      "vol": {
-        "m5": 4166.86,
-        "h1": 86096.4,
-        "h24": 204960.95
-      },
-      "txns": {
-        "m5": {
-          "b": 73,
-          "s": 38
-        },
-        "h1": {
-          "b": 1221,
-          "s": 750
+          "b": 11273,
+          "s": 8481
         }
       },
       "heat": 70
     },
     {
-      "address": "A4jXnWk1rDRDth6HmDASi45c89n1AguTHivAQPTVpump",
-      "pairAddress": "C3ai5bk7q9jTtVcbWQeEXSta99BMmLCNVyasDD7mnQBt",
-      "name": "GTA Season",
-      "symbol": "GTASZN",
+      "address": "Cc5aMEFwovjGpETSqW64sXLW1NnUbVei8D4TagRcpump",
+      "pairAddress": "E1Vu4cTTaPn56hrzdS2UjK1dXVCi5awmM13J2ZY6ksvY",
+      "name": "Cat Mario",
+      "symbol": "CATMARIO",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/7oalA1ENsde6Xoy-?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795045398000,
-      "mc": 843329,
-      "liq": 73958.67,
+      "imageUrl": null,
+      "pairCreatedAt": 1795105836000,
+      "mc": 209744,
+      "liq": 45927.84,
       "ch": {
-        "m5": -17.6,
-        "h1": -64.35,
-        "h24": 732
+        "m5": -23.37,
+        "h1": -39.57,
+        "h24": 341
       },
       "vol": {
-        "m5": 15078.63,
-        "h1": 637305.66,
-        "h24": 5441484.86
+        "m5": 43182.12,
+        "h1": 137256.26,
+        "h24": 3978242.74
       },
       "txns": {
         "m5": {
-          "b": 500,
-          "s": 169
+          "b": 341,
+          "s": 301
         },
         "h1": {
-          "b": 7804,
-          "s": 3442
+          "b": 1191,
+          "s": 883
         }
       },
-      "heat": 69
+      "heat": 70
     },
     {
-      "address": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
-      "pairAddress": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
-      "name": "DacityCoin",
-      "symbol": "DCTY",
+      "address": "5EpUkeRekk1uzWKoJz9fyYYA3Vwt6bTtdRNpVtkMpump",
+      "pairAddress": "31D1mtFZEi4XV6SXQJ5GbNaeW6J1PLHbyXvkinQbiYdN",
+      "name": "snail cat",
+      "symbol": "scat",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3ZOgVDrIum8zI4U7?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792465409000,
-      "mc": 17857775,
-      "liq": 558022.17,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/01_6bcsnt4KZ_PzK?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1794875462000,
+      "mc": 77567,
+      "liq": 19960.5,
       "ch": {
-        "m5": 3.58,
-        "h1": 6.23,
-        "h24": 72712
+        "m5": 4.25,
+        "h1": 55.39,
+        "h24": 1463
       },
       "vol": {
-        "m5": 117101.41,
-        "h1": 492473.59,
-        "h24": 53562067.82
+        "m5": 5324.58,
+        "h1": 52401.93,
+        "h24": 181561.57
       },
       "txns": {
         "m5": {
-          "b": 312,
-          "s": 317
+          "b": 37,
+          "s": 30
         },
         "h1": {
-          "b": 2492,
-          "s": 2126
+          "b": 339,
+          "s": 272
+        }
+      },
+      "heat": 68
+    },
+    {
+      "address": "97Fz7Ki7GzBDLCz4LV69CTCyw4VqZV7GwL6dS9zsBtcJ",
+      "pairAddress": "F9Q7e3Ha4fZvwKMRUWoaWgokzZe8dpBk9k7P259q3K5i",
+      "name": "Fiona the Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/QlFIz7Q6p3gfwB2T?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795122710000,
+      "mc": 13139,
+      "liq": 7508.42,
+      "ch": {
+        "m5": -32,
+        "h1": -54.92,
+        "h24": -54.92
+      },
+      "vol": {
+        "m5": 6831.32,
+        "h1": 324248.96,
+        "h24": 324248.96
+      },
+      "txns": {
+        "m5": {
+          "b": 118,
+          "s": 107
+        },
+        "h1": {
+          "b": 4333,
+          "s": 3466
+        }
+      },
+      "heat": 67
+    },
+    {
+      "address": "4V6DGWrMeKpQcpPmEGnuHqdAccno5q3JzJFTTh4opump",
+      "pairAddress": "Cv28PME6bFt5UZkKctB6gBeX1ZqavK3mzLyTYe7TSW6b",
+      "name": "Fiona The Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/AVL183lLIiT9R63O?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795122069000,
+      "mc": 18076,
+      "liq": 10123.45,
+      "ch": {
+        "m5": 0.54,
+        "h1": -37.8,
+        "h24": -37.8
+      },
+      "vol": {
+        "m5": 5232.04,
+        "h1": 265901.47,
+        "h24": 265901.47
+      },
+      "txns": {
+        "m5": {
+          "b": 66,
+          "s": 55
+        },
+        "h1": {
+          "b": 4029,
+          "s": 3458
         }
       },
       "heat": 66
     },
     {
-      "address": "G5MxDeYk7BREdjixY9C9Wez2ojP7gioSfdBQMq4wpump",
-      "pairAddress": "EkmaBW8ExAC5YBwtzwwYP68FyLKRSZvuxzYu7GnX9S7T",
-      "name": "Antgent",
-      "symbol": "ANTGENT",
+      "address": "7bCiddGLe5aM8HE2pigT9jsqkmC1HSPxyXN6GkHEpump",
+      "pairAddress": "2RDx58tnDMEmZcQy9qGAfwhq9iCRRMbDuAtruofrjyZU",
+      "name": "OFFICIALGTA",
+      "symbol": "OGTA",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/ZRpisd5cmtaP_A-v?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795092593000,
-      "mc": 25537,
-      "liq": 11735.73,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/XNJNJP5j1s-WmkYq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795113110000,
+      "mc": 1080075,
+      "liq": 77094.59,
       "ch": {
-        "m5": 8.06,
-        "h1": -38.54,
-        "h24": -38.54
+        "m5": -7.82,
+        "h1": -3.79,
+        "h24": 1093
       },
       "vol": {
-        "m5": 1268.48,
-        "h1": 39450.7,
-        "h24": 39450.7
+        "m5": 9445.25,
+        "h1": 118331.53,
+        "h24": 1577077.21
       },
       "txns": {
         "m5": {
-          "b": 27,
-          "s": 14
+          "b": 735,
+          "s": 271
         },
         "h1": {
-          "b": 655,
-          "s": 471
+          "b": 10133,
+          "s": 4055
         }
       },
-      "heat": 64
+      "heat": 65
+    },
+    {
+      "address": "FSfZuwaRFVcTtVBsiJ45NYK7Mwi3ANRcVT8kpbevtPGj",
+      "pairAddress": "FPudvJHq1pLa3HUFpDhueEEFECF6WHRcs2UEeitijPoS",
+      "name": "OniSwap",
+      "symbol": "ONI",
+      "dex": "raydium",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/V8_2jVUc393migSn?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795117642000,
+      "mc": 78610,
+      "liq": 25593.68,
+      "ch": {
+        "m5": -10.88,
+        "h1": 79.59,
+        "h24": 160
+      },
+      "vol": {
+        "m5": 1746.35,
+        "h1": 54576.7,
+        "h24": 239112.2
+      },
+      "txns": {
+        "m5": {
+          "b": 26,
+          "s": 26
+        },
+        "h1": {
+          "b": 564,
+          "s": 374
+        }
+      },
+      "heat": 65
+    },
+    {
+      "address": "47HUoJ3EiL1h8kej8hEcUjFrxUkohNMSSbQHidPCpump",
+      "pairAddress": "Bw1cbUwbXFFn5xVBX6E7qVSDeb7vmtY8fpJPNYvDoXkA",
+      "name": "Cool Dog",
+      "symbol": "LOOSY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/SIEACNo8LEHTljbz?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795118693000,
+      "mc": 36096,
+      "liq": 16264.34,
+      "ch": {
+        "m5": -24.63,
+        "h1": -42.3,
+        "h24": -14.8
+      },
+      "vol": {
+        "m5": 3175.19,
+        "h1": 77086.36,
+        "h24": 599123.61
+      },
+      "txns": {
+        "m5": {
+          "b": 30,
+          "s": 41
+        },
+        "h1": {
+          "b": 1159,
+          "s": 957
+        }
+      },
+      "heat": 60
+    },
+    {
+      "address": "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+      "pairAddress": "Q2sPHPdUWFMg7M7wwrQKLrn619cAucfRsmhVJffodSp",
+      "name": "USELESS COIN",
+      "symbol": "USELESS",
+      "dex": "raydium",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/4f8af59f26d45252fb4379d4b1a1e61d0b419fd34dab2ec9f3ba77585d1783cb?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1746886996000,
+      "mc": 97471392,
+      "liq": 2717959.81,
+      "ch": {
+        "m5": 0.6,
+        "h1": -0.63,
+        "h24": 2.4
+      },
+      "vol": {
+        "m5": 3358.09,
+        "h1": 12526.06,
+        "h24": 571376.2
+      },
+      "txns": {
+        "m5": {
+          "b": 26,
+          "s": 1
+        },
+        "h1": {
+          "b": 72,
+          "s": 35
+        }
+      },
+      "heat": 60
     },
     {
       "address": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
@@ -330,189 +490,61 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/_aILGflqFiJQJ4A-?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1785083563000,
-      "mc": 16907426,
-      "liq": 1320178.79,
+      "mc": 15611684,
+      "liq": 1247270,
       "ch": {
-        "m5": -0.05,
-        "h1": -5.86,
-        "h24": -12.36
+        "m5": -0.32,
+        "h1": -3.46,
+        "h24": -8.6
       },
       "vol": {
-        "m5": 876.77,
-        "h1": 94596.15,
-        "h24": 621879.95
+        "m5": 3944.86,
+        "h1": 31463.59,
+        "h24": 593133.65
       },
       "txns": {
         "m5": {
-          "b": 0,
-          "s": 6
+          "b": 65,
+          "s": 3
         },
         "h1": {
-          "b": 524,
-          "s": 282
+          "b": 205,
+          "s": 51
         }
       },
-      "heat": 64
+      "heat": 58
     },
     {
-      "address": "Dfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump",
-      "pairAddress": "8WwcNqdZjCY5Pt7AkhupAFknV2txca9sq6YBkGzLbvdt",
-      "name": "Pippin",
-      "symbol": "pippin",
+      "address": "6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump",
+      "pairAddress": "58fzJMbX5PatnfJPqWWsqkVFPRKptkbb5r2vCw4Qq3z9",
+      "name": "Vine Coin",
+      "symbol": "VINE",
       "dex": "raydium",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/d237de55618e54fd7d66593ff2adf3ad8c092398f9049a31f1dcb1b23ad1dff8?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1731184061000,
-      "mc": 18091442,
-      "liq": 3411202.6,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/74a2255eb11fd430603a2ae1823456c98a5e241fa2e526c253c92ad16d1fa1ce?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1737591763000,
+      "mc": 9167850,
+      "liq": 1450622.84,
       "ch": {
-        "m5": 1.27,
-        "h1": 1.77,
-        "h24": -2.51
+        "m5": -3.95,
+        "h1": 0.27,
+        "h24": 36.12
       },
       "vol": {
-        "m5": 52737.31,
-        "h1": 238277.25,
-        "h24": 7741677.06
+        "m5": 20786.26,
+        "h1": 229325.16,
+        "h24": 2713020.16
       },
       "txns": {
         "m5": {
-          "b": 21,
-          "s": 47
+          "b": 65,
+          "s": 96
         },
         "h1": {
-          "b": 526,
-          "s": 479
-        }
-      },
-      "heat": 63
-    },
-    {
-      "address": "DeXXt9HopHa28msm4iATCvrQBer1FScmkpnt73Dgpump",
-      "pairAddress": "4xigVYy6WCg6NHv1jx2XRzQhg8QxY5En15CqiDbzmZ89",
-      "name": "Gay Theft Auto",
-      "symbol": "GAYTA",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/MiZ7iqHtg9E9VJzI?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089240000,
-      "mc": 38689,
-      "liq": 15685.3,
-      "ch": {
-        "m5": -4.49,
-        "h1": -22.91,
-        "h24": -34.28
-      },
-      "vol": {
-        "m5": 1832.02,
-        "h1": 29494.55,
-        "h24": 114923.95
-      },
-      "txns": {
-        "m5": {
-          "b": 27,
-          "s": 20
-        },
-        "h1": {
-          "b": 393,
-          "s": 354
-        }
-      },
-      "heat": 62
-    },
-    {
-      "address": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
-      "pairAddress": "3d4SzgvyhhwDo3dnDzkQNppdqp1ffNvrZFVLRN94j1bP",
-      "name": "The Great Whale",
-      "symbol": "jingyu",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/90Rl7H_rYM4BKnMG?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795075607000,
-      "mc": 91446,
-      "liq": 21544.98,
-      "ch": {
-        "m5": -3.53,
-        "h1": -1.82,
-        "h24": 186
-      },
-      "vol": {
-        "m5": 1259.29,
-        "h1": 35184.21,
-        "h24": 257260.5
-      },
-      "txns": {
-        "m5": {
-          "b": 27,
-          "s": 16
-        },
-        "h1": {
-          "b": 493,
-          "s": 329
-        }
-      },
-      "heat": 60
-    },
-    {
-      "address": "Fn95NtGXWPaJXc4N5y9rVkUq1NwZbjBNJzPVvNRLpump",
-      "pairAddress": "D1LXpkFpbQr1YwVgWYQsed93czdz8hA7s9g7yb8LMFfe",
-      "name": "Ah Shit, Here We Go Again",
-      "symbol": "SHIT",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/4R9NrUISc9GFycyG?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1794958720000,
-      "mc": 1328080,
-      "liq": 92255.9,
-      "ch": {
-        "m5": 1.57,
-        "h1": -8.96,
-        "h24": 8.36
-      },
-      "vol": {
-        "m5": 5708.21,
-        "h1": 94258.52,
-        "h24": 2442528.55
-      },
-      "txns": {
-        "m5": {
-          "b": 429,
-          "s": 70
-        },
-        "h1": {
-          "b": 5669,
-          "s": 1181
+          "b": 922,
+          "s": 1060
         }
       },
       "heat": 57
-    },
-    {
-      "address": "TTWofwAge91oFhZs7kpQdyrVRkmevgM88xijGvQFbKo",
-      "pairAddress": "6PTm7MkUmtsLU7w6dWrMHJAt8PnzoCgcZdKyTKEhUAPL",
-      "name": "Take-Two Interactive Software - Backpac…",
-      "symbol": "TTWO",
-      "dex": "raydium",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/https%3A%2F%2Fcoin-images.coingecko.com%2Fcoins%2Fimages%2F102175225%2Flarge%2Fbackpack_securities.png%3F1788858675?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1788875466000,
-      "mc": 91,
-      "liq": 650441.2,
-      "ch": {
-        "m5": 0.3,
-        "h1": 1.24,
-        "h24": -0.48
-      },
-      "vol": {
-        "m5": 17584.66,
-        "h1": 275808.27,
-        "h24": 13928516.71
-      },
-      "txns": {
-        "m5": {
-          "b": 110,
-          "s": 39
-        },
-        "h1": {
-          "b": 1048,
-          "s": 868
-        }
-      },
-      "heat": 49
     },
     {
       "address": "9rbKkz2BDQBVgZmrHY6d7PTq2ge91gkpEyE4y9PPpump",
@@ -522,479 +554,29 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/ed_ugSV242BZEFXZ?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1794964937000,
-      "mc": 2420493,
-      "liq": 121322.67,
+      "mc": 2414723,
+      "liq": 120361.47,
       "ch": {
-        "m5": 0.3,
-        "h1": 56.43,
-        "h24": 48.67
+        "m5": -1.74,
+        "h1": 16.47,
+        "h24": 64.46
       },
       "vol": {
-        "m5": 3977.06,
-        "h1": 71924.51,
-        "h24": 1539064.02
+        "m5": 3481.46,
+        "h1": 59689.32,
+        "h24": 1607749.45
       },
       "txns": {
         "m5": {
-          "b": 73,
-          "s": 62
+          "b": 46,
+          "s": 52
         },
         "h1": {
-          "b": 1055,
-          "s": 896
+          "b": 1096,
+          "s": 509
         }
       },
-      "heat": 49
-    },
-    {
-      "address": "2xCd5qHX5tW6pGUo7zfgHSSAnRjJwPA7Sz1Fu4fWcJjX",
-      "pairAddress": "CDUUhndBkYXCKsHMJYRUXpVVrCjo6giKB6HP9Z9zYQwk",
-      "name": "Mandy",
-      "symbol": "Mandy",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/geBBzmrrlC8qUskp?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795005145000,
-      "mc": 275271,
-      "liq": 49429.83,
-      "ch": {
-        "m5": 3.16,
-        "h1": 22.49,
-        "h24": 520
-      },
-      "vol": {
-        "m5": 3673.15,
-        "h1": 40902.09,
-        "h24": 1112486.69
-      },
-      "txns": {
-        "m5": {
-          "b": 36,
-          "s": 33
-        },
-        "h1": {
-          "b": 323,
-          "s": 249
-        }
-      },
-      "heat": 48
-    },
-    {
-      "address": "9QT8K685Hrae4k11dhGXirdtpfAaimExtyfwt8cPpump",
-      "pairAddress": "3mxDjdZ1gAe5HziC4dj4UnLdXJ5DBcC9jsSYq55mFyKg",
-      "name": "AiDiglet",
-      "symbol": "DIGS",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/njwaE8gbx_dMOMA2?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1793190770000,
-      "mc": 411505,
-      "liq": 65167.01,
-      "ch": {
-        "m5": -0.01,
-        "h1": 1.59,
-        "h24": 21.95
-      },
-      "vol": {
-        "m5": 3583.36,
-        "h1": 50423.6,
-        "h24": 1147043.3
-      },
-      "txns": {
-        "m5": {
-          "b": 43,
-          "s": 39
-        },
-        "h1": {
-          "b": 581,
-          "s": 524
-        }
-      },
-      "heat": 47
-    },
-    {
-      "address": "DKYcjobF7HPtL9RyQBRdeRQ2iWvizpfbgWwPWNXdpump",
-      "pairAddress": "7Te1wXcfeQjKLGHXFvxSCnGZTqunoZ9fxBn7KKjrkNEr",
-      "name": "AudaCity",
-      "symbol": "DacityCoin",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/TIh7xVMn_D2DqUkr?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1792070830000,
-      "mc": 356288,
-      "liq": 95243.85,
-      "ch": {
-        "m5": 6.3,
-        "h1": -31.28,
-        "h24": -94.59
-      },
-      "vol": {
-        "m5": 7083.56,
-        "h1": 126744.31,
-        "h24": 7749218.42
-      },
-      "txns": {
-        "m5": {
-          "b": 54,
-          "s": 43
-        },
-        "h1": {
-          "b": 774,
-          "s": 557
-        }
-      },
-      "heat": 47
-    },
-    {
-      "address": "DzKbm41ZuztSpwjddZJ9LnKfPm8fgHEheiqQBxKK2PCn",
-      "pairAddress": "ASrKL2w883y9oB4XWvhmFcEnQGXwV5WPjEvRe3D7SVBR",
-      "name": "Nikumaru",
-      "symbol": "にくまる",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/7N2axFT3S5O3kDtN?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795070057000,
-      "mc": 21483,
-      "liq": 9574.39,
-      "ch": {
-        "m5": -9.9,
-        "h1": -21.9,
-        "h24": -28.04
-      },
-      "vol": {
-        "m5": 602.44,
-        "h1": 3103.67,
-        "h24": 50221.51
-      },
-      "txns": {
-        "m5": {
-          "b": 4,
-          "s": 1
-        },
-        "h1": {
-          "b": 34,
-          "s": 37
-        }
-      },
-      "heat": 45
-    },
-    {
-      "address": "7no4DN8bKbbEYnaa9h4LgobGoeT4HGk8fjQ5ZPMCpump",
-      "pairAddress": "HeFUxUhQGo8HMzrVdvUzJSWGMxXtyxTHnUaYa7gSe9tp",
-      "name": "DacityCoin",
-      "symbol": "DCTY",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3OrlVVPemiBFSc9N?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795038749000,
-      "mc": 31970,
-      "liq": 12048.61,
-      "ch": {
-        "m5": 5.58,
-        "h1": 62.76,
-        "h24": 5.35
-      },
-      "vol": {
-        "m5": 302.88,
-        "h1": 2870.91,
-        "h24": 209261.88
-      },
-      "txns": {
-        "m5": {
-          "b": 12,
-          "s": 6
-        },
-        "h1": {
-          "b": 65,
-          "s": 24
-        }
-      },
-      "heat": 42
-    },
-    {
-      "address": "79rE2ac8JhN3U12QLhymgDmCTiwBN1d4maTcK1fhpump",
-      "pairAddress": "31ZwgJENwbxd2NkNfmhTbaFFEGtMviijVx3niqVb9CN9",
-      "name": "Apocrycoin",
-      "symbol": "Apocrycoin",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/HiWY11SBNJlFZiVO?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795015792000,
-      "mc": 232690,
-      "liq": 50286.8,
-      "ch": {
-        "m5": -1.91,
-        "h1": -36.13,
-        "h24": 447
-      },
-      "vol": {
-        "m5": 2800.26,
-        "h1": 66432.19,
-        "h24": 5160359.83
-      },
-      "txns": {
-        "m5": {
-          "b": 30,
-          "s": 23
-        },
-        "h1": {
-          "b": 659,
-          "s": 506
-        }
-      },
-      "heat": 42
-    },
-    {
-      "address": "64Uf4fkAWepSjBF8QKWdftHjtgKb2FG6gZsgmx6Fpump",
-      "pairAddress": "E228rR6v99NTkHW19DoTdPCmrcL8rnnzTBVwz2VNkwww",
-      "name": "Founder Official",
-      "symbol": "FNDR",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/BfBSvyOWcJJJAnRL?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795050224000,
-      "mc": 165545,
-      "liq": 33640.24,
-      "ch": {
-        "m5": -11.75,
-        "h1": -11.7,
-        "h24": 545
-      },
-      "vol": {
-        "m5": 4058.89,
-        "h1": 40261.63,
-        "h24": 2596090.75
-      },
-      "txns": {
-        "m5": {
-          "b": 37,
-          "s": 27
-        },
-        "h1": {
-          "b": 392,
-          "s": 400
-        }
-      },
-      "heat": 42
-    },
-    {
-      "address": "GgyKtbWS99pzkvqaG7wvxdKCbRxuLDLRDm4TtfDdpump",
-      "pairAddress": "Bk8BnW4ev3gKcJhFUzSPjyXCsiJ1aYCz485p5QpQj5be",
-      "name": "DacityCoin",
-      "symbol": "DCTY",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/su8Cmd-2_DcIhWIB?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795013105000,
-      "mc": 44332,
-      "liq": 20901.88,
-      "ch": {
-        "m5": -0.46,
-        "h1": -8.52,
-        "h24": -5.89
-      },
-      "vol": {
-        "m5": 549.81,
-        "h1": 3800.52,
-        "h24": 3846805.12
-      },
-      "txns": {
-        "m5": {
-          "b": 6,
-          "s": 7
-        },
-        "h1": {
-          "b": 81,
-          "s": 54
-        }
-      },
-      "heat": 40
-    }
-  ],
-  "graduates": [
-    {
-      "address": "G5MxDeYk7BREdjixY9C9Wez2ojP7gioSfdBQMq4wpump",
-      "pairAddress": "EkmaBW8ExAC5YBwtzwwYP68FyLKRSZvuxzYu7GnX9S7T",
-      "name": "Antgent",
-      "symbol": "ANTGENT",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/ZRpisd5cmtaP_A-v?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795092593000,
-      "mc": 25537,
-      "liq": 11735.73,
-      "ch": {
-        "m5": 8.06,
-        "h1": -38.54,
-        "h24": -38.54
-      },
-      "vol": {
-        "m5": 1268.48,
-        "h1": 39450.7,
-        "h24": 39450.7
-      },
-      "txns": {
-        "m5": {
-          "b": 27,
-          "s": 14
-        },
-        "h1": {
-          "b": 655,
-          "s": 471
-        }
-      },
-      "heat": 64
-    },
-    {
-      "address": "Bd7mSgkiBbMs6jGG2651KXGnUNqFW89u5gTEMieppump",
-      "pairAddress": "HVk1fDKpn6YatZ83nUnJieiLNfW7oecDBWa2bN8gqV9B",
-      "name": "PIPITOAD",
-      "symbol": "PIPI",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/6xEO57RjdXNAIen8?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795090194000,
-      "mc": 124394,
-      "liq": 32493.85,
-      "ch": {
-        "m5": -24.23,
-        "h1": 69.84,
-        "h24": 187
-      },
-      "vol": {
-        "m5": 41728.37,
-        "h1": 717360.98,
-        "h24": 901909.38
-      },
-      "txns": {
-        "m5": {
-          "b": 492,
-          "s": 374
-        },
-        "h1": {
-          "b": 9054,
-          "s": 6405
-        }
-      },
-      "heat": 74
-    },
-    {
-      "address": "6MKD1NkLvWRqdbFtqmgACBwUV5o6GJpZry8HkNgzpump",
-      "pairAddress": "2EgUTKMqkeFQK3922TnSQbXMZZC6GnYUQAZBECmfK4eg",
-      "name": "PIPI",
-      "symbol": "PIPI",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/mKMMEDoLG8fwmwMn?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089953000,
-      "mc": 865513,
-      "liq": 88960.39,
-      "ch": {
-        "m5": 24.53,
-        "h1": 408,
-        "h24": 1940
-      },
-      "vol": {
-        "m5": 151078.79,
-        "h1": 1628841,
-        "h24": 1949334.16
-      },
-      "txns": {
-        "m5": {
-          "b": 1247,
-          "s": 1001
-        },
-        "h1": {
-          "b": 15607,
-          "s": 14979
-        }
-      },
-      "heat": 75
-    },
-    {
-      "address": "HXT1UpmDkHmphFDrs3JWR3WHpsnoueCyABArTo7Apump",
-      "pairAddress": "8pw2YnRa1uig4NKVnHD9aGj8yUoLuYqqqcKWySKMqGVA",
-      "name": "OFFICIALGTA",
-      "symbol": "OGTA",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3yRXnWusXZ-R--w6?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089816000,
-      "mc": 1522905,
-      "liq": 91671.57,
-      "ch": {
-        "m5": 3.49,
-        "h1": 476,
-        "h24": 2207
-      },
-      "vol": {
-        "m5": 8908.22,
-        "h1": 308110.4,
-        "h24": 776422.28
-      },
-      "txns": {
-        "m5": {
-          "b": 968,
-          "s": 397
-        },
-        "h1": {
-          "b": 12472,
-          "s": 7519
-        }
-      },
-      "heat": 72
-    },
-    {
-      "address": "DeXXt9HopHa28msm4iATCvrQBer1FScmkpnt73Dgpump",
-      "pairAddress": "4xigVYy6WCg6NHv1jx2XRzQhg8QxY5En15CqiDbzmZ89",
-      "name": "Gay Theft Auto",
-      "symbol": "GAYTA",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/MiZ7iqHtg9E9VJzI?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795089240000,
-      "mc": 38689,
-      "liq": 15685.3,
-      "ch": {
-        "m5": -4.49,
-        "h1": -22.91,
-        "h24": -34.28
-      },
-      "vol": {
-        "m5": 1832.02,
-        "h1": 29494.55,
-        "h24": 114923.95
-      },
-      "txns": {
-        "m5": {
-          "b": 27,
-          "s": 20
-        },
-        "h1": {
-          "b": 393,
-          "s": 354
-        }
-      },
-      "heat": 62
-    },
-    {
-      "address": "HKGtUPPKvXkMPyNX4QeMubENuiimFQ8W1Veg4y52pump",
-      "pairAddress": "94U9XhwKcMTAfctXV5Ew8PtjxxPSFZjAVNkYrGRh5nP7",
-      "name": "Ant Brain",
-      "symbol": "Ant",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/7ASpXmPDZ2EYpMA6?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795088738000,
-      "mc": 13590,
-      "liq": 8441.8,
-      "ch": {
-        "m5": -2.74,
-        "h1": 23.24,
-        "h24": -67.77
-      },
-      "vol": {
-        "m5": 116.44,
-        "h1": 8674.87,
-        "h24": 94662.42
-      },
-      "txns": {
-        "m5": {
-          "b": 5,
-          "s": 8
-        },
-        "h1": {
-          "b": 126,
-          "s": 150
-        }
-      },
-      "heat": 37
+      "heat": 54
     },
     {
       "address": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
@@ -1004,49 +586,531 @@
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/90Rl7H_rYM4BKnMG?width=800&height=800&quality=95&format=auto",
       "pairCreatedAt": 1795075607000,
-      "mc": 91446,
-      "liq": 21544.98,
+      "mc": 87793,
+      "liq": 21715.74,
       "ch": {
-        "m5": -3.53,
-        "h1": -1.82,
-        "h24": 186
+        "m5": -3.8,
+        "h1": -7.56,
+        "h24": 174
       },
       "vol": {
-        "m5": 1259.29,
-        "h1": 35184.21,
-        "h24": 257260.5
+        "m5": 3818.09,
+        "h1": 49838.16,
+        "h24": 658604.89
       },
       "txns": {
         "m5": {
-          "b": 27,
-          "s": 16
+          "b": 85,
+          "s": 84
         },
         "h1": {
-          "b": 493,
-          "s": 329
+          "b": 1046,
+          "s": 1026
+        }
+      },
+      "heat": 53
+    },
+    {
+      "address": "Xsf9mBktVB9BSU5kf4nHxPq5hCBJ2j2ui3ecFGxPRGc",
+      "pairAddress": "hSQxf9L7Tpwf1PKjWWSbnew2vyTPpGrfWwNa4gq2n2x",
+      "name": "Gamestop xStock",
+      "symbol": "GMEx",
+      "dex": "orca",
+      "imageUrl": null,
+      "pairCreatedAt": 1786280545000,
+      "mc": 164264,
+      "liq": 438764.58,
+      "ch": {
+        "m5": 1.26,
+        "h1": -0.47,
+        "h24": 1.99
+      },
+      "vol": {
+        "m5": 13463.61,
+        "h1": 96676.11,
+        "h24": 4766865.28
+      },
+      "txns": {
+        "m5": {
+          "b": 134,
+          "s": 83
+        },
+        "h1": {
+          "b": 740,
+          "s": 611
+        }
+      },
+      "heat": 53
+    },
+    {
+      "address": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+      "pairAddress": "G8kgi7aUpeX8EVR8VMkrth9SKEv5BietWC33UjAiiMGh",
+      "name": "CyberLeek",
+      "symbol": "CYBERLEEK",
+      "dex": "raydium",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/EvHO-m_bFJ_TjSs4?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1786828046000,
+      "mc": 2525510,
+      "liq": 439321.8,
+      "ch": {
+        "m5": 2.24,
+        "h1": 5.44,
+        "h24": 106
+      },
+      "vol": {
+        "m5": 3131.07,
+        "h1": 75762.56,
+        "h24": 1121720.98
+      },
+      "txns": {
+        "m5": {
+          "b": 17,
+          "s": 12
+        },
+        "h1": {
+          "b": 574,
+          "s": 383
+        }
+      },
+      "heat": 52
+    },
+    {
+      "address": "J8JjZXF6XE3zDp3zVQPYxkC9SNDuejGh8Eh6hjKgpump",
+      "pairAddress": "GjER9AzmazAob2PBnMqdFCkwDzp4mtXyMCijEBgAb4Vo",
+      "name": "Jet Ski Dog",
+      "symbol": "JETSKI",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/GdLh-mUpHKd9uGgl?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795100012000,
+      "mc": 22821,
+      "liq": 9916.28,
+      "ch": {
+        "m5": 4.46,
+        "h1": -26.75,
+        "h24": -23.14
+      },
+      "vol": {
+        "m5": 926.18,
+        "h1": 7115.27,
+        "h24": 171180.11
+      },
+      "txns": {
+        "m5": {
+          "b": 17,
+          "s": 8
+        },
+        "h1": {
+          "b": 184,
+          "s": 97
+        }
+      },
+      "heat": 51
+    },
+    {
+      "address": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+      "pairAddress": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
+      "name": "DacityCoin",
+      "symbol": "DCTY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/3ZOgVDrIum8zI4U7?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1792465409000,
+      "mc": 9907860,
+      "liq": 428078.77,
+      "ch": {
+        "m5": 5.94,
+        "h1": 5.91,
+        "h24": -29.76
+      },
+      "vol": {
+        "m5": 23641.88,
+        "h1": 220482.75,
+        "h24": 31265258.52
+      },
+      "txns": {
+        "m5": {
+          "b": 122,
+          "s": 71
+        },
+        "h1": {
+          "b": 1250,
+          "s": 1016
+        }
+      },
+      "heat": 51
+    },
+    {
+      "address": "BxpmBqQNRYoJXoP6F9abvcLfp1fgYJzafsyDEFEppump",
+      "pairAddress": "CFfbSTMJeTk8JEyTqucWqXNsF6Pwy67mfaJGm1u16W2v",
+      "name": "Grand Theft Auto Bank",
+      "symbol": "GTABANK",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/T64HaZpq8Ob9jFRq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795115764000,
+      "mc": 12705,
+      "liq": 8270.02,
+      "ch": {
+        "m5": -19.52,
+        "h1": 42.35,
+        "h24": -70.61
+      },
+      "vol": {
+        "m5": 580.5,
+        "h1": 5817.12,
+        "h24": 104295.63
+      },
+      "txns": {
+        "m5": {
+          "b": 4,
+          "s": 7
+        },
+        "h1": {
+          "b": 158,
+          "s": 80
+        }
+      },
+      "heat": 50
+    },
+    {
+      "address": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+      "pairAddress": "B4Cp45PGifVM5FAXfh6AeV8QZ3eUNQnqGBw7KuC7MHnB",
+      "name": "Cartoon Money",
+      "symbol": "CBUCKS",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/2bajn2a05AdQGV-4?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1791311393000,
+      "mc": 3811828,
+      "liq": 224011.89,
+      "ch": {
+        "m5": 8.54,
+        "h1": 5.08,
+        "h24": 18.43
+      },
+      "vol": {
+        "m5": 4630.7,
+        "h1": 7690.88,
+        "h24": 152440.96
+      },
+      "txns": {
+        "m5": {
+          "b": 2,
+          "s": 2
+        },
+        "h1": {
+          "b": 16,
+          "s": 17
+        }
+      },
+      "heat": 49
+    }
+  ],
+  "graduates": [
+    {
+      "address": "mXcP1bqxM8Tx6BQuFwTHqzE3m7JVMZspmxZ7pjQpump",
+      "pairAddress": "ELyCEcDXqeHy93nFuR1iuvECppobyFLkMvVJLx9xVaRP",
+      "name": "BUNCOIN",
+      "symbol": "BUNCOIN",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/8dqNnhV2e1BxVYfs?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795124174000,
+      "mc": 349120,
+      "liq": 44292.67,
+      "ch": {
+        "m5": 0.64,
+        "h1": 277,
+        "h24": 277
+      },
+      "vol": {
+        "m5": 79830.45,
+        "h1": 341456.35,
+        "h24": 341456.35
+      },
+      "txns": {
+        "m5": {
+          "b": 455,
+          "s": 521
+        },
+        "h1": {
+          "b": 975,
+          "s": 1058
+        }
+      },
+      "heat": 85
+    },
+    {
+      "address": "3hcJWcNvWJu3QBq6PiC8xavYQJJwBnr6adhdpHXppump",
+      "pairAddress": "DLxUmNSQArWSegkberb1Hu531tseqWfNE5ixuESJCREN",
+      "name": "Fiona the Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/JStmjQugDGjmcd2Z?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795123324000,
+      "mc": 62928,
+      "liq": 20168.53,
+      "ch": {
+        "m5": -54.87,
+        "h1": 114,
+        "h24": 114
+      },
+      "vol": {
+        "m5": 233295.01,
+        "h1": 418939.34,
+        "h24": 418939.34
+      },
+      "txns": {
+        "m5": {
+          "b": 2227,
+          "s": 1793
+        },
+        "h1": {
+          "b": 4189,
+          "s": 3596
+        }
+      },
+      "heat": 90
+    },
+    {
+      "address": "4V6DGWrMeKpQcpPmEGnuHqdAccno5q3JzJFTTh4opump",
+      "pairAddress": "Cv28PME6bFt5UZkKctB6gBeX1ZqavK3mzLyTYe7TSW6b",
+      "name": "Fiona The Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/AVL183lLIiT9R63O?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795122069000,
+      "mc": 18076,
+      "liq": 10123.45,
+      "ch": {
+        "m5": 0.54,
+        "h1": -37.8,
+        "h24": -37.8
+      },
+      "vol": {
+        "m5": 5232.04,
+        "h1": 265901.47,
+        "h24": 265901.47
+      },
+      "txns": {
+        "m5": {
+          "b": 66,
+          "s": 55
+        },
+        "h1": {
+          "b": 4029,
+          "s": 3458
+        }
+      },
+      "heat": 66
+    },
+    {
+      "address": "EfFoZZgpDjJywmWqpA8Lqs5gC4NH6cj5N1G5D43vpump",
+      "pairAddress": "59cbwcBVKAc5QxLvCUWZwzE7GSpBv4iMYGbtTT18G3q9",
+      "name": "Mandy",
+      "symbol": "MANDY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/kN5BIEHL0O69pYVC?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795121964000,
+      "mc": 295428,
+      "liq": 37967.94,
+      "ch": {
+        "m5": -14.63,
+        "h1": 724,
+        "h24": 724
+      },
+      "vol": {
+        "m5": 12943.92,
+        "h1": 152850.41,
+        "h24": 152850.41
+      },
+      "txns": {
+        "m5": {
+          "b": 412,
+          "s": 37
+        },
+        "h1": {
+          "b": 4936,
+          "s": 1266
+        }
+      },
+      "heat": 79
+    },
+    {
+      "address": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+      "pairAddress": "DjbLtX1HRGZZrJgJ7CwTX6SN3D7tBLiytkGwomBUwTVB",
+      "name": "Fiona the Hippo",
+      "symbol": "FIONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/9NUIvShLJiopaTvw?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795121609000,
+      "mc": 682276,
+      "liq": 67471.64,
+      "ch": {
+        "m5": 54.82,
+        "h1": 2086,
+        "h24": 2086
+      },
+      "vol": {
+        "m5": 220150.81,
+        "h1": 1713622.67,
+        "h24": 1713622.67
+      },
+      "txns": {
+        "m5": {
+          "b": 1461,
+          "s": 1369
+        },
+        "h1": {
+          "b": 15461,
+          "s": 13355
+        }
+      },
+      "heat": 80
+    },
+    {
+      "address": "82u71wqQSa4NmD1UTTDwKyh5EUm3xe9pMp4UZXhFpump",
+      "pairAddress": "3qNtWA3x9yRiDqLUZ7fLA1oFqeQ3wPthegCrGVkfcarU",
+      "name": "Dacity Inu",
+      "symbol": "DAINU",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/nhHdkfeshcYebHxQ?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795120898000,
+      "mc": 758618,
+      "liq": 62590.95,
+      "ch": {
+        "m5": -5.72,
+        "h1": 99.47,
+        "h24": 1979
+      },
+      "vol": {
+        "m5": 14554.78,
+        "h1": 684747.59,
+        "h24": 723305.24
+      },
+      "txns": {
+        "m5": {
+          "b": 769,
+          "s": 398
+        },
+        "h1": {
+          "b": 11448,
+          "s": 6228
+        }
+      },
+      "heat": 74
+    },
+    {
+      "address": "GQngHP8P6s45MxWnU7JsocfV2HjPQdJZmCEAYKpBpump",
+      "pairAddress": "6vHxZ8NQUxfGiiXy7erhZLRJBAmLtgCsD7mZbaRdoUJy",
+      "name": "Jason's ex",
+      "symbol": "MANDY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/OX8l6YDODMLBq1Zq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795120857000,
+      "mc": 979715,
+      "liq": 70902.6,
+      "ch": {
+        "m5": 8.57,
+        "h1": 213,
+        "h24": 2301
+      },
+      "vol": {
+        "m5": 14644.93,
+        "h1": 427913.56,
+        "h24": 452168.69
+      },
+      "txns": {
+        "m5": {
+          "b": 130,
+          "s": 1095
+        },
+        "h1": {
+          "b": 11273,
+          "s": 8481
+        }
+      },
+      "heat": 70
+    },
+    {
+      "address": "69MpnyRBqXbQtcZeYdRcpPRPHjwhGAPV7uT27cZcpump",
+      "pairAddress": "FHNm4R31c78pVMQDg8F4YBLC7Xr89rt4oGFWeXAbmxng",
+      "name": "Shatcoin",
+      "symbol": "Shatcoin",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/Lz0acBYx5RWwZ3Qo?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795120453000,
+      "mc": 2917,
+      "liq": 2797.11,
+      "ch": {
+        "m5": -5.81,
+        "h1": -85.76,
+        "h24": -90.15
+      },
+      "vol": {
+        "m5": 69.05,
+        "h1": 34066.16,
+        "h24": 164150.68
+      },
+      "txns": {
+        "m5": {
+          "b": 1,
+          "s": 3
+        },
+        "h1": {
+          "b": 520,
+          "s": 571
+        }
+      },
+      "heat": 55
+    },
+    {
+      "address": "47HUoJ3EiL1h8kej8hEcUjFrxUkohNMSSbQHidPCpump",
+      "pairAddress": "Bw1cbUwbXFFn5xVBX6E7qVSDeb7vmtY8fpJPNYvDoXkA",
+      "name": "Cool Dog",
+      "symbol": "LOOSY",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/SIEACNo8LEHTljbz?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795118693000,
+      "mc": 36096,
+      "liq": 16264.34,
+      "ch": {
+        "m5": -24.63,
+        "h1": -42.3,
+        "h24": -14.8
+      },
+      "vol": {
+        "m5": 3175.19,
+        "h1": 77086.36,
+        "h24": 599123.61
+      },
+      "txns": {
+        "m5": {
+          "b": 30,
+          "s": 41
+        },
+        "h1": {
+          "b": 1159,
+          "s": 957
         }
       },
       "heat": 60
     },
     {
-      "address": "8CnvwZJLRpQazvn6LszkzmXJxkmMY2bTQ4Q3NN4fpump",
-      "pairAddress": "F7QoyXnwPTn1tB3wHYzizPw3gj6qEeU1orJBN9sXaewe",
-      "name": "Grand Theft Alleycat",
-      "symbol": "GTA",
+      "address": "Fz2mPmkdJGj7eBmUvYcuNLVBXsGNtGUBuSkxbQ7Lpump",
+      "pairAddress": "4AyGqcNNASdiebQ8nVMQyxrnGxcNbX2KCwn78CKzEdp9",
+      "name": "Pepe City VI",
+      "symbol": "PCVI",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/7E9v8VJj3IFpHBML?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795066374000,
-      "mc": 1792,
-      "liq": 1858.49,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/PF0k3HwTpCeObwRj?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795118675000,
+      "mc": 1434,
+      "liq": 1556.6,
       "ch": {
-        "m5": 6.3,
-        "h1": 5.49,
-        "h24": -95.19
+        "m5": -0.3,
+        "h1": 0.52,
+        "h24": -95.48
       },
       "vol": {
-        "m5": 58.85,
-        "h1": 61.96,
-        "h24": 900532.29
+        "m5": null,
+        "h1": 36,
+        "h24": 298912.58
       },
       "txns": {
         "m5": {
@@ -1054,63 +1118,31 @@
           "s": 0
         },
         "h1": {
-          "b": 1,
-          "s": 1
+          "b": 4,
+          "s": 3
         }
       },
-      "heat": 30
+      "heat": 13
     },
     {
-      "address": "FEaD7gWYkkuZMWtsgThbsjTZqFeNHu3L8W9ze6mNpump",
-      "pairAddress": "3G7LsShREChGQPRsVxP218QLvRbb3LV4f5hQhQaq4ytg",
-      "name": "AFTERGTA6",
-      "symbol": "AFTERGTA6",
+      "address": "22Rh3HSAmmdLwr5qP7ULgXEDD86zpd3w8zZ8SMzrpump",
+      "pairAddress": "2JWVb3bPJnEmrMEwppwbL86StcNs1Y4RnijruCSTiG3u",
+      "name": "Busted Lucia",
+      "symbol": "LUCIA",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/X47sWpAIQLQoD4za?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795066363000,
-      "mc": 6565,
-      "liq": 4724.24,
-      "ch": {
-        "m5": -2.83,
-        "h1": -18.31,
-        "h24": -79.41
-      },
-      "vol": {
-        "m5": 284.49,
-        "h1": 1147.69,
-        "h24": 59501.72
-      },
-      "txns": {
-        "m5": {
-          "b": 6,
-          "s": 8
-        },
-        "h1": {
-          "b": 24,
-          "s": 30
-        }
-      },
-      "heat": 39
-    },
-    {
-      "address": "EkTfN4Pb7K3NXzxsbzkn3AA4MGbsdTniFJ3G2RsVpump",
-      "pairAddress": "7wguEXUJbiZRD3aW5jTTbSjRMdEZwrzdFPZEGiMrPqFi",
-      "name": "Mandy",
-      "symbol": "MANDY",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/KdpsgHukGDjPcWHs?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795062911000,
-      "mc": 1691,
-      "liq": 1815.99,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/JGN0RTh9kAni5h0K?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795118594000,
+      "mc": 1422,
+      "liq": 1635.39,
       "ch": {
         "m5": null,
-        "h1": -0.43,
-        "h24": -95.87
+        "h1": -96.79,
+        "h24": -96.05
       },
       "vol": {
         "m5": null,
-        "h1": 0.06,
-        "h24": 1002838.97
+        "h1": 117365.3,
+        "h24": 296808.06
       },
       "txns": {
         "m5": {
@@ -1118,171 +1150,139 @@
           "s": 0
         },
         "h1": {
+          "b": 2155,
+          "s": 5524
+        }
+      },
+      "heat": 55
+    },
+    {
+      "address": "HvYp9yArPNFeL4rN5BJTFpixGthfsuGrKFR15GYXpump",
+      "pairAddress": "3DBzDGDT9Ze89cecz7r25PWiWSpuxjmmKyK72bFRWdT7",
+      "name": "Catcoin",
+      "symbol": "CAT",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/uEOa8X0vWS8-jMW2?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795118157000,
+      "mc": 6281,
+      "liq": 4656.89,
+      "ch": {
+        "m5": 0.55,
+        "h1": -47.22,
+        "h24": -78.4
+      },
+      "vol": {
+        "m5": 6.18,
+        "h1": 2748.07,
+        "h24": 29392.24
+      },
+      "txns": {
+        "m5": {
+          "b": 2,
+          "s": 0
+        },
+        "h1": {
+          "b": 41,
+          "s": 51
+        }
+      },
+      "heat": 29
+    },
+    {
+      "address": "GM6WF5xtGqSz6nQSosHMDcc7BNWjPS6MvLHVv8w9pump",
+      "pairAddress": "36BLmsQTtMaH3QaFVmnAppyDcxPcyuKKPtDLREH45zva",
+      "name": "Blub",
+      "symbol": "BLUB",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/Sot-0kC_mQiPRbDh?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795117847000,
+      "mc": 3508,
+      "liq": 3517.29,
+      "ch": {
+        "m5": null,
+        "h1": -7.38,
+        "h24": -91.61
+      },
+      "vol": {
+        "m5": null,
+        "h1": 121.06,
+        "h24": 72673.07
+      },
+      "txns": {
+        "m5": {
           "b": 0,
-          "s": 2
-        }
-      },
-      "heat": 0
-    },
-    {
-      "address": "QDsTBqfFEt4yrpqfU7edcc9E6u7nHrbz15eqY8jpump",
-      "pairAddress": "C2ET3Nr4z31rmgKsBzPKiiHPeoaa4vZXDHSXnFjg9i5P",
-      "name": "gmgm.fun",
-      "symbol": "GMGM",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/kPX5ijiy2hirrhn2?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795057164000,
-      "mc": 16081,
-      "liq": 8257.29,
-      "ch": {
-        "m5": 5.66,
-        "h1": 5.36,
-        "h24": -40.72
-      },
-      "vol": {
-        "m5": 148,
-        "h1": 153.33,
-        "h24": 49329.02
-      },
-      "txns": {
-        "m5": {
-          "b": 4,
-          "s": 1
+          "s": 0
         },
         "h1": {
-          "b": 4,
-          "s": 2
-        }
-      },
-      "heat": 43
-    },
-    {
-      "address": "64Uf4fkAWepSjBF8QKWdftHjtgKb2FG6gZsgmx6Fpump",
-      "pairAddress": "E228rR6v99NTkHW19DoTdPCmrcL8rnnzTBVwz2VNkwww",
-      "name": "Founder Official",
-      "symbol": "FNDR",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/BfBSvyOWcJJJAnRL?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795050224000,
-      "mc": 165545,
-      "liq": 33640.24,
-      "ch": {
-        "m5": -11.75,
-        "h1": -11.7,
-        "h24": 545
-      },
-      "vol": {
-        "m5": 4058.89,
-        "h1": 40261.63,
-        "h24": 2596090.75
-      },
-      "txns": {
-        "m5": {
-          "b": 37,
-          "s": 27
-        },
-        "h1": {
-          "b": 392,
-          "s": 400
-        }
-      },
-      "heat": 42
-    },
-    {
-      "address": "A4jXnWk1rDRDth6HmDASi45c89n1AguTHivAQPTVpump",
-      "pairAddress": "C3ai5bk7q9jTtVcbWQeEXSta99BMmLCNVyasDD7mnQBt",
-      "name": "GTA Season",
-      "symbol": "GTASZN",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/7oalA1ENsde6Xoy-?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795045398000,
-      "mc": 843329,
-      "liq": 73958.67,
-      "ch": {
-        "m5": -17.6,
-        "h1": -64.35,
-        "h24": 732
-      },
-      "vol": {
-        "m5": 15078.63,
-        "h1": 637305.66,
-        "h24": 5441484.86
-      },
-      "txns": {
-        "m5": {
-          "b": 500,
-          "s": 169
-        },
-        "h1": {
-          "b": 7804,
-          "s": 3442
-        }
-      },
-      "heat": 69
-    },
-    {
-      "address": "FJSga8VWXAUHvQCb2gBzn7xc2EQ7wdGKw764Hdespump",
-      "pairAddress": "31ZhFwyrs1cjjcKLoKVFaG24oHgeo7y142hvKrK83VaT",
-      "name": "DacityCoin",
-      "symbol": "DCTY",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/4U7XWL5Lw3iQupl9?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795041018000,
-      "mc": 16152,
-      "liq": 9708.67,
-      "ch": {
-        "m5": -18.76,
-        "h1": -37.92,
-        "h24": -65.64
-      },
-      "vol": {
-        "m5": 62.48,
-        "h1": 3022.15,
-        "h24": 322964.1
-      },
-      "txns": {
-        "m5": {
           "b": 5,
-          "s": 2
-        },
-        "h1": {
-          "b": 30,
-          "s": 60
+          "s": 15
         }
       },
-      "heat": 16
+      "heat": 5
     },
     {
-      "address": "7no4DN8bKbbEYnaa9h4LgobGoeT4HGk8fjQ5ZPMCpump",
-      "pairAddress": "HeFUxUhQGo8HMzrVdvUzJSWGMxXtyxTHnUaYa7gSe9tp",
-      "name": "DacityCoin",
-      "symbol": "DCTY",
+      "address": "BxpmBqQNRYoJXoP6F9abvcLfp1fgYJzafsyDEFEppump",
+      "pairAddress": "CFfbSTMJeTk8JEyTqucWqXNsF6Pwy67mfaJGm1u16W2v",
+      "name": "Grand Theft Auto Bank",
+      "symbol": "GTABANK",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/3OrlVVPemiBFSc9N?width=800&height=800&quality=95&format=auto",
-      "pairCreatedAt": 1795038749000,
-      "mc": 31970,
-      "liq": 12048.61,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/T64HaZpq8Ob9jFRq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795115764000,
+      "mc": 12705,
+      "liq": 8270.02,
       "ch": {
-        "m5": 5.58,
-        "h1": 62.76,
-        "h24": 5.35
+        "m5": -19.52,
+        "h1": 42.35,
+        "h24": -70.61
       },
       "vol": {
-        "m5": 302.88,
-        "h1": 2870.91,
-        "h24": 209261.88
+        "m5": 580.5,
+        "h1": 5817.12,
+        "h24": 104295.63
       },
       "txns": {
         "m5": {
-          "b": 12,
-          "s": 6
+          "b": 4,
+          "s": 7
         },
         "h1": {
-          "b": 65,
-          "s": 24
+          "b": 158,
+          "s": 80
         }
       },
-      "heat": 42
+      "heat": 50
+    },
+    {
+      "address": "7bCiddGLe5aM8HE2pigT9jsqkmC1HSPxyXN6GkHEpump",
+      "pairAddress": "2RDx58tnDMEmZcQy9qGAfwhq9iCRRMbDuAtruofrjyZU",
+      "name": "OFFICIALGTA",
+      "symbol": "OGTA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/XNJNJP5j1s-WmkYq?width=800&height=800&quality=95&format=auto",
+      "pairCreatedAt": 1795113110000,
+      "mc": 1080075,
+      "liq": 77094.59,
+      "ch": {
+        "m5": -7.82,
+        "h1": -3.79,
+        "h24": 1093
+      },
+      "vol": {
+        "m5": 9445.25,
+        "h1": 118331.53,
+        "h24": 1577077.21
+      },
+      "txns": {
+        "m5": {
+          "b": 735,
+          "s": 271
+        },
+        "h1": {
+          "b": 10133,
+          "s": 4055
+        }
+      },
+      "heat": 65
     }
   ]
 }
