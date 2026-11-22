@@ -1,8 +1,92 @@
 {
-  "updatedAt": "2026-11-22T01:12:08.342Z",
+  "updatedAt": "2026-11-22T08:03:58.749Z",
   "minScore": 60,
-  "count": 9,
+  "count": 7,
   "items": [
+    {
+      "address": "6fVQAutGBLpyYJRiekVjSjvKidsmgZx14bKV5HSSpump",
+      "pairAddress": "5Wzj1Z8cuHCt84TERxWuWupxv2Hatz9TCAcrs4S9EHez",
+      "name": "Corona",
+      "symbol": "CORONA",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/SwsOaSzlCcE8xVgr?width=800&height=800&quality=95&format=auto",
+      "score": 83,
+      "mc": 78078,
+      "liq": 19206.28,
+      "vol1h": 30946.62,
+      "ageMin": 158,
+      "ch": {
+        "m5": 38.01,
+        "h1": 49.22,
+        "h24": 182
+      },
+      "buysH1": 604,
+      "sellsH1": 382,
+      "tier": 2,
+      "reason": "liq<20000",
+      "reasonText": "Liquidity under $20K",
+      "otherReasons": [
+        "Spiking right now (no chasing)"
+      ],
+      "uniqueBuyersH1": null,
+      "safety": null
+    },
+    {
+      "address": "7gAxLrU7yY9z1PheHYvW7g8kWmXUAr4SFeDsYp1x3QAt",
+      "pairAddress": "9NNf4zBbEwE4SqMohyW7kZcK8382z1xpB8X43La55xEE",
+      "name": "市场血流成河恐慌情绪蔓延",
+      "symbol": "工地蛙",
+      "dex": "meteora",
+      "imageUrl": null,
+      "score": 66,
+      "mc": 12150,
+      "liq": 21707.08,
+      "vol1h": 60894.35,
+      "ageMin": 2,
+      "ch": {
+        "m5": 17.02,
+        "h1": 17.02,
+        "h24": 17.02
+      },
+      "buysH1": 305,
+      "sellsH1": 193,
+      "tier": 2,
+      "reason": "mcap low",
+      "reasonText": "Market cap too small",
+      "otherReasons": [
+        "Too new (age filter)"
+      ],
+      "uniqueBuyersH1": null,
+      "safety": null
+    },
+    {
+      "address": "3XsFunPdji9U1EgJXokZysw8SB3t74un89b6KLEVpump",
+      "pairAddress": "CBKVSC4TtBTSQzMj7G1TkLZfBvvA7ibqUsXk3gB1woky",
+      "name": "Mihaomas",
+      "symbol": "MIHAOMAS",
+      "dex": "pumpswap",
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/AYw4Or5m-yZVX9My?width=800&height=800&quality=95&format=auto",
+      "score": 65,
+      "mc": 69680,
+      "liq": 18367.91,
+      "vol1h": 6895.52,
+      "ageMin": 176,
+      "ch": {
+        "m5": -2.38,
+        "h1": -14.2,
+        "h24": 160
+      },
+      "buysH1": 221,
+      "sellsH1": 117,
+      "tier": 2,
+      "reason": "liq<20000",
+      "reasonText": "Liquidity under $20K",
+      "otherReasons": [
+        "Dumping in the last hour"
+      ],
+      "uniqueBuyersH1": null,
+      "safety": null
+    },
     {
       "address": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
       "pairAddress": "3d4SzgvyhhwDo3dnDzkQNppdqp1ffNvrZFVLRN94j1bP",
@@ -10,139 +94,49 @@
       "symbol": "jingyu",
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/90Rl7H_rYM4BKnMG?width=800&height=800&quality=95&format=auto",
-      "score": 66,
-      "mc": 98548,
-      "liq": 24538.24,
-      "vol1h": 17466.78,
-      "ageMin": 3905,
+      "score": 60,
+      "mc": 89209,
+      "liq": 23212.9,
+      "vol1h": 4803.18,
+      "ageMin": 4317,
       "ch": {
-        "m5": -1.68,
-        "h1": 5.22,
-        "h24": -9.1
+        "m5": 0.73,
+        "h1": -10.65,
+        "h24": 5.44
       },
-      "buysH1": 516,
-      "sellsH1": 204,
-      "tier": 1,
-      "reason": "safety: insider network 2045/1405",
-      "reasonText": "Large insider network",
-      "otherReasons": [],
-      "uniqueBuyersH1": 502,
-      "safety": {
-        "mint": true,
-        "freeze": true,
-        "lp": 100,
-        "top10": 15,
-        "holders": 1405
-      }
-    },
-    {
-      "address": "82mseLFauphc2yutbaDGgViahquJ1jGVLpyof99xpump",
-      "pairAddress": "6qCGSihSVm4aHn4i7F2fbgUYDPnqdRBHiXVsfNQXWArL",
-      "name": "OnlyStreets",
-      "symbol": "STREETS",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/HioYSnLGFgLf5eBT?width=800&height=800&quality=95&format=auto",
-      "score": 80,
-      "mc": 831157,
-      "liq": 66009.07,
-      "vol1h": 1266099.14,
-      "ageMin": 45,
-      "ch": {
-        "m5": 13.95,
-        "h1": 628,
-        "h24": 628
-      },
-      "buysH1": 7988,
-      "sellsH1": 4728,
-      "tier": 2,
-      "reason": "too new",
-      "reasonText": "Too new (age filter)",
-      "otherReasons": [
-        "Already pumped hard this hour"
-      ],
-      "uniqueBuyersH1": null,
-      "safety": null
-    },
-    {
-      "address": "FJKt1LxbWBpTRt9BaDEB6Wr2qL5LZzjFF5sx8rXnpump",
-      "pairAddress": "51edMriYsoN7MWtgQxAYsoG4z9nnVhVUUpbuyY1EPCbo",
-      "name": "Maya The Samoyed",
-      "symbol": "MAYA",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/zxcSYXKISI2o4Dst?width=800&height=800&quality=95&format=auto",
-      "score": 72,
-      "mc": 198831,
-      "liq": 32033.64,
-      "vol1h": 140499.24,
-      "ageMin": 1205,
-      "ch": {
-        "m5": -22.92,
-        "h1": -64.22,
-        "h24": 449
-      },
-      "buysH1": 5179,
-      "sellsH1": 2705,
+      "buysH1": 303,
+      "sellsH1": 116,
       "tier": 2,
       "reason": "dumping 1h",
       "reasonText": "Dumping in the last hour",
-      "otherReasons": [
-        "Dumping in the last 5 min"
-      ],
+      "otherReasons": [],
       "uniqueBuyersH1": null,
       "safety": null
     },
     {
-      "address": "BQcV4Ryfu9bZK8egAF89AhkojdJqAaDt4xTFwUQ2pump",
-      "pairAddress": "6ZupZ88kKBbLos7SHfeehBrNQogyV5Zj1Pzh9DTP5NDa",
-      "name": "RIZZMAS3",
-      "symbol": "RIZZMAS3",
+      "address": "3N6Mp8YQuVDfEtyuyJS72s4MRrgQuKY34gvYZD5Kpump",
+      "pairAddress": "GZ6zUqpbwrCdFbL9asPyaHdmYk3fNpv1aM719rYLMYZF",
+      "name": "PushCoin",
+      "symbol": "PushCoin",
       "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/a96lLACSjwrUyYzZ?width=800&height=800&quality=95&format=auto",
-      "score": 69,
-      "mc": 214282,
-      "liq": 35902.66,
-      "vol1h": 741795.24,
-      "ageMin": 66,
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/vrujVMvuEX9w9SKZ?width=800&height=800&quality=95&format=auto",
+      "score": 60,
+      "mc": 1522372,
+      "liq": 87541.35,
+      "vol1h": 49432.22,
+      "ageMin": 369,
       "ch": {
-        "m5": -1.5,
-        "h1": 684,
-        "h24": 689
+        "m5": 2.98,
+        "h1": -8,
+        "h24": 4243
       },
-      "buysH1": 12495,
-      "sellsH1": 8754,
+      "buysH1": 8363,
+      "sellsH1": 8045,
       "tier": 2,
-      "reason": "too new",
-      "reasonText": "Too new (age filter)",
+      "reason": "thin liq vs mcap",
+      "reasonText": "Thin liquidity vs market cap",
       "otherReasons": [
-        "Already pumped hard this hour"
-      ],
-      "uniqueBuyersH1": null,
-      "safety": null
-    },
-    {
-      "address": "2Fm3qAJQ4s9Hcem4rLUsrfscFBYuMzpmmPbJiSADpump",
-      "pairAddress": "3mScrdy7PEtWgewpc89dMpZz9V7wgqrpy3FksVpqd3xk",
-      "name": "メイちゃん The Last Otter",
-      "symbol": "Mei-chan",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/bKyLGHW8yCTaUQBS?width=800&height=800&quality=95&format=auto",
-      "score": 61,
-      "mc": 32673,
-      "liq": 11940.18,
-      "vol1h": 4056.67,
-      "ageMin": 501,
-      "ch": {
-        "m5": -2.17,
-        "h1": 72.63,
-        "h24": 17.39
-      },
-      "buysH1": 66,
-      "sellsH1": 41,
-      "tier": 2,
-      "reason": "liq<20000",
-      "reasonText": "Liquidity under $20K",
-      "otherReasons": [
-        "Market cap too small"
+        "Already pumped hard today"
       ],
       "uniqueBuyersH1": null,
       "safety": null
@@ -154,76 +148,22 @@
       "symbol": "SBS",
       "dex": "raydium",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/eeiBfTlxKkwu2mRv?width=800&height=800&quality=95&format=auto",
-      "score": 54,
-      "mc": 163276,
-      "liq": 32175.82,
-      "vol1h": 17591.35,
-      "ageMin": 1523,
+      "score": 56,
+      "mc": 124795,
+      "liq": 28359.15,
+      "vol1h": 3539.89,
+      "ageMin": 1935,
       "ch": {
-        "m5": -5.73,
-        "h1": -0.42,
-        "h24": 76.74
+        "m5": 0.76,
+        "h1": -1.03,
+        "h24": -17.64
       },
-      "buysH1": 143,
-      "sellsH1": 151,
+      "buysH1": 70,
+      "sellsH1": 44,
       "tier": 2,
       "reason": "score<60",
       "reasonText": "Score just under 60",
       "otherReasons": [],
-      "uniqueBuyersH1": null,
-      "safety": null
-    },
-    {
-      "address": "FVzqGqRmr4UH1Fif6dewmwbJ1p4YUZCu8dcw4Efopump",
-      "pairAddress": "7CNC9gGegzEfFK8fLXiYUhdtMEeFPQZoND56U1Mxhnor",
-      "name": "Hogecoin",
-      "symbol": "HOGE",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/tPozLf116uby0gu3?width=800&height=800&quality=95&format=auto",
-      "score": 52,
-      "mc": 709274,
-      "liq": 107949.18,
-      "vol1h": 13324.48,
-      "ageMin": 9736,
-      "ch": {
-        "m5": -0.47,
-        "h1": -14.57,
-        "h24": -1.55
-      },
-      "buysH1": 127,
-      "sellsH1": 83,
-      "tier": 2,
-      "reason": "dumping 1h",
-      "reasonText": "Dumping in the last hour",
-      "otherReasons": [],
-      "uniqueBuyersH1": null,
-      "safety": null
-    },
-    {
-      "address": "EK2tRRD5jqNUxohdMjbjnJ5Q3t9TYGBkZVjtMceDpump",
-      "pairAddress": "Fan13YQwc3ENNA3rrJp1f8ACWybDvMJtEdK7grvLNhbX",
-      "name": "SuperCat",
-      "symbol": "Emily",
-      "dex": "pumpswap",
-      "imageUrl": "https://cdn.dexscreener.com/cms/images/C2NCaQqPR9FoxpKy?width=800&height=800&quality=95&format=auto",
-      "score": 51,
-      "mc": 22860,
-      "liq": 10743.05,
-      "vol1h": 7105.79,
-      "ageMin": 778,
-      "ch": {
-        "m5": 12.07,
-        "h1": 40.16,
-        "h24": -14.69
-      },
-      "buysH1": 103,
-      "sellsH1": 100,
-      "tier": 2,
-      "reason": "liq<20000",
-      "reasonText": "Liquidity under $20K",
-      "otherReasons": [
-        "Market cap too small"
-      ],
       "uniqueBuyersH1": null,
       "safety": null
     },
@@ -234,22 +174,24 @@
       "symbol": "XV",
       "dex": "pumpswap",
       "imageUrl": "https://cdn.dexscreener.com/cms/images/xME2prO0CFu9aTSO?width=800&height=800&quality=95&format=auto",
-      "score": 50,
-      "mc": 85366,
-      "liq": 26557.21,
-      "vol1h": 16245.97,
-      "ageMin": 931,
+      "score": 41,
+      "mc": 73455,
+      "liq": 24578.17,
+      "vol1h": 2742.49,
+      "ageMin": 1343,
       "ch": {
-        "m5": -3.69,
-        "h1": -1.91,
-        "h24": 95.04
+        "m5": -0.62,
+        "h1": -10.6,
+        "h24": 67.83
       },
-      "buysH1": 241,
-      "sellsH1": 174,
+      "buysH1": 35,
+      "sellsH1": 62,
       "tier": 2,
-      "reason": "score<60",
-      "reasonText": "Score just under 60",
-      "otherReasons": [],
+      "reason": "sell pressure",
+      "reasonText": "Sell pressure (more sells than buys)",
+      "otherReasons": [
+        "Dumping in the last hour"
+      ],
       "uniqueBuyersH1": null,
       "safety": null
     }
