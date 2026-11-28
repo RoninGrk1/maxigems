@@ -3074,9 +3074,9 @@
   "dkpuQdjegjU8zcwYrBzYrLW11wvtjwonBsQhjLApump": {
    "v": 1,
    "peak": 2.38,
-   "cur": 0.14,
-   "curMc": 90840,
-   "status": "rugged",
+   "cur": 0,
+   "curMc": 1483,
+   "status": "pulled",
    "peakMc": 1564516,
    "hasCard": true,
    "symbol": "RIEMANN"
@@ -3260,6 +3260,16 @@
    "peakMc": 238953,
    "hasCard": true,
    "symbol": "Kibo"
+  },
+  "GXjSWDoMQkDEbhon9ALxz8chUUsVKg3x8V3NajjDpump": {
+   "v": 1,
+   "peak": 1,
+   "cur": 1,
+   "curMc": 637590,
+   "status": "live",
+   "peakMc": 637590,
+   "hasCard": true,
+   "symbol": "MoonBoy"
   }
  }
 }
